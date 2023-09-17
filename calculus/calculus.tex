@@ -1,0 +1,35 @@
+\documentclass{article}
+\usepackage{blindtext} % for table of contents and other niceseties.
+\usepackage{amsmath}
+\usepackage{amsfonts} % things such as \mathbb{R}, or \Z. See https://en.wikipedia.org/wiki/List_of_mathematical_symbols_by_subject
+\usepackage{amstext} % for \text macro.
+\usepackage{array} % for tables.
+\usepackage{float} % here for H placement parameter
+\usepackage{hyperref} % for hyperlinks.
+\usepackage{listings} % for code.
+\usepackage[makeroom]{cancel} % corssing out terms in math https://tex.stackexchange.com/questions/75525/how-to-write-crossed-out-math-in-latex.
+
+\title{Notes on Calculus}
+
+\numberwithin{equation}{section}
+
+% There is a \pmod for the "mod" symbol, but not one for the "div" symbol.
+% Thus we are making it up.
+\makeatletter
+\newcommand*{\bdiv}{%
+  \nonscript\mskip-\medmuskip\mkern5mu%
+  \mathbin{\operator@font div}\penalty900\mkern5mu%
+  \nonscript\mskip-\medmuskip
+}
+\makeatother
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\include{vector-calculus}
+\include{folland.tex}
+
+
+\end{document}

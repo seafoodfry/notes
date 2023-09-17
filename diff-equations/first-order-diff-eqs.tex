@@ -1,0 +1,132 @@
+\section{First Order Differential Equations}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Linear Equations}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Method of Integrating Factors}
+
+
+$$
+p(t) \frac{dy}{dx} + q(t)y = g(t)
+$$
+
+$$
+\frac{d}{dt} \left[ \mu(t)y \right] =
+\mu(t) \frac{dy}{dt} + y \frac{d\mu(t)}{dt} \sim p(t) \frac{dy}{dx} + q(t)y
+$$
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Separable Equations}
+
+$$
+M(x) + N(y) \frac{dy}{dx} = 0
+$$
+
+Can be written in \textbf{differential form} as
+$$
+M(x)dx + N(y)dy = 0
+$$
+
+
+\subsubsection{Notes}
+
+Sometimes equations of the form
+$$
+\frac{dy}{dx} = f(x,y)
+$$
+have a constant solution $y = y_0$.
+
+For example,
+$$
+\frac{dy}{dx} = \frac{(y-3) \cos{x}}{1+2y^2}
+$$
+Has a constant solution $y=3$.
+\\
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Modeling with First Order Equations}
+
+
+\subsubsection{Example 1: Mixing}
+$$
+\frac{d Q}{dt} + \frac{r}{100}Q = \frac{r}{4}
+$$
+
+Using the method of Integrating factors, we have
+$$
+\frac{d}{dt}\left[\mu(t)Q(t)\right] = \mu\frac{dQ}{dt} + Q \frac{d\mu}{dt}
+= \mu \frac{d Q}{dt} + \mu \frac{r}{100}Q = \mu \frac{r}{4}
+$$
+
+Comparing
+$$
+Q \frac{d\mu}{dt} \sim \mu \frac{r}{100}Q
+$$
+We have that
+$$
+\frac{d\mu}{dt} = \frac{r}{100} \mu
+$$
+
+So the integrating factor must be
+$$
+\int \frac{1}{\mu} \frac{d\mu}{dt} dt = ln |\mu| 
+= \int \frac{r}{100} = \frac{r}{100}t + C_0
+$$
+
+And so
+$$
+\mu(t) = e^{\frac{r}{100}t + C_0} = C_1e^{\frac{rt}{100}}
+$$
+
+Our original equation becomes
+
+\begin{align*}
+    \frac{d}{dt} \left[ C_1e^{\frac{rt}{100}} Q \right]  &=   
+    C_1e^{\frac{rt}{100}} \frac{d Q}{dt} + C_1e^{\frac{rt}{100}} \frac{r}{100}Q = C_1e^{\frac{rt}{100}} \frac{r}{4}
+\end{align*}
+
+Now, we can finally integrate both sides,
+\begin{align*}
+    \int \frac{d}{dt} \left[ C_1e^{\frac{rt}{100}} Q \right] dt  &=  C_1e^{\frac{rt}{100}} Q     \\
+    &= \int C_1e^{\frac{rt}{100}} \frac{r}{4} dt    \\
+    &= \frac{r}{4} \frac{100}{r} C_1e^{\frac{rt}{100}} + C_2 \\
+    &= 25 C_1e^{\frac{rt}{100}} + C_2 \\
+\end{align*}
+
+So our general solution is
+$$
+C_1e^{\frac{rt}{100}} Q = 25 C_1e^{\frac{rt}{100}} + C_2
+$$
+or
+$$
+Q = 25 + C e^{\frac{-rt}{100}}
+$$
+
+Since $Q(t=0) = Q_0$
+$$
+Q_0 = 25 + C \rightarrow C = Q_0 - 25
+$$
+
+And
+\begin{align*}
+    Q(t) &= 25 + (Q_0 - 25) e^{\frac{-rt}{100}} \\
+    &= 25(1 - e^{\frac{-rt}{100}}) + Q_0 e^{\frac{-rt}{100}}
+\end{align*}
+
+When we want to solve for the time $T$ after which the salt level is within $2\%$ of $Q_L$ (the limiting ammount),
+we do it as follows:
+$$
+25.5 = 25 + 25 e^{-rT/100} \rightarrow \frac{1}{2} = 25 e^{-rT/100}
+$$
+$$
+= \frac{1}{50} = e^{-rT/100} \rightarrow \ln (1/50) = \frac{-rT}{100}
+$$
+$$
+= - \frac{100}{r} \ln(1/50) = \frac{100}{r} \ln{50}
+$$

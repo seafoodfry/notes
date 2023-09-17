@@ -1,0 +1,1601 @@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Rearrangements of infinite series}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Limit of a sequence}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsubsection{Exercises}
+
+\textbf{2.2.2}
+
+$$
+\lim \frac{2n+1}{5n+4} = \frac{2}{5}
+$$
+
+We want to show that,
+$$
+\left| \frac{2n+1}{5n+4} - \frac{2}{5} \right| < \epsilon
+$$
+For any $\epsilon > 0 \in \mathbb{R}$ as long as $n \geq N \in \mathbb{N}$.
+To find $N$,
+
+$$
+\left| \frac{2n+1}{5n+4} - \frac{2}{5} \right| =
+\left| \frac{5(2n+1) - 2(5n+4)}{5(5n+4)}  \right| =
+\left| \frac{-3}{5(5n+4)} \right| =
+\frac{3}{25n+20} < \epsilon
+$$
+
+We can do the last simplification because $N$ is some positive number.
+Simplifying the above we get,
+$$
+3 < \epsilon (25N + 20)
+$$
+or
+$$
+\frac{3}{25\epsilon} - \frac{20}{25} = \frac{3}{25\epsilon} - \frac{4}{5} < N
+$$
+
+Note that we could obtain a simpler expression if we note that
+$$
+\frac{3}{5(5n+4)} < \frac{1}{n} < \epsilon
+$$
+
+So $N > 1/\epsilon$, which follows the same pattern as our previous answer.
+The first answer gives us a more accurate convergence rate.
+\\
+
+$$
+\lim \frac{2n^2}{n^3 + 3} = 0
+$$
+
+Following similar logic, we are looking at
+$$
+\left| \frac{2n^2}{n^3 + 3} \right| < \epsilon
+$$
+
+Plain algebra doesn't really help us isolate $n$, so again look for patterns.
+$$
+\frac{2n^2}{n^3 + 3} < \frac{2n^2}{n^3} = \frac{2}{n} < \epsilon
+$$
+\\
+
+Now for,
+$$
+\lim \frac{\sin (n^2)}{n^{1/3}} = 0
+$$
+
+$\sin$ will never be greater than one, so we can proceed as follows.
+$$
+\frac{\sin (n^2)}{n^{1/3}} < \frac{1}{n^{1/3}} < \epsilon
+$$
+
+So $N > 1 / \epsilon^3$.
+\\~\\
+
+
+
+\textbf{2.2.6}
+
+\textbf{Uniqueness of limites:} if the limit of a sequence that converges were not unique, then we
+should be able to find any other number that meets our requirements - trying
+to prove that there are multiple limits for a generic sequence is hard, same as trying to then
+generalize this result to any sequence.
+Intead our approach will be as follows.
+
+If the sequence $a_n$ converges to $a$, then let's assume that there it also converges to $b$.
+If we see that $a = b$, then we have our proof, else, we have a great publication.
+So we know that
+
+$$
+| a_n - a | < \epsilon
+$$
+and
+$$
+| a_n - b | < \epsilon
+$$
+
+For some arbitrary epsilon.
+Given the definition of converge, the above requirements must hold for some $N \in \mathbb{N}$, but
+that $N$ does not need to be the same for the two expressions above.
+So let's follow along using some $N = \max (N_1, N_2)$, where $N_1$ and $N_2$ are the numbers that would
+make the above expressions hold for any $\epsilon$.
+
+We then have,
+
+$$
+| a_N - a | < \epsilon
+$$
+and
+$$
+| a_N - b | < \epsilon
+$$
+
+Now, we are assuming that $a \neq b$, meaning that $| a - b | > 0$.
+If we use the triangle inequality,
+$$
+| a - b | = | a - a_N + a_N - b | = | (a - a_N) + (a_N - b) |
+$$
+$$
+\leq | a - a_N | + | a_N - b |
+$$
+
+Since $|x-y| = |y-x|$, we then have
+$$
+| a - b | \leq | a - a_N | + | a_N - b | = | a_N - a | + | a_N - b |
+$$
+$$
+< \epsilon + \epsilon = \epsilon'
+$$
+
+Interestingly enough, we already saw a theorem of this sort back in theorem 1.2.6, which stated that
+two real numbers $a$ and $b$ are equal iff $\forall \epsilon > 0$ it follows that $|a-b|<\epsilon$.
+This is exactly what we are trying to get at.
+But for the sake of argument, we could also see that we reach a contradiction if we continue.
+Let's assume $\epsilon = 1/10$, then,
+
+$$
+|a-b| < 2\epsilon = \frac{2}{10}|a-b|
+$$
+And a number cannot be less than (a fraction of) itself.
+\\~\\
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{The algebraic and order limit theorems}
+
+why does $|b_n - b| < |b|/2$  implies $|b_n| > |b|/2$ ?
+
+We have been seeing that for a lot of convergence proofs we end up using the triangle inequality.
+And this is a good tool to try out here!
+Let's try this out firsrt,
+
+$$
+|b_n| = | b_n - b + b | \leq |b_n - b| + |b| < \frac{|b|}{2} + |b| = \frac{3|b|}{2}
+$$
+
+So we get a sense that we have to multiply $|b|$ by a number greater than 1 in order to go above
+$|b_n|$.
+But its a weak argument.
+Let's try it the other way now!
+
+$$
+|b| = |b - b_n + b_n| \leq |b - b_n| + |b_n| = |b_n -b| + |b_n| < \frac{|b|}{2} + |b_n|
+$$
+Which can be simplified to
+$$
+\frac{|b|}{2} < |b_n|
+$$
+
+Which is the bit we did need.
+\\~\\
+
+In the \textbf{order limit theorem} proof we also see the statement: $|a_N - a| < |a|$ implies
+that $a_N < 0$.
+One way to see this is by noting that
+$$
+|a_N - a| < |a| \rightarrow -|a| < a_N - a < |a|
+$$
+
+If $a<0$, then $-|a| = a < 0$ and $|a| = -a > 0$, so
+$$
+-|a| < a_N - a < |a| \rightarrow a < a_N - a < -a \rightarrow 2a < a_N < 0
+$$
+
+The above tells us that in this case we would land with $a_N < 0$.
+\\~\\
+
+
+\subsubsection{Exercises}
+
+\textbf{2.3.1}
+
+If $x_n \rightarrow 0$, then we know that $|x_n| < \epsilon$ when $n \geq N$.
+Now let's look at $|\sqrt{x_n}| = \sqrt{x_n}$.
+
+A useful thing to note here is that if $x_n \geq 0$, then the order limit theorem says
+that $x\geq 0$.
+
+Coming back to $|\sqrt x_n| = \sqrt{x_n}$ we can also see that $|x_n| = x_n < \epsilon$ in this case,
+so $ = \sqrt{x_n} =\sqrt |x_n|$. Note that we can now make the
+value under the square root as small as we want
+$$
+|\sqrt x_n | < \sqrt |x_n| < \epsilon
+$$
+\\~\\
+
+If $x_n \rightarrow x$, then
+$$
+| \sqrt x_n - \sqrt x | = | \sqrt x_n - \sqrt x | \left| \frac{\sqrt x_n + \sqrt x}{\sqrt x_n + \sqrt x} \right|
+$$
+$$
+= \frac{|x_n - x|}{\sqrt x_n + \sqrt x}
+$$
+
+Since $\sqrt x_n + \sqrt x \geq \sqrt x$, then we could further simplify the above expression to
+$$
+\frac{|x_n - x|}{\sqrt{x_n} + \sqrt{x}} \leq \frac{|x_n - x|}{\sqrt{x}}
+$$
+
+Because a smaller denominator, results in a larger overall quantity.
+We now know that the numerator matches the expression that we know convrges, so we can now chose
+a $\epsilon' = \epsilon \sqrt{x}$, so that
+
+$$
+\frac{|x_n - x|}{\sqrt{x}} < \frac{\epsilon \sqrt{x}}{\sqrt{x}} = \epsilon'
+$$
+\\~\\
+
+
+\textbf{2.3.2}
+
+We know that $x_n \rightarrow 2$, so if we look at $ \frac{2x_n -1}{3} $, we can apply
+the same operations to $|x_n \rightarrow 2|$,
+$$
+\left| \frac{2x_n -1}{3} - \frac{2(2) -1}{3} \right| = \left| \frac{2x_n -1}{3} - \frac{3}{3} \right|
+$$
+$$
+= \frac{1}{3} |(2x_n - 1) - 3| = \frac{1}{3} | 2x_n - 4 | = \frac{2}{3} |x_n - 2| < \frac{2}{3} \epsilon
+$$
+\\~\\
+
+Let's now look at $1/x_n$.
+$$
+\left| \frac{1}{x_n} - \frac{1}{2} \right| = \left| \frac{2 - x_n}{2x_n} \right| = 
+\frac{| x_n - 2 |}{|2x_n|} = \frac{| x_n - 2 |}{2|x_n|}
+$$
+
+If we look at the denominator, we'll see a $|x_n|$ which we know is bounded, $|x_n| < M$, because
+$x_n$ is a convergent series.
+However, an upper bound in the denominator, gives us a lower bound on the overall expression, which
+is not what we want.
+We instead need to look for an inequality of the form $x_n \geq \delta > 0$.
+
+Let's look at,
+$$
+|2| = |2 - x_n + n_x| \leq |x_n - 2| + |x_n| < \epsilon + |x_n|
+$$
+Which means $|x_n| > |2| - \epsilon$.
+Similarly,
+$$
+|x_n| = |x_n - 2 + 2| \leq |x_n - 2| + |2| < \epsilon + |2|
+$$
+Which means that $|x_n| < \epsilon + |2|$.
+Putting these two expressions together we get $|2| - \epsilon < |x_n| < |2| + \epsilon$.
+The left side of it gives us a lower bound which can be greater than 0 if we pick a good value for $\epsilon$.
+
+Back to our original problem,
+$$
+\frac{| x_n - 2 |}{2|x_n|} < \frac{| x_n - 2 |}{2(|2| - \epsilon)} = \frac{| x_n - 2 |}{2}
+$$
+If we chose $\epsilon = 1$.
+\\~\\
+
+
+
+\textbf{2.3.3}
+
+\textbf{Squeeze theorem:} if $x_n \leq y_n \leq z_n$ for all $n\in\mathbb{N}$, and if
+$\lim x_n = \lim z_n = l$, then $\lim y_n = l$ as well.
+
+Let's assume that $\lim x_n = x$, $\lim y_n = y$, and $\lim z_n = z$ for now.
+By the order limit theorem we have know that $x \leq y \leq z$.
+Since $x = z = l$, then $y=l$.
+\\~\\
+
+
+\textbf{2.3.5}
+
+If $x_n$ converges, then it means that $|z_n - l| < \epsilon$ $\forall \epsilon >0 \in \mathbb{R}$
+when $n \geq N \in \mathbb{N}$.
+So when $n \geq N$, all terms in $x_n$ must be "$\epsilon$ close to whatever happens to be $l$."
+
+This implies that all terms after $n>N$ must be "close to $l$"
+$$
+| x_n - l | < \epsilon
+$$
+and
+$$
+| y_n - l | < \epsilon
+$$
+
+Thus, if for some reason $x_n$ and $y_n$ diverged or converged to different values, then the above conditions
+would not be met, and thus $z_n$ would not converge.
+\\~\\
+
+
+
+\textbf{2.3.6}
+
+Consider
+$$
+b_n = n - \sqrt{n^2 + 2n}
+$$
+
+Find $\lim b_n$ given $1/n \rightarrow 0$; the fact that when $x \geq 0$ if $x_n \rightarrow x$, then
+$\sqrt x_n \rightarrow \sqrt x$; and the algebraic limit theorem.
+
+$$
+n - \sqrt{n^2 + 2n}
+= n - \sqrt{n^2 +2n} \left( \frac{n + \sqrt{n^2 + 2n}}{n + \sqrt{n^2 + 2n}} \right) 
+= \frac{n^2 - n^2 - 2n }{n + \sqrt{n^2 + 2n}}
+$$
+$$
+= \frac{-2n}{n + \sqrt{n^2 + 2n}} 
+= \frac{-2}{1 + \sqrt{1 + 2/n}}
+$$
+
+Now we can use the info given clearly,
+$$
+\lim b_n = \lim \left( \frac{-2}{1 + \sqrt{1 + 2/n}} \right)
+= \frac{-2}{1 + \sqrt{1 + \lim{2/n} }}
+= \frac{-2}{1+ \sqrt{1}}
+= -1
+$$
+\\~\\
+
+
+\textbf{2.3.11}
+
+\textbf{Cesaro mean:} if $x_n \rightarrow x$, then does
+$$
+y_n = \frac{x_1 + x_2 + \ldots + x_n}{n} \rightarrow x
+$$
+?
+
+If we think about $\epsilon$-neighborhoods, then we can envision that at some point all members of the
+series hover extremely close around a given value, so $n$ elements of the same value divided by $n$
+would be "the value".
+In a more math way,
+
+$$
+| y_n - x | 
+= \left| \frac{x_1 + x_2 + \ldots + x_n}{n} - x \right|
+= \left| \frac{|x_1 -x| + |x_2-x| + \ldots + |x_n-x|}{n} \right|
+$$
+
+Since $x_n$ converges, we know that for any $n \geq N$, $|x_n - x| < \epsilon$.
+So
+$$
+\left| \frac{|x_1 -x| + |x_2-x| + \ldots + |x_n-x|}{n} \right|
+< \left| \frac{|x_1 -x| + |x_2-x| + \ldots + \epsilon + \ldots + \epsilon + \ldots}{n} \right|
+$$
+
+If we define $M = \max{|x_1 -x|, |x_2-x|, \ldots , |x_{n-1} - x|}$, then
+$$
+\left| \frac{|x_1 -x| + |x_2-x| + \ldots + |x_n-x|}{n} \right|
+< \left| \frac{M + M + \ldots + \epsilon + \ldots + \epsilon + \ldots}{n} \right|
+$$
+
+If we chose an $n$ that's far out, we the above expression grows as $M/n$, which will tend to
+zero ($\lim \frac{1}{n} = 0$).
+\\~\\
+
+
+
+\textbf{2.3.13}
+
+\textbf{Iterated limits:} given a doubly indexed array $a_{mn}$ where $m, n \in \mathbb{N}$,
+what should $\lim_{m,n \rightarrow \infty} a_{mn}$ represent?
+
+Let $a_{mn} = m / (m+n)$ and compute the iterated limits
+$$
+\lim_{m\rightarrow\infty} \left( \lim_{n\rightarrow\infty} a_{mn} \right)
+$$
+and
+$$
+\lim_{n\rightarrow\infty} \left( \lim_{m\rightarrow\infty} a_{mn} \right)
+$$
+
+Define $\lim_{m,n\rightarrow\infty} a_{mn} = a$ to mean that for all $\epsilon > 0$
+there exists an $N \in \mathbb{N}$ such that if both $m,n \geq N$, then $|a_{mn} - a|<\epsilon$.
+\\~\\
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{The monotone convergence theorem and a first look at infinite series}
+
+\subsubsection{Exercises}
+
+\textbf{2.4.1} For thiese sorts of problems it helps to always plugin a couple numbers to see the patterns.
+The sequence we are working with is
+$$
+x_{n+1} = \frac{1}{4 - x_n}
+$$
+where $x_1 = 3$.
+
+Let's start by finding the first couple terms in the sequence,
+$$
+x_1 = 3
+$$
+$$
+x_2 = \frac{1}{4 - 3} = \frac{1}{1} = 1
+$$
+$$
+x_3 = \frac{1}{4 - 1} = \frac{1}{3} = 1/3
+$$
+$$
+x_4 = \frac{1}{4 - 1/3} = \frac{1}{\frac{12}{3} - \frac{1}{3}} = \frac{1}{11/3} = 3/11
+$$
+$$
+x_5 = \frac{1}{4 - 3/11} = \frac{1}{\frac{44}{11} - \frac{3}{11}} = \frac{1}{41/11} = 11/41
+$$
+$$
+x_6 = \frac{1}{4 - 11/41} = \frac{1}{\frac{164}{41} - \frac{11}{41}} = \frac{1}{153/41} = 41/153
+$$
+
+We could even obtain the rest of the numbers in this sequence, given our initial conditions with
+\begin{lstlisting}[language=Python]
+def new_term(numerator, denominator):
+    new_denominator = 4*denominator - numerator
+    return denominator, new_denominator
+\end{lstlisting}
+
+So it seems like we have a case of the $x_n > x_{n+1}$, or a decreasing function.
+Induction is demanded here and now since we already have the base case of $x_1 > x_2$.
+For the rest of the numbers, let's go step by step...
+
+If we assume that $x_n \geq x_{n+1}$, then $4 - x_n \leq 4 - x_{n+1}$, since we are subtracting a bigger number
+on the left side.
+However, smaller denominators make for greater rational numbers, so $\frac{1}{4-x_n} \geq \frac{1}{4 - x_{n+1}}$.
+This expression holds up becuause of our initial conditions (what if $x_1 = 4.5$?).
+
+Intuitvely, we can also follow the pattern we saw.
+After $x_2$, the next couple terms in the sequence were numbers smaller than 1.
+If the new terms get smaller, then their subscessors will get close to $1/4$, or so we think!
+
+But the monotone convergence theorem can help us out here.
+Since the sequence is decreasing and 3 can serve as our bound, then this sequence should converge.
+\\
+
+\textbf{This is cool so put attention...}
+based on everything we have seen thus far $\lim x_n = \lim x_{n+1}$.
+So if we take the limit of each side of the recurisve equation
+to explicitly compute $\lim x_n$, then we get,
+
+$$
+\lim x_n = x = \lim x_{n+1}
+$$
+So
+$$
+\lim x_n = x
+$$
+and
+$$
+\lim x_n = \frac{1}{4- \lim x_n} = \frac{1}{4-x}
+$$
+Which leads us to
+$$
+x = \frac{1}{4-x} \rightarrow 4x - x^2 = 1
+$$
+Or $x^2 - 4x + 1 = 0$.
+We can readily use the quadratic equation now to find our solution,
+$$
+x = \frac{ -(-4) \pm \sqrt{ 16 - 4 } }{2} = \frac{4 \pm \sqrt{12}}{2} = 2 \pm \sqrt{3}
+$$
+If $x = 2 + \sqrt{3}$ then $x>3$ and this contradicts everything that we have seen thus far about the sequence
+being decreasing.
+So $x = 2 - \sqrt{3}$ must be it (and this matches the answer we get from usign the code above)!
+\\~\\
+
+
+\textbf{2.4.2}
+This time let's work with the recurisevely defined sequence
+$$
+y_{n+1} = 3 - y_n
+$$
+When $y_1 = 1$.
+
+Plugin in a couple numbers,
+$$
+y_1 = 1
+$$
+$$
+y_2 = 3 - y_1 = 3-1 = 2
+$$
+$$
+y_3 = 3 - y_2 = 3 - 2 = 1
+$$
+$$
+y_4 = 3 - y_3 = 3 - 1 = 2
+$$
+$$
+y_5 = 3 - y_4 = 3 - 2 = 1
+$$
+$$
+y_6 = 3 - y_5 = 3 - 1 = 2
+$$
+$$
+y_7 = 3 - y_6 = 3 - 2 = 1
+$$
+So this time the series is not monotone but alternating.
+Hence, we have no reason to believe that his converges, if anything it looks like it diverges (without doing any more work).
+Because of this, it would not be sensible to follow the same procedure as in \textbf{2.4.1}
+and apply the limit on both sides of the recurisve definition of this sequence, because
+the limits do not exist.
+\\
+
+Now, if instead we were working with
+$$
+y_{n+1} = 3 - 1/y_n
+$$
+and $y_1 = 1$, then
+$$
+y_1 = 1
+$$
+$$
+y_2 = 3 - 1/1 = 2
+$$
+$$
+y_3 = 3 - 1/2 = 5/2
+$$
+$$
+y_4 = 3 - 2/5 = \frac{15 - 2}{5} = 13/5
+$$
+$$
+y_5 = 3 - 5/13 = \frac{39 - 5}{13} = 34/13
+$$
+$$
+y_6 = 3 - 13/34 = \frac{102 - 13}{34} = 89/34 \approx 2.6176471
+$$
+
+We can see that $y_1 \leq y_2$, so maybe $y_n \leq y_{n+1}$?
+
+As in problem \textbf{2.4.1}, we have the hypothesis that $y_n \leq y_{n+1}$,
+That implies that $1/y_n \geq 1/y_{n+1}$, since 1 divided by a large denominator results in a small number.
+Which in turns implies that $3 - 1/y_n \leq 3 - 1/y_{n+1}$, since 3 minus $1/y_{n+1}$ is 3 minus a smaller number.
+Thus $y_{n+1} \leq y_{n+2}$.
+We see that the series is monotonically increasing, but is it bounded (and thus convergent)?
+
+What we do know is that $y_n > 0$, then $y_{n+1} = 3 - 1/y_n \leq 3$.
+So 3 could be an upper bound as long as we are sure thant $y_n$ stays positive.
+
+The way for $y_n < 0$ to happen would be for $3 - 1/y_n < 0$ or $3 < 1/y_n$, or $y_n < 1/3$.
+Since we know that the sequence is increasing, as long as start with a number above $1/3$ we should be okay
+and we should be bounded by 3.
+
+Now we actually have some justification for attempting to calculate the limits of our
+recursive formula.
+But the algebra is not simple, so we wont.
+\\~\\
+
+
+
+\textbf{2.4.3}
+does
+$$
+\sqrt{2}, \sqrt{2 + \sqrt{2}}, \sqrt{2 + \sqrt{2 + \sqrt{2}}}, \ldots
+$$
+converge?
+
+Let's try following some of the similar steps as in the previous problems.
+
+We can define the sequence as $x_1 = \sqrt{2}$ and
+$$
+x_{n+1} = \sqrt{2 + x_n}
+$$
+
+We can see that $x_1 = \sqrt{2} \leq x_2 = \sqrt{2 + \sqrt{2}}$, so it seems like the sequence would
+be increasing as $n$ increases.
+If $x_{n+1} \geq x_{n}$, then
+$$
+2 + x_{n+1} \geq 2 + x_n \rightarrow \sqrt{2 + x_{n+1}} \geq \sqrt{2 + x_n}
+\rightarrow x_{n+2} \geq x_{n+1}
+$$
+
+(Remember problem 2.3.1? It comes in handy a lot!)
+So the sequence does seem to be an increasing one.
+Now let's see if we can argue that it is bounded.
+
+Right now we know that $0 < x_1 = \sqrt{2} < 2$.
+So what if we said that $x_n < 2$?
+Well we could aso say that $2 + x_n < 4$, or that $\sqrt{2 + x_n} = x_{n+1} < 2$.
+Which makes us believe that 2 is a bound for this sequence.
+
+Given these two findings, we can assume that $\lim x_n$ exists and that $\lim x_n = \lim x_{n+1}$.
+So if we apply the limit to both sides of our re-defined sequence we get
+$$
+\lim x_{n+1} = x = \lim \sqrt{2 + x_n} = \sqrt{2 + \lim x_n} = \sqrt{2 + x}
+$$
+$$
+\rightarrow x = \sqrt{2 + x}
+$$
+A bit of algebra leads us to
+$$
+x = \sqrt{2 + x} \rightarrow x^2  = 2 + x \rightarrow
+x^2 - x - 2 = 0
+$$
+And a little bit of the quadratic equation would land us in
+$$
+\frac{-(-1) \pm \sqrt{1 - 4 (-2)}}{2} = \frac{1 \pm \sqrt{1 + 8}}{2}
+= \frac{1 \pm 3}{2}
+$$
+$x$ is either 2 or -1.
+For our case, $x=2$ must be the one.
+\\~\\
+
+Now, what about the sequence
+$$
+\sqrt 2, \sqrt{2 \sqrt 2}, \sqrt{2 \sqrt{2 \sqrt 2}}, \ldots
+$$
+
+Let's go through this as we have been practicing...
+$x_1 = \sqrt 2$, and
+$$
+x_{n+1} = \sqrt{2x_n}
+$$
+
+Since $\sqrt 2 > 1$, $x1 \leq x_2$, so again we are increasing.
+Now let's say $x_{n+1} \geq x_n$, in which case
+$$
+x_{n+1} \geq x_n \rightarrow \sqrt{2x_{n+1}} \geq \sqrt{2x_n}
+\rightarrow x_{n+2} \geq x_{n+1}
+$$
+
+Similarly, $x_1 = \sqrt 2 < 2$, so if $x_n < 2$, then $\sqrt{2x_n} =x_{n+1} < \sqrt{4} = 2$,
+so again $x_n$ is bounded by 2.
+
+Now that we got our excuse to apply the limits, we have
+$$
+x = \sqrt{2x} \rightarrow x^2 = 2x
+$$
+or $x = \pm 2$, and again we chose the positive value.
+\\~\\
+
+
+
+\phantomsection
+\label{abbott:2.4.4}
+
+\textbf{2.4.4}
+
+\textbf{Show that the monotone convergence theorem can also be used to prove the archimedean property
+without making use of the axiom of completeness.}
+
+The archiemedean property states that: given any number $x\in\mathbb{R}$, there exists an
+$n\in\mathbb{N}$ satisfying $n>x$.
+And that given any real number $y>0$, there exists an $n$ satisfying $1/n < y$.
+
+The trick to seeing this is to find two sequences that are convergent, because if they are convergent,
+then they must have an upper bound, and thus the archiemedean property flows.
+
+One way is to find some sequence we know and see how it the archimedean principle makes itself visible.
+For example, we know that $\lim 1/n = 0$, so $|1/n - 0| = 1/n < \epsilon$, and if we set
+$\epsilon$ to some real number $y$, then we have second statement of the archiemedean principle.
+
+Another way, is to follow the exact same line of reasoning used in the book when proving it.
+In the book we went with a proof by contradaction - we assumed that the natural numbers were bounded.
+Since the natural numbers are monotonically increasing and we are assuming that they are bounded,
+then the sequence of natural numbers must converge to some number.
+Which is hard to argue.
+
+Mathematically, we are saying that $\lim n = N$, so $\lim n+1 = N+1$, meaning that $N = N+1$.
+
+There is a similar argument made here
+\href{https://math.stackexchange.com/questions/90127/tfae-completeness-axiom-and-monotone-convergence-theorem}{TFAE: Completeness Axiom and Monotone Convergence Theorem}.
+\\~\\
+
+
+\textbf{Use the monotone convergence theorem to supply a proof for the nested interval property.}
+
+The nested interval property tells us that for each $n\in\mathbb{N}$, if we are given a close interval
+$I_n = [a_n, b_n] = \{ x\in\mathbb{R}: a_n \leq x \leq b_n \}$,
+and if $I_{n+1} \subseteq I_n$, then
+$\bigcap^{\infty}_{n=1} I_n \neq \emptyset$.
+
+For this part, we can also follow the logic of the book.
+The sequence of $a_n$ is increasing and bounded by any $b_n$, so it must converge to some value.
+Similar argument can be made for the sequence $b_n$ but this one being bounded from below and decreasing.
+Since $\lim a_n = a$ and $\lim b_n = b$ and $a_n \leq b_n$ for all $n$, then the order limit theorem
+tells us that $a \leq b$.
+From here can follow the argument in the book by looking at $a_n \leq a$ for a particular $I_n$.
+In this same instance, $a<b_n$, so $a\in I_n$ for all $n$.
+\\~\\
+
+
+
+\textbf{2.4.5}
+Let $x_1 = 2$ and
+$$
+x_{n+1} = \frac{1}{2}\left( x_n + \frac{2}{x_n} \right)
+$$
+
+To show that $\forall n$, $x^{2}_{n} \geq 2$, we can use induction.
+$x^{2}_{1} = 4 \geq 2$.
+To see the rest of the argument,
+$$
+x^{2}_{n+1} = \frac{1}{4}x^{2}_{n} + \frac{1}{x^{2}_{n}} + 1
+$$
+Hence, if $x^{2}_{n} \geq 2$, then $x^{2}_{n+1} \geq 2$.
+\\
+
+Now that we have an argument made for $x^{2}_{n} \geq 2$ for all $n$, let's see if we can prove that
+$x_n - x_{n+1} \geq 0$.
+
+One way of seeing this is by exploring whether the sequence is decreasing.
+We know that $x_1 = 2 > x_2 = 3/2$.
+Now let's poke around and see what we can find about $x_n$ in general.
+
+$$
+\frac{1}{2}\left(x_n + \frac{2}{x_n}\right) = \frac{1}{2}\left(\frac{x^{2}_{n} +2}{x^{2}_{n}}\right) 
+\leq \frac{1}{2} (x^{2}_{n} + 2) \geq 1
+$$
+So its a tad odd to carry on with an induction argument given the expression we just made.
+
+So let's try another way,
+$$
+x_n - x_{n+1} = x_n - \frac{1}{2}x_n - \frac{1}{x_n} = \frac{1}{2}x_n - \frac{1}{x_n}
+$$
+
+If $x_n - x_{n+1} \geq 0$, then
+$$
+\frac{1}{2}x_n - \frac{1}{x_n} \geq 0
+\rightarrow \frac{1}{2}x_n \geq \frac{1}{x_n}
+\rightarrow x^{2}_{n} \geq 2
+$$
+Which matches what we had above.
+
+If instead we had assumed that $x_n - x_{n+1} < 0$, then we would have ended up with $x^{2}_{n} < 2$.
+\\
+
+Since we have showned that the sequence is decreasing and bounded, then we know that it converges, and we
+can apply the limit to both sides of our definition.
+This will land us with $\lim x_n = \pm 2$, but only $+2$ is a valid limit for us.
+\\~\\
+
+
+
+\textbf{2.4.6}
+
+\textbf{Explain why the geometric mean is always less than the arithmetic mean:} why is
+$\sqrt{xy} \leq (x+y)/2$, for any two positive real numbers $x$ and $y$.
+
+To see why, let's square both sides
+$$
+\sqrt{xy} \leq \frac{x+y}{2} \rightarrow xy \leq \frac{1}{4} (x^2 + y^2 + 2xy)
+\rightarrow 4xy \leq x^2 + y^2 + 2xy
+$$
+The last expression can be re-arranged to
+$$
+0 \leq x^2 + y^2 - 2xy = (x - y)^2
+$$
+
+Which helps us see that only in the case in which $x=y$, will the geometric and the arithmetic
+means be equal, otherwise, the arithmetic mean will always be greater.
+\\
+
+If we have $0 \leq x_1 \leq y_1$ and define
+$$
+x_{n+1} = \sqrt{x_n y_n}
+$$
+and
+$$
+y_{n+1} = \frac{x_n + y_n}{2}
+$$
+
+and we want to see whether $\lim x_n$ and $\lim y_n$ esit, then the simplest thing is to investigate
+whether the sequences are monotone and bounded.
+
+We already saw that the geometric mean is always less than the arithmetic mean, so $x_n \leq y_n$
+for all $n\in\mathbb{N}$.
+Thus we can carry our initial condition as a general case and assume that $x_n \leq y_n$ throughout.
+
+If we now look at $x_{n+1}$ we see that if it was that if $x_{n+1} = \sqrt{x_n x_n}$.
+However, $y_n$ is greater than or equal to $x_n$ so $x_{n+1} \geq x_n$.
+
+As for $y_n$, it helps if we rewrite it as $y_{n+1} = \frac{1}{2}x_n + \frac{1}{2}y_n$.
+Again, $y_{n+1} = y_n$ if $x_n = y_n$, but since $x_n$ is equal to or smaller, then $y_{n+1} \leq y_{n}$.
+
+So we see that $x_n$ is increasing, while $y_n$ is decreasing.
+We also see that if $x_n = y_n$ we have some sort of equilibrium where $x_{n+1} = x_n$ and
+$y_{n+1} = y_n$.
+Which shows us that $\lim x_n = \lim y_n$ when that is the case.
+\\~\\
+
+
+
+\textbf{2.4.7}
+
+\textbf{Limit superior} let $(a_n)$ be a bounded sequence.
+
+Prove that the sequence defined by $y_n = \sup\{a_k : k\geq n\}$ converges.
+
+Let's see if the monotone convergence theorem can help us out here too.
+The sequence $y_n$ essentially looks at all the elements of the sequence $a_n$ that come after
+a given $k$.
+So for a given $y_n$ we have a corresponding least-upper bound from the subsequence $\{a_k : k\geq n\}$.
+$y_1$ will then be the supremum of the entire sequence $a_n$.
+$y_2$ will be the supremum if $a_n$ did not have its first element $a_1$, and so on and so forth.
+Since $y_1$ is the supremum for the entire sequence, all other spremums from sub-sequences will be less
+than or equal to it.
+Similar argument can be made for $y_2$, any of the following supremums will be smaller than or equal to it.
+So we can already see that the sequence is decreasing and bounded by $y_1 = \sup a_n = \alpha$.
+\\
+
+The \textbf{limit superior} of $a_n$ is defined as follows:
+$$
+\lim \sup a_n = \lim y_n
+$$
+Where $y_n$ is the sequence we defined above, and we also made an argument for its existance.
+
+Now what about $\lim \inf a_n$?
+Given our definition of $y_n$, we could define $z_n = \inf\{a_k : k\geq n\}$.
+In such an instance, $z_1$ would be the infinimum of the entire sequence.
+Similarly, $z_2$ would be the infinimum of $a_n$ without its first element, so it could be the same
+(if the sequence is decreasing), it could be of greater value (if the sequence is increasing),
+or it could be equal (if the first two values are similar).
+
+Since our definition starts with the entire sequence and then gets rid of the elements at the begining,
+we will not be finding any infinimum value that is smaller than any of the $z_n$ that have been computed before.
+Thus we can see that $z_n$ is increasing and bounded from below by $z_1 = = \inf a_n = \beta$.
+
+However, $a_n$ is itself bounded, so this definition, although it results in an increasing sequence
+and the infinimum is a lower bound, it also converges and thus $\lim \inf a_n$ should exist.
+\\
+
+From experience, definition, whatever you want to call it, $\inf a_n \leq \sup a_n$.
+And it would make sense to think that $\lim \inf a_n \leq \lim \sup a_n$.
+And thus the oreder limit theorem makes this make sense.
+\\
+
+Now, if if $\lim \inf a_n = \lim \sup a_n$, thenthe squeeze theorem can get us $\lim a_n$ as it would
+be the same value as the limit superior and the limit inferior.
+And if we know that $\lim a_n$ exists, then Intuitvely we can imagine that after some point, all elements
+of $a_n$ never leave some $\epsilon$-neighborhood (all values get arbitrarily close to the value they converge to).
+In such an intansce, the supremum and infinimum would be equal to one another and the order limit theorem
+would again come in handy to see that all three limits must equal each other.
+\\~\\
+
+
+
+\textbf{2.4.8}
+
+Find an explicit formula for the sequence of partial sums and determine if the following series converge:
+
+$$
+\sum^{\infty}_{n=1} \frac{1}{2^n}
+$$
+
+Writing out the terms, we get
+$$
+\sum^{\infty}_{n=1} \frac{1}{2^n} = 1/2 + 1/4 + 1/8 + \ldots
+$$
+
+This is a geometric series where the common term is $1/2$.
+The explicit formula for geometric series is
+$$
+\sum^{\infty}_{n=0} r^n = \frac{1}{1-r}
+$$
+But since we are starting at $n=1$, we need to subtract the first term.
+Thus
+$$
+\sum^{\infty}_{n=1} \frac{1}{2^n}
+= -1 + \sum^{\infty}_{n=1} r^n
+= -1 + \frac{1}{1-\frac{1}{2}} = 1
+$$
+\\
+
+In the case of
+$$
+\sum^{\infty}_{n=1} \frac{1}{n(n+1)}
+$$
+This is the wikipedia example of a telescoping series.
+
+For this series,
+$$
+\sum^{\infty}_{n=1} \frac{1}{n(n+1)} = \lim_{N\rightarrow\infty} \left(1 - \frac{1}{N+1}\right) = 1
+$$
+
+And finally,
+$$
+\sum^{\infty}_{n=1} \log\left(\frac{n+1}{n}\right)
+$$
+
+Is a telescoping series of sorts since $\log \frac{n+1}{n} = \log (n+1) - \log n$.
+So we have
+$$
+\sum^{\infty}_{n=1} \log\left(\frac{n+1}{n}\right)
+= (\log 2 - \log 1) + (log 3 - \log 2) + (\log 4 - \log 3) + (\log 5 - \log 4) + (\log 6 - \log 5) + \ldots
+$$
+$$
+= -\log 1 + \lim \log N
+$$
+Which doesn't seem like it converges, since $\log{x}$ is an increasing function.
+\\~\\
+
+
+
+\textbf{2.4.9}
+
+Show that if $\sum^{\infty}_{n=0} 2^n b_{2^n}$ diverges, then so does $\sum^{\infty}_{n=1} b_n$.
+
+Abbott is trully a great teacher.
+The beauty of this proof starts with the fact that we are proving the contrapositive of the
+cauchy condensation test.
+The following argument is completely taken from
+\href{https://math.stackexchange.com/questions/1736699/proof-of-cauchy-condensation-test-using-contrapositive}{Proof of Cauchy Condensation Test using contrapositive}.
+(I thought about it, and thought about it, and kept on thinking about it and never got anywhere.)
+
+Since the series $b_n$ is decreasing, we were able to define
+$$
+s_{2^{k+1}-1} =
+b_1 + (b_2 + b_3) + (b_4 + b_5 + b_6 + b_7) + \ldots + (b_{2^k} + \ldots + b_{2^{k+1}-1})
+$$
+$$
+\leq b_1 + (b_2 + b_2) + (b_4 + b_4 + b_4 + b_4) + \ldots + (b_{2^k} + \ldots + b_{2^{k}})
+$$
+$$
+= b_1 + 2(b_2) + 2^2(b_4) + \ldots + 2^k (b_{2^k})
+= t_k
+$$
+
+One of the tricks used above is that $b_n \geq b_{n+1}$.
+If we went the other route, if replaced some of the terms in our sequence with the smallest terms
+within their bracketed groups then we could obtain a sequence that is smaller.
+
+$$
+s_{2^{k+1}-1} =
+b_1 + (b_2 + b_3) + (b_4 + b_5 + b_6 + b_7) + \ldots + (b_{2^k} + \ldots + b_{2^{k+1}-1})
+$$
+$$
+\geq b_1 + (b_3 + b_3) + (b_7 + b_7 + b_7 + b_7) + \ldots + (b_{2^{k+1}-1} + \ldots + b_{2^{k+1}-1})
+$$
+
+And we really recommend that you write out the terms and see the patterns but take a look at the end.
+$s_{2^{k+1}-1}$ ends in $(b_{2^k} + \ldots + b_{2^{k+1}-1})$, it goes all the way to the index term in $s$
+and the bracketing starts at the previous $2^{k}$.
+
+Then, we can see how
+$$
+s_{2^k} = b_1 + b_2 + b_3 + \ldots
+= b_1 + (b_2 + b_3) + \ldots + (b_{2^{k-1}+1} + \ldots + b_{2^k})
+$$
+
+We should also note that the factor infront of the last bracketing is the $2^n$ that happens to be closest.
+Hence,
+$$
+s_{2^k}
+= b_1 + (b_2 + b_3) + \ldots + (b_{2^{k-1}+1} + \ldots + b_{2^k})
+$$
+$$
+\geq b_1 + 2 (b_3) + 2^2 (b_7) + \ldots + 2^{k-1} (b_{2^{k}})
+$$
+
+and since sequences are infinite, we could change the offset as such
+$$
+s_{2^k}
+= b_1 + b_2 + (b_3 + b_4) + (b_5 + b_6 + b_7 + b_8) + \ldots + (b_{2^{k-1}+1} + \ldots + b_{2^k})
+$$
+$$
+\geq b_1 + b_2 + 2 (b_4) + 2^2 (b_8) + \ldots + 2^{k-1} (b_{2^{k}})
+$$
+$$
+= b_1 + t_{k-1}
+$$
+
+And so we get our proof.
+\\~\\
+
+However, a peek at wikipedia reveals another very great trick.
+We know that
+$$
+t_k = b_1 + 2b_2 + 4b_4 + \ldots
+$$
+
+This could be bracketed also as
+$$
+t_k = (b_1 + b_2) + (b_2 + b_4 + b_4 + b_4) + (b_4 + b_8 + \ldots) + \ldots
+$$
+And since the series is decreasing,
+$$
+t_k = (b_1 + b_2) + (b_2 + b_4 + b_4 + b_4) + (b_4 + b_8 + \ldots) + \ldots
+$$
+$$
+\leq (b_1 + b_1) + (b_2 + b_2 + b_3 + b_3) + (b_4 + b_4 + \ldots) + \ldots
+$$
+$$
+= 2\sum^{\infty}_{n=1} b_n
+$$
+
+Hence the cauchy condensation test can be expanded to
+$$
+\sum^{\infty}_{n=1} b_n \leq \sum^{\infty}_{n=0} 2^n b_n \leq 2\sum^{\infty}_{n=1} b_n
+$$
+\\~\\
+
+
+
+\textbf{2.4.10}
+
+The infinite product
+$$
+\prod^{\infty}_{n=1} b_n = b_1 b_2 b_3 \ldots
+$$
+can be understood in terms of its sequence of partial products (like infinite series and partial sums)
+$$
+p_m = \prod^{m}_{n=1} b_n = b_1 b_2 \ldots b_m
+$$
+
+We will focus here on the special class of infinite products that looks as such
+$$
+\prod^{\infty}_{n=1} (1 + a_n) = (1+a_1)(1+a_2)(1 +a_3)\ldots
+$$
+Where $a_n \geq 0$.
+\\
+
+If $a_n = 1/n$ we get this interesting looking partial product
+$$
+p_m = \left(1+1\right) \left(1+\frac{1}{2}\right) \left(1+\frac{1}{3}\right) \left(1+\frac{1}{4}\right) \left(1+\frac{1}{2}\right) \ldots \left(1+\frac{1}{m}\right)  
+$$
+$$
+= \left(\frac{2}{1}\right) \left(\frac{3}{2}\right) \left(\frac{4}{3}\right) \left(\frac{5}{4}\right) \ldots \left(\frac{m+1}{m}\right) 
+$$
+$$
+= \frac{m+1}{1} = m+1
+$$
+However, since $m \rightarrow \infty$ in the infinite product, we could think that this case diverges.
+\\
+
+Now, when $a_n = 1/n^2$, we get
+$$
+p_m =
+\left(1+ \frac{1}{1} \right) \left(1+ \frac{1}{2^2} \right) \left(1+ \frac{1}{3^2} \right) \left(1+ \frac{1}{4^2} \right) \left(1+ \frac{1}{5^2} \right) \ldots \left(1+ \frac{1}{m^2} \right)
+$$
+$$
+= \left(\frac{2}{1} \right) \left(\frac{2^2 +1}{2^2} \right) \left(\frac{3^2 +1}{3^2} \right) \left(\frac{4^2 +1}{4^2} \right) \left(\frac{5^2 +1}{5^2} \right) \ldots \left(\frac{m^2 +1}{m^2} \right)
+$$
+Here the first term is 2 but as $m$ grows, the terms begin to get closer and closer to 1.
+\\
+
+
+Can we show that the sequence of partial products converges if and only if
+$\sum^{\infty}_{n=1} a_n$ converges?
+
+Abbott gave us the trick to this, if we use the identity $1+x \leq e^x$, then we can rewrite the
+partial product as follows
+$$
+p_m = (1+a_1) (1+a_2) + \ldots (1+a_m)
+\leq e^{a_1} e^{a_1} \ldots e^{a_m}
+= e^{s_m}
+$$
+
+Hence, if $\sum^{\infty}_{n=1} a_n \rightarrow a$, then $e^{s_m}$ is a number, and thus we get our
+proof - the series is increasing and bounded.
+
+To prove the other route (if the infiinite product converges then the series converges),
+it sufices to show that $p_m \geq s_m$. (Expand the product and you will see terms correspodning to
+the partial sum plus other additional terms.)
+\\~\\
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{subsequences and the Bolzano-Weierstrass theorem}
+
+
+\subsubsection{Exercises}
+
+\textbf{2.5.3}
+
+Assume $a_1 + a_2 + 1_3 + \ldots$ converges to a limit L
+(i.e., the sequence of partial sums $(s_n) \rightarrow L$).
+Show that any \textbf{regrouping} of the terms
+$$
+\left(a_1 + a_2 + \ldots + a_{n_1}\right) +
+\left(a_{n_1 +1} + a_{n_1 +2} + \ldots + a_{n_2}\right) +
+\left(a_{n_2 +1} + a_{n_2 +2} + \ldots + a_{n_3}\right) +
+\ldots
+$$
+leads to a series that converges to L.
+\\
+
+A sequence of partial partial sums $s_n \rightarrow L$.
+A regrouping of terms ends up creating a subsequence of $s_n$.
+And since $s_n$ converges, the any of its subsequences converge as well.
+\\~\\
+
+
+\phantomsection
+\label{abbott:2.5.4}
+
+\textbf{2.5.4}
+
+Assume the nested property is true and use it to provide a proof for the axiom of completeness.
+\\
+
+Some brief reminders:
+\begin{itemize}
+    \item Axiom of completeness: every non-empty set of real numbers that is bounded above has a least upper bound.
+    \item nexted property: assume we are given a close interval $I_n$ and that $I_{n+1} \subseteq I_n$, then $\cap I_n \neq \emptyset$.
+\end{itemize}
+
+When proving the nested interval property, we laid out all $I_n = [a_n, b_n]$ on the real number line.
+Since all intervals were nested, then we had an order for the set of $A = \{a_n : \in\mathbb{N}\}$
+and $B = \{b_n : n\in\mathbb{N}\}$, where $a_1$ and $b_1$ were at the values fartest apart.
+Then we saw that all $b\in B$ served as upper bounds, and thus a suppremum $x$ must exist such that
+$a_n \leq x \leq b_n$.
+And since this inequality held for all intervals (as they were all nested and equal to or smaller than their predecessor)
+then we had a proof that there was an element that was part of all the intervals.
+\\
+
+When proving the Bolzano-Weierstrass theorem, we also built nested intervals with the same properties
+as the ones we saw in the nested interval theorem.
+So if we assume that the nested interval theorem is true, then right away we can see that
+from the bisecting of our Bolzano-Weierstrass prove that there must be at least one element that is
+part of all the intervals.
+
+If we start with the nested interval property then we also get an upper bound for our sequence ($b_n$).
+
+The only thing left to get the axiom of completeness from the use of the nested interval property on the
+Bolzano-Weierstrass theorem is to see that as we continue forming subintervals, each of of length
+$M(1/2)^{k-1}$, then as $k\rightarrow\infty$, the length will tend to zero (example 2.5.3).
+And since the length of the intervals tends to zero then the element $x$ that we found above, can indeed
+be the least upper bound, since we can make the lenght of the interval as small as we want ($\epsilon$)
+such that $x-\epsilon$ is no longer an upper bound, $x-\epsilon \leq a_n$.
+\\
+
+The reason we are to assume that $1/2^{k-1}$ is a convergent sequence is because the lenght of
+the subinterval $I_k$ is supposed to converge to 0, and using the normal $\epsilon$ convention we want
+to prove that something like $1/n < \epsilon$ is true for any $\epsilon > 0$.
+$\epsilon$ is a real number and so we are implicitly making use of the Archimedean property, which
+we originally proved using the Axion of Completeness, which we are trying to prove here.
+\\~\\
+
+
+\textbf{2.5.6}
+
+Show that $\lim b^{1/n}$ exists for all $b\geq 0$ and find the value of the limit.
+\\
+
+The series $b^{1/n}$ is decreasing, since $\frac{1}{n} > \frac{1}{b+1}$.
+Since it is monotonically decreasing and abounded by $b$, then it must converge.
+Go again, if $\lim b^{1/n} = l$, then $0 \leq l \leq b$.
+
+Since $b^{1/n} \rightarrow l$, then so must $b^{1/(n+1)} \rightarrow$.
+If we take the limit of both and equate then, we get
+$$
+b^{1/n} = b^{1/(n+1)} \rightarrow b = b^{\frac{n}{n+1}} = b^{1 + 1/n} = bb^{1/n}
+$$
+Hence
+$$
+b^{1/n} = 1
+$$
+
+If $b=0$, $\lim b^{1/n} = 0$. Recall that one problem where we proved that $\lim a_n = 0$,
+then $\lim \sqrt{a_n} = 0$.
+\\~\\
+
+
+
+\textbf{2.5.7}
+
+When $|b| < 1$, then $b^n$ is decreasing and abounded by 1, hence convergent.
+Iv we follow similar steps as in the previous problem, then $b^n = b^{n+1} = l$.
+And the only numbers that stay the same no matter how many powers you raise them to are
+0 and 1. But since $|b| < 1$, the $|b^n| < 1$, so $\lim b^n = 0$.
+\\~\\
+
+
+
+\textbf{2.5.8}
+
+Another way we could prove the Bolzano-Weierstrass theorem is by finding monotone subsequences
+in a bounded sequence.
+That way the monotone convergence theorem can be used to prove convergence.
+
+If we can find a series of peak terms within our sequence, then we can build a monotone subsequence
+from the sequence of peak terms.
+Note that the peak points would define a decreasing subsequence.
+
+However, if there is a finite number (or zero) peak points, then instead of peak points, we can look
+for "nadir points" and instead define a monotonically increasing subsequence.
+\\~\\
+
+
+
+\textbf{2.5.9}
+
+\textbf{Direct proof of Bolzano-Weierstrass theorem using the Axiom of Completeness}
+
+Let $(a_n)$ be a bounded sequence, and define the set
+$$
+S = \{ x\in\mathbb{R} : x < a_n \text{ for inifinetely many terms in } a_n \}
+$$
+
+Show that there exists a subsequence $(a_{n_k})$ converging to $s = \sup S$.
+\\
+
+Since $(a_n)$ is bounded, then S will also be bounded.
+Thus there must exist $s = \sup S$.
+If we chose a subsequence $(a_{n_k})$ that is monotonically increasing, whose values go up to the bound
+of $(a_n)$, the by the monotone convergence theorem, this subsequence will converge.
+This subsequence should be such that $|a_{n_k} - s| < \epsilon$ for any $\epsilon > 0$
+and any $k > N$.
+Which is possible because the parent sequence converges and we are restricting ourselves to a mnonotone
+increasing sequence.
+\\~\\
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{The Cauchy Criterion}
+
+In \textbf{lemma 2.6.3, cauchy sequences are bounded}, there is a bit of logic that was used back in
+\textbf{theorem 2.3.2 every convergent sequence is bounded},
+and also when de discussed the triangle inequality.
+
+When we say that $|x_n - x| < \epsilon$, this can also be seen as $\epsilon < x_n - x < \epsilon$.
+Thus, $|x_n - x_m| < 1$, could be seen as $-1 < x_n - x_m < 1$ or $-(x_m + 1) < x_n < x_m + 1$.
+
+
+\subsubsection{Exercises}
+
+\textbf{2.6.1}
+
+\textbf{Every convergent sequence is a Cauchy sequence}
+
+If we have a sequence $(x_n)$ such that $\lim x_n = x$, then
+$$
+|x_n - x| < \epsilon
+$$
+Whenever $n \geq N \in \mathbb{N}$.
+
+Thus, if we look at a cauchy sequence, with $n, m \geq N$,
+$$
+|x_n - x_m| = |x_n - x + x - x_m| \leq |x_n - x| + |x - x_m| = |x_n - x| + |x_m - x| < \epsilon_1 + \epsilon_2
+$$
+
+We could have gone the other way around and started with,
+$$
+|x_n - x| \leq |x_n - x_m| + |x_m - x| < |x_n - x_m| + \epsilon
+$$
+
+And from there we would be back to the first use of the triangle inequality.
+
+\textbf{Note:} it could be easy to make an argument about making $x_m = x$ and then throwing in another
+epsilon. However, we would be fooling ourselves with the fake simplicity (why didn't we use that same
+argument instead of using the triangle inequality above?).
+To see why the fake simplicity is not correct, see the rest of contents in Abbott section 2.6.
+Where Abbott instead went and used the Bolzano-Weierstrass theorem.
+
+Also, it is possible that the limit is not actually a memeber of the sequence, think of $\lim 1/n$.
+\\~\\
+
+
+
+\textbf{2.6.3}
+
+If $(x_n)$ and $(y_n)$ are cauchy sequences, then one easy way to prove that $(x_n + y_n)$ is
+to use the cauchy criterion.
+The cauchy criterion states that $(x_n)$ and $(y_n)$ must be convergent,
+and the algebraic limit theorem then implies $(x_n + y_n)$ is convergent and hence cauchy.
+
+Remember that the cauchy criterion says that a sequence converges if and only if it is a cauchy sequence.
+\\
+
+Now try giving a direct argument that $(x_n + y_n)$ is a cauchy sequence that does not use the
+cauchy criterion or the algebraic limit theorem.
+\\
+
+We know that
+$$
+| x_n - x | < \epsilon \Longleftrightarrow |x_n - x_m| < \epsilon
+$$
+for all $\epsilon > 0$ when $n\geq N_1$.
+We also know that
+$$
+| y_n - x | < \epsilon \Longleftrightarrow |y_n - y_m| < \epsilon
+$$
+for all $\epsilon > 0$ when $n\geq N_2$.
+
+To make a direct argument, we need to prove that
+$$
+|(x_n + y_n) - (x_m + y_m)| < \epsilon
+$$
+for all $\epsilon >0$ when $n \geq \max{N_1, N_2}$.
+
+To do so, note that
+$$
+|(x_n + y_n) - (x_m + y_m)| 
+= |(x_n - x_m) + (y_n - y_m)|
+$$
+$$
+\leq |x_n - x_m| + |y_n - y_m|
+< \epsilon + \epsilon
+$$
+\\
+
+Give a direct argument for $(x_n y_n)$ now.
+\\
+
+We now want to show that
+$$
+|(x_n y_n) - (x_m y_m)| < \epsilon
+$$
+
+Let's use a the same trick Abbott employed back when we were proving the algebraic
+limit theorem.
+
+\begin{align*}
+    |(x_n y_n) - (x_m y_m)| &= |x_n y_n - x_m y_n + x_m y_n - x_m y_n|      \\
+    &\leq |x_n y_n - x_m y_n| + |x_m y_n - x_m y_m|     \\
+    &= |y_n| |x_n - x_m| + |x_m| |y_n - y_m|    \\
+    &< M_2 \frac{\epsilon}{M_2} + M_1 \frac{\epsilon}{M_1} \\
+\end{align*}
+
+In the last step we used the fact that convergent sequences are bounded and defined
+$M_1$ as the upper bound for $x_n$ and $M_2$ as the upper bound for $y_n$.
+\\~\\
+
+
+
+\textbf{2.6.7}
+
+Exercises \ref{abbott:2.4.4} (use MCT to prove AoC) and
+\ref{abbott:2.5.4} (use NIP, assume AP, use BW methodology to prove AoC) establish the equivalence of the axiom of
+completeness and the monotone convergence theorem.
+They also show the nested interval property is equivalent to these two when the archimedean property
+is pressumed to be true.
+\\
+
+Before we carry on, we want to note Rudin's statement of the \textbf{Archimedean property (and the density
+of the rational numbers within the reals)}:
+If $x,y\in\mathbb{R}$ and $x>0$, then there is a $n>0 \in \mathbb{N}$ such that
+$$
+nx > y
+$$
+Abbott states this as $n > x$ for any $x\in\mathbb{R}$.
+\\
+
+If $x,y\in\mathbb{R}$ and $x<y$, then there is a $p\in\mathbb{Q}$ such that
+$$
+x < p < y
+$$
+
+Abbot states this as $1/n < y$ for any $y>0 \in\mathbb{R}$ and $n\in\mathbb{N}$.
+\\
+
+
+
+\textbf{Assume the Bolzano-Weierstrass theorem to be true and use it to construct a proof of the
+monotone convergence theorem} without making any appeal to the archimedean property.
+This shows that BW, AoC, and MCT are equivalent.
+\\
+
+By the BW theorem, we know that a bounded sequence has a convergent subsequence.
+The subsequence generated by BW meets the condition that the elements we select
+must be so $n_k > n_{k-1} > \ldots > n_1$ so that $a_{n_k}\in I_k$.
+Which means that we are not going around picking elements as we want, we pick elements in the order that
+they show up in the original sequence.
+
+Ultimately, we know that if BW applies then $(a_n)$ is bounded and that we can build a subsequence
+$(a_{n_k}) \rightarrow x$.
+
+For the MCT, the sequence must also be bounded and all elements must be monotonically increasing or decreasing.
+Let's pick the case in which the elements are monotonically increasing and our sequence is bounded above.
+
+So
+$$
+|a_{n_k} - x| < \epsilon
+$$
+When $k \geq N$, and $a_{n_{k+1}} \geq a_{n_k}$.
+
+Thus,
+$$
+- (x+\epsilon) < a_{n_k} < x+\epsilon
+$$
+or
+$$
+- (x+\epsilon) < a_{n_k} \leq a_{n_{k+1}} < x+\epsilon
+$$
+
+In this last expression, the added term works because the sequence is monotonically increasing,
+but we know that for any $k\geq N$, $|a_{n_k} - x| < \epsilon$ must hold.
+This last expression can also be rewritten as
+$$
+|a_{n_{k+1}} - x| < \epsilon
+$$
+And thus our prove.
+\\~\\
+
+
+
+\textbf{Use the Cauchy criterion to prove BW}, and find the point in the argument where the
+Archimedean property is implicitly required.
+This establishes the final link in the equivalence of the five characterizations of completeness.
+\\
+
+The argument for the BW theorem that Abbott shows us is rather generic.
+One thing we can do is to note when it makes use of the NIP.
+Originally this was to find what the limit for the subsequence could be.
+If we instead assumed the Cauchy criterion, then we'd know that the subsequence is bounded
+and that after some point, the elements of the sequence get close to each other.
+
+Then the implicit use of thw Archimedean property comes from the assumption that $M(1/2)^{k-1}$
+converges.
+($M(1/2)^{k-1}$ is a rational number that we want to make smaller tthan some arbitrary real $\epsilon$.)
+\\~\\
+
+How do we know it is impossible to prove the AoC starting from the Archimedean property?
+\\
+
+The Archimedean property tells us that we can always find an $n\in\mathbb{N}$
+that is greater than some real number.
+However, it tells us about upper bounds, it doesn't tell us about the least-upper bounds
+(or greatest upper bounds).
+So the Archimedean property leaves us with possible holes in our number line.
+
+Also, the first part of the Archimedean property, $n>x$, is true if $x\in\mathbb{Q}$.
+So it doesn't give us any clues about us needing the reals.
+\\~\\
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Properties of infiinite Series}
+
+\textbf{Cauchy Criterion for Series}
+
+Since $n > m \geq N$,
+$$
+s_m = a_1 + a_2 + \ldots + a_N + \ldots + a_m
+$$
+and
+$$
+s_n = a_1 + a_2 + \ldots + a_N + \ldots + a_m + \ldots + a_n
+$$
+
+So
+$$
+|s_n - s_m| = 
+\left| (\cancel{a_1} + \cancel{a_2} + \ldots + \cancel{a_N} + \ldots + \cancel{a_m} + \ldots + a_n) - 
+(\cancel{a_1} + \cancel{a_2} + \ldots + \cancel{a_N} + \ldots + \cancel{a_m})\right|
+$$
+$$
+= \left| a_{m+1} + a_{m+2} + \ldots + a_n \right|
+$$
+
+
+
+\subsubsection{Exercises}
+
+
+\textbf{2.7.1}
+
+The \textbf{alternating series tests} goes as follows:
+let $(a_n)$ be a sequence satisfying
+\begin{enumerate}
+    \item $a_1 \geq a_2 \geq \ldots a_n \geq a_{n+1} \geq \ldots$
+    \item $(a_n) \rightarrow 0$
+\end{enumerate}
+
+Then the alternating series $\sum^{\infty}_{n=1} (-1)^{n+1} a_n$ converges.
+
+Proving the alternating series tests ammounts to showing that the sequence of partial sums
+$$
+s_n = a_1 - a_2 + a_3 - a_4 + \ldots \pm a_n
+$$
+converges.
+
+\textbf{Different characterizations of completeness lead to different proofs.}
+\\
+
+%%%%%%%%%%%%%%%
+\textbf{Prove it by showing that $(s_n)$ is a Cauchy sequence.}
+\\
+
+We have
+$$
+s_n = a_1 - a_2 + a_3 - a_4 + \ldots \pm a_n
+$$
+So if we chose an $n > m \geq N$
+$$
+| s_n - s_m | = |(a_1 - a_2 + a_3 - a_4 + \ldots \pm a_n) - (a_1 - a_2 + a_3 - a_4 + \ldots \pm a_m)|
+$$
+$$
+= | \pm a_{m+1} \mp a_{m+2} \pm \ldots \pm a_n |
+$$
+
+In the special case in which $n = m + 1$, we get
+$$
+| s_n - s_m | = | a_n | < \epsilon
+$$
+
+The appended inequality is possible because $(a_n) \rightarrow 0$, so we can meet any $\epsilon$
+as long as we move $N$ farther out.
+\\~\\
+
+
+%%%%%%%%%%%%%
+\textbf{Prove it using the NIP}
+\\
+
+Let's play around with the sample alternating sequence
+$$
+10 -9 +8 -7 +6 -5 +4 -3 +2 -1 +0
+$$
+
+\begin{center}
+\begin{tabular}{ |c|c| }
+    \hline
+    $s_1$ & 10       \\ 
+    \hline
+    $s_2$ & 10-9 = 1 \\  
+    \hline
+    $s_3$ & 1+8 = 9  \\
+    \hline
+    $s_4$ & 9-7 = 2  \\
+    \hline
+    $s_5$ & 2+6 = 8  \\
+    \hline
+    $s_6$ & 8-5 = 3  \\
+    \hline
+    $s_7$ & 3+4 = 7  \\
+    \hline
+    $s_8$ & 7-3 = 4  \\
+    \hline
+    $s_9$ & 4+2 = 6  \\
+    \hline
+    $s_{10}$ & 6-1 = 5 \\
+    \hline
+\end{tabular}
+\end{center}
+
+\textbf{Consider the sequences $(s_{2n})$ and $(s_{2n+1})$, and show that the MCT leads to a third proof.}
+\\
+
+Another good way to llok at the alternating series is as follows:
+$$
+s_n = (a_1 - a_2) + (a_3 - a_4) + \ldots \pm a_n
+$$
+
+Each group consists of terms that are great than or equal to zero, give our preconditions.
+Each grouping resulting in the sum of some non-negative number that get's smaller and smaller.
+
+We can also read it as:
+$$
+s_n = a_1 - (a_2 - a_3) - (a_4 - a_5) - \ldots
+$$
+
+In this case, $s_1$ is an upper bound and we continuously subtract smaller and smaller numbers.
+
+Now, let's turn to
+$$
+s_{2n} = -a_2 - a_4 - a_6 - \ldots
+$$
+and
+$$
+s_{2n +1} = a_3 + a_5 + a_6 + \ldots
+$$
+
+When we look at the even terms, we have a negative number $-a_2$ that we keep making more and more
+negative but by smaller and smaller ammounts.
+And the converse when we look at the off terms: a positive number that we keep adding to less and
+less.
+\\~\\
+
+
+\textbf{2.7.3}
+
+An alternate way to prove the comparsion tests for infinite series theorem using the monotone converge theorem
+goes as follows.
+
+If $0 \geq a_k \geq b_k$ and $\sum^{\infty}_{k=1} b_k$ converges, then we know that
+the sequence of partial sums also converges.
+And since the sequence of partial sums converges then it must be bounded.
+
+The limit of the sequence of partial sums of $\sum b_k = \lim s_m$ can also be seen as an upper bound
+for the sequence of partial sums of $\sum a_k$, since $0 \geq a_k \geq b_k$ for all $k\in\mathbb{N}$.
+
+Also, since $0 \geq a_k$, then each successive term in the sequence of partial sums must be
+equal to or greater than the previous one, so the sequence of partial sums is a monotone sequence
+and thus converges as per the MCT.

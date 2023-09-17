@@ -1,0 +1,934 @@
+\section{The real numbers}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Background}
+More formally stated, a field is any set where addition and multiplication are well-defined operations
+that are commutative, associative, and obey the familiar distributive property $a(b + c) = ab + ac$.
+There must be an additive identity, and every element must have an additive inverse.
+Finally, there must be a multiplicative identity, and multiplicative inverses must exist for
+all nonzero elements of the field.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Preliminaries}
+
+\subsubsection{$x_{n+1} = \frac{1}{2}x_n + 1$}
+
+The series is non-decreasing
+$$
+x_n \leq x_{n+1}
+$$
+
+And it just so happens that $x_n = 2 - \frac{1}{ n^{n-1} } = \frac{2^{n+1} - 1}{2}$
+Write it all out to see the pattern.
+
+$$
+\lim\limits_{n \to \infty} \frac{2^{n+1} - 1}{2} = 2
+$$
+
+$\frac{2^{n+1} - 1}{2}$ grows as $\frac{2^{n+1}}{2}$.
+
+
+
+
+
+\subsubsection{Triangle Inequality}
+
+\begin{equation}
+|x| =
+  \begin{cases}
+    x   & \quad x \geq 0\\
+    -x  & \quad x < 0
+  \end{cases}
+\end{equation}
+
+\begin{equation}
+    |ab| = |a| |c|
+\end{equation}
+
+\begin{equation}
+    |a+b| \leq |a| + |c|
+\end{equation}
+
+If $a,b \geq 0$, then $|a+b| = a+b = |a| + |b|$.
+If $a,b < 0$, then $|a+b| = |a| + |b|$ (i.e., $|-1 + -2| = |-1| + |-2| = 3|$).
+If $a<0, b>0$, then $|-1+2| = |1|=1$ and $|-1| + |2| = 3$, so $|a+b| < |a| + |b|$. Similarly if $a>0$ and $b<0$.
+
+\begin{equation}
+    |a-b| = |b-a|
+\end{equation}
+think about it as the distance between two points.
+
+$|a-b| = |(a-c) + (c-b)| <= |a-c| + |c-b|$ using the triangle inequality. 
+So, $|a-b| \leq |a-c| + |c-b|$ for any $c \in \mathbb{R}$.
+So the above expression says something like "distance from a-to-b is equal to or less than the distance from a-to-c
+plus the distance from c-to-b".
+
+Proofs for triangle and reverse triangle inequalities are in \url{https://en.wikipedia.org/wiki/Triangle_inequality}.
+Some takeaways are that:
+
+$|b| \leq a$ can also be expressed as $-a \leq b \leq a$.
+
+$-|x| \leq x \leq |x|$ so $-(|x|+|y|) \leq x+y \leq |x|+|y|$.
+
+$|x| = |(x-y) + y| \leq |x-y| + |y|$ or $|x| - |y| \leq |x-y|$.
+
+$-|x-y| \leq |x| - |y| \leq |x-y|$ also means $||x|-|y|| <= |x-y|$.
+
+Additionally $|x| - |y| \leq |x+y| \leq |x| + |y|$.
+
+
+
+
+
+
+\subsubsection{Exercises}
+
+\textbf{1.1.1}
+
+Prove that $\sqrt{3}$, $\sqrt{6}$, $\sqrt{4}$ are irrational.
+
+\href{https://math.stackexchange.com/questions/930486/prove-that-the-square-root-of-3-is-irrational}{stackexchange: prove that the square root of 3 is irrational}:
+A supposed equation $m^2 = 3n^2$ is a \textbf{direct contradiction to the Fundamental Theorem of Arithmetic,
+because when the left-hand side is expressed as the product of primes, there are evenly many 3s there,
+while there are oddly many on the right.}
+\\~\\
+
+
+
+
+\textbf{1.2.7}
+
+$$
+A = \{x \in \mathbb{R} : 0 \leq x \leq 2\}
+$$
+$$
+B = \{x \in \mathbb{R} : 1 \leq x \leq 4\}
+$$
+so $A \cap B = \{x \in R : 1 <= x <= 2 \}$. 
+
+$$
+f(A) = \{ x \in \mathbb{R} : 0 \leq x \leq 4 \}
+$$
+$$
+f(B) = \{ x \in \mathbb{R} : 1 \leq x \leq 16 \}
+$$
+so
+$$
+f(A) \cap f(B) = \{ x \in \mathbb{R} : 1 \leq x \leq 4 \}
+$$
+and $f(A \cap B) = \{ x \in \mathbb{R} : 1 \leq x \leq 4 \}$.
+
+So in this case $f(A) \cap f(B) = f(A \cap B)$.
+
+$$
+A \cup B = \{x \in \mathbb{R} : 0 \leq x \leq 4\}
+$$
+so 
+$$
+f(A \cup B) = \{x \in \mathbb{R} : 0 \leq x \leq 16\}
+$$
+$$
+f(A) \cup f(B) = \{x \in \mathbb{R} : 0 \leq x \leq 16\}
+$$
+
+So $f(A) \cup f(B) = f(A \cup B)$ as well.
+
+Counterer example of $f(A \cap B) = f(A) \cap f(B)$ is if $A = \{x \in \mathbb{R} : -6 \leq x \leq 3\}$ And
+$B = \{x \in \mathbb{R} : 3 \leq x \leq 6\}$.
+There A and B is $\emptyset$, so $f(A \cup B)$ is $\emptyset$.
+While f(A), f(B), and $f(A) \cup (B)$ are $\{x \in \mathbb{R} : 9 \leq x \leq 36\}$.
+
+To show that for an arbitrary function $g: \mathbb{R} \rightarrow \mathbb{R}$, the statement
+$g(A \cap B) \subseteq g(A) \cap g(B)$ holds for all sets $A, B \subseteq \mathbb{R}$,
+we need to prove that every element in $g(A \cap B)$ is also an element of both $g(A)$ and $g(B)$.
+Let's proceed with the proof:
+
+Let x be an arbitrary element in $g(A \cap B)$. This means that there exists an element $y \in A \cap B$ such that $g(y) = x$.
+Since $y \in A \cap B$, y is both in set A and set B. Therefore, $g(y) \in g(A)$ and $g(y) \in g(B)$.
+Since $g(y) = x$, we can conclude that $x \in g(A)$ and $x \in g(B)$, which implies that $x \in g(A) \cap g(B)$.
+Since x was an arbitrary element in $g(A \cap B)$, we have shown that every element in $g(A \cap B)$ is also an element of $g(A) \cap g(B)$.
+
+Thus, we have proved that $g(A \cap B) \subseteq g(A) \cap g(B)$ for all sets $A, B \subseteq \mathbb{R}$.
+
+Following a similar line of thinking for $g(A \cup B) and g(A) \cup g(B)$.
+Let x be some element in $g(A \cup B)$, then there must be a y in either A or B such that $g(y) = x$.
+Therefore, $g(y) \in g(A) \cup g(B)$.
+\\~\\
+
+
+
+\textbf{1.2.10}
+
+$y_1 = 1$
+$$
+y_{n+1} = \frac{3}{4} y_n + 1 = \frac{3y_n + 4}{4}
+$$
+
+$n=1: y_1 < 4$
+
+Now we want to show that if we have $y_n < 4$, then so will $y_n+1 < 4$
+We are starting from the hypothesis that $y_n < 4$, then
+
+$$
+\frac{3}{4} y_n + 1 < \frac{3}{4} 4 + 1 = 4
+$$
+
+Which means $y_{n+1} < 4$.
+
+$y_1 = 1$, $y_2 = \frac{7}{4}$, $y_3 = \frac{37}{16}$.
+
+$n=1: y_1 < y_2$
+
+Induction hypothesis $y_n < y_n+1$
+$$
+\frac{3}{4}  y_n + 1 < \frac{3}{4}  y_{n+1} + 1 \rightarrow y_{n+1} < y_{n+2}
+$$
+\\~\\
+
+
+
+\textbf{1.2.11}
+
+\textbf{If a set A contains n elements, prove that the number of different subsets of A is equal to 2n.}
+\textbf{(Keep in mind that the empty set is considered to be a subset of every set.)}
+
+Every element in A can be in or not, thus m multiplications of 2.
+\\~\\
+
+
+\textbf{1.2.12}
+
+Trivial case is: $(A_1)^c  = A_1^c$.
+
+Base case: $(A_1 \cup A2_)^c = A_1^c \cap A_2^c$ by de morgan’s theorem.
+
+$(A_1 \cup A_2 \cup A_3)^c = (B_1 \cup A_3)^c = B_1^c \cap A_3^c = A_1^c \cap A_2^c \cap A3^c$.
+Distributive property plus $B := A_1 \cup A2$. 
+without loss of generality $B = A_1 \cup A_2 \cup \dots A_k$.
+\\~\\
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{The axiom of completeness}
+
+\textbf{1.3.1}
+
+Let $Z_5 = \{0, 1, 2, 3, 4\}$.
+Additiona and multiplication modulo 5 would then be as,
+
+$$
+7+9 = 16 \bmod 5 = 1
+$$
+And
+$$
+7\times 9 = 63 \bmod 5 = 3
+$$
+
+Additive inverse: in order for $z+y = 0$ in $Z_5$, then the modulo addition of z and y must be a multiple of 5, in this case.
+One way to define the additive inverse of z is to have it be $m-z$, where m is the modulo we are using.
+That way $z + y = z + (m-z) \bmod m = m \mod m = 0$.
+\\
+
+Multiplicative inverse: if $z \neq 0$ in $Z_5$, $\exists x$ such that $zx = 1$.
+So whatever product we end up getting must be $nm + 1$ for some integer n (always have a remainder of 1).
+Yet another way of thinking about this is that $zx \equiv 1 \bmod m$.
+
+There is an interesting pattern that shows up here...
+If $z=1$, then $zx = x \bmod 5 = 1$ has multiple solutions but two of them are $x=1$ or $x=6$ ($x=z$ or $x=z+m$).
+Similarly, if $z=2$, then 2 possible solutions would be $x=3$ or $x=8$ ($x=z+1$ or $x=z+m+1$).
+If $z=3$, then 2 possible solutions are $x=2$ or $x=7$ ($x=z-1$ or $x=z+m-1$).
+If then $z=4$, then 2 possible solutions are $x=4$ or $x=9$ ($x=z$ or $x=z+m$ - again!!!).
+Since we have found the multiplicative inverse for each non-zero element in $Z_5$, we can conclude
+that for any $z \neq 0$ in $Z_5$, there exists an element $x$ such that $zx = 1$.
+
+\textbf{Multiplicative inverses exist only when $z$ and $m$ are relatively prime}.
+For example if $z=5$, and we are in $Z_{10}$ then there is no number such that $zx \equiv 1 \bmod 10$.
+
+Keeping in mind that a \textbf{congruence class} is an equivalence relation on an algebraic structure (e.g., a ring)
+that is compatible with the structure in the sense that algebraic operations done with equivalent elements will yield equivalent elements.
+More humanly put, a congruence class is the set of all integers that have the same remainder as a when divided by n.
+Now in a ring $Z_n$, the units (i.e. the elements which have a multiplicative inverse) are the
+congruence classes of the elements $m$ which are coprime to $z$, because for such an element, we have a
+Bezout's relation, $um + vz = 1$ or $um = 1 - vz$, which means the class of $u$ is the inverse of that of $m$.
+We obtained the previous argument from
+\href{https://math.stackexchange.com/questions/2650336/for-z-5-0-1-4-and-z-in-z-n-prove-that-there-exists-a-multiplicative-i}{stackexchange: prove that there exists a multiplicative inverse}.
+\\~\\
+
+
+\textbf{1.3.2}
+
+A real number A real number $l$ is the greatest lower bound for a set $A \subseteq \mathbb{R}$ if it meets the following
+two criteria:
+
+\begin{enumerate}
+    \item $l$ is a lower bound of $A$,
+    \item if $m$ is any lower bound for A, then $l \geq m$.
+\end{enumerate}
+
+Lemma: assume $l \in \mathbb{R}$ is a lower bound for a set $A \subseteq \mathbb{R}$.
+Then $l = \inf{A}$ if and only if, $\forall \epsilon > 0$, $\exists a \in A$ satisfying $l + \epsilon > a$.
+
+Given that $l$ is a lower bound, $l$ is the greatest lower bound iff any number greater than $l$ is not a lower bound.
+
+In the forward direction we want to prove that: if $l$ is the greatest upper bound, then $l+\epsilon > a$.
+In the forward direction we want to prove that: if $l$ is a lower bound satisfying $l+\epsilon > a$, then $l$ is also the
+greatest upper bound.
+
+For the former case, because $l + \epsilon > l$, then by definition $l+\epsilon$ is not a lower bound. Thus there must
+$\exists a \in A$ for which $l+\epsilon > a$.
+Note that we used the defintion to prove a point, we are not questioning the definition (whether $l$ is the greatest upper bound).
+
+For the latter direction, assume $l$ is a lower bound such that $\forall \epsilon >0$, $l+\epsilon$ is no longer a lower bound
+for A.
+If this is so, a number slightly greater than $l$ (for any degree of slightly) is no longer a lower bound, then by Definition
+of the greatest lower bound, $l$ can be the greatest lower bound.
+\\~\\
+
+
+\phantomsection
+\label{abbott:1.3.3}
+
+\textbf{1.3.3}
+
+
+If A is bounded below, and we define $B = \{ b \in \mathbb{R}: \text{b is a lower bound of A} \}$.
+Show that $\sup B = \inf A$.
+
+By the axiom of completeness we can start by knowing that any non-empty set of real numbers that is bounded above
+has a least upper bound.
+So as long as A is not an empty set, then B will not be empty either.
+In the case of the set B, any upper bound wil be equal or greater than any $b \in B$.
+And the least upper bound will be equal to or smaller than any other bound we can find (smaller than or equal to
+any $a \in A$).
+
+At the same time, since B contains lower bounds of A, we already know that there is a $sup B$ that exist and is smaller
+than any $a \in A$ (other upper bounds of B) while also being greater than or equal to any other bounds of A (members of B).
+That is, $\sup B$ is a lower bound of A and is greather than or equal to any other bounds of A.
+Hence, by defintion of the greatest lower bound $\sup B = \inf A$.
+\\
+
+\textbf{This exercise points to the interesting case when if $a$ is an upper bound for A,
+and if $a \in A$, then it must be that $a = \sup A$}.
+\\~\\
+
+
+\textbf{1.3.4}
+
+Assume that A and B are nonempty, bounded above, and satisfy $B \subseteq A$. Show $\sup B \leq \sup A$.
+
+If B and A are equal then their least upper bound will be equal.
+On the other hand, if A has elements that B doesn't, then those elements not in B can be smaller or greater than those in B.
+If the extra elements are smaller than $b \in B$, then the least upper bounds of the two sets will not change.
+But if A contains elements that are greater than B, then $\sup A > \sup B$.
+\\~\\
+
+
+\textbf{1.3.8}
+
+If $\sup A < \sup B$, then show that $\exists b \in B$ that is an upper bound for A.
+
+Since B has a least upper bound, then there must be $b \in B$ such that $b \leq \sup B$.
+Similarly in A, there must exist $a \in A$ such that $a \leq \sup A$.
+Since we know that $\sup A < \sup B$, then we have $a \leq \sup A < \sup B$ ($\sup B$ is an upper bound for A).
+
+If $b$ is an upper bound of A, then that would mean that $b \geq a$ for any $a \in A$.
+If $b$ was not an upper bound, then $b < a$ for all $b$.
+But if this was the case, then $\sup B$, which is an upper bound of B ($\sup B \geq b$) would be smaller than some
+$a$, leading us to a contradiction as $\sup A$ would then be greater than $\sup B$.
+
+We can also see this as a case mention in problem 1.3.4 above.
+\\~\\
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Consequences of completeness}
+
+
+\textbf{1.4.1}
+
+\textbf{Density of Q in R:} For every $a,b \in \mathbb{R}$ where $a < b$ and $a<0$, $\exists r \in \mathbb{Q}$
+satisfying $a < r < b$.
+
+Since we want to prove the case of $a<0$, we want to see if there is a rational number $r$ such that $a < r < 0$.
+There rest of the proof in theorem 1.4.3 then applies as is.
+\\~\\
+
+
+\subsubsection{Existence of square roots}
+
+$$
+T = \{ t\in\mathbb{R} : t^2 < 2 \}
+$$
+
+Then we work out the expression
+$$
+\left( \alpha + \frac{1}{n} \right) < \alpha^2 + \frac{2\alpha + 1}{n}
+$$
+
+That bit $(2\alpha + 1)/n$ is what we need to fit between $\alpha^2$ and 2 while keeping $\alpha^2 <2$.
+Since we want to fill that space, we come up with
+$$
+\frac{2\alpha + 1}{n} < 2 - \alpha^2
+$$
+
+Which then simplifies to what Abbott uses.
+
+
+$$
+\left( \alpha + \frac{1}{n_0} \right)^2 < \alpha^2 + (2 - \alpha^2) = 2
+$$
+
+contradicts the fact that $\alpha$ is an upper bound because $(\alpha + \frac{1}{n})^2$ is also a member of
+$T$, and is larger than $\alpha$ alone.
+
+For the case of $\alpha^2 > 2$, where we want to prove that this contradicts the fact that $\alpha$ is the least upper bound,
+then it must be the case in which $\alpha$ is an upper bound for $\{ t \in \mathbb{R} : t^2 < 2 \}$ but it must not be
+the smallest upper bound.
+That is, $\alpha > b$, where $b$ is some other bound of $T$ ($b=2$ for example).
+
+To show that the above would lead us to the said contradiction we can now take
+
+$$
+\left( \alpha - \frac{1}{n} \right)^2 =
+    \alpha^2 - \frac{2\alpha}{n} + \frac{1}{n^2} >
+    \alpha^2 - \frac{2\alpha}{n}
+$$
+
+If we chose an $n_0$ such that 
+$$
+\alpha^2 - \frac{2\alpha}{n_0} > 2
+$$
+
+That is, we look for an $n_0$ that can give us a number smaller than $\alpha$ but that it is an upper bound.
+The above implies that $- \frac{2\alpha}{n_0} > 2 - \alpha^2$, and consecuently
+
+$$
+\left( \alpha - \frac{1}{n_0} \right)^2 >
+    \alpha^2 + (2 - \alpha^2) = 2
+$$
+
+So we see that $\alpha - \frac{1}{n_0}$ is an upper bound and it is smaller than $\alpha$,
+so $\alpha^2 > 2$ also be the case.
+
+
+\subsubsection{$N \sim R$}
+
+We known that for some real number $x_{n_0} \notin I$, so that
+$$
+x_{n_0} \notin \bigcap^{\infty}_{n=1} I_n
+$$
+
+Since we are assuming that $\mathbb{R} = \{ x_1, x_2, ... \}$ contains all the real numbers,
+then $n_0$ can be any of the real numbers.
+So for any given $n_0$, $I_{n_0}$ will not contain it, nor any $I_{n_0+1}$, or any of its subsets.
+Going in the other direction, $x_{n_0}$ will be in $I_{n_0 - 1}$, but
+$I_{n_0 - 1}$ will not contain $x_{n_0-1}$.
+Thus, there is no one number that is contained by all sets $I_n$, Hence
+
+$$
+\bigcap^{\infty}_{n=1} I_n = \emptyset
+$$
+
+Which contradicts the nested-interval property.
+
+When proving the nested interval property we showed that at the very elast the supremum of each interval $I_n$
+would be in every $I_n$, which lead us to the discovery that their intersection would be a non-empty set.
+However, if we don't have the supremum of each set present for each $I_n$, then by our experience with the axiom
+of completeness, we would think that there are gaps in our list of numbers.
+
+The "logical" issue in the above argument is that the real numbers are "enumerable", which doesn't show up in the original
+proof of the nested interval theorem because hte axiom of completeness creates a sort of "continuity" among the numbers
+(the filling in between the gaps).
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Exercises}
+
+\textbf{1.4.1}
+
+\textbf{For every two real numbers $a$ and $b$ with $a<b$, there exists a rational number satisfying $a < r < b$.}
+
+As requirements we have that $a<b$ and this time we want to look at the case were $a<0$,
+so $b$ can be either negative, zero, or positive, it just has to be greater than $a$.
+However the rest of the proof can proceed as normal if we don't require $m \in \mathbb{N}$ but
+instead generalize $m \in \mathbb{Z}$.
+See
+\href{https://math.stackexchange.com/questions/48537/how-does-this-proof-of-density-of-mathbbq-in-mathbbr-require-a-geq-0}{How does this proof of density of Q in R require $a\geq 0$?}.
+
+The original proof uses the Archimedean Property and the Archimedean Principle for positive
+numbers to find a positive integer $n$ such that $\frac{1}{n} < b - a$.
+Then, it uses the Density Property of the set of natural numbers to find a natural number $m$
+such that $m > n$ and $an < m$.
+\\~\\
+
+
+
+\textbf{1.4.2}
+
+If we have $a = \frac{m}{n}$ and $b = \frac{p}{q}$, then
+
+$$
+a + b = \frac{m}{n} + \frac{p}{q}
+    = \frac{mq + np}{nq}
+$$
+Which is a rational number since $m, n, p, q \in \mathbb{Z}$.
+
+Similarly,
+$$
+ab = \frac{m}{n} \frac{p}{q}
+    = \frac{mp}{nq}
+$$
+
+However, if we multiply (or add), let's say $a$, by $i \in \mathbb{I}$, we want to show that this would result in an irrational number.
+To prove this we will use a proof by contradition.
+
+In the case of a sum, let's begin by assuming that if we add a rational number and an irrational numbert
+that the result is a rational number too.
+Then,
+$$
+\frac{m}{n} + i = \frac{x}{y}
+$$
+
+This would mean that we could isolate $i$
+$$
+i = \frac{x}{y} - \frac{m}{n}
+$$
+Which as we showed above, would mean that $i$ is a rational number.
+
+In the case of a multiplication,
+$$
+i \frac{m}{n} = \frac{x}{y}
+$$
+
+$i$ could be isolated,
+$$
+i = \frac{x}{y} \frac{n}{m}
+$$
+
+Which again, would lead to a contradiction since the product of two rational numbers is also a rational number
+and the above says that we magically converted $i$ into a rational number.
+
+One would then think that the irratinoal numbers are also closed under addition or multiplication, but this is not the case.
+Consider $1 - \sqrt{2} \in \mathbb{I}$ (as we just saw) and $\sqrt{2}$.
+$$
+( 1 - \sqrt{2} ) + \sqrt{2} = 1 \in \mathbb{Z}
+$$
+
+Similarly,
+$$
+\sqrt{2}\sqrt{2} = 2
+$$
+\\~\\
+
+
+
+\textbf{1.4.5}
+
+\textbf{Given any two real numbers $a < b$, there exists an irrational number $t$ satisfying $a < t < b$.}
+To prove this, we can use the results from the previous exercise by applying the theorem where we talked about the
+density of the rational numbers in the real numbers to $a - \sqrt{2}$ and $b - \sqrt{2}$
+(which are real and irrational numbers.)
+
+This case is easy to see since we know that between any two real numbers there exists a rational number
+$$
+a < \frac{m}{n} < b
+$$
+
+And we also know that we can convert a rational number into an irrational by adding or multiplying by an irrational number.
+So, if we shift the case we used to prove the density of the rational numbers by subtracting an irrational number
+$$
+a - \sqrt{2} < \frac{m}{n} - \sqrt{2} < b - \sqrt{2}
+$$
+
+We can arrive to the result we wanted to prove.
+\\~\\
+
+
+
+\textbf{1.4.4}
+
+Use the Archimedean property of $\mathbb{R}$ prove that $\inf \{ \frac{1}{n} : n \in \mathbb{N} \} = 0$.
+
+By the Archimedean property we know that for any $y>0 \in \mathbb{R}$, $\exists n \in \mathbb{N}$ such that
+$y > \frac{1}{n}$.
+
+We also know that for a number to be an infinimum then it has to be a lower bound and it has to be greater than any
+otther lower bounds.
+
+In the case of the set $A = \{ \frac{1}{n} : n \in \mathbb{N} \}$, we can see that 0 is indeed a lower bound.
+But let's say that we have another lower bound $b$ that is greater than 0 (assume the greatest lower bound is $b$).
+
+Since $0 \notin A$ and $b$ is a lower bound, then $b > 0$ but $b \leq a$, for any $a \in A$.
+However, the Archimedean property tells us that for any $b$ we could have, there will be a $\frac{1}{n}$ that is smaller than it.
+Thus disproving the fact that a $b>0$ could be a lower bound.
+\\~\\
+
+
+
+\textbf{1.4.5}
+
+Prove that $\bigcap^{\infty}_{n=1} (0, 1/n) = \emptyset$. 
+Notice that this demonstrates that the intervals in the Nested Interval Property
+must be closed for the con- clusion of the theorem to hold.
+
+The proof we used for the nested property theorem, theorem 1.4.1.
+Following a similar schema, we can see that the set of right-hand endpoints $\{ 1/n : n\in\mathbb{N} \}$ which we have
+already seen that its greatest lower bound is 0.
+We have also saw in exercise 1.3.3 that the supremum of the left-hand endpoints must equal the infinimum of the right-hand
+endpoints, which is zero.
+So the approach we followed in theorem 1.4.1 doesn't apply here since 0 is not even part of any of the intervals $I_n$.
+\\~\\
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Cardinality}
+
+
+\textbf{1.5.1}
+
+\textbf{Theorem 1.5.7: if $A \subseteq B$ and $B$ is countable, then either $A$ is countable, finite, or empty.}
+
+Recall that a set $B$ is countable if $\mathbb{N} \sim B$.
+Which means that the sets $\mathbb{N}$ and $B$ have the same cardinality as there exist some $f : N \rightarrow B$
+that is 1-to-1 and onto.
+
+Let $n_1 = \min \{ n \in \mathbb{N} : f(n) \in A \}$.
+As a start to a definition of $g: \mathbb{N} \rightarrow A$, set $g(1) = f(n_1)$.
+
+We know that $f$ is 1-to-1, so every natural number gets mappted to a different member of $B$, that is, $n_1 \neq n_2$, then
+$f(n_1) \neq f(n_2)$.
+We also know that for every $B$, and clearly for every $A$ (since $A \subseteq B$), there exists an $n \in \mathbb{N}$
+such that $a = f(n)$ for every $a \in A$.
+Thus, we only need to prove that $g$ is a 1-to-1 function.
+
+Now back to our definition of $g$, if we now look at $A - \{f(n_1)\}$, and we define
+$n_2 = \min \{ n \in \mathbb{N} : f(n) \in A - \{f(n_1)\} \}$, or more generally,
+$n_n = \min \{ n \in \mathbb{N} : f(n) \in A, n \notin \{n_1, n_2, ..., n_{k-1}\} \}$,
+then we have $g(k) = f(n_k)$, which we know is different from all other values of $g$ since $f$ is 1-to-1.
+\\~\\
+
+
+
+\textbf{1.5.3}
+
+\textbf{If $A_1, A_2, \ldots, A_m$ are each coutable sets, then the union $A_1 \cup A_2 \cup \ldots \cup A_m$ is countable.}
+
+Replace $A_2$ with $B_2 = A_2 - A_1 = \{ x \in A_2 : x \notin A_1 \}$.
+$A_1 \cup B_2  = A_1 \cup A_2$ while keeping the two sets disjoint.
+
+If we followed the example 1.4.8, then we could see how "laying out" the members of $A_1 \cup A_2 = A_1 \cup B_2$ could be
+mapped to by the natural numbers, $\{ a_1, a_2, \ldots, b_1, b_2, \ldots \}$.
+For the induction step, we can follow logic similar to when we prove the generalization of the de morgan laws in 1.2.12.
+\\
+
+\textbf{If $A_n$ is a countable set for each $b \in \mathbb{N}$, then $\bigcup^{\infty}_{n=1} A_n$ is countable.}
+
+The same induction logic we used above could get us into trouble here because induction shows something
+for all $n \in \mathbb{N}$, not for infinity - and we have already seen that there are various types of infinities.
+If we followed the same logic we could end up with a problem similar as to when we claimed that the reals are
+enumerable.
+\\
+
+If we were to arrange natural numbers in a two-dimensional array we end up with disjoint sets $B$ such that
+$\cup^{\infty}_{n=1} B_n = \mathbb{N}$.
+(Note how this can be a construction similar to the first instance in this problem where $B_1 = A_1$,
+$B_2 = A_2-A_1 = A_2 - B_1$, $B_3 = A_3 - B_2$, and so on.)
+
+We also now (and can see) that every $B$ has an $f_n$ has is 1-to-1 and onto.
+
+So in order to prove that there exists a mapping that maps the natural numbers into our tw-dimensional array of disjoint sets,
+it suffices to see that our way of ordering the sets is itself a mapping such that
+$f : \mathbb{N} \rightarrow \cup^{\infty}_{n=1} B_n$.
+The mapping could be expresed as $f (x_{m,n} \in \mathbb{N}) = (m, n) \in \cup B_n$.
+
+And since we organized the two-dimensional array in the way we have, then the we have
+$\mathbb{N} \subseteq \mathbb{N} \times \mathbb{N}$ and the mapping is bijective
+($f (x_{m,n} \in \mathbb{N})$ is a specific mapping that creates order pairs that such that all order pairs are 1-to-1 and onto).
+
+See
+\href{https://math.stackexchange.com/questions/4403048/simplification-in-proof-of-countable-union-of-countable-sets-is-countable}{Simplification in Proof of Countable Union of Countable Sets is Countable}
+for a similar presentation.
+\\~\\
+
+
+
+\textbf{1.5.4}
+
+Is $(a,b) \sim \mathbb{R}$, for any open interval $(a,b)$?
+
+Let's take example 1.5.4 as inpiration.
+This example says that $f = x / (x^2 -1)$ takes the interval $(-1, 1)$ onto $\mathbb{R}$, showing that
+$(-1,1) \sim \mathbb{R}$.
+
+The books mentions some calculus so let's see what we can see.
+First we have,
+$$
+\lim_{x \rightarrow -1^+ } \frac{x}{x^2 - 1} \rightarrow
+    \frac{-1}{\text{some very small positive number}} 
+    \rightarrow -\infty
+$$
+
+Similarly,
+$$
+\lim_{x \rightarrow 1^- } \frac{x}{x^2 - 1} \rightarrow
+    \frac{1}{\text{some very small positive number}} 
+    \rightarrow \infty
+$$
+
+Its derivative is
+$$
+f' = \frac{1}{(x^2 - 1)^2} ( (x2 - 1) - x(2x) ) =
+    \frac{-x^2 - 1}{(x^2 - 1)^2} =
+    - \frac{x^2 + 1}{(x^2 - 1)^2}
+$$
+
+For the derivative, no matter whether $x$ is negative or positive, its value will always be zero.
+Which is a no-graphing way of triple checking that the original function won't "fluctuate" and we can indeed map all of
+the domain of $f$ to unique values in $\mathbb{R}$.
+
+Now in order to see whether $f$ is onto, we could see if we can build an inverse of f and see if it has any "holes".
+But that's rather complicated in our case, so let's try something else.
+We could use the intermediate value theorem but we don't yet know what "continuous" or any of the other requirements mean.
+However, we have seen that within $(-1,1)$ the function goes from $-\infty$ to $\infty$, so we can imagine that any value
+within the image will be mapped to by somewhere in the domain.
+
+To shift the function we have been using into the interval $(a,b)$, let's define the midpoint between $b$ and $a$ as
+$m = (b-a)/2$ and let's define the transformed function $f$ as
+$$
+g(x) = f\left(\frac{(x - m)}{m} \right)
+$$
+
+With the above transformation we are "stretching" the function by dividing $x$ my the mid-way length between $b$ and $x$
+and we are also shifting it by the same distance.
+Since the changes are all constant factors, all other properties we have been relying on remain the same.
+\\~\\
+
+
+
+\textbf{1.5.5}
+
+Is $A \sim A$ for every set $A$?
+
+If so, it'd mean that there is a function $f: A \rightarrow A$ that is 1-to-1 and onto.
+Which means that $f(a_1) = f(a_2)$ iff $a_1 = a_2$.
+However, $f(a_1) = a_1$ in our case.
+Given this, it is easy to see that such a mapping will also be onto.
+\\
+
+If $A\sim B$, does that mean that $B\sim A$?
+
+Well, for starters, we now know that there is an $f: A\rightarrow B$ that is 1-to-1 and onto.
+So $b_1 = b_2 = f(a_1) = f(a_2)$ iff $a_1 = a_2$.
+Also, for every $b_i = f(a_i)$ there is a unique $a_i$.
+Putting these two properties together we know that for every element in $B$ there is a uniqie element
+that can be mapped to it from $A$.
+If we take this in the opposite direction, $B\rightarrow A$, we only need to prove that every every element we are mapping to
+is unique, which is given to us by the mapping being 1-to-1.
+\\
+
+If $A\sim B$ and $B\sim C$, does that mean that $A\sim C$?
+
+There exists an $f: A\rightarrow B$ that is 1-to-1 and onto.
+There also exists a $g: B \rightarrow C$ that is 1-to-1 and onto.
+
+So if we start with $f(a_i) = b_i$, then $g \circ f (a_i) = g(b_i) = c_i$.
+Since $g(b_1) = g(b_2)$ iff $b_1 = b_2$, and $b_1 = f(a_1)$ and $b_2 = f(b_2)$, and $f(a_1) = f(a_2)$ iff $a_1 = a_2$,
+then by extension, $g(b_1) = g(b_2)$ iff $a_1 = a_2$.
+
+Similarly, since for every $c$ there exist a unique $b$, and for every $b$, there is a unique $a$.
+Then we can map every $c$ to a unique $a$.
+\\~\\
+
+
+
+\textbf{1.5.9}
+
+\textbf{A real number $x\in \mathbb{R}$ is algebraic if there exists integers $a_0, a_1,\dots ,a_n \in \mathbb{Z}$,
+not all zero, such that}
+
+\begin{equation}
+    a_0 + a_1 x + a_2 x^2 + \ldots + a_n x^n = 0
+\end{equation}
+
+Said another way, a real number is algebraic if it is the root of a polynomial with integer coefficients.
+Real numbers that are not algebraic are called transcendental numbers.
+
+$\sqrt{2}$ is an algebraic number since $2x^2 - x^4 = 0$ can be a way to express $x^2 = 2$, $x = \sqrt{2}$.
+\\
+
+Fix $n \in \mathbb{N}$, and let $A_n$ be the algebraic numbers obtained as roots of polynomials with integer coefficients
+that have degree $n$.
+Using the fact that every polynomial has a finite number of roots, show that $A_n$ is countable.
+
+For example, $A_2 = \{ x\in\mathbb{R} : \text{$x$ is a root of } a_0 + a_1 x + a_2 x^2 = 0 \}$.
+Here problem 1.5.3 (theorem 1.5.8) will come in handy.
+Essentially, if every polynomial of degree $n$ has a finite set of roots, then a piecewise application of
+$f: \mathbb{N} \rightarrow A_n$ is doable.
+If we also organize all $A_n$ to have only non-zero coefficients, then we have a collection of countable and disjointsets.
+By the application of theorem 1.5.8, the union of all $A_n$ is also countable.
+\\
+
+Now, argue that the set of all algebraic numbers is countable.
+What may  we conclude about the set of transcendental numbers?
+
+As we saw in theorem 1.5.6 $\mathbb{R}$ is not countable.
+And we just argued that the set of algebraic numbers is countable.
+Roughly speaking, this could have us belief that the set of transcendental numbers is uncountable.
+\\~\\
+
+
+
+\textbf{1.5.11}
+
+\textbf{Schröder-Bernstein theorem}
+Assume there exists a 1-to-1 function $f: X \rightarrow Y$ and another 1-to-1 function $g: Y \rightarrow X$.
+Follow the steps to show that there exists a 1-to-1, onto function $h: X \rightarrow Y$ and hence $X \sim Y$.
+
+The strategy is to partition X and Y into components
+$$
+X = A \cup A'
+$$
+and
+$$
+Y = B \cup B'
+$$
+
+with $A \cap A' = \emptyset$ and $B \cap B' = \emptyset$, in such a way that $f$ maps A onto B,
+and $g$ maps $B'$ onto $A'$.
+\\
+
+(a) Explain how achieving this would lead to a proof that $X \sim Y$.
+
+If we assume that X and Y don't have the same cardinality, then it would be possible to map elements of Y
+that are not reachable from X, and vice versa.
+So a way that the partitioning shceme could help us show that there is a 1-1 and onto mapping $h$ would be
+if it helped us see that all of the partitions of $X$ and $Y$ are reachable from some element in either of the
+partitions on the other side - we can get to any element in $B$ or $B'$ from $A$ or $A'$.
+
+The 1-1 and onto function $h(x)$ will probably look something like:
+\begin{equation}
+    h(x) =
+      \begin{cases}
+        f(x)       & \quad x \in A\\
+        g^{-1}(x)  & \quad x \in A'
+      \end{cases}
+\end{equation}
+
+Some good links to dive into similar arguments:
+\begin{enumerate}
+    \item \href{https://math.stackexchange.com/questions/3982170/schr%C3%B6der-bernstein-theorem-proof-help}{Schröder-Bernstein Theorem proof help}
+    \item \href{https://math.stackexchange.com/questions/225576/intuition-behind-cantor-bernstein-schr%C3%B6der}{Intuition behind Cantor-Bernstein-Schröder}
+    \item \href{https://math.stackexchange.com/questions/3296321/does-this-proof-of-the-schr%C3%B6der-bernstein-theorem-work}{Does this proof of the Schröder–Bernstein theorem work?}
+    \item \href{https://math.stackexchange.com/questions/925203/how-to-prove-this-version-of-the-cantor-schroder-bernstein-theorem}{How to prove this version of the Cantor-Schroder-Bernstein theorem?}
+    \item \href{https://math.stackexchange.com/questions/1726578/understanding-a-proof-of-schr%C3%B6der-bernstein-theorem}{Understanding a proof of Schröder-Bernstein theorem}
+\end{enumerate}
+
+
+(b) Set $A_1 = X - g(Y) = \{x \in X: x \notin g(Y)\}$ (what happens if $A_1 = \emptyset$?)
+and inductively define a sequence of sets by letting $A_{n+1} = g(f(A_n))$.
+Show that $\{A_n: n \in \mathbb{N} \}$ is a pairwise disjoint collection of subsets of X,
+while $\{ f(A_n): n \in \mathbb{N} \}$ is a similar collection in Y.
+
+$A_1 = X - g(Y)$ can be seen as "all of X, except the parts that can be reached from Y with $g$".
+We then have $A_1 \subseteq X$.
+If $A_1 = \emptyset$, then all of $g(Y)$ can be mapped into some $X$, so $g$ is 1-1 and onto,
+and we have found our answer.
+But let's carry out assuming that $A_1 \neq \emptyset$.
+
+$A_1 \subseteq X$.
+So $f(A_1) \subseteq Y$.
+And consequently, $A_2 = g(f(A_1)) \subseteq X$ as well.
+Since $A_1$ contained all $x \in \mathbb{R}$ such that $x \notin g(Y)$,
+and $A_2$ was obtained by applying $g$ on $f(A_1)$, then we have $A_1 \cap A_2 = \emptyset$.
+
+We now need to look at how $A_n$ and $A_{n+1}$ relate to one another.
+$A_n = g(f(A_{n-1}))$, and $A_{n+1} = g(f(A_n)) = g(f(g(f(A_{n-1}))))$.
+If we assume that $A_n \cap A_{n+1} \neq \emptyset$, then it means that there is
+some $x\in X$ such that $g(f(A_n)) = x = g(f(A_{n+1}))$.
+And since both $f$ and $g$ are 1-1 mappings, this would mean that $A_n = A_{n+1}$.
+Thus, for $A_n \neq A_{n+1}$, we need that $A_n \cap A_{n+1} = \emptyset$, for all $n\in\mathbb{N}$.
+\\
+
+
+
+(c) Let $A =  \cup^{\infty}_{n=1} A_n$ and $B =  \cup^{\infty}_{n=1} f(A_n)$.
+Show that $f: A \rightarrow B$.
+
+As we just saw, we have that all $A_n$ are pairwise disjoint subsets of $X$, and by similar logic we can see that
+$\{ f(A_n) : n\in\mathbb{N} \}$ are also pairwise disjoints subsets of $Y$.
+If we revisit our partitioning scheme, we could define
+$$
+A = \cup^{\infty}_{n=1} A_n
+$$
+and
+$$
+B = \cup^{\infty}_{n=1} f(A_n)
+$$
+
+If we were now to apply $f$ on our partitions we would have something like the following,
+$$
+f(X) = f\left(
+    A \cup A'
+\right)
+$$
+But since we know that $A \cap A' = \emptyset$, then we have
+$$
+f(X) = f\left(   A \cup A' \right) =
+    f(A) \cup f(A')
+$$
+
+If we look only at what happens with $A$ we then have,
+$$
+f(A) = f\left( \cup^{\infty}_{n=1} A_n \right) =
+    \cup^{\infty}_{n=1} f(A_n) =
+    f(B)
+$$
+The second step because we saw in the previous step that the series of $A_n$ is pairwise disjoint, the last step because
+that was our definition of $B$.
+\\
+
+(d) Let $A' = X-A$ and $B' = Y-B$. Show $g: B' \rightarrow A'$.
+
+If we follow a similar line of argument as we did above, we could make an argument that
+$g: B\rightarrow A$.
+So now, all we have to figure out is how $A'$ and $B'$ behave under our mappings.
+
+We know that $f: X\rightarrow Y = A\cup A' \rightarrow B\cup B'$
+and $g: Y \rightarrow X = B\cup B' \rightarrow A\cup A'$.
+Since the sets $A$ and $A'$ are disjoint, as well as $B$ and $B'$, combining that with our previous answers,
+we can see that $g$ also maps $B' \rightarrow A'$.
+
+In part b we covered $A$ by looking at the infinite number of disjoint subsets that could make it up and we saw how
+they all get mapped to $B$, and viceversa for $B \rightarrow A$.
+Now that we have defined $A' = X-A$ and $B' = X-B$, we have covered all potential cases, so now we can
+make a better argument for the existence of a 1-1 and onto mapping that shows $X \sim Y$.
+\\~\\
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Cantor's Theorem}
+
+When we pick $a$, $f(a) = \{ \{\emptyset\}, \{b\}, \{c\}, \{b,c\} \}$.
+If we then look at $f(a)$, $f(b)$, and $f(c)$ (look at the mappings for all elements of $A$),
+then we see that the set $B = \{ a, b, c \}$ is never a possibility for any of them - $B$ is
+not in the range of the function used.
+(A counter example to $f$ being onto, already.)
+
+Since we are looking for a mapping that is onto, we would assume that
+$B = f(a')$ for some $a' \in A$.
+
+If we say that $a' \in B$, then $f(a') = B$ is not possible with the current mapping we are using,
+$f(a)$ does not contain $a$.
+
+If we look at the case were $a' \notin B$, then $f(a')$ would contain $a'$, which is again inconsistent
+with our mapping.
