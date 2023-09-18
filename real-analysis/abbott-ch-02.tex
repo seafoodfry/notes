@@ -1512,6 +1512,11 @@ $$
 
 The appended inequality is possible because $(a_n) \rightarrow 0$, so we can meet any $\epsilon$
 as long as we move $N$ farther out.
+
+From there, we can see how we could chose the terms so that
+$$
+| s_n - s_m | = |a_{m+1} - a_{m+2}| + \ldots + |a_{n-1} - a_n|
+$$
 \\~\\
 
 
@@ -1550,6 +1555,14 @@ $$
 \end{tabular}
 \end{center}
 
+Using this as example, we can see how we could build intervals $I_n$ such that $I_{n+1} \subseteq I_n$
+by chosing $I_n = [s_{2n}, s_{2n+1}]$.
+That way we can guarantee that there will be an $x\in\cap I_n$.
+Also, since the length of $I_n$ will become smaller and smaller, we can then have
+$|s_{2n} - x| < \epsilon$ or $|s_{2n+1} - x| < \epsilon$.
+\\~\\
+
+
 \textbf{Consider the sequences $(s_{2n})$ and $(s_{2n+1})$, and show that the MCT leads to a third proof.}
 \\
 
@@ -1568,19 +1581,26 @@ $$
 
 In this case, $s_1$ is an upper bound and we continuously subtract smaller and smaller numbers.
 
-Now, let's turn to
-$$
-s_{2n} = -a_2 - a_4 - a_6 - \ldots
-$$
-and
-$$
-s_{2n +1} = a_3 + a_5 + a_6 + \ldots
-$$
+Comparing these two findings, we can see that the sequence is monotonically increasing and that its
+upper bound is $s_1$, so MCT says it must converge.
+\\
 
-When we look at the even terms, we have a negative number $-a_2$ that we keep making more and more
-negative but by smaller and smaller ammounts.
-And the converse when we look at the off terms: a positive number that we keep adding to less and
-less.
+Now, let's turn to $s_{2n}$, which can equal $s_2, s_4, s_6$ etc.,
+and $s_{2n+1}$, which can equal $s_3, s_5, s_7$, etc.
+
+If you write out a couple terms you will see how Abbott was trying to help us see what we describe above
+and it offers us a slightly different argument.
+
+$s_{2n+1}$, when we count from $n=0$, and if we assume that $a_n \geq 0$ for all n,
+then we have a bounded and monotonically decreasing sequence - what we mentioned above.
+We can also see that $s_{2n+1} = s_{2n} + a_{2n+1}$, or $s_{2n} = s_{2n+1} - a_{2n+1}$.
+So we can do this,
+$$
+|s_{2n} - l| \leq |s_{2n} - s_{2n+1}| + |s_{2n+1} - l|
+= |-a_{2n+1}| + |s_{2n+1} - l|
+$$
+The first term on the right we can make it smaller by choosing greater by going farther to the right,
+the second term is just a restatement that $s_{2n+1}$ converges.
 \\~\\
 
 

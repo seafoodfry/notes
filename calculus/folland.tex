@@ -6,7 +6,7 @@
 
 \textbf{1.1.2}
 
-Given $\vec{x}, \vec{y} \in \mathbb{R^n}$,
+Given $\vec{x}, \vec{y} \in \mathbb{R}^n$,
 \begin{align*}
 |\vec{x} + \vec{y} |^2 &= (\vec{x} +\vec{y}) (\vec{x} +\vec{y}) \\
 &= \vec{x}\cdot\vec{x} + \vec{y}\cdot\vec{y} + 2\vec{x}\cdot\vec{y} \\
@@ -24,3 +24,67 @@ Hence
 $$
 |\vec{x} + \vec{y} |^2 + |\vec{x} - \vec{y} |^2 = 2\left( |\vec{x}|^2 + |\vec{y}|^2 \right)
 $$
+\\~\\
+
+
+
+\textbf{1.1.7}
+
+Suppose $\vec{a}, \vec{b} \in \mathbb{R}^3$
+\\
+
+Show that if $\vec{a}\cdot\vec{c} = \vec{b}\cdot\vec{c}$ and
+$\vec{a}\times\vec{c} = \vec{b}\times\vec{c}$ for some non-zero $\vec{c} \in\mathbb{R}^3$,
+then $\vec{a} = \vec{b}$.
+\\
+
+We could try to simply stare at
+$$
+\vec{a}\cdot\vec{c} = |\vec{a}| |\vec{c}| \cos{\theta_1} 
+= |\vec{b}| |\vec{c}| \cos{\theta_2} = \vec{b}\cdot\vec{c}
+$$
+Which tells us
+$$
+|\vec{a}| \cos{\theta_1} = |\vec{b}| \cos{\theta_2}
+$$
+
+Let's try something else,
+$$
+|a\times c|^2 = |a||c| - (a\cdot c)^2
+= |b||c| - (b\cdot c)^2 = |b \times c|^2
+$$
+We now have
+$$
+|a||c| - (a\cdot c)^2 = |b||c| - (b\cdot c)^2
+$$
+or
+$$
+|a||c| = |b||c| \rightarrow |a| = |b|
+$$
+
+So we can go back to our first attempt and see that
+$$
+|a| \cos{\theta_1} = |b| \cos{\theta_2} \rightarrow \cos{\theta_1} = \cos{\theta_2}
+$$
+\\~\\
+
+
+
+\textbf{1.1.8}
+
+To see that $a\cdot(b\times c)$ is the determinant of the three vectors,
+simply write out the determinant for $b\times c$ and note that the explicit version of it
+is a "normal" vector.
+Since the dot product is defined as $x\cdot y = x_1 y_1 + x_2 y_2 + \ldots + x_n y_n$, when
+$x, y \in \mathbb{R}^n$.
+
+Putting these two facts together we can see how $a\cdot(b\times c)$ can be computed via a single determinant
+operation.
+\\~\\
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Subsets of Euclidean Space}
+
+\subsubsection{Exercises}
