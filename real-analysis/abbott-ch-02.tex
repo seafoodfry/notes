@@ -1176,10 +1176,13 @@ then $\lim \sqrt{a_n} = 0$.
 
 
 
+\phantomsection
+\label{abbott:2.5.7}
+
 \textbf{2.5.7}
 
 When $|b| < 1$, then $b^n$ is decreasing and abounded by 1, hence convergent.
-Iv we follow similar steps as in the previous problem, then $b^n = b^{n+1} = l$.
+We follow similar steps as in the previous problem, then $b^n = b^{n+1} = l$.
 And the only numbers that stay the same no matter how many powers you raise them to are
 0 and 1. But since $|b| < 1$, the $|b^n| < 1$, so $\lim b^n = 0$.
 \\~\\
@@ -1604,9 +1607,84 @@ the second term is just a restatement that $s_{2n+1}$ converges.
 \\~\\
 
 
+
+
+\textbf{2.7.2}
+
+Does $\sum^{\infty}_{n=1} \frac{1}{2^n + n}$ converge?
+\\
+
+This series look a tad like
+\begin{align*}
+\sum_{n=1} \frac{1}{2^n + n} &= \frac{1}{2+1} + \frac{1}{2^2 +2} + \frac{1}{2^3 + 3} + \frac{1}{2^4 +4} + \frac{1}{2^5 +5} \ldots \\
+&= \frac{1}{3} + \frac{1}{6} + \frac{1}{11} + \frac{1}{20} + \frac{1}{37} + \ldots
+\end{align*}
+
+In this case, $s_1 = 1/3$, $s_2 = 1/2$, and $s_3 = 13/22$.
+So at least from the first couple partial sums, the partial sums seem to be monotonically increasing.
+
+Now we have to look for clues.
+The series $\sum \frac{1}{2^n}$ is a geometric series where $\frac{a}{1-r} = \frac{1}{1 - 1/2} = 2$.
+
+Furhtermore, $\frac{1}{2^n} > \frac{1}{2^n +n}$ so by the comparsion tests, our series here should
+converge.
+\\~\\
+
+
+Does $\sum^{\infty}_{n=1} \frac{\sin(n)}{n^2}$ converge?
+\\
+
+By a similar route, we saw in section 2.4 that $\sum 1/n^p$ when $p>1$ converges.
+And since $\sin (n)$ oscillates between 1 and -1, then we can use the comparison test again to
+see that the series converges.
+\\~\\
+
+
+Does $1 - \frac{3}{4} + \frac{4}{6} - \frac{5}{8} + \frac{6}{10} - \frac{7}{12} + \ldots$ converge?
+\\
+
+This series seems to go as $\sum (-1)^{n+1} \frac{n+1}{2n}$.
+Which made me think of the alternating series.
+But we need to see if the sequence $\frac{n+1}{2n}$ actually converges to 0.
+Luckily, some algebra can help us right away
+$$
+\frac{n+1}{2n} = \frac{1}{2} + \frac{1}{2n}
+$$
+No matter how big $n$ gets, $(a_n) \rightarrow 1/2$.
+It seems like we cannot say that it converges.
+And since the series alternates between positive and negative values, then the series diverges.
+\\~\\
+
+Does $1 + \frac{1}{2} - \frac{1}{3} + \frac{1}{4} + \frac{1}{5} - \frac{1}{6} + \frac{1}{7} + \frac{1}{8} -\frac{1}{9} + \ldots$ converge?
+\\
+
+The trick here is to group terms, we always see two positive terms followed by a negative one.
+And they always follow the pattern of the harmonic series but as
+$$
+\frac{1}{n} + \frac{1}{n+1} - \frac{1}{n+2} \geq \frac{1}{n}
+$$
+The inequality comes because $\frac{1}{n+1} > \frac{1}{n+2}$, so $\frac{1}{n+1} - \frac{1}{n+2}$
+is a non-negative number that gets added to $1/n$.
+And by using the comparison test, we can tell this series diverges.
+\\~\\
+
+Does $1 - \frac{1}{2^2} +\frac{1}{3} -\frac{1}{4^2} + \frac{1}{5} -\frac{1}{6^2} +\frac{1}{7} -\frac{1}{8^2} + \ldots$
+converge?
+\\
+
+Interestingly, if we separate the terms for this series, it seems like we are adding
+$\sum \frac{1}{2n -1}$ and $\sum -\frac{1}{(2n)^2} = \sum -\frac{1}{4}\frac{1}{n^2}$.
+
+The latter series could be argued it converges by using the algebraic limit theorem for series
+since we have $\sum 1/n^2$.
+However, the former seems like the harmonic series, but only taking odd numbers.
+\\~\\
+
+
+
 \textbf{2.7.3}
 
-An alternate way to prove the comparsion tests for infinite series theorem using the monotone converge theorem
+An alternate way to prove the comparison tests for infinite series theorem using the monotone converge theorem
 goes as follows.
 
 If $0 \geq a_k \geq b_k$ and $\sum^{\infty}_{k=1} b_k$ converges, then we know that
@@ -1619,3 +1697,4 @@ for the sequence of partial sums of $\sum a_k$, since $0 \geq a_k \geq b_k$ for 
 Also, since $0 \geq a_k$, then each successive term in the sequence of partial sums must be
 equal to or greater than the previous one, so the sequence of partial sums is a monotone sequence
 and thus converges as per the MCT.
+\\~\\
