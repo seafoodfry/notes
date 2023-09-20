@@ -333,6 +333,21 @@ $$
 
 Our first stop is checking the additive identity, $0\in\mathbb{R}^{[0,1]}$?
 We could take the name literally but as Axler pointed out, the first requirement is a way to checking
-that the subspace is not empty and to show that $0\in \mathbb{R}^{[0,1]}$, if the subspace is closed
-under scalar multiplication.
-So let's go and see scalar multiplication first and then see about $(0f)(x) = 0f(x) = 0$.
+that the subspace is not empty and to show that $0\in \mathbb{R}^{[0,1]}$.
+
+To start, $f(x) = 0, \forall x\in [0,1]$ is a continuous function.
+So $0\in\mathbb{R}^{[0,1]}$.
+
+Next, assume we have $f : [0,1]\rightarrow \mathbb{R}$ and $g : [0,1]\rightarrow \mathbb{R}$.
+And we have $f(x) = a$ and $g(x) = b$, where $a,b\in\mathbb{R}$, then
+$$
+(f+g)(x) = f(x) + g(X) = a + b \in \mathbb{R}
+$$
+These cases are valid since the sum of continuous functions is itself a continuous function,
+and constant functions are constinuous.
+
+Finally, if $\lambda \in [0,1]$, then
+$$
+( \lambda f )(x) = \lambda f(x) = \lambda a \in \mathbb{R} \quad \blacksquare
+$$
+\\~\\
