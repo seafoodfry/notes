@@ -262,3 +262,77 @@ conditions required of a vector space.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Subspaces}
+
+One topic covered in the book is proving that sets are subspaces.
+Let's see a couple worked out cases before attempting example 1.35.
+
+First, let's say we have
+$$
+U = \{ (x_1, x_2, x_3) \in \mathbb{F}^4 : x_1 + 2x_2 = 0 \}
+$$
+and we claim this set is a subspace of $\mathbb{F}^3$.
+
+We can see that the additive identity is part of the subspace, $0\in U$, since $x_1 +2x_2 = 0$.
+
+Now let's see if this subspace is closed under addition.
+If we have $u = (u_1, u_2, u_3)$ and $w = (w_1, w_2, w_3)$, then
+$$
+u + v = (u_1, u_2, u_3) + (w_1, w_2, w_3) = (u_1+w_1, u_2+w_2, u_3+w_3)
+$$
+
+Given the defintion of our set, we should have the above $u + w = (u_1+w_1, u_2+w_2, u_3+w_3)$
+met the requirement that $(u_1+w_1) + 2(u_2+w_2) = 0$.
+To see this, start from that restraint on $u$ and $w$:
+$$
+u_1 + 2u_2 + w_1 + 2w_2 = 0 + 0 = (u_1 +w_1) + 2(u_2+w_2) 
+$$
+
+Now, we just need to show that our subspace is closed under scalar multiplication.
+This process is similar.
+We want to see that $au = (au_1, au_2, au_3)$ stil matches the constrain given so that
+$au_1 + a2u_2 = 0$.
+Which we see does satisfy our constraint since $a(u_1 + 2u_2) = au_1 = a2u_2 = 0$.
+$\blacksquare$
+\\~\\
+
+Similarly, we can now take a look at example 1.35:
+
+If $b\in \mathbb{F}$, then
+$$
+U = \{ (x_1, x_2, x_3, x_4) \in \mathbb{F}^4 : x_3 = 5x_4 + b \}
+$$
+is a subspace of $\mathbb{F}^4$ if and only if $b=0$.
+
+From the constraint imposed on our subspace, we want to see
+$$
+u + w = (u_1+w_1, u_2+w_2, u_3+w_3, u_4+w_4) \rightarrow (u_3+w_3) = 5(u_4+w_4) + 2b
+$$
+
+If we add the individual constrants we see that we indeed match the above
+$$
+u_3 + w_3 = 5u_4 + b + 5w_4 + b \rightarrow (u_3+w_3) = 5(u_4+w_4) + 2b
+$$
+
+Similarly, we can see that this subspace is closed under scalar multiplication
+because $au = (au_1, au_2, au_3, au_4)$ would meet the constrain given when if
+$au_3 = a5u_4 + ab$.
+Which is indeed the case because $a(u_3) = a(5u_4 + b)$ matches the previous expression.
+
+The only requirement we haven't meet is to show that this subspace meets the additive identity requirement.
+This is when $b=0$ becomes a must.
+$\blacksquare$
+\\~\\
+
+Now, let's revisit $\mathbb{R}^{[0,1]}$. People say $\mathbb{R}^{[0,1]}$ denotes the set of functions
+from the set $[0,1]$ to $\mathbb{R}$ (set of real-valued functions on $[0,1]$).
+
+Let's start with noting the following:
+$$
+\mathbb{R}^{[0,1]} = \{ f | f : [0,1] \rightarrow \mathbb{R}\}
+$$
+
+Our first stop is checking the additive identity, $0\in\mathbb{R}^{[0,1]}$?
+We could take the name literally but as Axler pointed out, the first requirement is a way to checking
+that the subspace is not empty and to show that $0\in \mathbb{R}^{[0,1]}$, if the subspace is closed
+under scalar multiplication.
+So let's go and see scalar multiplication first and then see about $(0f)(x) = 0f(x) = 0$.
