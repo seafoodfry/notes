@@ -1698,3 +1698,53 @@ Also, since $0 \geq a_k$, then each successive term in the sequence of partial s
 equal to or greater than the previous one, so the sequence of partial sums is a monotone sequence
 and thus converges as per the MCT.
 \\~\\
+
+
+
+\textbf{2.7.5}
+
+Prove that the series $\sum^{\infty}_{n=1} 1/n^p$ converges if and only if $p > 1$.
+\\
+
+Abbott provides us with a wonderful hint: we can use the geometric series.
+In example 2.7.5, we saw that
+$$
+\sum^{\infty}_{k=0} ar^k = \frac{a}{1-r}
+$$
+if and only if $|r| < 1$.
+
+So let's say that $a=1$, we then have
+$$
+\sum^{\infty}_{k=0} r^k = \frac{1}{1-r}
+$$
+
+The above converges if and only if $|r|<1$, so it means that $r$ could be written as
+$1/n$ where we require that $|n|>1$.
+We can then write the geometric series as
+$$
+\sum^{\infty}_{k=0} \frac{1}{n^k} = \frac{1}{1-1/n} = \frac{n}{n-1}
+$$
+
+We could do a comparison test now: we have a series with $1/n^k$, where $k$ is the index,
+and the other as $1/n^p$, where $n$ is now the index.
+If we used $n$ as an index and $p$ as some fixed number on both, we'd be comparing
+$1/p^n$ (geometric series with $|p|>1$) with $1/n^p$.
+After a finite ammount of terms, the exponential $p^n$ will be greater than $n^p$,
+so $\frac{1}{p^n} \leq \frac{1}{n^p}$.
+This last inequality tells us that a plan ol' comparison test will get us nowhere since the geometric
+series is a lower bound to a p-series.
+
+The next logica trial would be to try and bound a p-series by something that looks like a
+geometric series.
+For example,
+\begin{align*}
+\sum^{\infty}_{n=1} \frac{1}{n^p} &= 1 + \frac{1}{2^p} + \frac{1}{3^p} + \frac{1}{4^p} + \frac{1}{5^p} + \frac{1}{6^p} + \frac{1}{7^p} + \frac{1}{8^p} + \ldots \\
+& \leq 1 + \frac{1}{2^p} + \frac{1}{2^p} + \frac{1}{4^p} + \frac{1}{4^p} + \frac{1}{4^p} + \frac{1}{4^p} + \frac{1}{8^p} + \ldots \\
+&= 1 + \frac{2}{2^p} + \frac{4}{4^p} + \frac{8}{8^p} + \ldots \\
+&= 1 + \frac{1}{2^{p-1}} + \frac{1}{4^{p-1}} + \frac{1}{8^{p-1}} + \ldots \\
+&= 1 + \frac{1}{2^{p-1}} + \frac{1}{(2^2)^{p-1}} + \frac{1}{(2^3)^{p-1}} + \ldots \\
+&= 1 + \frac{1}{2^{p-1}} + \frac{1}{2^{2(p-1)}} + \frac{1}{2^{3(p-1)}} + \ldots \\
+&= \sum_{k=0} \left( \frac{1}{2^{p-1}} \right)^k = \frac{1}{1 - 2^{p-1}} \\
+&= \frac{2^{p-1}}{2^{p-1} - 1} 
+\end{align*}
+\\~\\
