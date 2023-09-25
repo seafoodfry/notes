@@ -1074,7 +1074,7 @@ $$
 Hence, if $\sum^{\infty}_{n=1} a_n \rightarrow a$, then $e^{s_m}$ is a number, and thus we get our
 proof - the series is increasing and bounded.
 
-To prove the other route (if the infiinite product converges then the series converges),
+To prove the other route (if the infinite product converges then the series converges),
 it sufices to show that $p_m \geq s_m$. (Expand the product and you will see terms correspodning to
 the partial sum plus other additional terms.)
 \\~\\
@@ -1447,7 +1447,7 @@ So it doesn't give us any clues about us needing the reals.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Properties of infiinite Series}
+\subsection{Properties of infinite Series}
 
 \textbf{Cauchy Criterion for Series}
 
@@ -1856,9 +1856,9 @@ $$
 \sum |a_n| \leq \sum |a_N| (r^{\prime})^n = |a_N| \sum (r^{\prime})^n
 $$
 
-The partial sums of $\sum (r^\prime)^n$ are bounded by 1 above and by 0 below, and are
-monotonically decreasing since $r^\prime < 1$, hence $|a_N| \sum (r^{\prime})^n$, and by the
-comparison test so does $\sum |a_n|$.
+Luckily for us, $\sum (r^{\prime})^n$ is a geometric series which converges to $1/(1- r^\prime)$
+since $0 < r^\prime < 1$.
+Then, by the comparison test so does $\sum |a_n|$.
 \\
 
 Since $\sum |a_n|$ converges, then, by the absolute convergence test, so does $\sum a_n$.
@@ -1868,7 +1868,7 @@ Since $\sum |a_n|$ converges, then, by the absolute convergence test, so does $\
 
 \textbf{2.7.10}
 
-\textbf{infiinite Products:} Review exercise \ref{abbott:2.4.10}.
+\textbf{infinite Products:} Review exercise \ref{abbott:2.4.10}.
 
 Does
 $$
@@ -1876,3 +1876,76 @@ $$
 $$
 converge?
 \\
+
+The reason Abbott tolds us to look at problem \ref{abbott:2.4.10} is because the above can be rewritten as
+$$
+\left(1 + \frac{1}{1} \right) \left(1 + \frac{1}{2} \right) \left(1 + \frac{1}{4} \right)
+\left(1 + \frac{1}{8} \right) \left(1 + \frac{1}{16} \right) \ldots
+$$
+which itself can be rewritten as
+$$
+\left(1 + \frac{1}{2^0} \right) \left(1 + \frac{1}{2^1} \right) \left(1 + \frac{1}{2^2} \right)
+\left(1 + \frac{1}{2^3} \right) \left(1 + \frac{1}{2^4} \right) \ldots
+$$
+
+If we recall the formula $1 + x \leq e^x$ then
+\begin{align*}
+& \left(1 + \frac{1}{2^0} \right) \left(1 + \frac{1}{2^1} \right) \left(1 + \frac{1}{2^2} \right)
+\left(1 + \frac{1}{2^3} \right) \left(1 + \frac{1}{2^4} \right) \ldots  \\
+&\leq e^{1/2^0} e^{1/2^1} e^{1/2^2} e^{1/2^3} e^{1/2^4} \ldots \\
+&= \exp{\sum_{n=0} \frac{1}{2^n}}
+\end{align*}
+
+The latter expression converges to
+$$
+\exp{\frac{1}{1 - 1/2}} = \exp{2}
+$$
+So our original product does converge and is bounded by $e^2$.
+\\~\\
+
+
+The infinite product
+$\frac{1}{2}\cdot \frac{3}{4}\cdot \frac{5}{6}\cdot \frac{7}{8}\cdot \frac{9}{10}\ldots$
+certainly converges. Why?
+Does it converge to zero?
+\\
+
+No simple pattern seems evident at first to let's try coming up with formulas for it.
+The following seem to work
+$$
+\prod_{n=0} \frac{2n+1}{2n+2}
+= \prod_{n=1} \frac{2n - 1}{2n}
+= \prod_{n=1} \left( 1 - \frac{1}{2n} \right)
+$$
+
+The last one, once again, has the form $1+x$, where $x = - 1/2n$.
+So let's try looking at
+\begin{align*}
+\prod_{n=1} \left( 1 - \frac{1}{2n} \right) &\leq \prod_{n=1} \exp \left( -\frac{1}{2n} \right) \\
+\exp \left( -\frac{1}{2} \sum_{n=1} \frac{1}{n} \right)
+\end{align*}
+The $\sum 1/n$ of course is a harmonic series and it diverges.
+However, notice that the divergent term is within a $e^{-x}$ term, so it actually grows smaller
+and smaller as n grows.
+So the $n=1$ is an upper bound.
+Hence, we can see how the product converges and how it convegres to zero -
+$\lim_{x\rightarrow\infty} e^{-x} = 0$.
+\\~\\
+
+
+In 1655, John Wallis famously derived the formula
+$$
+\left(\frac{2\cdot2}{1\cdot3}\right)
+\left(\frac{4\cdot4}{3\cdot5}\right)
+\left(\frac{6\cdot6}{5\cdot7}\right)
+\left(\frac{8\cdot8}{7\cdot9}\right)
+\ldots
+= \frac{\pi}{2}
+$$
+Show that the left side converges to something.
+\\
+
+While we think about proving the convergence we came up with this way of rewriting the product
+$$
+\prod_{n=1} \frac{2n\cdot2n}{(2n-1)(2n+1)}
+$$
