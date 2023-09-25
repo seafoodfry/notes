@@ -105,9 +105,54 @@ have interior points and be an open set.
 \\~\\
 
 
+\textbf{Example 1}
 
+The computation is broken into three scenarios:
+\begin{enumerate}
+    \item $|x| < \rho$: $r = \rho - |x| > 0$
+    \item $|x| > \rho$
+    \item $|x| = \rho$
+\end{enumerate}
 
+The interesting bit of the argument presented for the first case is that we are using
+$|y| \leq |y-x| + |x| < \rho$, so we make an argument for $B(\rho ,x) \subset S = B(\rho, 0)$
+by looking for an $x$ and for a correspodning $y$ and seeing that these can be built in such a way that
+$S \neq \emptyset$ and that any $x$ that meets these conditions will be an interior point, $x\in S^{int}$.
 
+For the second case, if $r = \rho - |x|$, then $r < 0$.
+So in this case $|y-x| < r$ is not possible since we are in euclidean space.
+
+For the last argument, we note that if $0 < c < 1$, then we have interior points, whereas if we have
+$c \geq 1$ then $x\in S^c$.
+The interesting point is that since balls have a positive radius, which makes them expand in all
+available directions, then any small distance away from $|x| = \rho$ will place part of the
+ball in both $S$ and $S^c$.
+\\
+
+\textbf{A noteworthy thing to mention is that this example proves that balls are open.}
 
 
 \subsubsection{Exercises}
+
+\textbf{1}
+$$
+S = \{ (x,y)\in\mathbb{R}^2 : 0 < x^2 + y^2 \leq 4 \}
+$$
+
+$x$ and $y$ cannot be zero at the same time, so $(0,0) \notin S$.
+So the set is open there, but it is closed outside of it since the disk is contained in S.
+\\
+
+$$
+S = \{ (x,y)\in\mathbb{R}^2 : x^2 - x \leq y \leq 0 \}
+$$
+Here, $x^2 - x \leq 0$ which implies $x \in [0,1]$ since $1^2 - 1 \leq 0$ but any number smaller than 0
+will not meet the same contrain.
+And since $x \leq y \leq 0$, then $y \in [0,1]$, as well.
+So $S$ is closed.
+\\~\\
+
+
+\textbf{2}
+Show that for any $S \subset \mathbb{R}^n$, $S^{int}$ is open and $\partial S$ and $\bar{S}$ are both closed.
+Hint: use the fact that balls are open.
