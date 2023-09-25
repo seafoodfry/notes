@@ -1946,6 +1946,11 @@ Show that the left side converges to something.
 \\
 
 While we think about proving the convergence we came up with this way of rewriting the product
-$$
+\begin{align*}
 \prod_{n=1} \frac{2n\cdot2n}{(2n-1)(2n+1)}
-$$
+&= \prod_{n=1} \frac{(2n)^2}{(2n)^2 -1} \\
+&= \prod_{n=1} \left( 1 + \frac{(2n)^2 - (2n)^2 +1}{(2n)^2 -1} \right) \\
+&= \prod_{n=1} \left( 1 + \frac{1}{(2n)^2 -1} \right) \\
+&\leq \exp \left( \sum_{n=1} \frac{1}{(2n)^2 -1} \right)
+\end{align*}
+\\~\\
