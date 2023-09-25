@@ -16,6 +16,19 @@ $$
 \mu(t) \frac{dy}{dt} + y \frac{d\mu(t)}{dt} \sim p(t) \frac{dy}{dx} + q(t)y
 $$
 
+Another way of writing the above could be
+$$
+\frac{dy}{dt} + cy = f(t)
+$$
+If $c$ is a coefficient, then great, but this is another common presentation for equations
+that canr eadily be solved by the method of integrating factors.
+
+Also, make sure to remember to do the comparsion of $y \frac{d\mu(t)}{dt}$ properly.
+For example, using the last version we wrote, the integrating facotr would come from the comparison of
+$$
+y \frac{d\mu(t)}{dt} \sim cy\mu(t) \rightarrow \frac{d\mu(t)}{dt} \sim c\mu(t)
+$$
+That's why we get so many exponentials.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Separable Equations}
@@ -129,4 +142,100 @@ $$
 $$
 $$
 = - \frac{100}{r} \ln(1/50) = \frac{100}{r} \ln{50}
+$$
+
+
+\subsubsection{Example 3: Chemicals in a pond}
+
+We will pick up from
+$$
+\frac{dt}{dt} + \frac{1}{2}q = 10 + 5\sin(2t)
+$$
+And we can see that we have a nice, simple, first order, linear equation, so we will proceed with
+the method of integrating factors.
+\begin{align*}
+\frac{d}{dt} \left[ \mu(t) q(t) \right] &= \mu \frac{dq}{dt} + q\frac{d\mu}{dt} \\
+&= \mu\frac{dt}{dt} + \frac{1}{2}\mu q = 10\mu + 5\mu\sin(2t)
+\end{align*}
+Means that the integrating factor will be
+$$
+q\frac{d\mu}{dt} \sim \frac{1}{2}\mu q \rightarrow
+\frac{1}{\mu}\frac{d\mu}{dt} \sim \frac{1}{2}
+$$
+Or
+$$
+\int \frac{1}{\mu}\frac{d\mu}{dt} dt = \int \frac{1}{2}
+$$
+Which leads to $\mu(t) = e^{t/2}$.
+
+So our equation becomes
+\begin{align*}
+\frac{d}{dt} \left[ e^{t/2} q(t) \right] &= e^{t/2} \frac{dt}{dt} + \frac{1}{2} e^{t/2} q = 10 e^{t/2} + 5 e^{t/2} \sin(2t)
+\end{align*}
+
+Hence,
+\begin{align*}
+e^{t/2} q(t) &= \int 10 e^{t/2} dt + \int 5 e^{t/2} \sin(2t) dt \\
+&= 20 e^{t/2} + \int 5 e^{t/2} \sin(2t) dt
+\end{align*}
+
+Here we have an interesting integral so let's break it down.
+
+\paragraph{An interesting integral}
+
+In the previous expression we ended up with
+$$
+\int 5 e^{t/2} \sin(2t) dt
+$$
+
+The tip here is a chain of integrations by parts and $u$-substitutions.
+First, let's recall the rule for integration by parts
+$$
+\int u dv = uv - \int v du
+$$
+
+Now, let's get to it.
+
+\begin{align*}
+    \int e^{t/2} \sin(2t) dt &= 
+    \left[
+      \begin{alignedat}{2}
+      u  &= e^{t/2}               \quad & v  &= -\frac{1}{2}\cos(2t) \\
+      du &= \frac{1}{2}e^{t/2}dt  \quad & dv &= \sin(2t) dt 
+      \end{alignedat}\,
+    \right] \\
+    &=
+    -\frac{1}{2}e^{t/2}\cos(2t) + \frac{1}{4} \left[ 
+        \frac{1}{2}e^{t/2}\sin(2t) - \frac{1}{4} \int e^{t/2} \sin(2t) dt
+    \right] \\
+    &= -\frac{1}{2}e^{t/2}\cos(2t) + \frac{1}{2^3} e^{t/2}\sin(2t)
+      - \frac{1}{2^4} \int e^{t/2}\sin(2t) dt
+\end{align*}
+
+Notice that we got our initial integral back, so now some algebra will lead us to
+\begin{align*}
+\left( \int e^{t/2}\sin(2t) dt \right) \left(1 + \frac{1}{2^4} \right) =
+-\frac{1}{2}e^{t/2}\cos(2t) + \frac{1}{2^3} e^{t/2}\sin(2t)
+\end{align*}
+
+Which can be simplified to
+\begin{align*}
+\int e^{t/2}\sin(2t) dt   &=
+-\frac{2^4}{2}\frac{1}{2^4+1} e^{t/2}\cos(2t) + \frac{2^4}{2^3}\frac{1}{2^4+1} e^{t/2}\sin(2t) \\
+&= -\frac{2^3}{2^4+1}e^{t/2}\cos(2t) + \frac{2}{2^4+1} e^{t/2}\sin(2t)
+\end{align*}
+\\~\\
+
+Now, we can put everything together!
+\begin{align*}
+e^{t/2} q(t) &= 20 e^{t/2} + \int 5 e^{t/2} \sin(2t) dt \\
+&= 20 e^{t/2} + 5 \left[ -\frac{2^3}{2^4+1}e^{t/2}\cos(2t) + \frac{2}{2^4+1} e^{t/2}\sin(2t) \right] \\
+&= 20 e^{t/2} -\frac{40}{17}e^{t/2}\cos(2t) + \frac{10}{17} e^{t/2}\sin(2t) + C
+\end{align*}
+
+Notice that we trhew in an integration coefficient at the end.
+And our final answer is now
+$$
+q(t) =
+20 -\frac{40}{17}\cos(2t) + \frac{10}{17} \sin(2t) + Ce^{-t/2}
 $$
