@@ -2061,3 +2061,50 @@ $$
 Now, use the comparison test to argue that $\sum_{k=1} s_k (y_k - y_{k+1})$ converges absolutely,
 and show how this leads directly to a proof of Abel's test.
 \\
+
+
+Let's look at the series in parts.
+Since $(y_k)$ is monotonically decreasing and non-negative, then $y_k - y_{k+1}$ will always be
+equal to or greather than zero.
+As per $s_k$, since we know that $(s_k)$ converges, we also know that the partial sums are bounded
+by some $M$.
+Thus
+$$
+0 \leq \sum_{k=1} \left| s_k (y_k - y_{k+1}) \right| \leq \sum M y_1 = M y_1 n
+$$
+
+So our upper bound there doesn't tell us anything.
+Turns out that the trick is to look again at $\sum y_k - y_{k+1}$.
+If you write it out you'll see that it is a telescoping series (memorize the way it looks!).
+So we can refine our upper bound as such,
+$$
+0 \leq \sum_{k=1} \left| s_k (y_k - y_{k+1}) \right| \leq  M (y_1 - y_n)
+$$
+
+And since the upper bound is now a finite number, then by the comparison test, $\sum x_k y_k$
+must converge as well.
+\\~\\
+
+
+
+\textbf{2.7.14}
+
+\textbf{Dirichlet's Test:} Dirichlet's test for convergence states that if the partial sums
+of $\sum x_k$ are bounded (but not necessarily convergent),
+and if $(y_k)$ is a sequence satisfying $y_1 \geq y_2 \geq y_3 \geq \ldots \geq 0$
+with $\lim y_k = 0$,
+then the series $\sum x_k y_k$ converges.
+\\
+
+The hypothesis for Dirichlet's test differs from Abel in the fact that we did not assume that
+$(y_k) \rightarrow 0$, instead we use the restructuring in terms of partial sums to create a
+telescoping series that gave us a finite upper bound.
+Dirichlet also doesn't require $\sum x_k$ to converge - which is how the alternating series
+test can be seen as a case of Dirichlet's test.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Double Summations and Products of infinite Series}
+
+\subsubsection{Exercises}
