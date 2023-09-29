@@ -323,6 +323,17 @@ This is when $b=0$ becomes a must.
 $\blacksquare$
 \\~\\
 
+
+
+
+\textbf{The set of continuous real-valued functions on the interval $[0,1]$ is a subspace of $\mathbb{R}^{[0,1]}$.}
+\\
+
+
+\textbf{Note:} in this example $\mathbb{R}$ actually stands for $\mathbb{R}^n$. What this means is
+that you need to keep in mind that the inputs and outputs to functions are tuples, not single numbers.
+\\
+
 Now, let's revisit $\mathbb{R}^{[0,1]}$. People say $\mathbb{R}^{[0,1]}$ denotes the set of functions
 from the set $[0,1]$ to $\mathbb{R}$ (set of real-valued functions on $[0,1]$).
 
@@ -341,7 +352,7 @@ So $0\in\mathbb{R}^{[0,1]}$.
 Next, assume we have $f : [0,1]\rightarrow \mathbb{R}$ and $g : [0,1]\rightarrow \mathbb{R}$.
 And we have $f(x) = a$ and $g(x) = b$, where $a,b\in\mathbb{R}$, then
 $$
-(f+g)(x) = f(x) + g(X) = a + b \in \mathbb{R}
+(f+g)(x) = f(x) + g(x) = a + b \in \mathbb{R}
 $$
 These cases are valid since the sum of continuous functions is itself a continuous function,
 and constant functions are constinuous.
@@ -350,4 +361,45 @@ Finally, if $\lambda \in [0,1]$, then
 $$
 ( \lambda f )(x) = \lambda f(x) = \lambda a \in \mathbb{R} \quad \blacksquare
 $$
+
+\textbf{Note:} this is also an entrypoint into an interesting argument for showing that
+$[0,1]$ and $\mathbb{R}$ have the same cardinality.
+\\~\\
+
+
+
+
+\textbf{The set of differentiable real-valued functions on $\mathbb{R}$ is a subspace of $\mathbb{R}^R$.}
+\\
+
+\textbf{Note:} in this example $\mathbb{R}$ actually stands for $\mathbb{R}^n$. What this means is
+that you need to keep in mind that the inputs and outputs to functions are tuples, not single numbers.
+\\
+
+$\mathbb{R}^R$ denotes the set of functions from $\mathbb{R}$ to $\mathbb{R}$:
+$$
+\mathbb{R}^R = \{ f | f:\mathbb{R} \rightarrow \mathbb{R} \}
+$$
+
+In this case, our [proposed] subspace is defined as follows:
+$$
+U = \{ f | f:\mathbb{R} \rightarrow \mathbb{R}, \text{ where } \forall c\in\mathbb{R}, \exists f^\prime (c) \}
+$$
+
+We resorted to the internet to gain some insights and
+\href{https://math.stackexchange.com/questions/1592249/what-is-mathbb-r-mathbb-r-as-a-vector-space}{What is $R^R$ as a vector space?}.
+
+The accepted answer mentions this great point that we can think of $\mathbb{F}^n$ as the
+assignment of elements of the set $\{1, 2, \ldots , n\}$ to elements of $\mathbb{F}$
+by $g \in \mathbb{F}^{ \{1,2,\ldots , n\} }$ or as $g : \mathbb{N} \rightarrow \mathbb{F}$.
+The function $g$ behaves such that the index of an element of the n-tuple corredsponds to a member of
+the n-tuple or, $g(1)=x_1$, $g(2)=x_2$, and so on correspond to $(x_1, x_2, \ldots , x_n)$.
+
+This means that in our case, $f\in U$, these are functions that map a uncountably infinite number
+of elements to an uncountably infinite long tuple.
+
+The math exchange answer also gives us $g: \mathbb{R}\rightarrow \{0\}$ as the additive identity.
+There, $\{0\}$ is an uncountably infinite tuple of all zeros, which is also differentiable everywhere
+within our domain.
+Then the rest of the argument is very similar to when we discussed $\mathbb{R}^{[0,1]}$.
 \\~\\
