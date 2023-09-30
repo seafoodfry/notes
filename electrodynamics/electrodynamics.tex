@@ -1,0 +1,43 @@
+\documentclass{article}
+\usepackage{blindtext} % for table of contents and other niceseties.
+\usepackage{amsmath}
+\usepackage{amsfonts} % things such as \mathbb{R}, or \Z. See https://en.wikipedia.org/wiki/List_of_mathematical_symbols_by_subject
+\usepackage{amstext} % for \text macro.
+\usepackage{array} % for tables.
+\usepackage{float} % here for H placement parameter
+\usepackage{hyperref} % for hyperlinks.
+\usepackage{listings} % for code.
+\usepackage[makeroom]{cancel} % corssing out terms in math https://tex.stackexchange.com/questions/75525/how-to-write-crossed-out-math-in-latex
+
+% The following is meant to help us get the cursive r script thats used in electrodynamocs (the separation vector).
+% taken from https://www.reed.edu/physics/faculty/griffiths/
+\usepackage{graphicx}
+\def\rcurs{{\mbox{$\resizebox{.16in}{.08in}{\includegraphics{ScriptR}}$}}}
+\def\brcurs{{\mbox{$\resizebox{.16in}{.08in}{\includegraphics{BoldR}}$}}}
+\def\hrcurs{{\mbox{$\hat \brcurs$}}}
+
+
+\title{Notes on Electrodynamics}
+
+\numberwithin{equation}{section}
+
+% There is a \pmod for the "mod" symbol, but not one for the "div" symbol.
+% Thus we are making it up.
+\makeatletter
+\newcommand*{\bdiv}{%
+  \nonscript\mskip-\medmuskip\mkern5mu%
+  \mathbin{\operator@font div}\penalty900\mkern5mu%
+  \nonscript\mskip-\medmuskip
+}
+\makeatother
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\include{griffiths-03}
+\include{jackson-01}
+
+
+\end{document}
