@@ -2108,3 +2108,100 @@ test can be seen as a case of Dirichlet's test.
 \subsection{Double Summations and Products of infinite Series}
 
 \subsubsection{Exercises}
+
+\textbf{2.8.1}
+
+Compute $\lim s_{nn}$ for
+$$
+\begin{bmatrix}
+-1     & \frac{1}{2} & \frac{1}{4} & \frac{1}{8} & \frac{1}{16} & \ldots \\[6pt]
+0      & -1          & \frac{1}{2} & \frac{1}{4} & \frac{1}{8}  & \ldots \\[6pt]
+0      & 0           & -1          & \frac{1}{2} & \frac{1}{4}  & \ldots \\[6pt]
+0      & 0           & 0           & -1          & \frac{1}{2}  & \ldots \\[6pt]
+0      & 0           & 0           & 0           & -1           & \ldots \\[6pt]
+\vdots & \vdots      & \vdots      & \vdots      & \vdots       & \ddots
+\end{bmatrix}
+$$
+This is the grid of real numbers $\{ a_{ij} : i,j \in \mathbb{N} \}$,
+where $a_{ij} = 1/2^{j-i}$ if $j>i$, $a_{ij} = -1$ if $j=i$, and $a_{ij} = 0$ if $j<i$.
+\\
+
+If we add row by row, then we can see that
+$$
+\frac{1}{2} + \frac{1}{4} + \frac{1}{8} + \frac{1}{16} + \ldots
+$$
+is the geometric series with $a=1/2$ (since the geometric series is defined as $\sum_{k=0} ar^k$
+and the first term must be $ar^0 = a$) and $r=1/2$.
+That plus the starting term of $-1$ means that every row will add up to zero.
+So the entire sum is zero is we go this route.
+\\
+
+On the other hand, if we add column by column, then we have the series
+$$
+-1 - \frac{1}{2} - \frac{1}{4} - \frac{1}{8} - \frac{1}{16} - \ldots
+$$
+Which is another geometric series, but this time with $a=-1$ and $r=1/2$.
+So the double sum is now -2 (vs 0 in the previous case).
+\\
+
+When we do the sum over squares, we end up doing the same sum as when we sum by columns.
+\\~\\
+
+
+
+\textbf{2.8.2}
+
+Show that if the iterated series
+$$
+\sum_{i=1} \sum_{j=1} \left| a_{ij} \right|
+$$
+converges (meaning that for each fixed $i\in\mathbb{N}$ the series $\sum_{j=1} |a_{ij}|$ converges
+to some real number $b_i$ and the series $\sum_{i=1} b_i$ converges as well),
+then the iterated series
+$$
+\sum_{i=1} \sum_{j=1} a_{ij}
+$$
+converges.
+\\
+
+Abbott once again gives us a great starting point.
+If we assume that $\sum_{j=1} |a_{ij}|$ converges then $\sum_{j=1} a_{ij}$ must also converge.
+
+Then, if we refer to $\sum_{j=1} a_{ij}$ as $c_i$, then $c_i \sim |s_{i,m+1} + \ldots + s_{i,n}|$
+which is less than $b_i \sim |s_{i,m+1}| + \ldots + |s_{i,n}|$.
+Then if we assume that $\sum_{i=1} b_i$ converges, then so must $\sim_{i=1} c_i$ since
+$|s_{i,m+1} + \ldots + s_{i,n}| \leq |s_{i,m+1}| + \ldots + |s_{i,n}|$.
+\\~\\
+
+
+\textbf{2.8.3}
+
+If we define
+$$
+t_{mn} = \sum^{m}_{i=1} \sum^{n}_{j=1} |a_{ij}|
+$$
+
+and we assume that
+$$
+t_{mn} = \sum^{\infty}_{i=1} \sum^{\infty}_{j=1} |a_{ij}|
+$$
+converges.
+
+Then $\lim_{n\rightarrow\infty} t_{nn}$ exist since
+$$
+t_{mn} = \sum^{m}_{i=1} \sum^{n}_{j=1} |a_{ij}|
+\leq
+t_{mn} = \sum^{\infty}_{i=1} \sum^{\infty}_{j=1} |a_{ij}|
+$$
+\\
+
+And since $t_{nn}$ converges, then we can use it as a Cauchy sequence.
+
+By the same logic, and borrowing some of the notation from the previous exercise,
+since $c_i \leq b_i$, then $|t_{nn} - t_{mm}| = |b_{m+1} + \ldots + b_n|$
+and in turn $|s_{nn} - s_{mm}| = |c_{m+1} +\ldots + c_{n}| \leq |b_{m+1} + \ldots + b_n| < \epsilon$.
+\\~\\
+
+
+
+\textbf{2.8.4}
