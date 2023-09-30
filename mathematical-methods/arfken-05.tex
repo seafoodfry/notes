@@ -1,0 +1,48 @@
+\section{Vector Spaces}
+
+\subsection{Vectors in Function Spaces}
+
+
+\textbf{Scwarz Inequality}
+
+
+\begin{align*}
+I &= \braket{f - \lambda g | f - \lambda g} \\
+&= \left( \bra{f} - \lambda^* \bra{g} \right) \left( \ket{f} - \lambda \ket{g} \right) \\
+&= \braket{f|f} - \lambda \braket{f|g} - \lambda^* \braket{g|f} + \lambda^* \lambda \braket{g|g} \\
+&= \braket{f|f} + |\lambda|^2 \braket{g|g} - \left( \braket{\lambda g|f} + \braket{f | \lambda g} \right) \\
+&= \braket{f|f} + |\lambda|^2 \braket{g|g} - \left( \braket{f | \lambda g}^* + \braket{f | \lambda g} \right) \\
+&= |f|^2 + |\lambda|^2 |g|^2 - \left( \braket{f | \lambda g}^* + \braket{f | \lambda g} \right) \\
+& \geq 0
+\end{align*}
+
+If we were looking at complex numbers, the term in the braces would equal $2\Re(z)$.
+
+\begin{align*}
+\partial_{\lambda^*} I &= \partial_{\lambda^*} \left( \bra{f} -\lambda^*\bra{g} \right)\left(\ket{f - \lambda g}\right) \\
+&= - \braket{g|f} + \lambda \braket{g|g} = 0
+\end{align*}
+
+The above implies that
+$$
+\lambda = \frac{\braket{g|f}}{\braket{g|g}}
+$$
+
+If we plug that in, we have,
+\begin{align*}
+I &= \braket{f|f} + |\lambda|^2 \braket{g|g} - \braket{\lambda g|f} - \braket{f | \lambda g} \\
+&= \braket{f|f} + \frac{\braket{f|g}\braket{g|f}}{\braket{g|g}^2} \braket{g|g}
+    - \frac{\braket{f|g}}{\braket{g|g}} \braket{g|f}
+    - \frac{\braket{g|f}}{\braket{g|g}} \braket{f | g} \\
+&= \braket{f|f} + \frac{\braket{f|g}\braket{g|f}}{\braket{g|g}}
+    - \frac{\braket{f|g}}{\braket{g|g}} \braket{g|f}
+    - \frac{\braket{g|f}}{\braket{g|g}} \braket{f | g} \\
+&= \braket{f|f}
+    - \frac{\braket{g|f}}{\braket{g|g}} \braket{f | g} \\
+&\geq 0
+\end{align*}
+
+So
+$$
+\braket{f|f} \braket{g|g} \geq \braket{g|f} \braket{f|g} = |\braket{f|g}|^2
+$$
