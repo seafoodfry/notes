@@ -2326,3 +2326,40 @@ Then $\sum^{\infty}_{k=2} d_k$ represents another way of performing the double s
 Assuming everything up-to-this point is correct, show that $\sum^{\infty}_{k=2} d_k$
 converges absolutely.
 \\
+
+What we can do here to show that the sum along diagonals converges absolutely is to note that
+for $n\geq2$
+$$
+\sum^{n}_{k=2} |d_k| \leq t_{nn}
+$$
+
+Since $t_{nn}$ contains all the terms in $\sum^{n}_{k=2} |d_k|$ and more.
+And since the $\sum^{n}_{k=2} |d_k|$ is monotonically increasing and bounded, then it converges.
+\\
+
+Now, let's try and imitate our proof for theorem 2.8.1 to show that $\sum_{k=2} d_k$
+converges to $\lim_{n\rightarrow\infty} s_{nn} = S$.
+\\
+
+This one gets tricky.
+Our first attempt was to go this route
+\begin{align*}
+|\sum_{k=2} d_k - S| &= |\sum_{k=2} d_k - s_{mn} + s_{mn} - S| \\
+&\leq |\sum_{k=2} d_k - s_{mn}| + |s_{mn} - S| \\
+&< |\sum_{k=2} d_k - s_{mn}| + \epsilon \\
+&= |\sum_{k=2} d_k - \sum^{m}_{i} \sum^{n}_{j} a_{ij} | + \epsilon
+\end{align*}
+
+Since we know that $\lim s_{mn} = S$, we could arange the above as the argument for a
+Cauchy series, i.e., something like $|s_{mn} - s{pq}| < \epsilon$ since the diagonal sums
+do contain a decent deal of whats in $s_{mn}$, we just need to look far enough and make
+the diagonal as close as possible to $s_{mn}$.
+For example, the sum up to $d_{k=3}$ will contain all but 1 elements of $s_{22}$.
+Similarly, the sum up to $d_{k=4}$ will contain all but 3 elements of $s_{33}$.
+
+Following that logic we can see how $|\sum_{k=2} d_k - \sum^{m}_{i} \sum^{n}_{j} a_{ij} | $
+becomes arbitrarily small as $n\rightarrow\infty$ when $m=n$ since $\lim s_{nn}$ converges.
+\\~\\
+
+
+
