@@ -1,0 +1,97 @@
+\section{Vector Analysis}
+
+\subsection{Vector Algebra}
+
+Face diagonals
+
+\tdplotsetmaincoords{70}{120}
+\begin{tikzpicture}
+		[scale=2,
+            tdplot_main_coords,
+			cube/.style={thick,black},
+			axis/.style={->,black,thick}]
+
+	%draw the axes
+	\draw[axis] (0,0,0) -- (1.5, 0,   0) node[anchor=west]{$x$};
+	\draw[axis] (0,0,0) -- (0,   1.5, 0) node[anchor=west]{$y$};
+	\draw[axis] (0,0,0) -- (0,   0,   1.5) node[anchor=west]{$z$};
+
+	%draw the top and bottom of the cube.
+	\draw[cube] (0,0,0) -- (0,1,0) -- (1,1,0) -- (1,0,0) -- cycle;
+	\draw[cube] (0,0,1) -- (0,1,1) -- (1,1,1) -- (1,0,1) -- cycle;
+	
+	%draw the edges of the cube
+	\draw[cube] (0,0,0) -- (0,0,1);
+	\draw[cube] (0,1,0) -- (0,1,1);
+	\draw[cube] (1,0,0) -- (1,0,1);
+	\draw[cube] (1,1,0) -- (1,1,1);
+
+    \coordinate (O) at (0,0,0);
+
+    % Vector A.
+    \pgfmathsetmacro{\ax}{1}
+    \pgfmathsetmacro{\ay}{0}
+    \pgfmathsetmacro{\az}{1}
+    \coordinate (A) at (\ax,\ay,\az);
+    \draw[->, very thick] (O) -- (A) node [midway, below left] {$\mathbf{A}$};
+    \draw plot [mark=*, mark size=0.2] (A) node [above, left] {\scriptsize$(1,0,1)$};
+
+    % Vector B.
+    \pgfmathsetmacro{\bx}{0}
+    \pgfmathsetmacro{\by}{1}
+    \pgfmathsetmacro{\bz}{1}
+    \coordinate (B) at (\bx,\by,\bz);
+    \draw[->, very thick] (O) -- (B) node [midway, below right] {$\mathbf{B}$};
+    \draw plot [mark=*, mark size=0.2] (B) node [above, right] {\scriptsize$(0,1,1)$};
+
+    % Angle.
+    \tdplotdefinepoints(0,0,0)(\ax,\ay,\az)(\bx,\by,\bz)
+    \tdplotdrawpolytopearc[-, very thick]{0.5}{above}{$\theta$}  
+\end{tikzpicture}
+
+Body diagonals
+
+\tdplotsetmaincoords{70}{120}
+\begin{tikzpicture}
+		[scale=2,
+            tdplot_main_coords,
+			cube/.style={thick,black},
+			axis/.style={->,black,thick}]
+
+	%draw the axes
+	\draw[axis] (0,0,0) -- (1.5, 0,   0) node[anchor=west]{$x$};
+	\draw[axis] (0,0,0) -- (0,   1.5, 0) node[anchor=west]{$y$};
+	\draw[axis] (0,0,0) -- (0,   0,   1.5) node[anchor=west]{$z$};
+
+	%draw the top and bottom of the cube.
+	\draw[cube] (0,0,0) -- (0,1,0) -- (1,1,0) -- (1,0,0) -- cycle;
+	\draw[cube] (0,0,1) -- (0,1,1) -- (1,1,1) -- (1,0,1) -- cycle;
+	
+	%draw the edges of the cube
+	\draw[cube] (0,0,0) -- (0,0,1);
+	\draw[cube] (0,1,0) -- (0,1,1);
+	\draw[cube] (1,0,0) -- (1,0,1);
+	\draw[cube] (1,1,0) -- (1,1,1);
+
+    \coordinate (O) at (0,0,0);
+
+    % Vector A.
+    \pgfmathsetmacro{\ax}{1}
+    \pgfmathsetmacro{\ay}{1}
+    \pgfmathsetmacro{\az}{1}
+    \coordinate (A) at (\ax,\ay,\az);
+    \draw[->, very thick] (O) -- (A) node [above] {$\mathbf{A}$};
+    \draw plot [mark=*, mark size=0.2] (A) node [above, right] {\scriptsize$(1,0,1)$};
+
+    % Vector B.
+    \pgfmathsetmacro{\bx}{1}
+    \pgfmathsetmacro{\by}{1}
+    \pgfmathsetmacro{\bz}{0}
+    \coordinate (B) at (\bx,\by,\bz);
+    \draw[->, very thick] (0,0,1) -- (B) node [below] {$\mathbf{B}$};
+    \draw plot [mark=*, mark size=0.2] (B) node [below, right] {\scriptsize$(0,1,1)$};
+
+    % Angle.
+    \tdplotdefinepoints(0.5,0.5,0.5)(\ax,\ay,\az)(\bx,\by,\bz)
+    \tdplotdrawpolytopearc[-, very thick]{0.5}{right}{$\theta$}  
+\end{tikzpicture}
