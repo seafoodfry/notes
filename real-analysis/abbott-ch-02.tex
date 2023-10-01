@@ -2167,9 +2167,9 @@ converges.
 Abbott once again gives us a great starting point.
 If we assume that $\sum_{j=1} |a_{ij}|$ converges then $\sum_{j=1} a_{ij}$ must also converge.
 
-Then, if we refer to $\sum_{j=1} a_{ij}$ as $c_i$, then $c_i \sim |s_{i,m+1} + \ldots + s_{i,n}|$
+If we refer to $\sum_{j=1} a_{ij}$ as $c_i$, then $c_i \sim |s_{i,m+1} + \ldots + s_{i,n}|$
 which is less than $b_i \sim |s_{i,m+1}| + \ldots + |s_{i,n}|$.
-Then if we assume that $\sum_{i=1} b_i$ converges, then so must $\sim_{i=1} c_i$ since
+Then we can assume that $\sum_{i=1} b_i$ converges, then so must $\sum_{i=1} c_i$ since
 $|s_{i,m+1} + \ldots + s_{i,n}| \leq |s_{i,m+1}| + \ldots + |s_{i,n}|$.
 \\~\\
 
@@ -2205,3 +2205,124 @@ and in turn $|s_{nn} - s_{mm}| = |c_{m+1} +\ldots + c_{n}| \leq |b_{m+1} + \ldot
 
 
 \textbf{2.8.4}
+
+Let $\epsilon>0$ be arbitrary and argue that there exists an $N_1 \in \mathbb{N}$
+such that $m,n \geq N_1$ implies $B - \frac{\epsilon}{2} < t_{mn} \leq B$,
+when
+$$
+t_{mn} = \sum^{m}_{i=1} \sum^{n}_{j=1} |a_{ij}|
+$$
+and
+$$
+B = \sup\{ t_{mn} : m,n\in\mathbb{N} \}
+$$
+\\
+
+The fact that $t_{mn} \leq B$ comes from the fact that $B$ is the supremum.
+For the rest of the inequality it is useful to look back to \textbf{lemma 1.3.8} which stated
+the following: assume $s\in\mathbb{R}$ is an upper bound for a set $A\subseteq\mathbb{R}$.
+Then $s = \sup A$ if and only if, for every choice of $\epsilon >0$, there exists an element
+$a\in A$ satisfying $s - \epsilon < a$.
+\\
+
+Now show that there exists and $N$ such that
+$$
+|s_{mn} - S| < \epsilon
+$$
+for all $m,n > N$.
+\\
+
+Here we assume $S = \sup\{ s_{mn} : m,n\in\mathbb{N} \}$.
+
+There is an interesting consequence from the argument for $t_{mn}$ in which if we find
+some $\epsilon >0$, then
+$$
+|t_{mn} - B| = \left| \sum^{m}_{i=1} \sum^{n}_{j=1} |a_{ij}| \right| < \epsilon
+$$
+
+From there,
+\begin{align*}
+|s_{mn} - S| &= \left| \sum^{m}_{i=1} \sum^{n}_{j=1} a_{ij} - \sum^{\infty}_{i=1} \sum^{\infty}_{j=1} a_{ij}  \right| \\
+&= \left| \sum^{\infty}_{i=m+1} \sum^{\infty}_{j=n+1} a_{ij} \right| \\
+&\leq \left| \sum^{\infty}_{i=m+1} \sum^{\infty}_{j=n+1} |a_{ij}| \right| \\
+&= |t_{mn} - B | \\
+&< \epsilon
+\end{align*}
+\\~\\
+
+
+\textbf{2.8.5}
+
+In the previous examples we have shown how that the absolute convergence theorem applies
+to double sums and that "rectangular" partial sums of $t_{mn}$ and $s_{mn}$ do exist.
+Along with showing the equivalence between the conventional notation for convergence and
+the Cauchy type convergence for double sums.
+Here, we aim to show that for double sums that absolutely converge, it doesn't matter if you
+sum by rows and then by columns, or vice versa, the limit for the double sums exist and
+any rearrangement gives you the same answer.
+\\
+
+If we defined the sum of a row as
+$$
+r_i = \sum^{n}_{j=1} a_{ij}
+$$
+
+Show that for all $m\geq N$
+$$
+\left| (r_1 + r_2 + \ldots + r_m) - S \right| < \epsilon
+$$
+
+Another bit to keep in mind from our previous proofs is that $\lim r_i$ exists and we can make use of the algebraic limit theorem to
+perform the rest of the double sum and have some confidence that the sum of the limits for each row is the sum of the rows.
+Similarly, the order limit theorem will give us some confidence in stating that the sum of the rows - since each row is less than or equal to the simit of the double sums -
+will result in a number that is less than or equal to the double sum.
+
+So we can make another argument for convergence by re-arranging the above
+\begin{align*}
+\left| (r_1 + r_2 + \ldots + r_m) - S \right| &= \left| \sum^{m}_{i=1} r_i - \sum^{m}_{i=1} \sum^{n}_{j=1} a_{ij} \right| \\
+&= \left| \sum^{m}_{i=1} \left( r_i - \sum^{n}_{j=1} a_{ij} \right) \right| \\
+&\leq \sum^{m}_{i=1} \left|  r_i - \sum^{n}_{j=1} a_{ij} \right|
+\end{align*}
+
+Here, in the last step, the term inside of the absolute value is another restatement of the limit of $r_i$,
+which since we know it converges can be restated as
+$$
+| r_i - \sum^{n}_{j=1} a_{ij} | < \epsilon
+$$
+So we can make it
+$$
+| r_i - \sum^{n}_{j=1} a_{ij} | < \epsilon / m
+$$
+
+And thus our previous set of inequalities ends as
+\begin{align*}
+\left| (r_1 + r_2 + \ldots + r_m) - S \right| &= \left| \sum^{m}_{i=1} \left( r_i - \sum^{n}_{j=1} a_{ij} \right) \right| \\
+&\leq \sum^{m}_{i=1} \left|  r_i - \sum^{n}_{j=1} a_{ij} \right| \\
+&\leq m \frac{\epsilon}{m} = \epsilon
+\end{align*}
+\\
+
+The exact same argument can be made when we add by columns since our convergence argument
+for \textbf{2.8.3} still holds since we never specified any limitations on how the partial
+sums were to be made.
+\\~\\
+
+
+\textbf{2.8.6}
+
+If we now perform the double summation along diagonals (think about diagonals in a matrix going left to right)
+where $i+j$ is equal a constant, for example
+$$
+d_2 = a_{11}    \quad    d_3 = a_{12} + a_{21}  \quad   d_4 = a_{13} + a_{22} + a_{31}
+$$
+and in general
+$$
+d_k = a_{1,k-1} + a_{2,k-2} + \ldots a_{k-1, 1}
+$$
+
+Then $\sum^{\infty}_{k=2} d_k$ represents another way of performing the double summation.
+\\
+
+Assuming everything up-to-this point is correct, show that $\sum^{\infty}_{k=2} d_k$
+converges absolutely.
+\\
