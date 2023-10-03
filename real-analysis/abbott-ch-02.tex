@@ -2363,3 +2363,53 @@ becomes arbitrarily small as $n\rightarrow\infty$ when $m=n$ since $\lim s_{nn}$
 
 
 
+\textbf{2.8.7}
+
+Assume that $\sum^{\infty}_{i=1} a_i$ converges absolutely to A, and $\sum^{\infty}_{j=1} b_j$
+converges absolutely to B.
+
+Show that the iterated iterated sum $\sum_i \sum_j |a_i b_j|$ converges so that we may apply
+theorem 2.8.1.
+\\
+
+\begin{align*}
+\sum_i \sum_j |a_i b_j| &= \sum_i \sum_j |a_i| |a_j| \\
+&= \sum_i \left( |a_i| \sum_j |b_j| \right) \\
+&= \sum_i |a_i| \sum_j |b_j| \\
+&= A \sum_j |b_j| \quad \text{algebraic limit theorem for series } \sum_k ca_k = cA \\
+&= AB
+\end{align*}
+\\~\\
+
+Let $s_{nn} = \sum^{n}_{i=1} \sum^{n}_{j=1} a_i b_j$, and prove that
+$\lim_{n\rightarrow\infty} s_{nn} = AB$.
+Conclude that
+$$
+\sum_i \sum_j a_i b_j =
+\sum_j \sum_i a_i b_j =
+\sum_k d_k
+= AB
+$$
+\\
+
+\begin{align*}
+\lim s_{nn} &= \sum_i \sum_j a_i b_j \\
+&= \lim \left(\sum_i a_i\right) \left(\sum_j b_j\right) \\
+&= \lim s^{a}_{n} s^{b}_{n} \\
+&= AB
+\end{align*}
+
+We already know that $\sum \sum |a_i b_j|$ converges to AB and we know that
+$$
+\left(\sum_i a_i\right)\left(\sum_j a_j\right) =
+\sum_k d_k
+$$
+and we know that $\lim_{n\rightarrow\infty} s_{nn} = AB$.
+Thus we can call upon theorem 2.8.1 to beleive that
+$$
+\lim_{n\rightarrow\infty} s_{nn} =
+\sum_k d_k =
+\sum_i \sum_j a_i b_j =
+\sum_j \sum_i a_i b_j =
+AB
+$$
