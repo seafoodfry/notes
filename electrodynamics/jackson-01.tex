@@ -1,0 +1,129 @@
+\section{Introduction to Electrostatics}
+
+\subsection{Gauss's Law}
+
+\subsubsection{Solid Angle}
+
+The following is all wikipedia.
+
+Whereas an angle in radians, projected onto a circle, gives a length of a circular arc
+on the circumference, a solid angle in steradians, projected onto a sphere,
+gives the area of a spherical cap on the surface.
+
+The point from which the object is viewed is called the apex of the solid angle,
+and the object is said to subtend its solid angle at that point.
+
+In SI units, a solid angle is expressed in a dimensionless unit called a \textbf{steradian}.
+
+One steradian corresponds to one unit of area on the unit sphere surounding the apex,
+so an object that blocks all rays from the apex would cover a number of steradians equal
+to the total surface area of the unit sphere, $4\pi$.
+
+
+Just like a planar angle in radians is the ratio of the length of an arc to its radius, $\theta = s/r$,
+a solid angle in steradians is the ratio of the area covered on a sphere by an object to the area given
+by the square of the radius of said sphere. The formula is
+$$
+\Omega = \frac{A}{r^2}
+$$
+where A is the spherical surface area and r is the radius of the considered sphere.
+
+Any area on a sphere which is equal in area to the square of its radius,
+when observed from its center, subtends precisely one steradian.
+
+The solid angle of a sphere measured from any point in its interior is $4\pi$ sr (steridians),
+and the solid angle subtended at the center of a cube by one of its faces is one-sixth of that,
+or $2\pi/3$ sr.
+
+In spherical coordinates there is a formula for the differential,
+$$
+d\Omega = \sin \theta d\theta d\varphi 
+$$
+where $\theta$ is the colatitude (angle from the North Pole - z-axis range $[0,\pi]$)
+and $\varphi$ is the longitude (range $[0,2\pi]$).
+
+The solid angle for an arbitrary oriented surface S subtended at a point P is equal to
+the solid angle of the projection of the surface S to the unit sphere with center P,
+which can be calculated as the surface integral:
+$$
+\Omega =\iint _{S} \frac{\hat{r}\cdot\hat{n}}{r^2} \,dS
+= \iint_{S} \sin \theta \,d\theta \,d\varphi
+$$
+
+where $\hat{r} = \vec{r}/r$ is the unit vector corresponding to $\vec {r}$,
+the position vector of an infinitesimal area of surface $dS$ with respect to point P,
+and where $\hat{n}$ represents the unit normal vector to $dS$.
+Even if the projection on the unit sphere to the surface S is not isomorphic,
+the multiple folds are correctly considered according to the surface orientation
+described by the sign of the scalar product $\hat{r}\cdot\hat{n}$.
+
+Thus one can approximate the solid angle subtended by a small facet having flat surface area
+$dS$, orientation $\hat{n}$, and distance r from the viewer as:
+$$
+d\Omega = 4\pi \left( \frac{dS}{A} \right) (\hat{r}\cdot\hat{n})
+$$
+where the surface area of a sphere is $A = 4\pi r^2$.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Surface elements $da$}
+
+The following logic comes from Griffith's electrodynamics chapter 1.4.
+
+In curvilinear coordinates, an infinitesimal displacement in the $\vect{\hat{r}}$ direction is
+simply $dr$.
+$$
+dl_r = dr
+$$
+
+An infinitesimal element of length in the $\vect{\hat{\theta}}$ is
+$$
+dl_\theta = r d\theta
+$$
+
+And an infinitesimal element of length along the $\vect{\hat{\phi}}$ direction
+is
+$$
+dl_\phi = r \sin\theta d\phi
+$$
+
+And thus, the general infinitesimal displacement becomes
+$$
+d\vect{l} =
+dr \vect{\hat{r}}
++ r d\theta \vect{\hat{\theta}}
++ r \sin\theta d\phi \vect{\hat{\phi}}
+$$
+
+From there one can see how the infinitesimal volume element $d\tau$ is then
+$$
+d\tau = dl_r dl_\theta dl_\phi =
+r^2 \sin\theta dr d\theta d\phi
+$$
+
+\textbf{However, the inifinitesimal area element depends on the orientation of the surface!}
+
+For example, if we integrate over teh surface of a sphere, where r stays contant but $\theta$
+and $\phi$ vary,
+$$
+d\vect{a} = dl_\theta dl_\phi \vect{\hat{r}} = r^2 \sin\theta d\theta d\phi \vect{\hat{r}}
+$$
+
+Where as is the surface lies in the x-y plane, so that $\theta$ is contant, and let's say $\theta = \phi/2$,
+while $r$ and $\phi$ vary,
+$$
+d\vect{a} = dl_r dl_\phi \vect{\hat{\theta}}
+= r \sin\theta dr d\phi \vect{\hat{\theta}}
+= r dr d\phi \vect{\hat{\theta}}
+$$
+
+\textbf{The area element on the sphere can be calculated from the cross products of other two elements,}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Explanation of Jackson}
+
+If the electric field makes an angle $\theta$ with the unit normal, then the projection of the
+infinitesimal area element along the normal of the surface is $\cos\theta da$.
+Using the solid angle formula, we then get $d\Omega = \cos\theta da / r^2$ or
+$r^2 d\Omega = \cos\theta da$.
