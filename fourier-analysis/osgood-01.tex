@@ -1,0 +1,68 @@
+\section{Fourier Series}
+
+\subsection{It all Adds Up}
+
+$$
+\frac{a_0}{2} + \sum^{N}_{n=1} \left(a_n \cos(2\pi nt) + b_n \sin(2\pi nt)\right)
+$$
+
+Given that
+$$
+e^{2\pi int} = \cos(2\pi nt) + i\sin(2\pi nt)
+$$
+and
+$$
+e^{2\pi int} = \cos(2\pi nt) - i\sin(2\pi nt)
+$$
+
+Since $\cos(-x) = \cos(x)$ while $\sin(-x) = -\sin(x)$.
+
+The above also mean that
+$$
+\cos(2\pi nt) = \frac{1}{2}\left( e^{2\pi int} + e^{-2\pi int} \right)
+$$
+and
+$$
+\sin(2\pi nt) = \frac{1}{2i}\left( e^{2\pi int} - e^{-2\pi int} \right)
+= -\frac{i}{2} \left( e^{2\pi int} - e^{-2\pi int} \right)
+$$
+In the last step we used the fact that $i^{-1} = -i$. ($1 = (-i)i = i\cdot i^{-1}$).
+
+Using these expressions to rewrite our series of sines and cosines we get
+\begin{align*}
+\frac{a_0}{2} + \sum^{N}_{n=1} \left(a_n \cos(2\pi nt) + b_n \sin(2\pi nt)\right)
+&= \frac{a_0}{2} + \sum^{N}_{n=1} \left[ \frac{a_n}{2}\left(e^{2\pi int} + e^{-2\pi int}\right) + \frac{b_n}{2i} \left( e^{2\pi int} - e^{-2\pi int} \right) \right] \\
+&= \frac{a_0}{2} + \sum^{N}_{n=1} \left[ \frac{a_n}{2}\left(e^{2\pi int} + e^{-2\pi int}\right) - \frac{i b_n}{2} \left( e^{2\pi int} - e^{-2\pi int} \right) \right] \\
+&= \frac{a_0}{2} + \sum^{N}_{n=1} \left[ \frac{a_n}{2} e^{2\pi int} + \frac{a_n}{2} e^{-2\pi int} - \frac{i b_n}{2} e^{2\pi int} + \frac{i b_n}{2} e^{-2\pi int}  \right] \\
+&= \frac{a_0}{2} + \sum^{N}_{n=1} \left[ \frac{1}{2}\left(a_n - ib_n\right) e^{2\pi int} + \frac{1}{2}\left(a_n + ib_n\right) e^{-2\pi int} \right] \\
+\end{align*}
+
+If we look at the terms within the square braces we see that we have a complex number times and exponent
+and its complex conjugate,
+$$
+c_n := \frac{1}{2}\left(a_n - ib_n\right)
+$$
+and
+$$
+\bar{c_n} = \frac{1}{2}\left(a_n + ib_n\right)
+$$
+So
+$$
+\frac{a_0}{2} + \sum^{N}_{n=1} \left(a_n \cos(2\pi nt) + b_n \sin(2\pi nt)\right)
+= \frac{a_0}{2} + \sum^{N}_{n=1} \left[ c_n e^{2\pi int} + \bar{c_n} \overline{e^{2\pi int}} \right]
+$$
+
+Here is where the additional requirement comes in.
+If we have $\bar{c_n} = c_{-n}$, then $a_{-n} = a_n$ and $b_{-n} = -b_n$.
+We can then reindex our series,
+\begin{align*}
+\frac{a_0}{2} + \sum^{N}_{n=1} \left(a_n \cos(2\pi nt) + b_n \sin(2\pi nt)\right)
+&= \frac{a_0}{2} + \sum^{N}_{n=1} \left[ c_n e^{2\pi int} + \bar{c_n} \overline{e^{2\pi int}} \right] \\
+&= \frac{a_0}{2} + \sum^{N}_{n=1} c_n e^{2\pi int} + \sum^{-N}_{n=-1} c_{-n} e^{-2\pi int} \\
+\end{align*}
+and if we have $c_0 = \frac{1}{2}(a_0 - ib_0) = \frac{a_0}{2}$, ($b_0 = 0$),
+then we can see where
+$$
+\sum^{N}_{n=-N} c_n e^{2\pi int}
+$$
+comes from.
