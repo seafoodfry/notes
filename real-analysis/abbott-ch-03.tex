@@ -1,1 +1,24 @@
 \section{Basic Topology of R}
+
+The empy set $\emptyset$ is considered an open subset of the real line, becuase if it wans't it would imply
+that there is something in the emptyset that is "closed"
+(negation of "for all $a\in O$ there exist a $V_\epsilon \subseteq O$").
+\\
+
+There is a theorem mentioned in topology that goes something along the lines of:
+the union of two non-disjoint intervals is an interval.
+The idea behind it being that in order for something to be an interval, it must must not have gaps
+between its endpoints.
+For example, the union of $[0,1] \cup [2,3]$ is not an internal since it doesn't include $[1,2]$.
+\\
+
+Open balls or $\epsilon$-neighborhoods make sense right away until you ought to give a proper argument.
+The way to read the definitions for these is to think that you always want a "ball" around some
+point, and you want to see if balls of any radius will be able to fit within another interval.
+For example, in Abbott example 3.2.2(ii), we take $\epsilon$ to be some positive value by
+looking at the difference between the point $x\in(c,d)$ and its left and right endpoints.
+($x-c \geq 0$ and $d-x \geq 0$).
+And that definition of $\epsilon$ gives you a simple way to look for open balls in $(c,d)$.
+
+To see the above, draw out a line and see how no matter what radius you end up using, as long as
+it is less than $\epsilon$, all the open balls you draw will fit within $(c,d)$.
