@@ -1,0 +1,127 @@
+\section{Modular Arithmetic}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Modular Arithmetic}
+
+If $a|b$, then $b = ac$, for some integer c. That means that $b/a$ must be an integer.
+
+If n and d are positive integers, how many positive integers not exceeding n are divisible by d?
+
+In order to be divisible by d, an integer must be of the form $dk$, for some positive integer k.
+So the integers divisible by d and not greater than n are the integers with k such that $0 \leq dk < n$
+or $0 < k < n/d$.
+Thus, the number of integers divisible by d is $\lfloor n / d \rfloor$.
+\\~\\
+
+
+\textbf{Theorem describing the transitive properties of division:}
+
+\begin{equation}
+\text{ If $a|b$ and $a|c$, then $a|(b+c)$}
+\end{equation}
+
+To prove this use the fact that $a|b$ means that $b = as$, $a|c$ means that $c=at$,
+and $b+c = a(s+t)$.
+Hence $a|(b+c)$.
+
+\begin{equation}
+\text{If $a|b$, then $a|bc$, for $c \in \mathbb{Z}$}
+\end{equation}
+
+To prove it use the fact that $a|b$ means $b = as$, so $b*c = as * c$.
+
+\begin{equation}
+\text{If $a|b$, and $b|c$, then $a|c$}
+\end{equation}
+
+To prove it use $b = as$, $c = bt$. Then $c = bt = ast$ and hence $a|c$.
+\\~\\
+
+\textbf{Corollary: If a, b, and c are integers, where $a \neq 0$, such that $a|b$ and $a|c$, then $a|mb + nc$ whenever $m, n \in \mathbb{Z}$.}
+
+Use if $a|b$ and $a|c$, then $a|(b+c)$ and if $a|b$, then $a|bc$, for $c \in \mathbb{Z}$, to prove it.
+\\~\\
+
+
+
+\subsubsection{Division Algorithm}
+
+\begin{itemize}
+\item If $a = dq + r$ where $0 \leq r < d$ and $d>0$
+\item $q = a \bdiv d = \lfloor a/d \rfloor$
+\item $r = a \pmod d = a - dq$
+\end{itemize}
+
+For example, when 101 is divided by 11, $11|101$
+$$
+101 = 11 \dot 9 + 2
+$$
+
+When -11 is divided by 3, $3|-11$
+$$
+-11 = 3 \dot -4 + 1
+$$
+
+
+
+\subsubsection{Congruences}
+
+If a and b are congruent modulo m ($a,b \in \mathbb{Z}, m >0$), $a \equiv b \pmod m$, then m divides $a-b$.
+Another way of seeing it is that a and b have the same remainder when divided by m.
+
+If m divides $a-b$, then $a-b = mc$ for some integer c.
+
+If both a and b have the same remainders when divided by m, then:
+$r = a - mq$ 
+$r = b - mp$
+$0 = a - mq - b + mp$ or $a - b = mq - mp = m(q-p) = mc$, where $c = q-p$.
+
+The above also means that $a = b + mk$, for some integer k.
+
+Equivalently, \textbf{$a \equiv b \pmod m$ implies that $a \pmod m = a \pmod m$}.
+\\~\\
+
+\textbf{Theorem about multiplications and additions in congruences:}
+
+If $a \equiv b \pmod m$ and $c \equiv d \pmod m$, then
+\begin{equation}
+    a + c \equiv b + d \pmod m
+\end{equation}
+
+and
+\begin{equation}
+    ac \equiv bd \pmod m
+\end{equation}
+
+To prove these, you can use something like the following reasoning:
+
+$a - b = mp$ and $c - d = mq$
+$a + c - (b + d) = m(p+q)$
+
+Since $c = d + mq$
+$$
+ac = (b + mp)(d + mq) = bd + bmq + dmp + mmpq = bd + mc
+$$
+
+\textbf{Corollary detailing more forms of addition and multiplication}
+
+\begin{equation}
+    (a+b) \bmod m = [(a \bmod m) + (b \bmod m)] \bmod m
+\end{equation}
+
+To show this,
+
+$a = mk + r = mk + (a \bmod m)$ hence
+$a \equiv (a \bmod m) \pmod m$ and so $b \equiv (b \bmod m) \pmod m$
+So $a + b \equiv [(a \bmod m) + (b \bmod m)] \pmod m$
+
+Because $a \equiv b \pmod m$ implies $a \bmod m = b \bmod m$, the above can be written as
+$(a+b) \bmod = [(a \bmod m) + (b \bmod m)] \pmod m$.
+
+\begin{equation}
+    ab \bmod m = [(a \bmod m)(b \bmod m)] \bmod m
+\end{equation}
+
+Following a similar logic as in the above proof, we can obtain the former equation by using $ab \equiv [(a \bmod m)(b \bmod m)] \bmod m$.
