@@ -13,6 +13,39 @@ $$
 |z|^2 = |z\bar{z}| = (a + ib)(a - ib) = a^2 + b^2
 $$
 
+The generalization of $|z|^2 = (\Re(z))^2 + (\Im(z))^2$ does hold!
+\\
+
+
+Note that the product of two complex numbers is very diffeent from the scalar or vector products
+done in vector spaces over the reals.
+This notion of a \textbf{billinear form} is what is often used to distinguish between different
+algebras.
+
+Also note that $z_1 < z_2$ has no meaning, so the order field properties we are used to from
+real numbers don't apply as such.
+However $|z_1| < |z_2|$ does make sense.
+\\
+
+The distance between two points $(x_1, y_1)$ and $(x_2, y_2)$ is $|z_1 - z_2|$.
+\\
+
+The complex numbers lying on a circle with center $z_0$ and radius $R$ satisfy the equation
+$$
+|z - z_0| = R
+$$
+
+A wonderful example of this last interpretation is
+$$
+|z - 3i| + |z + 3i| = |z - 3i| + |z - (-3i)| = 12
+$$
+This equation represents the set of all points whose distance from the two set points, $F_1(0,3)$
+and $F_2(0,-3)$, is 12.
+This turns out to be the ellipse with foci $F_1(0,3)$ and $f_2(0,-3)$.
+Kline has some great exercises to get you acquainted with Ellipses, parabolas, and hyperbolas.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Exercises}
 
 \textbf{2.2}
@@ -38,10 +71,87 @@ $$
 $$
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Triangle Inequality}
+
+There is a briliant example in this section, go read it!
+
+The heart of the example is in noticing that the triangle inequality gives us an upper and a lower
+bound for the sum of two numbers.
+The upper bound comes from
+$$
+|z_1 + z_2| \leq |z_1| + |z_2|
+$$
+and the lower bound from
+$$
+|z_1 - z_2| \geq \left| |z_1| - |z_2| \right|
+$$
+
+
+\subsubsection{Exercises}
+
+\textbf{Ex 8}
+\\
+Let $z_1 = x_1 + iy_1$ and $z_2 = x_2 + iy_2$.
+Use simple algebra to show that
+$$
+|z_1 z_2| = |(x_1 + iy_1) (x_2 + iy_2)| = \sqrt{ (x_{1}^{2} + y_{1}^{2}) (x_{2}^{2} + y_{2}^{2}) }
+$$
+then point out how the identity $|z_1 z_2| = |z_1| |z_2|$ follows.
+\\
+
+The trick to the first part is to make use of
+$|z| = \sqrt{ (\Re(z))^2 + (\Im(z))^2 }$ 
+
+First of,
+$$
+(x_1 + iy_1) (x_2 + iy_2) = (x_1 x_2 - y_1 y_2) + i (x_1 y_2 + x_2 y_1)
+$$
+
+From there, we can see that
+\begin{align*}
+\Re(z_1 z_2)^2 &= (x_1 x_2 - y_1 y_2) (x_1 x_2 - y_1 y_2) \\
+&= (x_1 x_2)^2 + (y_1 y_2)^2 - 2(x_1 x_2)(y_1 y_2)
+\end{align*}
+and
+\begin{align*}
+\Im(z_1 z_2)^2 &= (x_1 y_2 + x_2 y_1) (x_1 y_2 + x_2 y_1) \\
+&= (x_1 y_2)^2 + (x_2 y_1)^2 + 2(x_1 x_2)(y_1 y_2)
+\end{align*}
+
+It then follows that
+\begin{align*}
+|z_1 z_2| &= \sqrt{ (x_1 x_2)^2 + (y_1 y_2)^2 - 2(x_1 x_2)(y_1 y_2)   +   (x_1 y_2)^2 + (x_2 y_1)^2 + 2(x_1 x_2)(y_1 y_2) } \\
+&= \sqrt{ (x_1 x_2)^2 + (y_1 y_2)^2   +  (x_1 y_2)^2 + (x_2 y_1)^2  } \\
+&= \sqrt{ (x_{1}^{2} + y_{1}^{2}) (x_{2}^{2} + y_{2}^{2}) }
+\end{align*}
+
+Since $|z| = \sqrt{x^2 + y^2}$, we can see how the above reordering is equivalent to
+\begin{align*}
+|z_1 z_2| &= \sqrt{ (x_{1}^{2} + y_{1}^{2}) (x_{2}^{2} + y_{2}^{2}) } \\
+&= \sqrt{ x_{1}^{2} + y_{1}^{2} } \sqrt{ x_{2}^{2} + y_{2}^{2} } \\
+&= |z_1| |z_2|
+\end{align*}
+\\~\\
+
+
+\textbf{Ex 9}
+\\
+If we use the result from the previous exercise and assume have $z = z_1 = z_2$, we have
+$$
+|z^2| = |z||z| = |z|^2
+$$
+We could use this as the base case for an induction argument ($n=2$).
+
+Then for our hypothesis, we assume that $|z^m| = |z|^m$, when $n=m$, so it must also
+hold for $n=m+1$,
+$$
+|z^{m+1}| = |z^m z| = |z^\prime z| = |z^\prime| |z| = |z^m| |z| = |z|^m |z| = |z|^{m+1}
+$$
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{De Moivre's Theorem}
+\subsection{De Moivre's Theorem}
 $$
 (a + ib)^n = [r(\cos \theta + i \sin \theta)]^n = r^n (\cos n\theta + i \sin n\theta)
 $$
@@ -55,7 +165,7 @@ $$
 De Moiver's Theorem 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{Roots of Complex Numbers}
+\subsection{Roots of Complex Numbers}
 
 Nth roots: for any positive integer n, the nth distinct roots of
 $(a+ ib)^n = r^n (\cos nx +i\sin nx)$ are
