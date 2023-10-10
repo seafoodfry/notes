@@ -1,0 +1,34 @@
+\section{Inifinite Series, Products, and Integrals}
+
+\subsection{Uniform Convergence}
+
+\textbf{Note:} when we speak of uniform convergence, the interval can be closed or open.
+Titchmarsh just uses $(a,b)$ to cover the general case.
+\\
+
+The more general case for the first test of uniform Convergence we see is stated as follows:
+
+The series $\sum u_n(x)$ is uniformly convergent
+($\forall \epsilon>0$, we can find $n_0 \geq N$ depending on $\epsilon$ but not on $x$,
+such that $|s(x) - s|<\epsilon$, for every $n\geq n_0$ for every value in $(a,b)$)
+if $|u_n(x)| \leq v_n(x)$, and $\sum v_n(x)$ is uniformly convergent.
+
+If we try to make an argument by contradiciton and assume that $\sum u_n(x)$ is not
+uniformly convergent, then the series could still converge but it could be the case that
+as $x$ approaches some point on the interval $(a,b)$, $n_0$ may become infinetely large.
+Additionally, the series could just be a divergent series.
+Either way it means we are not able to find an $n_0$ such that $|s(x) - s| < \epsilon$
+for any $n \geq n_0$, for any $\epsilon >0$ and for any $x\in (a,b)$.
+This means that
+$$
+|u_{n+1}(x) + u_{n+2}(x) + \ldots |
+$$
+keeps on changing as $n$ or $x$ change.
+
+Since,
+$$
+|u_{n+1}(x) + u_{n+2}(x) + \ldots | \leq |u_{n+1}(x)| + |u_{n+2}(x)| + \ldots
+$$
+Then any $v_n(x)$ such that $v_{n+1}(x) \geq |u_{n+1}(x)|$ would also grow indefinetely and thus
+lead to a contradiciton.
+\\~\\
