@@ -31,3 +31,26 @@ $V_{\epsilon}(a) \subseteq O_{\lambda^\prime}$.
 Since $O_{\lambda^\prime}$ is some arbitrary member of $O = \cup_{\lambda \in \Lambda} O_{\lambda}$,
 then $O_{\lambda^\prime} \subseteq O$.
 Putting these together $V_{\epsilon}(a) \subseteq O_{\lambda^\prime} \subseteq O$.
+\\
+
+\textbf{Definition 3.2.4}
+By now, we've seen that $\epsilon$-neighboorhods are equivalent to open balls,
+$$
+V_{\epsilon} (a) \sim B(r=\epsilon, a) \sim \{ \mathbf{x}\in\mathbb{R}^n : |\mathbf{x} - \mathbf{a}| < r(=\epsilon) \}
+$$
+The neighboorhod part comes from $x\in S^{int} = \{ \mathbf{x}\in S : B(r,\mathbf{x}) \in S \text{ for some } r>0 \}$.
+Which is a math way of saying that a neighboorhod consist of all points close to our center who are
+still members of the set in question.
+\\
+
+Folland gives a conventional view of a closed set by first defining \textbf{boundary points}
+of a set as points where every ball centered on them contains points both in $S$ and $S^c$,
+These points may then belong to either the set in question or its compliment ($x\in S \cup S^v$).
+And the set of all boundary points creates a boundary for $S$
+$$
+\partial S = \{ \mathbf{x}\in\mathbb{R}^n : B(r,\mathbf{x})\cap S \neq \emptyset \text{ and }
+    B(r,\mathbf{x})\cap S^c \neq \emptyset \}
+$$
+
+However, instead of following this route, Abbott goes onto to construct closed intervals
+with limit points which instead of relying on geometry, rely on our knowledge of series.
