@@ -1,5 +1,8 @@
 \section{Basic Topology of R}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Open and Closed Sets}
+
 The empy set $\emptyset$ is considered an open subset of the real line, becuase if it wans't it would imply
 that there is something in the emptyset that is "closed"
 (negation of "for all $a\in O$ there exist a $V_\epsilon \subseteq O$").
@@ -53,4 +56,46 @@ $$
 $$
 
 However, instead of following this route, Abbott goes onto to construct closed intervals
-with limit points which instead of relying on geometry, rely on our knowledge of series.
+with limit points which instead of relying on geometry, relies on our knowledge of series.
+
+The definition of a limit point is literally the defintion of the limit of a sequence in terms of
+$\epsilon$-neighboorhods as $\lim (a_n) = x \rightarrow |a_n - x| < \epsilon$.
+\\~\\
+
+
+\textbf{Theorem 3.2.5}
+
+Notice how in the first part of the proof we are being told about an $\epsilon = 1/n$.
+This is because when we prove that a limit exist, we must always provide a relationship for an
+$\epsilon = \epsilon (n)$ so that $|a_n - x|<\epsilon$.
+\\
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Exercises}
+
+\textbf{3.2.5}
+
+\textbf{Theorem 3.2.8} A set $F \subseteq \mathbb{R}$ is closed if and only if every
+Cauchy sequence contained in $F$ has a limit that is also contained in $F$.
+\\
+
+Quick reminder, a Cauchy sequence $(a_n)$ is one which for every $\epsilon >0$
+$\exists N\in\mathbb{N}$ such that whenever $m,n \geq N$ $|a_n - a_m| < \epsilon$.
+And we also know that every convergent sequence is also a Cauchy sequence.
+\\
+
+For any $m,n \geq N$, $|f_n - f_m| < \epsilon$ for any $\epsilon$.
+From this part of the definition of Cauchy sequences we can start forming $\epsilon$-neighboorhods
+around any $f_i \in F$, $i \geq N$.
+And because Cauchy sequences converge, $(f_n) \rightarrow x$, then our $\epsilon$-beighborhoods
+will all contain elements of $F$, and we can change $m,n$ so as to have $f_n \neq x$.
+Thus all of the limit poins will be contained in our set $F$.
+\\
+
+To do the proof in the other direction, assume that every Cauchy sequence we can find has a limit
+contained in $F$.
+Because Cauchy sequences converge, then we have $|f_n - x| < \epsilon$ - elements of $F$
+that are within $\epsilon$-neighborhoods that intersect other members of $F$ since $|f_n - f_m|<\epsilon$.
+\\~\\
