@@ -1,1 +1,102 @@
+\section{Growth Functions}
+
+For a given function $g(n)$,
+$$
+\Theta \left( g(n) \right) =
+\{ f(n) : \exists c_1, c_2 > 0 \text{ such that }
+    0 \leq c_1 g(n) \leq f(n) \leq c_2 g(n) \quad \forall n \geq n_0 \in \mathbb{N}
+\}
+$$
+In the above defintion $c_1$ and $c_2$ are constants.
+So $f(n) = \Theta\left(g(n)\right)$ means that $f(n)$ is bound by $g(n)$ to within a constant factor
+- bound above and below.
+
+This also means that $0 \leq c_1 \leq \frac{f(n)}{g(n)} \leq c_2$ for sufficiently large $n$.
+We say that \textbf{$g(n)$ is an asymptotically tight bound for $f(n)$}.
+\\
+
+$\Theta$ expresses an asymptotic bound from above and from below.
+For an \textbf{asymptotic upper bound} we have
+$$
+O\left(g(n)\right) =
+\{
+    f(n) : \exists c > 0 \text{ such that }
+    0 \leq f(n) \leq c g(n) \quad \forall n \geq n_0 \in \mathbb{N}
+\}
+$$
+
+The above can also be seen as $0 \leq \frac{f(n)}{g(n)} \leq c$.
+\\
+
+The \textbf{asymtptotic lower bound} is similarly defined as
+$$
+\Omega = 
+\{
+    f(n) : \exists c > 0 \text{ such that }
+    0 \leq c g(n) \leq f(n) \quad \forall n \geq n_0 \in \mathbb{N}
+\}
+$$
+
+or the set of functions that meet the following inequality $0 \leq c \leq \frac{f(n)}{g(n)}$.
+
+\textbf{Note} that we can remove the "tightness" of the upper and lower bounds by converting the
+last inequality for both definitions into a strict inequality (swap the last "$\leq$" for a "$<$").
+
+With this language we can define limits and define an order.
+For example,
+\begin{itemize}
+    \item $f(n) = \Theta (g(n))$ is like $a = b$
+    \item $f(n) = O(g(n))$ is like $a \leq b$
+    \item $f(n) = \Omega (g(n))$ is like $a \geq b$
+    \item $f(n) = o(g(n))$ is like $a < b$. This denotes an upper bound that is not asymptotically tight.
+\end{itemize}
+
+Another thing that comes in handy is to remember the rates fo growth of polynomials and exponentials
+$$
+\lim_{n\rightarrow\infty} \frac{n^b}{a^n} = 0
+$$
+This is equivalent to saying $n^b = o(a^n)$.
+\\~\\
+
+Titchmarsh uses the following notation:
+$f(x) = O\{\phi(x)\}$ means $|f(x)| < A\phi(x)$ if $x$ is sufficiently close to some limit.
+In particular $O(1)$ means a bounded function (really think about it).
+
+And $f(x) = o\{\phi(x)\}$ means $f(x) / \phi(x) \rightarrow 0$ as $x$ tends to a gven limit.
+So in this way Titchmarsh notation matches the conventional mathematical notation.
+
 \section{The Exponential Function}
+
+There is a handy thing to note for the proof of part (a) of the first theorem.
+
+If you look closely to
+$$
+e^z = \sum_{k=0}^{\infty} \frac{z^n}{n!}
+$$
+Then we ought to wonder why $e^0 = 1$ since the first term in the series would be $0^0$.
+
+Looking around you may think to use l'hopital (Bernoulli's) rule and do something like:
+if $y = x^x$
+$$
+\lim_{x\rightarrow 0} y = \lim e^{\ln y} = e^{\lim \ln y} = e^{\lim \ln x^x} = e^{\lim x \ln x}
+$$
+Remember that $e^z$ is continuous, so we can just pass the limit through it.
+Then
+$$
+\lim_{x\rightarrow 0} x \ln x = \lim \frac{\ln x}{1/x}
+$$
+One application of Bernoulli's rule later, we have
+$$
+\lim_{x\rightarrow 0} x \ln x = \lim \frac{\ln x}{1/x} = \lim \frac{1/x}{-1/x^2} = \lim -x = 0
+$$
+
+So
+$$
+\lim_{x\rightarrow 0} y = \lim e^{\ln y} = e^{\lim x \ln x} = e^0
+$$
+
+So going that route leads us to a circular argument.
+Instead, it helps to unfold the series and see that
+$$
+e^z = \sum_{n=0} \frac{z^n}{n!} = 1 + z + \frac{z^2}{2} + \ldots
+$$
