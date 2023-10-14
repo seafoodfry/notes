@@ -87,8 +87,64 @@ $$
 |z_1 - z_2| \geq \left| |z_1| - |z_2| \right|
 $$
 
+\subsubsection{polynomials}
+
+If $n$ is a positive integer, and if $a_0, a_1, a_2, \ldots$ are complex constants,
+where $a_n \neq 0$,
+$$
+P(z) = a_0 + a_1 z + a_2 z^ + \ldots a_n z_6
+$$
+if a polynomial of degree n.
+For some positive number $R$, the reciprocal $1/P(z)$ satisfies the inequality
+$$
+\left| \frac{1}{P(z)} \right| < \frac{2}{|a_n| R^n}
+$$
+whenever $|z| > R$.
+Geometrically, this tells us that the modulus of the reciprocal $1/P(z)$
+is bounded from above when z is exterior to the circle $|z| = R$.
+
+The tricky bit of the argument for the abvove is given when the author's say
+"Now that a sufficiently large positive number $R$ can be found such that each of the
+quotients on the right in inequality (9) is less than the number $|a_n |/(2n)$ when
+$|z| > R$..."
+What ci-dessus means in practice is that when we have
+$$
+|w| \leq \frac{|a_0|}{|z|^n} + \frac{|a_1|}{|z|^{n-1}} + \ldots + \frac{|a_{n-1}|}{|z|}
+$$
+We are actually dividing $|w||z|^n$ by $R^n$ since $R^n \sim |z|^n$, and so Churchill
+is saying that we can find some $z$ such that when we raise it to a power $n$ and divide $|w||z|^n$
+by it, that we will have all $n$ terms on the right side of the inequality be less than the $n$-th
+term divided by $n$ (go far out ebough and there will be a $z$ value that will make this truth).
+
+The rest of the argument in the book is algebra.
 
 \subsubsection{Exercises}
+
+\textbf{Ex 4}
+\\
+Verify $\sqrt{2}|z| \geq |\Re(z)| + |\Im(z)|$.
+Suggestion: reduce the above inequality to $(|x| - |y|)^2 \geq 0$.
+\\~\\
+
+
+\textbf{Ex 6}
+\\
+Using the fact that $|z_1 - z_2|$ is the distance between the points $z_1$ and $z_2$,
+give a geometric argument that $|z - 1| = |z + i|$ represents the line through the origin
+whose slope is $-1$.
+\\
+
+\textbf{Ex 7}
+\\
+Show that for $R$ sufficiently large, the polynomial $P(z)$ satisfies
+$$
+|P(z)| \leq 2 |a_n||z|^n
+$$
+whenever $|z| > R$.
+Suggestion: observe that there is a positive number $R$ such that the modulus
+of each quotient in $|w| \leq |a_0|/|z|^n + |a_1|/|z|^{n-1} + \ldots + |a_{n-1}|/|z|$
+is less than $|a_n|/n$ when $|z| > R$.
+\\~\\
 
 \textbf{Ex 8}
 \\
