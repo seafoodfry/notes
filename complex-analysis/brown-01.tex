@@ -124,6 +124,27 @@ The rest of the argument in the book is algebra.
 \\
 Verify $\sqrt{2}|z| \geq |\Re(z)| + |\Im(z)|$.
 Suggestion: reduce the above inequality to $(|x| - |y|)^2 \geq 0$.
+\\
+
+This exercise is similar to one in Folland's advanced calculus, exercise 2 in section 1.1 Euclidean Spaces and Vectors
+(we do provide a solution for that example in the calculus doc).
+
+Working backwards,
+$$
+(\sqrt{2} |z|)^2 = 2|z|^2 = 2x^2 + 2y^2
+$$
+
+Following the tip of the book, a thing to try is something like
+$$
+(|\Re(z)| + |\Im(z)|)^2 = |x|^2 + |y|^2 + 2|x||y| = x^2 + y^2 + 2|x||y|
+$$
+
+Then
+\begin{align*}
+(\sqrt{2} |z|)^2  -  (|\Re(z)| + |\Im(z)|)^2 &= x^2 + y^2 - 2|x||y| \\
+&= |x|^2 + |y|^2 - 2|x||y| \\
+&= (|x| - |y|)^2 \geq 0
+\end{align*}
 \\~\\
 
 
@@ -134,16 +155,37 @@ give a geometric argument that $|z - 1| = |z + i|$ represents the line through t
 whose slope is $-1$.
 \\
 
+This one is a very interesting case.
+$|z-1|$ would correspond to the distance from a point $z$ to the point $1$ (the x-axis),
+$|z-i|$ would correspond to the distance from a point $z$ to the point $i$ (the y-axis).
+Since both are a unit from the origin, in their respective axis.
+The expression above then equates these two distances giving us a straightline that passes through
+the origin with a $-1$ slope.
+\\~\\
+
 \textbf{Ex 7}
 \\
 Show that for $R$ sufficiently large, the polynomial $P(z)$ satisfies
 $$
-|P(z)| \leq 2 |a_n||z|^n
+|P_n(z)| \leq 2 |a_n||z|^n
 $$
 whenever $|z| > R$.
 Suggestion: observe that there is a positive number $R$ such that the modulus
 of each quotient in $|w| \leq |a_0|/|z|^n + |a_1|/|z|^{n-1} + \ldots + |a_{n-1}|/|z|$
 is less than $|a_n|/n$ when $|z| > R$.
+\\
+
+In the argument in which the original inuequality was made, there was a step where we use the following
+$|a_n + w| \geq \left||a_n| - |w|\right|$ to come up with a lower bound.
+If we instead looked for an upper bound, we could look at
+$$
+|a_n + w| \leq |a_n| + |w| < |a_n| + \frac{1}{2}|a_n| < 2|a_n| 
+$$
+
+The rest of the argument flows when we plug that into expression (10),
+$$
+\left| P_n(z) \right| = |a_n + w| |z|^n < 2|a_n||z|^n
+$$
 \\~\\
 
 \textbf{Ex 8}
