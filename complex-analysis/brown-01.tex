@@ -10,7 +10,7 @@ $$
 
 also,
 $$
-|z|^2 = |z\bar{z}| = (a + ib)(a - ib) = a^2 + b^2
+|z|^2 = z\bar{z} = (a + ib)(a - ib) = a^2 + b^2
 $$
 
 The generalization of $|z|^2 = (\Re(z))^2 + (\Im(z))^2$ does hold!
@@ -246,6 +246,77 @@ hold for $n=m+1$,
 $$
 |z^{m+1}| = |z^m z| = |z^\prime z| = |z^\prime| |z| = |z^m| |z| = |z|^m |z| = |z|^{m+1}
 $$
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Complex Conjugates}
+
+\subsubsection{Exercises}
+
+\textbf{Ex 4}
+\\
+Show that,
+$$
+\overline{z^2} = \bar{z}^2
+$$
+
+Note that
+\begin{align*}
+\overline{z^2} &= \overline{z z} \\
+    &= \bar{z} \bar{z} \\
+    &= \bar{z}^2
+\end{align*}
+
+
+\textbf{Ex 10}
+\\
+Show that,
+\begin{enumerate}
+    \item $z$ is real if and only if $z = \bar{z}$
+    \item $z$ is either real or pure imaginary if and only if $\bar{z}^2 = z^2$
+\end{enumerate}
+
+To see the why for the first one, note that if $z = x + iy = x - iy = \bar{z}$,
+then $(x, y) = (x, -y)$.
+Saying that $x = x$ leads us to a tautology, so no issue there, but $y = -y$ leads us to say
+that $z$ must be real.
+\\
+
+Using a similar argument,
+$$
+\bar{z}^2 = \overline{z^2} = \overline{x^2 - y^2 + 2ixy} = x^2 - y^2 + 2ixy
+$$
+The last step has $xy = -xy$, so this must be zero.
+And this happens when $z$ is either real or pure imaginary.
+\\~\\
+
+
+\textbf{Ex 13}
+\\
+Show that the equation $|z - z_0| = R$ of a circle, centered at $z_0$ with radisu $R$
+can be written as
+$$
+|z|^2 - 2\Re(zz_0) + |z_0|^2 = R
+$$
+
+To see why, note that
+\begin{align*}
+|z - z_0| &= (z - z_0)^* (z - z_0) \\
+    &= (\bar{z} - \bar{z_0}) (z - z_0) \\
+    &= \bar{z}z - \bar{z}z_0 - z\bar{z_0} + \bar{z_0}z_0 \\
+    &= |z|^2 - (z\bar{z_0} + \bar{z}z_0) + |z_0|^2 \\
+    &= |z|^2 - 2\Re(z\bar{z_0}) + |z_0|^2
+\end{align*}
+
+
+\textbf{Ex 14}
+\\
+Show that the hyperbola $x^2 - y^2 = 1$ can be rewritten as $z^2 - \bar{z}^2 = 2$.
+\\
+
+Well, $z^2 = (z + iy)(z + iy) = x^2 + 2ixy - y^2$.
+And we already saw that $\bar{z}^2 = \overline{z^2}$, so $\bar{z}^2 = x^2 - 2ixy - y^2$.
+From there the answer follows.
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
