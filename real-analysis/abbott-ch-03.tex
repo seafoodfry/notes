@@ -20,7 +20,7 @@ The way to read the definitions for these is to think that you always want a "ba
 point, and you want to see if balls of any radius will be able to fit within another interval.
 For example, in Abbott example 3.2.2(ii), we take $\epsilon$ to be some positive value by
 looking at the difference between the point $x\in(c,d)$ and its left and right endpoints.
-($x-c \geq 0$ and $d-x \geq 0$).
+($x-c > 0$ and $d-x > 0$). (It must be a strict inequality because otherwise $|x-a| < 0$ would cause us trouble.)
 And that definition of $\epsilon$ gives you a simple way to look for open balls in $(c,d)$.
 
 To see the above, draw out a line and see how no matter what radius you end up using, as long as
@@ -70,6 +70,26 @@ This is because when we prove that a limit exist, we must always provide a relat
 $\epsilon = \epsilon (n)$ so that $|a_n - x|<\epsilon$.
 \\
 
+
+\textbf{Example 3.2.9}
+
+The first example is $A = \{ \frac{1}{n} : n\in\mathbb{N} \}$, when $\epsilon = 1/n - 1/(n+1)$.
+Abbott helps us out here because otherwise we would have to figure out how to prove that
+1.) the limit point is zero (but that is not in A), 2.) every other $x\in\mathbb{R}$ is either
+$1/n$ or it never intersects with other member of A (think about some $(1/n - \epsilon, 1/n +\epsilon)$).
+
+In our case it helps to see it this way,
+\begin{align*}
+v_{epsilon} (1/n) &= \{ x\in\mathbb{R} : \left|x - \frac{1}{n}\right| < \epsilon \} = \left(\frac{1}{n} - \epsilon, \frac{1}{n} + \epsilon \right) \\
+&= \left(\frac{1}{n} - \frac{1}{n} + \frac{1}{n+1}, \frac{1}{n} + \frac{1}{n} - \frac{1}{n+1} \right) \\
+&= \left(\frac{1}{n+1}, \frac{2}{n} - \frac{1}{n+1} \right) \\
+&= \left(\frac{1}{n+1}, \frac{2n + 2 - n}{n(n+1)} \right) \\
+&= \left(\frac{1}{n+1}, \frac{n + 2}{n(n+1)} \right) \\
+&= \left(\frac{n}{n(n+1)}, \frac{n + 2}{n(n+1)} \right)
+\end{align*}
+
+The only number we can put in between that interval, following our requirements, is $\frac{n+1}{n(n+1)} = \frac{1}{n}$.
+\\
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
