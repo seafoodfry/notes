@@ -3,16 +3,28 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Modular Arithmetic}
+\subsection{Divisibility}
 
-If $a|b$, then $b = ac$, for some integer c. That means that $b/a$ must be an integer.
+Rosen's "Discrete Mathematics and its Applications"'s chapter 4 along with Gallian's "Contemporary
+Abstract Algebra" chapter 0 make great references for this material.
+\\
 
-If n and d are positive integers, how many positive integers not exceeding n are divisible by d?
+An $a \neq 0 \in \mathbb{Z}$ is called a \textbf{divisor}
+of a $b \in \mathbb{Z}$
+if there is a $c\in\mathbb{Z}$, such that $b = ac$.
+We write $a|b$, "a divides b". We also commonly say that "b is a multiple of a".
 
-In order to be divisible by d, an integer must be of the form $dk$, for some positive integer k.
-So the integers divisible by d and not greater than n are the integers with k such that $0 \leq dk < n$
+Note that this working definition means that $a|b$ is an integer.
+So for example, $3\not| 7$ since $7 / 3 \notin \mathbb{Z}$ but $3|12$ since $12/3 \in \mathbb{Z}$.
+\\
+
+If $n$ and $d$ are positive integers, how many positive integers not exceeding $n$ are divisible by $d$?
+
+In order to be divisible by $d$, an integer must be of the form $dk$, for some positive integer $k$.
+So the integers divisible by $d$ and not greater than $n$ are the integers with $k$ such that
+$0 \leq dk < n$
 or $0 < k < n/d$.
-Thus, the number of integers divisible by d is $\lfloor n / d \rfloor$.
+Thus, the number of integers divisible by $d$, not exceeding $n$, is $\lfloor n / d \rfloor$.
 \\~\\
 
 

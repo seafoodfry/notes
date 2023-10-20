@@ -1,0 +1,28 @@
+\section{Topology}
+
+\textbf{Equivalent definitions of the unit circle}
+
+Prove that
+
+$S^1 = \{ z \in \mathbb{C} : |z| < 1 \}$ and
+$S^1 = \{ e^{2\pi it} \in \mathbb{C} : t \in I \}$, where $I$ is the unit cube, are equal.
+
+To prove equivalence of the two definitions of the unit sphere we need to show that every
+point satisfying one definition also satisfies the other, and vice versa.
+
+Suppose you have the point $z = a + ib$ on unit circle, where $|z| < 1$.
+$z = a + ib = r (\cos \theta + i \sin \theta) = r e^{i\theta}$.
+$r = 1$ in our case so we will omit it.
+
+Definition 2 has $e^{2 \pi it}$, so $\theta = 2\pi  t$ or $t = \frac{\theta}{2\pi}$ (t is the quantity of interest).
+With euler’s formula, $z = \cos 2\pi t + i \sin 2\pi t$.
+
+Since t is in the unit cube, then $0 \leq t \leq 1$ or $0 \leq \frac{\theta}{2\pi} \leq 1$ or $0 \leq \theta \leq 2\pi$.
+(could also multiply t by $2\pi$ to have $0 \leq 2pit \leq 2\pi$).
+This imposes a limit on the angle.
+
+Also remember that $|z|^2 = |\hat{z} ^2| = x^2 + y^2$.
+So $|z| = \sqrt{ x^2 + y^2 }$.
+Which leaves us with $|z| = \sin^2 (2\pi t) + \sin^2 (2\pi t)$.
+\\~\\
+
