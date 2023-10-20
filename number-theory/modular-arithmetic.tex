@@ -20,7 +20,7 @@ So for example, $3\not| 7$ since $7 / 3 \notin \mathbb{Z}$ but $3|12$ since $12/
 
 If $n$ and $d$ are positive integers, how many positive integers not exceeding $n$ are divisible by $d$?
 
-In order to be divisible by $d$, an integer must be of the form $dk$, for some positive integer $k$.
+In order to be divisible by $d$, an integer must be of the form $dk$, for some integer $k>0$.
 So the integers divisible by $d$ and not greater than $n$ are the integers with $k$ such that
 $0 \leq dk < n$
 or $0 < k < n/d$.
@@ -28,53 +28,93 @@ Thus, the number of integers divisible by $d$, not exceeding $n$, is $\lfloor n 
 \\~\\
 
 
-\textbf{Theorem describing the transitive properties of division:}
+\subsubsection{Properties of Divisibility of Integers}
 
-\begin{equation}
-\text{ If $a|b$ and $a|c$, then $a|(b+c)$}
-\end{equation}
+\begin{enumerate}
+    \item If $a|b$ and $a|c$, then $a|(b+c)$.
+    \item If $a|b$, then $a|bc$ for all $c\in\mathbb{Z}$.
+    \item If $a|b$ and $b|c$, then $a|c$ (transitivity).
+\end{enumerate}
 
-To prove this use the fact that $a|b$ means that $b = as$, $a|c$ means that $c=at$,
+
+To prove the first statement, use the fact that $a|b$ means that $b = as$,
+$a|c$ means that $c=at$,
 and $b+c = a(s+t)$.
 Hence $a|(b+c)$.
+(Closure under addition of integers.)
 
-\begin{equation}
-\text{If $a|b$, then $a|bc$, for $c \in \mathbb{Z}$}
-\end{equation}
+To prove the second statement, use the fact that $a|b$ means $b = as$, so $b\times c = as \times c$.
+(Closure under multiplication of integers.)
 
-To prove it use the fact that $a|b$ means $b = as$, so $b*c = as * c$.
-
-\begin{equation}
-\text{If $a|b$, and $b|c$, then $a|c$}
-\end{equation}
-
-To prove it use $b = as$, $c = bt$. Then $c = bt = ast$ and hence $a|c$.
+To prove the last statement, use $b = as$, $c = bt$. Then $c = bt = ast$ and hence $a|c$.
 \\~\\
 
-\textbf{Corollary: If a, b, and c are integers, where $a \neq 0$, such that $a|b$ and $a|c$, then $a|mb + nc$ whenever $m, n \in \mathbb{Z}$.}
+\textbf{Corollary:}
+If $a. b, c \in \mathbb{Z}$, where $a \neq 0$,and $a|b$ and $a|c$, then $a|mb + nc$ whenever $m, n \in \mathbb{Z}$.
 
-Use if $a|b$ and $a|c$, then $a|(b+c)$ and if $a|b$, then $a|bc$, for $c \in \mathbb{Z}$, to prove it.
+Use if $a|b$ and $a|c$, then $a|(b+c)$ and if $a|b$, then $a|bc$,
+for $c \in \mathbb{Z}$, to prove it.
 \\~\\
 
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Division Algorithm}
 
 \begin{itemize}
-\item If $a = dq + r$ where $0 \leq r < d$ and $d>0$
-\item $q = a \bdiv d = \lfloor a/d \rfloor$
-\item $r = a \pmod d = a - dq$
+\item If $a = bq + r$ where $0 \leq r < b$ and $b>0$
+\item $q = a \bdiv b = \lfloor a/b \rfloor$
+\item $r = a \pmod b = a - bq$
 \end{itemize}
 
 For example, when 101 is divided by 11, $11|101$
 $$
-101 = 11 \dot 9 + 2
+101 = 11 \cdot 9 + 2
 $$
 
 When -11 is divided by 3, $3|-11$
 $$
--11 = 3 \dot -4 + 1
+-11 = 3 \cdot -4 + 1
 $$
+Note how we are multiplying $3\cdot -4$. This is so that our remainder, $r$, mets the criteria
+of $0 \leq r < b$.
+\\~\\
+
+In Gallian's "Contemporary Abstract Algebra", the division algorithm is stated as follows:
+let $a$ and $b$ be integers with $b>0$.
+Then there exists unique integers $q$ and $r$ with the propperty that
+$a = bq +r$ and $0 \leq r < b$.
+\\
+
+The proof begins with the existence portion of the theorem where it considers a set
+$S = \{ a - bk : k\in\mathbb{Z}, a - bk \geq 0 \}$.
+
+If $0\in S$, then $b$ divides $a$ ($b|a$), and so $q = a/b$ and $r=0$.
+
+If we assume $0\notin S$ ($b\not| a$), then we will also need to investigate whether $S$ is empty or not.
+But we can quickly come up with a cases to see that $S \neq \emptyset$ if we assume $0\notin S$:
+\begin{enumerate}
+    \item $a>0$: if $k=0$, $a - bk = a\geq 0$.
+    \item $a<0$: if $k = 2a$, then $a - bk = a - b(2a) \geq 0$.
+    \item $a=0$: here technically we could have some $k<0$ so that $a - bk = -b(-|k|) \geq 0$. However,
+    in the context of $\lfloor a/b \rfloor$, which is the operation we want to evaluate, this gives us a very
+    trivial case $\lfloor a/b \rfloor = 0$ and it reduce our initial problem to $r = bk$ (except we still haven't
+    introduced $r$), which is our initial definition of divisibility.
+\end{enumerate}
+Going through all the possible cases leads us to believe that $S\not \emptyset$
+so we can apply the \textbf{well ordering principle} which states that every non-empty set of positive
+integers contains a smallest members.
+We will call this smallest member of $S$ $r = a - bq$ ($a = bp + r$).
+This construction of $r$ also tells us that $0 \leq r$, so now we need to prove that $r < b$ and the
+uniqueness of $r$ and $q$ (we just proved their existence).
+
+
+If $0 \leq r’ - r \leq r < b$.
+And if $b(q - q’) = r’ -r$. 
+Since b divides $r’ - r$ ($b | r’-r$), then $r’-r = bu$ for some u.
+Which means that $r’-r$ is between $[0, b)$ (we are looking at an open interval on the right due to the 
+requirement that $r' - r \leq r < b$).
+Since it is not an option for $r’ - r = b$, then $r’ - r$ must be 0 (no other factor). 
+\\~\\
 
 
 
