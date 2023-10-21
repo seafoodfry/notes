@@ -219,3 +219,28 @@ $$
 
 \textbf{Note:} the reason we mentioned that $\mathbb{Z}_m$ is a commutative ring is to help you remember that
 multiplicative inverses don't always exist in $\mathbb{Z}_m$.
+\\
+
+Also, note that these definitions of additiona and multiplication are equivalent to
+$a + b \equiv c+d \pmod m$ and $ac \equiv dc \pmod m$.
+For example, the multiplicative inverse can be written as $ab = ab \bmod m = 1$ or $ab \equiv 1 \pmod m$
+and the additive inverse can be written as $a+b = (a+b) \bmod = 0$ or as $a+b \equiv 0 \pmod m$.
+\\~\\
+
+It is worth expanding on why we have a ring and why the multiplicative inverse may sometimes not exist
+in a ring based on modular arithmetic.
+
+We are essentially looking for a number $b$ such that when a given $a$ is multiplied by it, the result will be one,
+$ab = ab \bmod m = 1$ or $ab \equiv 1 \pmod m$.
+
+First, let's see a case where it does not exist, $2 \bmod 6$:
+\begin{itemize}
+    \item $2\cdot 0 = 0 \bmod 6 = 0$
+    \item $2\cdot 1 = 2 \bmod 6 = 4$
+    \item $2\cdot 2 = 4 \bmod 6 = 2$
+    \item $2\cdot 3 = 6 \bmod 6 = 0$
+    \item $2\cdot 4 = 8 \bmod 6 = 2$
+    \item $2\cdot 5 = 10\bmod 6 = 4$
+    \item $2\cdot 6 = 12\bmod 6 = 0$
+\end{itemize}
+and so on.
