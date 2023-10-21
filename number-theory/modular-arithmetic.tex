@@ -47,7 +47,6 @@ To prove the second statement, use the fact that $a|b$ means $b = as$, so $b\tim
 (Closure under multiplication of integers.)
 
 To prove the last statement, use $b = as$, $c = bt$. Then $c = bt = ast$ and hence $a|c$.
-\\~\\
 
 \textbf{Corollary:}
 If $a. b, c \in \mathbb{Z}$, where $a \neq 0$,and $a|b$ and $a|c$, then $a|mb + nc$ whenever $m, n \in \mathbb{Z}$.
@@ -62,8 +61,8 @@ for $c \in \mathbb{Z}$, to prove it.
 
 \begin{itemize}
 \item If $a = bq + r$ where $0 \leq r < b$ and $b>0$
-\item $q = a \bdiv b = \lfloor a/b \rfloor$
-\item $r = a \pmod b = a - bq$
+\item $q = a \bdiv b = \lfloor a/b \rfloor$ (quotient)
+\item $r = a \pmod b = a - bq$ (remainder)
 \end{itemize}
 
 For example, when 101 is divided by 11, $11|101$
@@ -107,35 +106,56 @@ We will call this smallest member of $S$ $r = a - bq$ ($a = bp + r$).
 This construction of $r$ also tells us that $0 \leq r$, so now we need to prove that $r < b$ and the
 uniqueness of $r$ and $q$ (we just proved their existence).
 
+To prove that $b < r$, let's try a proof by contradiction.
+Assume $r \geq b$, we already know that $a - bq \in S$ is supposed to be the smallest positive integer of our set,
+so let's look at the next one which is $a - b(q+1) = a - bq - b = r - b \geq 0$ (we used our assumption of
+$r \geq b$ in the last step).
+However, $a - b(q+1) < a - bq$, wich leads us to a contradiciton, so we need $r < b$ to have a consistent
+convention.
+Let's finally move to proving the uniqueness of $q$ and $r$.
 
-If $0 \leq r’ - r \leq r < b$.
-And if $b(q - q’) = r’ -r$. 
-Since b divides $r’ - r$ ($b | r’-r$), then $r’-r = bu$ for some u.
-Which means that $r’-r$ is between $[0, b)$ (we are looking at an open interval on the right due to the 
-requirement that $r' - r \leq r < b$).
-Since it is not an option for $r’ - r = b$, then $r’ - r$ must be 0 (no other factor). 
-\\~\\
+Let's do another proof by contradition.
+Let's say we have $a = bq + r$, where $0 \leq r < b$ and $a = bq^\prime + r^\prime$, where $0 \leq r^\prime < b$.
+For convenience, suppose $r^\prime \geq r$.
+Then $bq + r = bq^\prime + r^\prime$ and $b(q - q^\prime) = r^\prime -r$.
+The last expression meands that $b$ divides $r^\prime - r$ ($b | r^\prime-r$), then $r^\prime-r = bu$ for some $u\in\mathbb{Z}$.
+Also, since $r^\prime \geq r$, then $0 \leq r^\prime - r < r \leq r^\prime < b$.
+To reach the conclusion we need to look back: if $r^\prime - r$ were a non-zero positive integer, then it would mean
+that $q - q^\prime$ is also a non-zero integer, so that $bq \neq bq^\prime$, and thus either $r$ or $r^\prime$ would not be the
+smallest member of $S$. But if $r^\prime - r = 0$, then we achieve consistency all around.
 
 
 
-\subsubsection{Congruences}
+\subsection{Congruences}
 
-If a and b are congruent modulo m ($a,b \in \mathbb{Z}, m >0$), $a \equiv b \pmod m$, then m divides $a-b$.
-Another way of seeing it is that a and b have the same remainder when divided by m.
+If $a$ and $b$ are congruent modulo $m$ ($a,b \in \mathbb{Z}, m >0$), $a \equiv b \pmod m$,
+if $m$ divides $a-b$ (written another way, $m | a-b$).
+\\
 
-If m divides $a-b$, then $a-b = mc$ for some integer c.
+The above does not yet tell is much, there is another theorem we need:
+let $a, b, m\in\mathbb{Z}$ and $m \geq 0$.
+Then $a \equiv b \pmod m$ if and only if $a \bmod m = b \bmod m$
+(\textbf{if the remainders are equal!}).
 
-If both a and b have the same remainders when divided by m, then:
-$r = a - mq$ 
-$r = b - mp$
-$0 = a - mq - b + mp$ or $a - b = mq - mp = m(q-p) = mc$, where $c = q-p$.
+Another way of seeing it is that $a$ and $b$ have the same remainder when divided by $m$, goes as follows:
+If $m$ divides $a-b$, then $a-b = mc$ for some $c \in\mathbb{Z}$.
+If both $a$ and $b$ have the same remainders when divided by $m$, then
+$r = a - mq$ and $r = b - mp$.
+In turn $a-b = (mq - r) - (mp - r) = mq - mp = m(q-p) = mc$ (we have consistency once again).
 
-The above also means that $a = b + mk$, for some integer k.
+The above also means that
+$$
+a \equiv b \pmod m  \leftrightarrow  a \bmod m = b \bmod m  \leftrightarrow  a = b + mc
+$$
 
-Equivalently, \textbf{$a \equiv b \pmod m$ implies that $a \pmod m = a \pmod m$}.
-\\~\\
+The thing to keep in mind is that congruences are binary relations: is $17 \equiv 5 \pmod 6$? yes, because $6|17-5$ ($17R5$).
+Does $6|17-6$? No, so $17 \not\equiv 6 \pmod 6$ ($17\cancel{R}6$).
+Whereas the other two equivalences give us ways to compute and further understand the relation.
 
-\textbf{Theorem about multiplications and additions in congruences:}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Modular Arithmetic}
 
 If $a \equiv b \pmod m$ and $c \equiv d \pmod m$, then
 \begin{equation}
@@ -149,10 +169,10 @@ and
 
 To prove these, you can use something like the following reasoning:
 
-$a - b = mp$ and $c - d = mq$
-$a + c - (b + d) = m(p+q)$
+$a - b = mp$ and $c - d = mq$.
+Adding these two, we get $a + c - (b + d) = m(p+q)$.
 
-Since $c = d + mq$
+For the second one, since $c = d + mq$
 $$
 ac = (b + mp)(d + mq) = bd + bmq + dmp + mmpq = bd + mc
 $$
@@ -164,10 +184,10 @@ $$
 \end{equation}
 
 To show this,
-
 $a = mk + r = mk + (a \bmod m)$ hence
-$a \equiv (a \bmod m) \pmod m$ and so $b \equiv (b \bmod m) \pmod m$
-So $a + b \equiv [(a \bmod m) + (b \bmod m)] \pmod m$
+$a \equiv (a \bmod m) \pmod m$ ($a$ and $a \bmod m$ are congruent).
+Similarly, $b \equiv (b \bmod m) \pmod m$ ($b$ and $b \bmod m$ are congruent)
+So $a + b \equiv [(a \bmod m) + (b \bmod m)] \pmod m$.
 
 Because $a \equiv b \pmod m$ implies $a \bmod m = b \bmod m$, the above can be written as
 $(a+b) \bmod = [(a \bmod m) + (b \bmod m)] \pmod m$.
@@ -177,3 +197,25 @@ $(a+b) \bmod = [(a \bmod m) + (b \bmod m)] \pmod m$.
 \end{equation}
 
 Following a similar logic as in the above proof, we can obtain the former equation by using $ab \equiv [(a \bmod m)(b \bmod m)] \bmod m$.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Arithmetic Module $m$}
+
+The reason for the above complexities is because it just so happens that it is useful and informational
+to define arithmetic operations on the set of non-negative integers less than $m$ because they form
+a \textbf{commutative ring} which we denote as $\mathbb{Z}_m$.
+
+For example, addition in $\mathbb{Z}_m$, looks like
+$$
+a + b = (a+b) \bmod m
+$$
+And in the previous subsection we saw an algorithm to crank out the result.
+
+Similarly, multiplication in $\mathbb{Z}_m$, looks like,
+$$
+ab = (ab) \bmod m
+$$
+
+\textbf{Note:} the reason we mentioned that $\mathbb{Z}_m$ is a commutative ring is to help you remember that
+multiplicative inverses don't always exist in $\mathbb{Z}_m$.
