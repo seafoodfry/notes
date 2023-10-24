@@ -236,11 +236,16 @@ $ab = ab \bmod m = 1$ or $ab \equiv 1 \pmod m$.
 First, let's see a case where it does not exist, $2 \bmod 6$:
 \begin{itemize}
     \item $2\cdot 0 = 0 \bmod 6 = 0$
-    \item $2\cdot 1 = 2 \bmod 6 = 4$
-    \item $2\cdot 2 = 4 \bmod 6 = 2$
+    \item $2\cdot 1 = 2 \bmod 6 = 2$
+    \item $2\cdot 2 = 4 \bmod 6 = 4$
     \item $2\cdot 3 = 6 \bmod 6 = 0$
     \item $2\cdot 4 = 8 \bmod 6 = 2$
     \item $2\cdot 5 = 10\bmod 6 = 4$
     \item $2\cdot 6 = 12\bmod 6 = 0$
 \end{itemize}
 and so on.
+Maybe this gives you a rough idea of what the issue maybe.
+Let's look at our general formula $ab \bmod = 1$ once again.
+We know that this formula implies that $ab = mk + 1$ or $ab - mk = 1$.
+This last expression tells us that in order to get a multiplicative inverse we need to be able to add to Products
+of integers in such a way as to end up with a sum of one (hard to do that when you are dealing with 2 even numbers such as 2 and 6).
