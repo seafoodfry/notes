@@ -249,3 +249,53 @@ Let's look at our general formula $ab \bmod = 1$ once again.
 We know that this formula implies that $ab = mk + 1$ or $ab - mk = 1$.
 This last expression tells us that in order to get a multiplicative inverse we need to be able to add to Products
 of integers in such a way as to end up with a sum of one (hard to do that when you are dealing with 2 even numbers such as 2 and 6).
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Primes and Greates Common Divisors}
+
+\textbf{Theorem} if $n$ is a composite integer, then $n$ has a prime divisor less than or equal to $\sqrt{n}$.
+
+The proof is by contradiction: if $n$ is composite, then $n = ab$. The negation of one prime divisior
+less than or equal to $\sqrt{n}$ means that all divisors are greater than $\sqrt{n}$, which means
+$n = ab > \sqrt{n}^2 = n$, leading to a contradition.
+\\
+
+
+\textbf{The prime number theorem} the ratio fo the number of primes not exceeding $x$ and $x / \ln(x)$ approaches 1
+as $x$ grows without bound.
+
+The theorem was first proved by Jacques Hadamard and Charles-Jean-Gustave-Nicholas de la Valle-Poussin
+in 1986 using the theory of complex variables.
+
+The odds of randonly selecting a positive integer less than $n$ that is prime is approximately $(n / \ln(n)) / n = 1 / \ln(n)$.
+\\~\\
+
+
+\textbf{The greatest commmon divisor} let $a,b \in \mathbb{Z}$, not both zero.
+The largest integer $d$ such that $d|a$ and $d|b$ is called the greatest common divisior or $a$ and $b$.
+
+On the otherhand, the \textbf{least common multiple} is the smallest positive integer that is divisible by $a$ and $b$
+($a|lcm$ and $b|lcm$).
+
+A simple way to compute these two values is by looking at the prime factorization of two numbers $a$ and $b$,
+$$
+a = p^{a_1}_{1} p^{a^2}_{2} p^{a_3}_{3} \ldots p^{a_n}_{n}, \quad a = p^{b_1}_{1} p^{b^2}_{2} p^{b_3}_{3} \ldots p^{b_n}_{n}
+$$
+Then,
+$$
+gcd(a,b) = p^{\min(a_1, b_1)}_{1} p^{\min(a_2, b_2)}_{2} \ldots p^{\min(a_n, b_n)}_{n}
+$$
+and,
+$$
+lcm(a,b) = p^{\max(a_1, b_1)}_{1} p^{\max(a_2, b_2)}_{2} \ldots p^{\max(a_n, b_n)}_{n}
+$$
+
+From here we can also see that $ab = gcd(a,b) = lcm(a,b)$.
+\\~\\
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{The Euclidean Algorithm}
