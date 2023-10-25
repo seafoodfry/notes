@@ -89,11 +89,43 @@ v_{\epsilon} (1/n) &= \{ x\in\mathbb{R} : \left|x - \frac{1}{n}\right| < \epsilo
 \end{align*}
 
 The only number we can put in between that interval, following our requirements, is $\frac{n+1}{n(n+1)} = \frac{1}{n}$.
-\\
+\\~\\
+
+
+\textbf{Theorem 3.2.13}
+In the first part of the proof, we want to prove that $O^c$ contains all of its limit points.
+Containing all of its limits points means that every $\epsilon$-neighboorhod of any limit point would
+contain other points in $O^c$.
+That is why if $x\in O$ would lead to a contradiction: if a single $x \notin O^c$, then at least one of its
+$V_\epsilon (x) \subseteq O$ ($O$ and $O^c$ have no members in commmon, so if an $\epsilon$-neighboorhod is contained
+in one then it cannot contain points in the other.)
+
+When reading the converse statement, again, keep in mind that the concept of limit points is to look for
+neighborhoods that are fully contained within a set, every $o \in v_\epsilon $ is also $x \ in O$ if
+$v_\epsilon \in O$.
+So looking at a limit point that is not part of $O^c$, means that $v_{\epsilon} (x) \in O$ by definition.
+\\~\\
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Exercises}
+
+\textbf{3.2.1}
+
+\textbf{(a)} Where in the proof of Theorem 3.2.3 part (ii) does the assumption that the collection of
+open sets be finite gets used?
+\\
+
+Theorem 3.2.3 states that: the intersection of a finite collection of open sets is open.
+The "finite-ness" is used when we look for the smallest $\epsilon$-neighborhood contained in every $O_k$.
+If we assume that we are looking at the intersection of an infinite ammount of open sets, then the nested-interval
+property doesn't hold and we cannot guarantee that there is an element contained within the inifity of neighborhoods.
+See \ref{abbott:1.4.3} to see why.
+\\~\\
+
+\textbf{(b)} Give an example of a countable collectionof open sets $\{O_1, O_2, O_3, \ldots\}$
+whose intersection $\cup^{\infty}_{n=1} O_n$ is closed, not empty and not all of $\mathbb{R}$.
+\\
 
 \textbf{3.2.5}
 
