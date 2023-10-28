@@ -125,8 +125,69 @@ See \ref{abbott:1.4.3}.
 
 \textbf{(b)} Give an example of a countable collectionof open sets $\{O_1, O_2, O_3, \ldots\}$
 whose intersection $\cup^{\infty}_{n=1} O_n$ is closed, not empty and not all of $\mathbb{R}$.
+\\~\\
+
+
+\textbf{3.2.2}
+
+Let
+$$
+A = \left\{ (-1)^n + \frac{2}{n} : n\in\mathbb{N} \right\},
+$$
+$$
+B = \left\{ x \in\mathbb{Q} : 0 < x < 1 \right\},
+$$
+and
+$$
+C = \left\{ \frac{(-1)^n n}{n+1} : n\in\mathbb{N} \right\}
+$$
+
+\textbf{(a)} what are the limit points?
 \\
 
+Let's plugin a couple numbers!
+In $A$, when $n=1$ we got $-1 + 2 = 1$; when $n=2$, $1 + 1 = 2$; $n=3$, $-1 + 2/3 = -1/3$; $n=4$, $1 + 1/2 = 3/2$;
+so $A = \{ 1, 2, -\frac{1}{3}, \frac{3}{2}, -\frac{3}{5}, \ldots \}$.
+Holistically, the first term oscillates between $-1$ and $1$, while the second one is monotonically decreasing
+starting at 2 and then decreasing to 0 as $n$ grows unbounded.
+Since we are adding or subtracting monotonically decreasing terms to -1 and 1, and since the first two terms are 1 and 2,
+then all other values will oscillate between the two, getting closer and closer to both of those values.
+So our limit points here are $1$ and $-1$. (they are literally the limit of a sequence contained in $A$.)
+
+Now, $B$.
+Back in \textbf{example 3.2.9}, we saw that a property of $\mathbb{Q}$ is that its set of limit points is \textbf{ALL}
+of $\mathbb{R}$.
+So the set of limit points for $B$ is not just 0 and 1 but the entire interval $[0,1]$.
+
+Finally $C$. Again, plugin in some numbers, $n=1$; $-1/2$; $n=2$, $2/3$, etc.
+So, we get $C = \{-\frac{1}{2}, \frac{2}{3}, -\frac{3}{4}, \frac{4}{5}, \ldots, \frac{10}{11}, -\frac{11}{12}, \ldots \}$.
+We again see that the elements of $C$ approach -1 and 1 as $n$ grows without bounds.
+So the limit points are -1 and 1.
+
+Let's do a bit more work for $C$, just because.
+We can see that a limit point for $C$ is 1 because the even terms grow as $(\frac{n}{n+1})$.
+The difference between consecutive even terms is
+$\left|\frac{n}{n+1} - \frac{n+2}{n+3}\right| = \left|\frac{3(n+3) - (n+1(n+2))}{(n+1)(n+3)}\right| = \left|\frac{-2}{(n+1)(n+3)}\right| = \frac{2}{(n+1)(n+3)}$.
+We want to use this data to verify that every $\epsilon$-neighboorhod of a limit point does indeed intercept our set $C$
+at some point other than the limit point we are looking at.
+Which means that we want to see $V_{\epsilon} (1) \cap C \neq \emptyset$ and $V_{\epsilon} (1) \cap C \neq 1$.
+We can see $V_{\epsilon} (1) \cap C \neq \emptyset$ right away since $\frac{n}{n+1} \neq 1$ ever.
+Leaving us with the task of verifying that $\{ x\in\mathbb{R} : |x-1| < \epsilon \} \cap C \neq \emptyset$ for all $\epsilon > 0$.
+The previous expression can in turn be simplified to $\{ c_n\in C : |c_n - 1| < \epsilon \}$
+\textbf{which just magically became a restatement of the criteria for the convergence of a series!} -
+think about it, we want to find values in our neighboorhod that intercept with $C$, so instead of searching through all of $\mathbb{R}$
+we could search through $C$.
+This onw reduces to $\left| \frac{n}{n+1} - 1 \right| = \frac{1}{n+1} < \epsilon$.
+Since $ \frac{1}{n+1} > \frac{2}{(n+1)(n+3)}$, the distance between two terms in the series, we should be able to
+find elements of $C$ within our $\epsilon$-neighboorhods.
+
+Note that in all of these cases we could readily evaluate the limits to get the limit points because the limit points
+are not actually memebers of the sets.
+\\
+
+
+\textbf{(b)} Are the sets open or closed?
+\\
 
 
 
