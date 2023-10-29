@@ -1,0 +1,54 @@
+\section{Euclidean Spaces}
+
+
+subsection{Smooth Functions on Euclidean Space}
+
+\subsubsection{$C^\infty$ Versus Analytic Functions}
+
+Starting out with the simplest notation that anyone may have seen, we can write the partial drivates
+as
+$$
+\frac{\partial^2 f}{\partial x \partial y}
+$$
+
+There is a theorem called \textbf{Schwarz's theorem (or Clairaut's theorem on equality of mixed partials)}
+that states that for a function $f : U \subset \mathbb{R}^n \rightarrow \mathbb{R} $
+(note that $U$ is an open set - $U \subset \mathbb{R}^n$ not $U \subseteq \mathbb{R}^n$)
+if $p = (p^1, p^2, \ldots , p^n) \in \mathbb{R}^n$
+and $p \in U$ (some neighboorhod of $p$ is contained in $U$)
+and $f$ has \textbf{continuous second partial derivatives on that neighboorhod of $p$},
+then for all $i$ and $j$ in $\{ 1, 2, \ldots , n \}$,
+
+$$
+\frac{\partial^2 f (p)}{\partial x^i \partial x^j}
+= \frac{\partial^2 f (p)}{\partial x^j \partial x^i}
+$$
+
+\textbf{The partial derivatives of this function commute at that point.}
+\\
+
+We wanted to mention Schwarz's theorem on equality of mixed partial derivatives to present some of the context
+we will be visiting over and over.
+Now, let's carry on with a little bit more notation.
+From our abstraction in the statement of Schwarz's theorem, we can see that mixed partial derivates have the following
+form,
+
+$$
+\frac{\partial^{i+j+k} f}{\partial x^i \partial x^j \partial x^k}
+$$
+
+In Tu's notation the above then becomes
+$$
+\frac{\partial^j f}{\partial x^{i_1} \ldots \partial x^{i_j}}
+$$
+where $\partial x^{i_1}$ means that we are taking the partial derivative of degree $i$ with respect to the
+coordinate $x^1$.
+There is also the implicit requirement that the $j$ partial derivatives of degree $i$ will sum to $j$, so essentially
+$i=1$.
+
+The above notation cold very well be reworded into
+$$
+\frac{\partial^\alpha f}{\partial x^{\alpha_1}_{1} \ldots \partial x^{\alpha_j}_{j}}
+$$
+where $\alpha = \alpha_1 + \ldots + \alpha_j$, we also moved the superscript for the dimension to a subscript just
+to simplify the latex - but keep in mind that \textbf{Tu uses the second superscript to note the dimension}.
