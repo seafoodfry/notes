@@ -220,6 +220,7 @@ Our closures are, $\bar{A} = A \cup \{-1, 1\}$, $\bar{B} = [0,1]$, and $\bar{C} 
 \\~\\
 
 
+
 \textbf{3.2.3}
 
 Decide whether the following sets are open, closed, or neither.
@@ -230,20 +231,72 @@ If a set is not closed, find a limit point that is not contained in the set.
 \textbf{(a)} $\mathbb{Q}$
 \\
 
+Abbott already shared with us that all the reals are the limit points for $\mathbb{Q}$.
+So $\mathbb{Q}$ is not closed.
+But we also already noted in the previous exercise that continuous $\epsilon$-neighboorhods are not contained in
+$\mathbb{Q}$ - for all elements in $\mathbb{Q}$, it is not the case that there is an $\epsilon$-neighboorhod
+that is contained within $\mathbb{Q}$, $V_\epsilon (q) \not\subseteq \mathbb{Q}$.
+
+Another way of putting it: $\mathbb{Q}$ is not is not open because irrationals in the $\epsilon$-neighboorhods
+are not part of $\mathbb{Q}$. And $\mathbb{Q}$ is not closed because it contains irrational limit points.
+\\
+
 \textbf{(b)} $\mathbb{N}$
+\\
+
+It is not open by the same logic as above.
+$\mathbb{N}$ has no limit points, but it is considered closed.
+
+Think about the two definitions for limit points that we have: there is no sequence contained within $\mathbb{N}$
+with a limit and also, it is not the case that every $\epsilon$-neighboorhod intercepts $\mathbb{N}$.
 \\
 
 \textbf{(c)} $\{ x\in\mathbb{R} : x \neq 0 \}$
 \\
 
-\textbf{(d)} $\left\{ \frac{1}{n^2} : n\in\mathbb{N} \right\}$
+$\mathbb{R} \setminus \{0\}$ is open because every element has an $\epsilon$-neighboorhod that intercepts
+$\mathbb{R} \setminus \{0\}$ at a point other than itself.
+It is not closed because 0 is a limit point but it is not included - for example, $1/n \rightarrow 0$.
 \\
 
-\textbf{(e)} $\left\{ \frac{1}{n} : n\in\mathbb{N} \right\}$
+\textbf{(d)} $\left\{ \sum \frac{1}{n^2} : n\in\mathbb{N} \right\}$
+\\
+
+The limit of the sum is $\pi^2 / 6$, its elements are $\{1, 5/4, \ldots \}$.
+So similar sitation as above, it is not closed because it doesn't contain its limit.
+It is also not open since it only contains rationals.
+\\
+
+\textbf{(e)} $\left\{ \sum \frac{1}{n} : n\in\mathbb{N} \right\}$
+\\
+Similar logic to the previous answer but this time the set is closed since $\sum 1/n$ doesn't converge,
+so there is no limit point.
+It is not open for the same reasons  as above.
 \\~\\
 
 
+
+
+\textbf{3.2.4}
+\\
+
+Let $A$ be nonempty and bounded above so that $s = \sup A$ exists.
+
+\textbf{(a)} Show that $s\in \bar{A}$
+\\
+
+Interestingly, this exercise is a great connection to \ref{abbott:1.3.3} where we find out that if a set is closed
+then the supremum of the set is a member of the set.
+
+In general, $\bar{A} = A \cup L$, where $L$ is the set of limit points.
+\\
+
+\textbf{(b)} Can an open set contain its supremum?
+\\
+
+
 \textbf{3.2.5}
+\\
 
 \textbf{Theorem 3.2.8} A set $F \subseteq \mathbb{R}$ is closed if and only if every
 Cauchy sequence contained in $F$ has a limit that is also contained in $F$.
