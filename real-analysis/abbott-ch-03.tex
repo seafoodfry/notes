@@ -289,10 +289,36 @@ Interestingly, this exercise is a great connection to \ref{abbott:1.3.3} where w
 then the supremum of the set is a member of the set.
 
 In general, $\bar{A} = A \cup L$, where $L$ is the set of limit points.
+So one way to try and prove this is to see whether $s \in L$, or in general $s \in A$.
+If you remember \textbf{lemma 1.3.8},
+it states that if $s \in \mathbb{R}$ is an upper bound for a set $A \subseteq \mathbb{R}$,
+then $s = \sup A$ if and only if, \textbf{for every} choice of $\epsilon > 0$,
+there exists an element $a \in A$ satisfying $s - \epsilon < a$.
+
+Now, if you remember the definition of a limit point, it states that a limit point is a limit point
+if every $\epsilon$-neighboorhod of a limit point intercepts the set $A$ at some point other than itself.
+Using lemma 1.38, we can see then that every $V_\epsilon (s)$ will contain some $a$ such that $s - \epsilon < a$.
+Hence, \textbf{we can think of the supremum as a limit point}.
 \\
 
 \textbf{(b)} Can an open set contain its supremum?
 \\
+
+This is a great exercise because it gives us the opportunity to go from hypothesis to proof.
+Based on what we know about supremums, it would be reasonable to doubt that an open set will contain its supremum.
+So let's try and prove that directly.
+
+If $A$ is an open set, then it means that every $a \in A$ has a $V_\epsilon (a)$ such that $V_{\epsilon} (a) \subseteq A$.
+That is, there is at least one $\epsilon$-neighboorhod for every element of $A$ that is equal to or a subset of $A$.
+Which means that at least one $\epsilon$-neighboorhod contains to elements external to $A$.
+This means that if we wanted to show that $s \not\in A$ then we would need to show that every $V_\epsilon (s)$
+contains elements that are outside of $A$.
+To see this, remember that $s$ is the least upper bound, so any $s+\epsilon$ will be an upper bound but it will be
+outside the range of $A$.
+If $s+\epsilon \in A$, then it would mean that $s \neq \sup A$.
+\\~\\
+
+
 
 
 \textbf{3.2.5}
@@ -307,16 +333,25 @@ $\exists N\in\mathbb{N}$ such that whenever $m,n \geq N$ $|a_n - a_m| < \epsilon
 And we also know that every convergent sequence is also a Cauchy sequence.
 \\
 
-For any $m,n \geq N$, $|f_n - f_m| < \epsilon$ for any $\epsilon$.
-From this part of the definition of Cauchy sequences we can start forming $\epsilon$-neighboorhods
-around any $f_i \in F$, $i \geq N$.
-And because Cauchy sequences converge, $(f_n) \rightarrow x$, then our $\epsilon$-beighborhoods
-will all contain elements of $F$, and we can change $m,n$ so as to have $f_n \neq x$.
-Thus all of the limit poins will be contained in our set $F$.
+Let's assume that every Cauchy sequence we know is contained in $F$ and their limits are too contained in $F$.
+Since Cauchy sequences are convergent sequences, then it means that all the limit points we can find
+will be contained in $F$, thus meeting the defintion of a closed set.
 \\
 
-To do the proof in the other direction, assume that every Cauchy sequence we can find has a limit
-contained in $F$.
-Because Cauchy sequences converge, then we have $|f_n - x| < \epsilon$ - elements of $F$
-that are within $\epsilon$-neighborhoods that intersect other members of $F$ since $|f_n - f_m|<\epsilon$.
+The above argument was the proof for the backwards direction, now let's go forward.
+Assume that $F$ is closed.
+Since $F$ is closed, then it must contain all of its limit points.
+Since every limit point, $l$, is the limit of some sequence contained in $F$, then it means that we have
+$\lim (f_n) = l$.
+And since every convergent sequence is a cauchy seuqnece, then we can state our theorem.
 \\~\\
+
+
+
+\textbf{Exercise 3.2.12}
+\\
+
+Let $A$ be an uncountable set and let $B$ be the set of real numbers that divides $A$ into two uncountable sets;
+that is, $s \in B$ if both $\{ x : x \in A, \quad x < s \}$ and $\{ x : x \in A, \quad x > s\}$ are uncountable.
+Show that $B$ is nonempty and open.
+\\
