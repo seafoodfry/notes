@@ -352,6 +352,85 @@ And since every convergent sequence is a cauchy seuqnece, then we can state our 
 \\
 
 Let $A$ be an uncountable set and let $B$ be the set of real numbers that divides $A$ into two uncountable sets;
-that is, $s \in B$ if both $\{ x : x \in A, \quad x < s \}$ and $\{ x : x \in A, \quad x > s\}$ are uncountable.
+that is, $s \in B$ if both $\{ x : x \in A, x < s \}$ and $\{ x : x \in A, x > s\}$ are uncountable.
 Show that $B$ is nonempty and open.
 \\
+
+We are asked for a couple things right from the begining.
+First, $A \not\sim \mathbb{N}$ and $B \subseteq \mathbb{R}$.
+Furthermore, $B \neq \emptyset$ and is open.
+Remainder, $B$ being open means that for every $s\in B$, $B \subseteq \mathbb{R}$ (we got that)
+and $V_\epsilon (s) \subseteq B$ for some $\epsilon >0$.
+So for $B$ to be open it must be a subset of the reals and every single one of its members must have
+an $\epsilon$-neighboorhod completely contained within $B$.
+Yet another way of saying this is that $\forall s \in B$, $(s-\epsilon, s+\epsilon) \in B$, for some $\epsilon >0$.
+(Finding a single $s\in B$ whose $V_{\epsilon} (s)$ was not contained in $B$ would also serve our purposes in someway.)
+\\
+
+Before we go and dive into what we think are solutions, there is another very important thing to mention.
+Notice how the problem satets "let $B$ be the set of real numbers that divides $A$ into two uncountable sets".
+In a way this means that $B$ is sort of like a function - we don't chose it, instead we feed it some uncountable $A$
+and out comes a $B$ that divides the $A$ into two uncountable sets.
+\\
+
+One argument that can eb made is as follows: let's call $C_1 = \{ x : x \in A, x < s \}$
+and $C_2 = \{ x : x \in A,  s < x \}$.
+To show that $B \neq \emptyset$, consider $x \in C_1$ and $y\in C_2$. Since $C_1$ and $C_2$
+are uncountable, then there are nonempty and thus $(x+2)/2 \in B$.
+
+Now to show that $B$ is open consider $(-\infty, s)$ and $(s, \infty)$ when $s\in B$.
+We know there must exist an $x \in (-\infty , s)$ and a $y \in (s, \infty)$.
+So we can form an open interval $(x,y)$.
+Since $A$, $C_1$, and $C_2$ are uncountable, we can have an inifity of such intervals.
+If we look at the midpoints between any $x$ and any $y$, then we will be able to obtain some $s \in B$.
+From these we can form our open interval as $(s-\epsilon , s+\epsilon) \in B$.
+To make the last connection revisit example 3.2.2 (ii).
+\\
+
+There are also some great answers in the internet that merit discussion.
+Let's take a look at
+\href{https://math.stackexchange.com/questions/3042397/show-a-set-is-nonempty-and-open}{Show a set is nonempty and open}.
+There is a particular argument made there that pretty much goes as follows: if $B$ is not open, then
+$\forall \epsilon >0$, there would exists an $x_\epsilon \in (x-\epsilon , x+\epsilon)$ such that
+either $(-\infty , x_\epsilon) \cap A$ or $(x_\epsilon , \infty) \cap A$ is countable.
+
+The thing that makes this worth mentioning is that it serves as remmainder that is not necessarily the case that if
+a set is not open then it is close.
+As some of the previous exercsies showed us, sets can be neither open nor close when they contain "holes".
+
+As for the rest of the argument made in the above matheschange link, along with
+\href{https://math.stackexchange.com/questions/1800147/a-is-uncountable-and-b-divides-a-in-two-uncountable-sets-show-that-b-is}{$A$
+is uncountable and $B$ divides $A$ in two uncountable sets. Show that $B$ is nonempty and open}
+and
+\href{https://math.stackexchange.com/questions/4071927/show-that-an-uncountable-set-can-be-separated-into-two-disjoint-uncountable-subs}{
+    Show that an uncountable set can be separated into two disjoint uncountable subsets}
+relie on the following principles.
+
+Consider, $B_1 = \{ x\in\mathbb{R} : (-\infty,x) \cup A \text{ is uncountable} \}$.
+The way to read this is that $B_1$ is the set of $x$s such that an interval $(-\infty,x)$ overlaps with $A$ resulting in an uncountable set of numbers within their overlap.
+For example, if $A = [0,1]$, then $x$ could be 1, but it could also be 2, 3, etc., $(-\infty,1), (-\infty, 2), (-\infty,3)$ all result
+in an uncoutable set when we look at their interception with $A$.
+Also, because it is the case that for any $y$ that is $y > x$ for any $x \in B_1$, then $B_1$ is \textbf{upward closed} ($(-\infty,x)$ is the upper set).
+
+Following the same line of arguments, $B_2 = \{ x\in\mathbb{R} : (x,\infty) \cup A \text{ is uncountable} \}$
+corresponds to a \textbf{downward closed set} where for any $x\in B_2$ if $x > y$ for some $y\in\mathbb{R}$, then
+$y \in B_2$.
+
+The rest of the argument relies on something we proved back in \ref{abbott:1.5.3}, which is that the union
+of countable sets is a countable set.
+Which should point us to a proof by contradiction since we have been talking about uncountable sets.
+The thing to note is that since $B_1$ is upward close, then for any $x\in B_1$, $x+\epsilon \in B_1$,
+so we only need to make an argument for $x-\epsilon \in B_1$.
+And the proof by contradiciton goes as follows: if it is not the case that $x-\epsilon \in B_1$ for some $\epsilon > 0$,
+then $(-\infty, x-1/n) \cup A$ must be countable for all $n\in\mathbb{N}$
+(if not open, then there is a whole, and the whole is because we have some countable amount of elements between $x-1/n$ and $x$).
+
+This in turn means that
+$$
+\bigcup_{n\in\mathbb{N}} \left(-\infty,x-\frac{1}{n}\right) \cup A = (-\infty,x) \cup A
+$$
+is countable, and we land in a contradiciton.
+
+Last things to mention are that $B_1 = (-\infty, b_1)$, where $b_1$ is either $\inf B_1$ or $-\infty$.
+Similarly, $B_2$ is $(b_2, \infty)$, with $b_2$ either $\sup B_2$ or $\infty$.
+Therefore $B_1 \cup B_2 = \mathbb{R}$, $b_1 > b_2$, and $B = B_1 \cap B_2 \neq \emptyset$.
