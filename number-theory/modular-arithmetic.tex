@@ -31,8 +31,8 @@ Thus, the number of integers divisible by $d$, not exceeding $n$, is $\lfloor n 
 \subsubsection{Properties of Divisibility of Integers}
 
 \begin{enumerate}
-    \item If $a|b$ and $a|c$, then $a|(b+c)$.
-    \item If $a|b$, then $a|bc$ for all $c\in\mathbb{Z}$.
+    \item If $a|b$ and $a|c$, then $a|(b+c)$ and $a|(b-c)$. \label{divisibility:p1}
+    \item If $a|b$, then $a|bc$ for all $c\in\mathbb{Z}$. \label{divisibility:p2}
     \item If $a|b$ and $b|c$, then $a|c$ (transitivity).
 \end{enumerate}
 
@@ -42,6 +42,7 @@ $a|c$ means that $c=at$,
 and $b+c = a(s+t)$.
 Hence $a|(b+c)$.
 (Closure under addition of integers.)
+Since the integers form a ring, $b-c = a(s-t)$, where $s-t \in \mathbb{Z}$.
 
 To prove the second statement, use the fact that $a|b$ means $b = as$, so $b\times c = as \times c$.
 (Closure under multiplication of integers.)
@@ -299,3 +300,20 @@ From here we can also see that $ab = gcd(a,b) = lcm(a,b)$.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{The Euclidean Algorithm}
+
+Let's look for more efficient ways to find a greatest commmon divisor.
+Let's say that we have an $a,b,d \in \mathbb{Z}$ and we want to find $d = \gcd(a,b)$.
+
+So we first divide $a$ by $b$
+$$
+a = b\cdot q + r
+$$
+
+Note that if we rewrite the above a tad, we get $r = a - bq$.
+By property (\ref{divisibility:p2}), if $d|b$, then $d|bq$.
+Now the remainder is the difference of two integers whose divisor is $d$, this should make you think about
+propoerty (\ref{divisibility:p1}) which says that if $d | (a - bq)$.
+In other words, \textbf{the $d$ is also a divisor of the remainder $r$}.
+
+\textbf{Note:} there is a very good argument describing this in chapter 3, section 7, starting on page 160 of
+Data Structures with C++ using STL second edition by William Ford and William Topp.
