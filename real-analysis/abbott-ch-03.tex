@@ -37,12 +37,12 @@ Putting these together $V_{\epsilon}(a) \subseteq O_{\lambda^\prime} \subseteq O
 \\
 
 \textbf{Definition 3.2.4}
-By now, we've seen that $\epsilon$-neighboorhods are equivalent to open balls,
+By now, we've seen that $\epsilon$-neighborhoods are equivalent to open balls,
 $$
 V_{\epsilon} (a) \sim B(r=\epsilon, a) \sim \{ \mathbf{x}\in\mathbb{R}^n : |\mathbf{x} - \mathbf{a}| < r(=\epsilon) \}
 $$
-The neighboorhod part comes from $x\in S^{int} = \{ \mathbf{x}\in S : B(r,\mathbf{x}) \in S \text{ for some } r>0 \}$.
-Which is a math way of saying that a neighboorhod consist of all points close to our center who are
+The neighborhood part comes from $x\in S^{int} = \{ \mathbf{x}\in S : B(r,\mathbf{x}) \in S \text{ for some } r>0 \}$.
+Which is a math way of saying that a neighborhood consist of all points close to our center who are
 still members of the set in question.
 \\
 
@@ -59,7 +59,7 @@ However, instead of following this route, Abbott goes onto to construct closed i
 with limit points which instead of relying on geometry, relies on our knowledge of series.
 
 The definition of a limit point is literally the defintion of the limit of a sequence in terms of
-$\epsilon$-neighboorhods as $\lim (a_n) = x \rightarrow |a_n - x| < \epsilon$.
+$\epsilon$-neighborhoods as $\lim (a_n) = x \rightarrow |a_n - x| < \epsilon$.
 \\~\\
 
 
@@ -94,10 +94,10 @@ The only number we can put in between that interval, following our requirements,
 
 \textbf{Theorem 3.2.13}
 In the first part of the proof, we want to prove that $O^c$ contains all of its limit points.
-Containing all of its limits points means that every $\epsilon$-neighboorhod of any limit point would
+Containing all of its limits points means that every $\epsilon$-neighborhood of any limit point would
 contain other points in $O^c$.
 That is why if $x\in O$ would lead to a contradiction: if a single $x \notin O^c$, then at least one of its
-$V_\epsilon (x) \subseteq O$ ($O$ and $O^c$ have no members in commmon, so if an $\epsilon$-neighboorhod is contained
+$V_\epsilon (x) \subseteq O$ ($O$ and $O^c$ have no members in commmon, so if an $\epsilon$-neighborhood is contained
 in one then it cannot contain points in the other.)
 
 When reading the converse statement, again, keep in mind that the concept of limit points is to look for
@@ -168,18 +168,18 @@ Let's do a bit more work for $C$, just because.
 We can see that a limit point for $C$ is 1 because the even terms grow as $(\frac{n}{n+1})$.
 The difference between consecutive even terms is
 $\left|\frac{n}{n+1} - \frac{n+2}{n+3}\right| = \left|\frac{3(n+3) - (n+1(n+2))}{(n+1)(n+3)}\right| = \left|\frac{-2}{(n+1)(n+3)}\right| = \frac{2}{(n+1)(n+3)}$.
-We want to use this data to verify that every $\epsilon$-neighboorhod of a limit point does indeed intercept our set $C$
+We want to use this data to verify that every $\epsilon$-neighborhood of a limit point does indeed intercept our set $C$
 at some point other than the limit point we are looking at.
 Which means that we want to see $V_{\epsilon} (1) \cap C \neq \emptyset$ and $V_{\epsilon} (1) \cap C \neq 1$.
 We can see $V_{\epsilon} (1) \cap C \neq \emptyset$ right away since $\frac{n}{n+1} \neq 1$ ever.
 Leaving us with the task of verifying that $\{ x\in\mathbb{R} : |x-1| < \epsilon \} \cap C \neq \emptyset$ for all $\epsilon > 0$.
 The previous expression can in turn be simplified to $\{ c_n\in C : |c_n - 1| < \epsilon \}$
 \textbf{which just magically became a restatement of the criteria for the convergence of a series!} -
-think about it, we want to find values in our neighboorhod that intercept with $C$, so instead of searching through all of $\mathbb{R}$
+think about it, we want to find values in our neighborhood that intercept with $C$, so instead of searching through all of $\mathbb{R}$
 we could search through $C$.
 This onw reduces to $\left| \frac{n}{n+1} - 1 \right| = \frac{1}{n+1} < \epsilon$.
 Since $ \frac{1}{n+1} > \frac{2}{(n+1)(n+3)}$, the distance between two terms in the series, we should be able to
-find elements of $C$ within our $\epsilon$-neighboorhods.
+find elements of $C$ within our $\epsilon$-neighborhoods.
 
 Note that in all of these cases we could readily evaluate the limits to get the limit points because the limit points
 are not actually memebers of the sets.
@@ -195,7 +195,7 @@ so there is not an $V_{\epsilon} (a) \subseteq A$ (tere isn't a neighborhood tha
 
 Similarly, $B$ is not closed, because it doesn't not contain its limit points, and also not open
 because every $V_\epsilon (b), b\in B$ is not completely contained within $B$
-(continuous $\epsilon$-neighboorhods are not a subset of $B$).
+(continuous $\epsilon$-neighborhoods are not a subset of $B$).
 
 Same story for $C$.
 \\
@@ -233,11 +233,11 @@ If a set is not closed, find a limit point that is not contained in the set.
 
 Abbott already shared with us that all the reals are the limit points for $\mathbb{Q}$.
 So $\mathbb{Q}$ is not closed.
-But we also already noted in the previous exercise that continuous $\epsilon$-neighboorhods are not contained in
-$\mathbb{Q}$ - for all elements in $\mathbb{Q}$, it is not the case that there is an $\epsilon$-neighboorhod
+But we also already noted in the previous exercise that continuous $\epsilon$-neighborhoods are not contained in
+$\mathbb{Q}$ - for all elements in $\mathbb{Q}$, it is not the case that there is an $\epsilon$-neighborhood
 that is contained within $\mathbb{Q}$, $V_\epsilon (q) \not\subseteq \mathbb{Q}$.
 
-Another way of putting it: $\mathbb{Q}$ is not is not open because irrationals in the $\epsilon$-neighboorhods
+Another way of putting it: $\mathbb{Q}$ is not is not open because irrationals in the $\epsilon$-neighborhoods
 are not part of $\mathbb{Q}$. And $\mathbb{Q}$ is not closed because it contains irrational limit points.
 \\
 
@@ -248,13 +248,13 @@ It is not open by the same logic as above.
 $\mathbb{N}$ has no limit points, but it is considered closed.
 
 Think about the two definitions for limit points that we have: there is no sequence contained within $\mathbb{N}$
-with a limit and also, it is not the case that every $\epsilon$-neighboorhod intercepts $\mathbb{N}$.
+with a limit and also, it is not the case that every $\epsilon$-neighborhood intercepts $\mathbb{N}$.
 \\
 
 \textbf{(c)} $\{ x\in\mathbb{R} : x \neq 0 \}$
 \\
 
-$\mathbb{R} \setminus \{0\}$ is open because every element has an $\epsilon$-neighboorhod that intercepts
+$\mathbb{R} \setminus \{0\}$ is open because every element has an $\epsilon$-neighborhood that intercepts
 $\mathbb{R} \setminus \{0\}$ at a point other than itself.
 It is not closed because 0 is a limit point but it is not included - for example, $1/n \rightarrow 0$.
 \\
@@ -276,7 +276,8 @@ It is not open for the same reasons  as above.
 
 
 
-
+\phantomsection
+\label{abbott:3.2.4}
 \textbf{3.2.4}
 \\
 
@@ -296,7 +297,7 @@ then $s = \sup A$ if and only if, \textbf{for every} choice of $\epsilon > 0$,
 there exists an element $a \in A$ satisfying $s - \epsilon < a$.
 
 Now, if you remember the definition of a limit point, it states that a limit point is a limit point
-if every $\epsilon$-neighboorhod of a limit point intercepts the set $A$ at some point other than itself.
+if every $\epsilon$-neighborhood of a limit point intercepts the set $A$ at some point other than itself.
 Using lemma 1.38, we can see then that every $V_\epsilon (s)$ will contain some $a$ such that $s - \epsilon < a$.
 Hence, \textbf{we can think of the supremum as a limit point}.
 \\
@@ -309,8 +310,8 @@ Based on what we know about supremums, it would be reasonable to doubt that an o
 So let's try and prove that directly.
 
 If $A$ is an open set, then it means that every $a \in A$ has a $V_\epsilon (a)$ such that $V_{\epsilon} (a) \subseteq A$.
-That is, there is at least one $\epsilon$-neighboorhod for every element of $A$ that is equal to or a subset of $A$.
-Which means that at least one $\epsilon$-neighboorhod contains to elements external to $A$.
+That is, there is at least one $\epsilon$-neighborhood for every element of $A$ that is equal to or a subset of $A$.
+Which means that at least one $\epsilon$-neighborhood contains to elements external to $A$.
 This means that if we wanted to show that $s \not\in A$ then we would need to show that every $V_\epsilon (s)$
 contains elements that are outside of $A$.
 To see this, remember that $s$ is the least upper bound, so any $s+\epsilon$ will be an upper bound but it will be
@@ -362,7 +363,7 @@ Furthermore, $B \neq \emptyset$ and is open.
 Remainder, $B$ being open means that for every $s\in B$, $B \subseteq \mathbb{R}$ (we got that)
 and $V_\epsilon (s) \subseteq B$ for some $\epsilon >0$.
 So for $B$ to be open it must be a subset of the reals and every single one of its members must have
-an $\epsilon$-neighboorhod completely contained within $B$.
+an $\epsilon$-neighborhood completely contained within $B$.
 Yet another way of saying this is that $\forall s \in B$, $(s-\epsilon, s+\epsilon) \in B$, for some $\epsilon >0$.
 (Finding a single $s\in B$ whose $V_{\epsilon} (s)$ was not contained in $B$ would also serve our purposes in someway.)
 \\
@@ -434,3 +435,72 @@ is countable, and we land in a contradiciton.
 Last things to mention are that $B_1 = (-\infty, b_1)$, where $b_1$ is either $\inf B_1$ or $-\infty$.
 Similarly, $B_2$ is $(b_2, \infty)$, with $b_2$ either $\sup B_2$ or $\infty$.
 Therefore $B_1 \cup B_2 = \mathbb{R}$, $b_1 > b_2$, and $B = B_1 \cap B_2 \neq \emptyset$.
+\\~\\
+
+
+
+
+\textbf{3.2.13}
+\\
+
+Prove that the only sets that are both open and closed are $\mathbb{R}$ and $\emptyset$.
+\\
+
+The way to do these sorts of proves is to look for a contradiction, but before we tak that path,
+let's verify our conditions.
+Starting out simple, $\emptyset$. The $\emptyset$ is both open and close by matter of convention, notation,
+etc.
+
+Now $\mathbb{R}$. $\mathbb{R}$ is open because every element of the reals has an $\epsilon$-neighborhood
+that contains only reals.
+The reals are also closed because any limit point that it can have will be a real itself, so
+all limit points of $\mathbb{R}$ are members of $\mathbb{R}$.
+
+Now, let's fish for contraditions.
+One way is to use what we found in \ref{abbott:3.2.4}, that is: open sets cannot contain their supremum (or infinimum).
+So let's say there is some $A$ that is both open and closed but it is not $\mathbb{R}$ or $\emptyset$.
+If this is the case, then $A$ must be unbounded (it has no supremum or infinimum since it is open).
+And if $A$ has continuous [$\epsilon$-neighborhoods] elements, then it will be open.
+But since $A$ is closed, then it must also contain all of its limit points,
+So $A$ is a set that is unbounded, contains all of its limit points, and has continuous $\epsilon$-neighborhoods.
+The only set having that property are the reals.
+
+Another route of argument is to note that if $A$ is open and closed, then $A^c$ must also be open and closed.
+Furthermore, if we want $A^c \neq \emptyset$, and again we run into trouble because $A^c$ must also be unbounded
+but contain all of its limit points while not being equal to the reals.
+And also worth mentioning that the limit points don't have $\epsilon$-neighborhoods contained within $A$ or $A^c$ for that matter.
+\\~\\
+
+
+
+\textbf{3.2.14}
+\\
+
+A dual notion to the closure of a set is the interior of a set.
+The interior of $E$ is deonted $E^o$ and defined as
+$$
+E^o = \{ x\in E : \exists V_\epsilon (x) \subseteq E \}
+$$
+
+Results about closures and interiors posses a useful symmetry.
+\\
+
+(a) Show that $E$ is closed if and only if $\overline{E} = E$.
+Show that $E$ is open if and only if $E^o = E$.
+\\
+
+We know that $\overline{E} = E \cup L$, where $L$ is the set of limit points of $E$.
+If we have $\overline{E} = E \cup L = E$, then $L \subseteq E$ ($E$ must contain all of its limit points).
+Thus we agreement with out previous defintion of closed sets.
+
+Similarly, if $E^o = E$, then it means that every $x\in E$ has an $\epsilon$-neighborhood that is contained
+in $E$, again matching our definition.
+\\
+
+
+(b) Show that $\overline{E}^c = (E^c)^o$, and similarly that $(E^o)^c = \overline{E^c}$.
+\\
+
+$\overline{E}^c = (E \cup L)^c = E^c \cap L^c$
+
+$\overline{E^c} = E^c \cup L^c = (E \cap L)^c$

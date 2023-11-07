@@ -317,3 +317,17 @@ In other words, \textbf{the $d$ is also a divisor of the remainder $r$}.
 
 \textbf{Note:} there is a very good argument describing this in chapter 3, section 7, starting on page 160 of
 Data Structures with C++ using STL second edition by William Ford and William Topp.
+
+Now, let's say that we had another common divisor, this time let's call it $e$.
+If $e$ were a common divisor or $r$ and $b$, then $e$ would be a common divisor of $a$ as well
+- propoerty (\ref{divisibility:p1}) and $a = bq + r$ together.
+This means that $d = e$ or $\gcd(a,b) = \gcd(r,b)$.
+
+One thing to note here is that this process works great when $a > b$.
+In such a case, we keep replacing the largest of the two numbers by the remainder when dividing it by the other number.
+This process keeps going until we reach the operation $\gcd(s,0)$.
+In such a case, we are looking for an integer $x$, such that $0 = xt_1$ and $s = xt_2$.
+Since the division algorithm requires $x>0$, then $x=s$ is the largest number dividing $0$ and $s$.
+
+Finally, not that if $a=b$, then $\gcd(a,b) = \gcd(a,a) = \gcd(a,0) = a$, since the remainder of $a/a$ is zero.
+And if $a < b$, then the remainder $a\%b = a$, so we are back to the previous instance of $\gcd(a,b) = \gcd(a,a) = \gcd(a,0) = a$
