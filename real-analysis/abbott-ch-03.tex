@@ -501,6 +501,21 @@ in $E$, again matching our definition.
 (b) Show that $\overline{E}^c = (E^c)^o$, and similarly that $(E^o)^c = \overline{E^c}$.
 \\
 
-$\overline{E}^c = (E \cup L)^c = E^c \cap L^c$
+First, let's shake it and see what comes out
+$$
+\overline{E}^c = (\overline{E})^c = (E \cup L)^c = E^c \cap L^c
+$$
+If $E$ is closed, then $E=\overline{E}$, and $E^c = (E^c)^o$.
+So right away we can simplify $\overline{E}^c = (\overline{E})^c = E^c = (E^c)^o$.
 
-$\overline{E^c} = E^c \cup L^c = (E \cap L)^c$
+Now, if $E$ is open, then $E = E^o$, and $E^c = \overline{(E^c)}$.
+Doing the same sort of manipulation as above would actually give us the second equality we are looking to prove.
+So great, but let's try something else so we can prove this second case.
+If we look at $\overline{E}^c = (\overline{E})^c = (E \cup L)^c$, then we are looking into the universe of elements
+that do not belog to $E$ and are not limit points of $E$.
+Since these elements are do not intercept $E$, then they are contained within $E^c$.
+However, being contained within $E^c$ does not mean that there is an $V_\epsilon (x) \subseteq E^c$
+for every $x\in E^c$.
+This is only the case if $x\in (E^c)^o$, otherwise, there will be areas of $E$ where an $\epsilon$-neighboorhod
+will contain points outside of $E^c$.
+\\~\\
