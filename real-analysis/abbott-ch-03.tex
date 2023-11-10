@@ -519,3 +519,113 @@ for every $x\in E^c$.
 This is only the case if $x\in (E^c)^o$, otherwise, there will be areas of $E$ where an $\epsilon$-neighboorhod
 will contain points outside of $E^c$.
 \\~\\
+
+
+
+\textbf{3.2.15}
+\\
+
+A set $A$ is called an $F_\sigma$ set if it can be written as the countable union of closed sets.
+A set $B$ is called a $G_\delta$ set if it can be written as the countable intersection of open sets.
+\\
+
+This exercise is lovely, first, because we saw in \textbf{theorem 3.2.14 (i)} that the union of a
+finite collection of closed sets is closed.
+And then in \textbf{theorem 3.2.3 (ii)} that the intersection of a finite collection of open sets is open.
+
+Since a countable amount of sets can be either finite or inifinite, it must mean that we can form
+sets $F_\sigma$ and $G_\delta$ by looking at a countably inifite amount of sets in each case.
+Otherwise we would end with contradicitons.
+\\
+
+Some great pages to read are \href{https://en.wikipedia.org/wiki/F%CF%83_set}{wiki page on $F_\sigma$ sets}
+and \href{https://en.wikipedia.org/wiki/G%CE%B4_set}{wiki page on $G_\delta$ sets}.
+\\
+
+
+(a) Show that a closed interval $[a,b]$ is a $G_\delta$ set.
+\\
+
+The interesting bit here is that we have to figure out how to use the intersection of a countable amount
+of open sets to form a closed set.
+The countable amount must be infitine, as otherwise a finitie intersection of open sets results in an open set.
+
+With this countably infinite intersection of open sets, we must be able to create a set that contains all of its
+limit points.
+
+Approaching this problem "geometrically" helps a tad: open sets contain neighborhood that are completely contained within
+themselves but do not contain any of their limits.
+Requiring at least one $\epsilon$-neighborhood for each member of an open set to be contained within itself
+gives us a sense of "continuity" - a lack of "holes" - while a lack of limit points means that we can get close
+to them and as the intersection of open sets looks for an inifite amount of open sets, for the limit points should
+show uo themselves as the limit of an inifite number of open sets.
+
+In short, something like
+$$
+\bigcap_{n\in\mathbb{N}} \left( a-\frac{1}{n}, b+\frac{1}{n} \right)
+$$
+Could just be the trick we need since each individual set is open but as $n\rightarrow\infty$,
+then $1/n \rightarrow 0$, so the endpoints of the open intervals get closer and closer to $a$ and $b$
+and they always contain $a$ and $b$.
+\\~\\
+
+
+(b) Show that the half-open interval $(a,b]$ is both a $G_\delta$ and an $F_\sigma$ set.
+\\
+
+Similar logic as above, we could have the $G_\delta$ set
+$$
+\bigcap_{n\in\mathbb{N}} \left( a, b+\frac{1}{n} \right)
+$$
+or the $F_\sigma$ set
+$$
+\bigcup_{n\in\mathbb{N}} \left[ a+\frac{1}{n}, b \right]
+$$
+For the case of the $F_\sigma$ set, note how we look at $a + \frac{1}{n}$, so in this case we are always
+using an endpoint to the right of $a$, so the lower bound never contains $a$ but it approaches it as $n\rightarrow\infty$.
+\\~\\
+
+
+(c) Show that $\mathbb{Q}$ is an $F_\sigma$ set, and the set of irrationals $\mathbb{I}$ forms a $G_\delta$ set.
+(We will see in section 3.5 that $\mathbb{Q}$ is not a $G_\delta$ set, nor $\mathbb{I}$ is an $F_\sigma$ set.)
+\\
+
+Since $\mathbb{Q}$ is countable, then $\cup_{q\in\mathbb{Q}} \{q\} = \mathbb{Q}$.
+
+To see that the irrationals form a $G_\delta$ set, let's take the compliment of the above,
+$$
+\mathbb{I} = \mathbb{Q}^c = \left( \cup_{q\in\mathbb{Q}} \{q\}  \right) = \cap_{q\in\mathbb{Q}} \{q\}^c
+$$
+
+To finish the argument quickly, note that since $\{q\}$ is closed, then $\{q\}^c$ must be open.
+
+Now, to carry the conversation into a future topic, see
+\begin{enumerate}
+    \item \href{https://math.stackexchange.com/questions/1459067/are-singletons-always-closed}{are singletons always closed?}
+    \item \href{https://math.stackexchange.com/questions/17649/are-singleton-sets-in-mathbbr-both-closed-and-open}{Are Singleton sets in R both closed and open?}
+\end{enumerate}
+
+The general argument for why a singleton is closed in the topology of $\mathbb{R}$ is quite interesting.
+To show that $\{x\}$ is closed, you want to argue that $\mathbb{R}\setminus\{x\}$, its complement, is open.
+Again, in an open set, every member has an $\epsilon$-neighborhood contained within their set.
+So we want to see that for any $a\in\mathbb{R}\setminus\{x\}$, $V_\epsilon (a) \subseteq \mathbb{R}\setminus\{x\}$.
+
+If we look at the $V_\epsilon (a)$ where $\epsilon = |a - x|$, then we are looking at the open interval
+$(a-\epsilon, a+\epsilon)$.
+Since $\epsilon$ is the distance from $a$ to $x$, then $a \pm \epsilon$ puts us right on-top of $x$,
+but since an $\epsilon$-neighborhood is an open interval, then $x \not\in (a-\epsilon, a+\epsilon)$,
+meaning that $V_\epsilon (a) \subseteq \mathbb{R}\setminus\{x\}$.
+Hence $\mathbb{R}\setminus\{x\}$ is open.
+
+The logic to the above argument is similar to Example 3.2.2 (ii).
+\\~\\
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Compact Sets}
+
