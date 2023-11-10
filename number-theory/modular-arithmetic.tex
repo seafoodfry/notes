@@ -331,3 +331,35 @@ Since the division algorithm requires $x>0$, then $x=s$ is the largest number di
 
 Finally, not that if $a=b$, then $\gcd(a,b) = \gcd(a,a) = \gcd(a,0) = a$, since the remainder of $a/a$ is zero.
 And if $a < b$, then the remainder $a\%b = a$, so we are back to the previous instance of $\gcd(a,b) = \gcd(a,a) = \gcd(a,0) = a$
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\paragraph{Runtime of the Euclidean Algorithm}
+
+The following is an addendum to a discussion in Section 1.2 "Divisibility and Greatest Common Divisors"
+presented in "An introduction to mathematical Cryptography".
+
+The claim presented is that the runtime of the Euclidean algorithm is $\log_2 (b) + b$, where $b$ is the smaller of the
+two integers in $\gcd(a,b)$.
+
+We know that the $r_i$ values are nondecreasing since the division algorithm guarantees us that
+$0 \leq r_{i+1} < r_i$.
+Then the claim we investigate is that after two iterations, the value of $r_i$ is at least cut in half:
+$r_{i+2} \leq \frac{1}{2}r_i$.
+
+Since our claim is about what happens every two iterations, we still want to investigate what happens every iteration,
+which leaves us with the two cases of $r_{i+1} \leq \frac{1}{2}r_i$ and $r_{i+1} > \frac{1}{2}r_i$.
+Both cases possible since we only have a guarantee that $0 \leq r_{i+1} < r_i$.
+\\
+
+For the case of $r_{i+1} \leq \frac{1}{2}r_i$, we would have $0 \leq r_{i+1} \leq \frac{1}{2}r_i < r_i$, based on the
+division algorithmn and this specific case we are exploring.
+Then on the next iteration, we would have $0 \leq r_{i+2} < r_{i+1}$, and when we our case we get
+$0 \leq r_{i+2} \leq \frac{1}{2}r_{i+1} < r_{i+1} \leq \frac{1}{2}r_i < r_1$.
+Which simplifies to what the book says, $0 \leq r_{i+2} < r_{i+1} \leq \frac{1}{2}r_i$.
+\\
+
+The argument for the second case is misleadingly clever.
+Since $r_{i+1} > \frac{1}{2}r_i$, then we can only divide $r_i$ by $r_{i+1}$ no more than once,
+that is, the quotien in $r_i = r_{i+1}\cdot q + r_{i+2}$ must be 2, otherwise $r_{i+2} > r_{i+2}$,
+contradicting the division algorithm's promise that $0 \leq r_{i+1} < r_i$.
