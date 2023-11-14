@@ -9,8 +9,10 @@ Rosen's "Discrete Mathematics and its Applications"'s chapter 4 along with Galli
 Abstract Algebra" chapter 0 make great references for this material.
 \\
 
-An $a \neq 0 \in \mathbb{Z}$ is called a \textbf{divisor}
-of a $b \in \mathbb{Z}$
+If $a,b \in \mathbb{Z}$,
+and $a \neq 0$,
+then $a$ is called a \textbf{divisor}
+of a $b$
 if there is a $c\in\mathbb{Z}$, such that $b = ac$.
 We write $a|b$, "a divides b". We also commonly say that "b is a multiple of a".
 
@@ -79,6 +81,9 @@ Note how we are multiplying $3\cdot -4$. This is so that our remainder, $r$, met
 of $0 \leq r < b$.
 \\~\\
 
+
+\phantomsection
+\label{mod-arithmetic:gallian-division-proof}
 In Gallian's "Contemporary Abstract Algebra", the division algorithm is stated as follows:
 let $a$ and $b$ be integers with $b>0$.
 Then there exists unique integers $q$ and $r$ with the propperty that
@@ -363,3 +368,45 @@ The argument for the second case is misleadingly clever.
 Since $r_{i+1} > \frac{1}{2}r_i$, then we can only divide $r_i$ by $r_{i+1}$ no more than once,
 that is, the quotien in $r_i = r_{i+1}\cdot q + r_{i+2}$ must be 2, otherwise $r_{i+2} > r_{i+2}$,
 contradicting the division algorithm's promise that $0 \leq r_{i+1} < r_i$.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{GDC is a Linear Combination}
+
+\textbf{Theorem}
+For any non-zero integers $a$ and $b$,
+there exist integers $s$ and $t$ such that
+$gcd(a,b) = as + bt$.
+Moreover, $gcd(a,b)$ is the smallest positive integer of the form $as + bt$.
+
+We will look at a proof that is also from Gallian and follows the mecganics of \ref{mod-arithmetic:gallian-division-proof}.
+The overall layout of the proof is to build a set whose members have the properties of the numbers we are looking for.
+Then we explore if the set is empty (the existence part of the proof) and explore different characteristics
+the members would have if we tune different parameters.
+\\
+
+Consider $S = \{ am + bn : m,n\in\mathbb{Z}, am + bn > 0 \}$.
+To simplify our thinking process, remember that if some combination of $m$ and $n$ resulted in $am + bn < 0$, then
+we can simply swap $m$ by $-m$ or $n$ by $-n$.
+From there, it is a reasonable assumption that our set is non-empty since we can think of hundreds of cases in which
+we can make linear combinations that result in positive integers.
+
+Because we have a nonempty set of positive integers, we can call for the \textbf{well ordering principle} to give us
+assurance that $S$ has a smallest member.
+Let's call the smallest member $d = as + bt$.
+\textbf{Our claim now is that $d = gcd(a,b)$}.
+
+Now w test our claim: if $d = gcd(a,b)$, then $d|a$ so $a = dq + r$, where $0 \leq r < d$.
+If $r > 0$, then $r = a - dq = a - q(as + bt) = a - asq - btq = a(1 - sq) - bt$.
+Since $r>0$, then $a(1 - sq) - bt \in S$.
+And since $r < d$, then we found a member that is smaller than $d$, so we reached a contradiction, $r = 0$,
+in order for us to not spin our wheels ($d$ must be a divisor of $a$).
+
+By symmetry, $d|b$ as well.
+
+By now we have proved that $d$ is a divisor of $a$ and $b$ and that it can be expressed as $d = as + bt$.
+All that's left is to make an argument for $d$ being the greatest common divisor.
+
+If $e$ were another common divisor, such that $a = eh$ and $b = ek$, then $d = as + bt = (eh)s + (ek)t = e(hs + kt)$.
+Since we are dealing with integers here, $d$ is greater than $e$.
