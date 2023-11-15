@@ -776,11 +776,64 @@ Decide if the following sets are compact, closed, both, or neither.
 (a) $K \cap F$
 \\
 
+As per theorem 3.2.14 (i), the union of a finite collection collection of closed sets is closed.
+So this union is closed.
+Since $K$ is bounded, then the intersection of the two sets will also be bounded.
+Thus the intersection is compact.
+\\
+
 (b) $\overline{F^c \cup K^c}$
+\\
+
+$F^c$ is open, and $K^c$ is open and unbounded ($[0,1]^c = (-\infty,0) \cup (1, \infty)$).
+The union of an arbitrary collection of open sets is open.
+Here comes an interesting bit, the complement of a bounded set is an unbounded set but the complement of an
+unbounded set is not necessarily a bounded set (i.e., $(0,\infty)^c = (-\infty,0]$).
+So $F^c \cup K^c$ is open and could be bounded or unbounded.
+
+The closure then is the union of $F^c \cup K^c$ and its set of limit points.
+So the set is closed but not necessarily bounded.
 \\
 
 (c) $K\setminus F = \{ x \in K : x\not\in F \}$
 \\
 
+Since $K \setminus F = K \cap F^c$, we know right away that the resulting set is bounded.
+However, we have the intersection of a closed set and an open set so we need more information to give a defintie answer.
+Some examples, if $K = F = [0,1]$, then $K \setminus F$ is open. - we are taking away the limit points.
+If $K = [0,1]$ and $F^c = (2,3)$, then $K \setminus F$ is empty, so it is open and closed.
+\\
+
 (d) $\overline{K \cap F^c}$
+\\
+
+Borrowing from our previous answer, we have the intersection of a closed and bounded set with an open set.
+So the resulting set is bounded.
+We got this far last time, but this time we are looking at the closure of the same set, and since the closure of
+a set always results in a closed set, then we end up with something that is both bounded and closed, thus
+compact.
+\\~\\
+
+
+
+\textbf{3.3.7}
+\\
+
+As some more evidence of the surprising nature of Cantor set, follow these steps to show that the sum
+$C + C = \{ x+y : x,y\in C \}$
+is equal to the closed interval $[0,2]$.
+(Keep in mind that $C$ has zero length and contains no intervals.)
+
+Because $C \subseteq [0,1]$, $C + C \subseteq [0,2]$, so we only need to prove the reverse inclusion
+$[0,2] \subseteq C + C$.
+Thus, given $s \in  [0,2]$, we must find two elements $x,y \in C$ satisfying $x + y = s$.
+\\
+
+(a) Show that there exists $x_1, y_2 \in C_1$ for which $x_1 + y_1 = s$.
+Show in general that, for an arbitrary $n \in \mathbb{N}$, we can always find $x_n, y_n \in C_n$
+for which $x_n + y_n = s$.
+\\
+
+(b) Keeping in mind that the sequences $(x_n)$ and $(y_n)$ do not necessarily converge,
+show how they can nevertheless be used to produce the desired $x,y \in C$ satisfying $x + y = s$.
 \\
