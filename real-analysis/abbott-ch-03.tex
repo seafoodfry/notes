@@ -635,7 +635,6 @@ The logic to the above argument is similar to Example 3.2.2 (ii).
 \subsubsection{Exercises}
 
 
-
 \textbf{3.3.1}
 \\
 
@@ -652,6 +651,8 @@ So we can get arbitrarily close to the supremum $s$ and form a sequence such tha
 
 
 
+\phantomsection
+\label{abbott:3.3.2}
 \textbf{3.3.2}
 \\
 
@@ -871,8 +872,42 @@ So if we symbolically repeat the steps we performed in the base step, we get
 Note in particular the middle term that resulted in the interval $[2.4]$.
 If we were doing a simple $(x+y) + (x+y)$ then we just get $2x + 2y$.
 But in the case of $(x \cup y) + (x \cup y)$ it equals $(x+x) \cup (x+y) \cup (x+y) \cup (y+y) = (x+x) \cup (x+y) \cup (y+y)$.
+We made the previous reasoning by thinking about $a + (x \cup y)$ being equal to $a+x \cup a+y$ and generalizing from there.
+
+To complete the inductive step, generalize the above by changing $c_1$ to $C_n$ and $C_2$ to $C_{n+1}$.
 \\
 
 (b) Keeping in mind that the sequences $(x_n)$ and $(y_n)$ do not necessarily converge,
 show how they can nevertheless be used to produce the desired $x,y \in C$ satisfying $x + y = s$.
+\\
+
+$(x_n)$ and $(y_n)$ may not necessarily converge since the $x$s and $y$s are being picked from
+non-continuous intervals.
+
+Back in problem \ref{abbott:3.3.2}, we showed that the cantor set is compact,
+So every sequence in $C$ has a subsequence that converges to a limit that is also in $C$.
+So we can chose some $(x_{n_k})$ and some $(y_{n_k})$ such that they converge to $x$ and $y$
+respectively. Since $x$ and $y$ are contained in $C \subseteq C$, then $x + y = s \in [0,2]$.
+
+A similar line or argument can be made by noting that since $C$ is bounded, then $(x_n)$ and $(y_n)$ are bounded,
+and the Bolzano-Weierstrass theorem tells us that we can find a subsequence that does converge.
+From there, the same reasoning can be reused.
+\\~\\
+
+
+
+\textbf{3.3.8}
+\\
+
+Let $K$ and $L$ be nonempty compact sets, and define
+$$
+d = \inf\{ |x-y| : x\in K, y\in L \}
+$$
+This turns out to be a reasonable definition for the distance between $K$ and $L$.
+\\
+
+(a) If $K$ and $L$ are disjoint, show $d>0$ and that $d = |x_0 - y_0|$ for some $x_0 \in K$ and $y_0 \in L$.
+\\
+
+(b) Show that it's possible to have $d = 0$ if we assume only that the disjoint sets $K$ and $L$ are closed.
 \\
