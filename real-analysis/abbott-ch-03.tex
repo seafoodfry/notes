@@ -909,5 +909,55 @@ This turns out to be a reasonable definition for the distance between $K$ and $L
 (a) If $K$ and $L$ are disjoint, show $d>0$ and that $d = |x_0 - y_0|$ for some $x_0 \in K$ and $y_0 \in L$.
 \\
 
+We'll combine the answer to this with the answer to the next question.
+\\
+
 (b) Show that it's possible to have $d = 0$ if we assume only that the disjoint sets $K$ and $L$ are closed.
+\\
+
+These two questions are super interesting.
+Conventional experience would have us think that as long as two sets are disjoint, then $d > 0$
+since the two sets do not share any elements so $x\neq y$.
+However the second question gives us a hint: when the two sets are closed then somehow someway $d = 0$.
+Which makes us think that being able to have a zero "distance" is somehow possible due to the difference between
+a pair of sets that are closed and bounded and other pair that is just closed.
+
+Because we are comparing a pair that is closed and bounded with a pair of sets that is just closed,
+we may be thinking of the same boring old set of sets in which to be closed you must be bounded.
+However, if we think back to limit points, we can have a set that is closed if the set doesn't have any limit points
+(it doesn't have to contain its limit points if these don't exist).
+
+For example, if $K = {n : n\in\mathbb{N}}$ and $L = \{ n + \frac{1}{n} : n\in\mathbb{N} \}$, then neither set has
+limit points.
+And if there are no limit points then they can be considered as closed.
+
+However, if $K$ and $L$ are compact, then any sequence contained in them has a subsequence that converges
+to some limit that is also contained within them.
+From there, you can define $d = \lim_{n\rightarrow \infty} |x_n - y_n| = |x_0 - y_0|$.
+\\
+
+
+
+
+\textbf{3.3.9}
+\\
+
+Follow these steps to prove the final implication of theorem 3.3.8.
+
+Assume $K$ satisfies i) $K$ is compact and ii) $K$ is closed and bounded, and let
+$\{ O_\lambda : \lambda \in \Lambda \}$ be an open cover for $K$.
+For contradiciton, let's assume that no finite subcover exists.
+Let $I_0$ be a closed interval containing $K$.
+\\
+
+(a) Show that there exists a nested sequence of closed intervals $I_0 \supseteq I_1 \supseteq I_2 \supseteq \ldots$
+with the property that, for each $n$, $I_n \cap K$ cannot be finitely covered and $\lim |I_n| = 0$.
+\\
+
+(b) Argue that there exists an $x\in K$ such that $x \in I_n$ for all $n$.
+\\
+
+(c) Because $x\in K$, there must exists an open set $O_{\lambda_0}$ from the original collection that
+contains $x$ as an element.
+Explain how this leads to the desired contradiciton.
 \\
