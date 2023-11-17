@@ -954,10 +954,36 @@ Let $I_0$ be a closed interval containing $K$.
 with the property that, for each $n$, $I_n \cap K$ cannot be finitely covered and $\lim |I_n| = 0$.
 \\
 
+One way to do this is to follow the sort of thing we saw in Example 3.3.7, since we saw that by dividing an
+interval we could obtain subsets that had no open cover.
+So we can define $|I_n| = |I_0| / 2^{n-1}$ (we do $n-1$ so that $I_{n=1} = I_0$).
+
+Again, following the sort of reasoning we saw in example 3.3.7, we can see that these $I_n \cap K$ cannot be finitely
+covered and that $\lim I_n = \lim |I_0|/2^{n-1} = 0$.
+\\
+
 (b) Argue that there exists an $x\in K$ such that $x \in I_n$ for all $n$.
+\\
+
+The nested interval property tells us that there msut exist some $x \in I_n$ for all $n$.
+So we need to show that that $x$ is also in $K$.
+This additonal detail comes from looking at our previous answer: since $K$ is compact, then $I_n \cap K$
+will also be compact, and now we can use the nested compact set property which tells us that
+there is an $x \in I_n \cap K$ for all $n$, so $x\in K$ and $x\in I_n$.
 \\
 
 (c) Because $x\in K$, there must exists an open set $O_{\lambda_0}$ from the original collection that
 contains $x$ as an element.
 Explain how this leads to the desired contradiciton.
 \\
+
+We began this whole journey assuming that there was an open cover for $K$, so as there must be an
+$x \in I_n \cap K$, so too must there be an $x \in O_{\lambda_0}$.
+Now, since $\lim |I_n| = 0$, then we should be able to find some $I_{n_0} \subseteq O_{\lambda_0}$,
+that is an $I_{n_0}$ that fits in $O_{\lambda_0}$.
+Which finally leads us to a contradiction because we assumed that $I_n \cap K$ could not be finitely covered.
+\\~\\
+
+
+
+
