@@ -3,32 +3,56 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Linear Equations}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{Method of Integrating Factors}
+$$
+\frac{dy}{dt} = f(y,t)
+$$
 
+If $f$ is a linear function on $y$, the we have a first order linear differential equation.
 
+The simplest type first order linear equation is one in which the coefficients are constants.
+For example,
+$$
+\frac{dy}{dt} = -ay + b
+$$
+
+The above can be generalized into
+$$
+\frac{dy}{dt} + p(t) y = g(t)
+$$
+Where the coefficients are now functions of the independent variable.
+Furhtermore, the above can also be generalized as
 $$
 p(t) \frac{dy}{dx} + q(t)y = g(t)
 $$
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Method of Integrating Factors}
+
+Multiply the equation my the integrating factor and the equation is converted into one that can
+be integrated using the product rule for derivates.
+
 
 $$
 \frac{d}{dt} \left[ \mu(t)y \right] =
 \mu(t) \frac{dy}{dt} + y \frac{d\mu(t)}{dt} \sim p(t) \frac{dy}{dx} + q(t)y
 $$
 
-Another way of writing the above could be
+A common presentation for equations
+that can readily be solved by the method of integrating factors,
 $$
 \frac{dy}{dt} + cy = f(t)
 $$
-If $c$ is a coefficient, then great, but this is another common presentation for equations
-that canr eadily be solved by the method of integrating factors.
+Where $c$ is a constant.
 
 Also, make sure to remember to do the comparsion of $y \frac{d\mu(t)}{dt}$ properly.
-For example, using the last version we wrote, the integrating facotr would come from the comparison of
+For example, using the last version we wrote, the integrating factor would come from the comparison of
 $$
-y \frac{d\mu(t)}{dt} \sim cy\mu(t) \rightarrow \frac{d\mu(t)}{dt} \sim c\mu(t)
+y \frac{d\mu(t)}{dt} \sim y c\mu(t) \rightarrow \frac{d\mu(t)}{dt} \sim c\mu(t)
 $$
-That's why we get so many exponentials.
+
+This integrating factor also looks like an exponential after differentiation.
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Separable Equations}
