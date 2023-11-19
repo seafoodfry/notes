@@ -987,3 +987,77 @@ Which finally leads us to a contradiction because we assumed that $I_n \cap K$ c
 
 
 
+\textbf{3.3.10}
+\\
+
+Here is an alternate proof to the one from given in Exercise \textbf{3.3.9}
+for the final implication in the Heine-Borel theorem.
+
+Consider the special case where $K$ is a closed interval.
+Let $\{ O_\lambda : \lambda \in \Lambda \}$ be an open cover for $[a,b]$
+and define $S$ to be the set of all $x \in [a,b]$ such that
+$[a,x]$ has a finite subcover from $\{ O_\lambda : \lambda \in \Lambda \}$.
+\\
+
+
+We start with knowledge that $\{O_\lambda\}$ is an open cover for $[a,b]$.
+Meaning that $[a,b] \subseteq \bigcup_{\lambda \in \Lambda} Q_\lambda$.
+Remember that the union of an arbitrary number of open sets is itself an open set, so an open cover is itself open.
+Furthermore, every $O_\lambda$ is open, meaning that for every $a \in O_\lambda$, there exists
+and $V_\epsilon (a) = \{ x\in\mathbb{R} : |x-a| < \epsilon \} \subseteq O_\lambda$.
+
+Thus, since $x \in [a,b] \subseteq \bigcup_{\lambda} Q_\lambda$, then there exists
+$V_\epsilon (x) \subseteq \bigcup_{\lambda} Q_\lambda$ for all $x \in S$.
+\\
+
+
+(a) Argue that $S$ is nonempty and bounded, and thus $s = \sup S$ exist.
+\\
+$S$ is nonempty since $x=b$ has the entire cover and $x=a$ must have some cover $\{ O_\lambda \}$,
+as long as $a \ in \{O_\lambda \}$ for some $\lambda \in \Lambda$.
+
+Furthermore, $S$ is also bounded since our cover if for $[a,b]$ and $x \leq b$ for all $x \in S$.
+\\
+
+
+(b) Now show $s = b$, which implies $[a,b]$ has a finite subcover.
+\\
+
+Making an allusion to the definiton of the supremum: let's say that $s < b$, then because $[a,b]$ does
+have an open cover, then these should be some $s < y$ such that $[a,y]$ also has a cover, so $\sup S$ wouldn'T
+equal this value that is less than $y$, our first constradiction.
+
+And if we say that $s > b$, then we are demanding the existence of another neighboorhod that will cover
+the difference between $s$ and $b$, thus leading to another contradiciton.
+
+Since our cover includes the endpoints of our interval, we can mimick of construction of a finite subcover from
+back in example 3.3.7, one big open set that goes $(a-\epsilon , b+\epsilon)$.
+\\
+
+
+(c) Finally, prove the theorem for an arbitrary closed and bounded set $K$.
+\\
+
+The process we just argued is generalizable to any $a$ and $b$ for simple intervals.
+But if there were gaps, and we were looking at sets, then we would need to look at the infinimum and supremum
+of the set to build a finite open subcover.
+
+And if the set did not contain any limit points, that's where the last equivalence with the other definitions of
+compactness comes into play: we need the set to be bounded, otherwise we wouldn't be able to construct a finite subcover.
+Think back to Exercise \ref{abbott:3.2.3} and how $\mathbb{N}$ are a closed interval.
+Our construct only works if the supremum and infinimum exist.
+\\~\\
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Perfect Sets and Connected Sets}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Exercises}
