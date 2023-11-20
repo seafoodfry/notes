@@ -939,6 +939,8 @@ From there, you can define $d = \lim_{n\rightarrow \infty} |x_n - y_n| = |x_0 - 
 
 
 
+\phantomsection
+\label{abbott:3.3.9}
 \textbf{3.3.9}
 \\
 
@@ -1058,6 +1060,34 @@ Our construct only works if the supremum and infinimum exist.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Perfect Sets and Connected Sets}
 
+\textbf{Theorem 3.4.3} 
+
+A closed set must contain all of its limit points - if there are any.
+If we now think about the set's isolated points, then we have three possible cases
+\begin{enumerate}
+\item there are no isolated points - since we are assuming that the set is nonempty, this means
+    that only limit points exist in the set. This means that we can always construct a $(x_n)$
+    that converges to $x$ for any given $x$ but it is different from $x$.
+\item there is a finite number of isolated points.
+\item there is an infinite number of isolated points.
+\end{enumerate}
+
+A perfect set would be of the first kind.
+
+Now, let's think about the case in which the number of limit points is finite or infinite.
+For the finite case, let's think of a set such as $\{1, 2, 3\}$, hard to make an argument for
+any $(x_n) \rightarrow x$, no?.
+\\
+
+During the proof, note that the intervals $I_n$ that we are building are compact because they are closed
+and bounded.
+And because all compact sets contain sequences that converge to a member that is contained within their set,
+that is why we can expect there to be some $y_2$ for an $x_1$ within the interior of $I_1$, for example.
+\\
+
+Finally, note that the last bit of the argument, where we let $K_n = I_n \cap P$, that step is similar
+to what we did in exercise \ref{abbott:3.3.9}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Exercises}
+
