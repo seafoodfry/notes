@@ -1,0 +1,35 @@
+\section{The Hahn-Banach Theorems. Introduction to the Theory of Conjugate Convex Functions}
+
+
+\subsection{The Analytic Form of the Hahn-Banach Theorem: Extension of Linear Functions}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Maximal Elements and Duality}
+
+There is a small detour that we believe is an interesting conversation before diving into the
+Zorn lemma. (We are going to be copy-pasting a lot from wikipedia.)
+
+First, an \textbf{isomorphism} is defined as a "structure-preserving mapping between two structures
+of the same type that can be reversed by an inverse mapping."
+
+This matters because we want to discuss partially ordered sets (posets) and their dual or oppositve poset.
+As per the definition,
+a dual order $P^{op}$ is defined to be the same set, but with the inverse order,
+i.e. $x \leq y$ holds in $P^{op}$ if and only if $y \leq x$ holds in $P$.
+In a broader sense, two partially ordered sets are also said to be duals if they
+are dually isomorphic, i.e. if one poset is order isomorphic to the dual of the other.
+
+Whenever two posets are order isomorphic, they can be considered to be "essentially the same"
+in the sense that either of the orders can be obtained from the other just by renaming of elements.
+
+And again, we just wanted to have the above fresh in buffer because we actually want to talk about
+\textbf{manimal elements} and when exactly these are not the same as an upper bound.
+
+The wikipedia page has a great example using "containement" to define an order but the thing to
+keep in mind is that in a totally ordered set - what we are used to using - the maximum element
+mathces an upper bound but in a poset, there is only the idea of order when comparing any two elements.
+In a poset, you can only ever say that two elements are ordered in a very specific context, and that order
+doesn't extend to other elements.
+For example, if $a \leq b$, and $b \leq c$, in a poset, it does not mean that $a \leq c$.
+
+The minimal element is dually defined.
