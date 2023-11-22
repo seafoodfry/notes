@@ -1087,7 +1087,52 @@ that is why we can expect there to be some $y_2$ for an $x_1$ within the interio
 
 Finally, note that the last bit of the argument, where we let $K_n = I_n \cap P$, that step is similar
 to what we did in exercise \ref{abbott:3.3.9}.
+\\
+
+The last bit, the contradiction, is a contradiction because we began assuming that $P$ was countable,
+so every single $x_n$ should have been a member of $P$.
+But then the nested compact set property allowed us to produce an $x_n$ that was not within our list.
+\\
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Exercises}
 
+
+
+\textbf{3.4.6}
+\\
+
+A set $E \subseteq \mathbb{R}$ is connected if and only if,
+for all empty disjoint sets $A$ and $B$ satisfying $E = A \cup B$,
+there always exists a convergent sequence $(x_n) \rightarrow x$
+with $(x_n)$ contained in one of $A$ or $B$, and $x$ an element of the other.
+\\
+
+Let's try a proof by contradiciton.
+In order for $E$ to be connected, it needs to be able to be written as $A \cup B$ for any possible nonmepty pair of $A$ and $B$
+and we need a series $(x_n)$ that converges to $x$ but the elements in the series and the limit need to be in different sets.
+
+So let's assume without losing a sense of generality that both $(x_n)$ and $x$ are in $A$.
+Since the seires and the limit are also arbitrary this would make $A$ a compact set.
+Which in turn would make $B$ an open set.
+If $A$ and $B$ are disjoint, then it is not possible to use both of these to form any general type of
+connected set $E$ - there would always be one endpoint missing (the one from the non-overlapping open set),
+and this would always make the other end part of the connected set.
+\\
+
+($\Rightarrow$) However, a more constructive way to do the proof in the forward direction is by noting that if
+$(x_n)$ is in either $A$ or $B$ but its limit point is \textbf{not} in the other set (this is where we assume the contrary),
+then there is no "shared"
+element between the two sets so they are separed - $\overline{A} \cap B = A \overline{B} = \emptyset$.
+
+If $A$ and $B$ are separated, then $E = A \cup B$ would be disconnected.
+Which is a contradiction.
+\\
+
+($\Leftarrow$) Now going backwards, we assume that $(x_n)$ is in $A$ so that $x$ is a limit point of $A$
+but it is actually in $B$, that is $\overline{A} \cap B = x$.
+So $A$ and $B$ are not separated.
+Which in turn means that $E$ cannot be disconnected, so it must be connected.
+\\~\\
