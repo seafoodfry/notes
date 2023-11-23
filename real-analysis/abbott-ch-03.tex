@@ -1100,7 +1100,91 @@ But then the nested compact set property allowed us to produce an $x_n$ that was
 \subsubsection{Exercises}
 
 
+%%%%%%%%%%%%%%%
+\textbf{3.4.1}
+\\
 
+If $P$ is a perfect set and $K$ is compact, is the intersection $P \cap K$ always compact?
+Always perfect?
+\\
+
+If $P$ is a perfect set, then it contains no isolated points - its all made up an uncountable
+number of limit points - and is closed.
+$K$ on the other hand is closed, bounded, and contains all of its limit points.
+
+Right away we can see that their intersection will be close and bounded, so their intersection will
+result in a compact set.
+However, the intersection is not necessarily a perfect set itself.
+\\~\\
+
+
+
+%%%%%%%%%%%%%%%%%
+\textbf{3.4.2}
+\\
+
+Does there exist a perfect set consisting of only rational numbers?
+\\
+
+No. $\mathbb{Q}$ is a countable set.
+\\~\\
+
+
+%%%%%%%%%%%%%%
+\textbf{3.4.3}
+\\
+
+Review the portion of the proof given in Example 3.4.2 and follow these steps to complete the argument.
+\\
+
+A closed set contains all of its limit points, and limit points are $x$s such that
+$(x_n) \rightarrow x$ and all $x_n$ are different from $x$.
+\\
+
+(a) Because $x_1 \in C$, argue that there exists and $x_1 \in C \cap C_1$ with $x_1 \neq x$
+satisfying $|x - x_1| \leq 1/3$.
+\\
+
+Since the Cantor set $C$ is not empty and its made of a finite intersection of $C_n$ sets,
+then $C \cap C_1$ will not be empty and it will be closed.
+Furhtermore, the Cantor set is itself bounded, so there will be limit points within $C \cap C_1$,
+meaning that there must exist some $(x_n) \rightarrow x$ where all $x_n$ differ from $x$.
+
+And since the limit points are contained within the interception and because we have a whole in the middle
+third of $C_1$, then any $x_n$ and $x$ will have to meet the criteria of $|x - x_n| \leq 1/3$.
+\\
+
+(b) Finish the proof by showing that for each $n\in\mathbb{N}$, there exists $x_n \in C \cap C_n$,
+different from $x$, satisfying $|x - x_n| \leq 1/3^n$.
+\\
+
+Given that for each $C_n$ we continue removing the middle $1/3$ of each subinterval (all closed intervals have
+a length of $1/3^n$),
+then we will always have a $|x - x_n| \leq 1/3^n$ as all limit points are contained within their respective
+closed intervals.
+
+In the argument given in Example 3.4.2 we already showed that the Cantor sets are notempty, so the above statement holds.
+\\~\\
+
+
+
+%%%%%%%%%%%%%%%%%%
+\textbf{3.4.4}
+\\
+
+Repeat the Cantor construction from Section 3.1 starting with the interval $[0,1]$.
+This time, however, remove the open middle fourth from each component.
+\\
+
+
+(a) Is the resulting set compact? Perfect?
+\\
+
+(b) Using the algorithms from Section 3.1, compute the length and dimension of this Cantor-like set.
+\\
+
+
+%%%%%%%%%%%%%%%%%%
 \textbf{3.4.6}
 \\
 
