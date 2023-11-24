@@ -1131,6 +1131,8 @@ No. $\mathbb{Q}$ is a countable set.
 
 
 %%%%%%%%%%%%%%
+\phantomsection
+\label{abbott:3.4.3}
 \textbf{3.4.3}
 \\
 
@@ -1169,6 +1171,8 @@ In the argument given in Example 3.4.2 we already showed that the Cantor sets ar
 
 
 %%%%%%%%%%%%%%%%%%
+\phantomsection
+\label{abbott:3.4.4}
 \textbf{3.4.4}
 \\
 
@@ -1176,13 +1180,62 @@ Repeat the Cantor construction from Section 3.1 starting with the interval $[0,1
 This time, however, remove the open middle fourth from each component.
 \\
 
+Following the construction we used in Section 3.1, $C_0 = [0,1]$.
+Then on $C_1$, we remove $1/4$ of the interval. Leaving $C_1$ with a total lengh of $3/4$.
+
+Then on $C_2$ we remove a another $1/4$ from the length of $C_1$ which is $3/4$, so the total lenght
+of the interval we take away is now $\frac{1}{4} \frac{3}{4}$.
+Living $C_2$ a length of $\frac{3}{4}\left(\frac{3}{4}\right) = \frac{3}{4}^2$.
+
+Similarly, in $C_3$ we take away another $1/4$ from $C_2$, that is $\frac{1}{4} \frac{3}{4}^2$,
+leaving $c_3$ with a lenght of $\frac{3}{4}^3$.
+So one could infer that $C_n$ we take away $\frac{1}{4} \frac{3}{4}^{n-1}$ of its length
+leaving $C_n$ with a total lenght of $\frac{3}{4}^{n}$
+\\
+
+For completion, if $C_0 = [0,1]$, then $C_1 = [0, 3/8] \cup [5/8, 1]$.
+To literally remove the middle fourth we need to do some trial and experiment.
+If we start by difiving $[0,1]$ into fourths, then we can't tell which one is the middle one but it makes it
+obvious that we have to "shift" one of the forths so that it "wraps" around the interval leaving us with an
+abovious middle.
+But since we have to perform a "shift", then it may help us to divide the interval into eights.
+When we performed the "shift", we have to leave half of one fourth off the ends (you should really be drawing this).
+This leaves us with one fourth from each end plus the one eighth we got from shifting.
+
+Wikipedia seems to, again, have the perfect example, \href{https://en.wikipedia.org/wiki/Smith%E2%80%93Volterra%E2%80%93Cantor_set}{Smith–Volterra–Cantor set}.
+This page contains the exact same example we are working on.
+\\
+
+
 
 (a) Is the resulting set compact? Perfect?
 \\
 
+To do the proof we can re-use everything from section 3.1 and Exercise \ref{abbott:3.4.3}.
+The only modification is that the argument for the limit points now needs to have
+$|x - x_n| \leq \left(3/8\right)^n$.
+\\
+
+
 (b) Using the algorithms from Section 3.1, compute the length and dimension of this Cantor-like set.
 \\
 
+From our logic above, the lenght of what we take away from each $C_n$ is
+$$
+\frac{1}{4} + \frac{1}{4} \left(\frac{3}{4}\right) + \frac{1}{4} \left(\frac{3}{4}^2\right) + \ldots \frac{1}{4} \left(\frac{3}{4}\right)^{n-1}
+= \frac{1}{4} \sum_{n\in\mathbb{N}} \left(\frac{3}{4}\right)^{n-1}
+= \frac{1}{4} \sum_{n=0} \left(\frac{3}{4}\right)^n
+$$
+
+The summation is a geometric series, and since $|r| = |3/4| < 1$, then it converges to $1 / (1 - \frac{3}{4} = 4)$
+which then cancels out with our $1/4$ term serving as a common multiplier leaving us with an answer of 1.
+So, apparently, we once again have ended up with a Cantor set of lenght 0.
+\\
+
+Now, the proper way to get the dimension is by noting that $C_1 = [0, 3/8] \cup [5/8, 1]$.
+So if we magnify the cantor set by a factor of $8/3$, then we get two copies of $C_0$, so now we ought
+to solve the equation $2 = \frac{8}{3}^d$, where $d = \log(2)/\log(8/3) \approx 0.707$
+\\~\\
 
 %%%%%%%%%%%%%%%%%%
 \textbf{3.4.6}
@@ -1220,3 +1273,22 @@ but it is actually in $B$, that is $\overline{A} \cap B = x$.
 So $A$ and $B$ are not separated.
 Which in turn means that $E$ cannot be disconnected, so it must be connected.
 \\~\\
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%
+\textbf{3.4.7}
+\\
+
+A set $E$ is \textbf{totally disconnected} if,
+given any two distinct points $x,y \in E$,
+there exists separated sets $A$ and $B$
+with $x\in A$, $y \in B$, and $E = A \cup B$.
+\\
+
+(a) Show that $\mathbb{Q}$ is totally disconnected.
+\\
+
+(b) Is the set of irrational numbers totally disconnected?
+\\
