@@ -1,0 +1,51 @@
+\section{Introduction to Asymptotic Approximations}
+
+We start with,
+$$
+\frac{d^2 x(t)}{dt^2} = - \frac{g R^2}{\left(R + x\right)^2}, \quad t \geq 0
+$$
+
+But we want to study the error that arises from assuming that $x \ll R$, along with the
+behaviour that would be Introduced from the nonlineraity we'll scale the variables in our problem.
+We'll define the characteristic time as $\tau = t / t_c$ and
+the characteteristic value for the solution as $y(\tau) = x(t) / x_c$.
+
+We will also chose the values $t_c = v_0 / g$ and $x_c = v_{0}^{2} / g$.
+These values are within a constant the values we get when we solve for the maximum height an object
+would travel upward if launched with an initial velocity.
+Since $x \ll R$, we will also define an $\epsilon = v_{0}^2 / Rg$ ($\epsilon \ll 1$).
+
+In order to proceed with our transformation we will also need to figure out how to transform the right hand-side of our problem
+along with the time derivations.
+Thus,
+$$
+- \frac{g R^2}{\left(R + x\right)^2} \rightarrow
+- \frac{g}{\left(1  + x_c y/R\right)^2} \rightarrow
+- \frac{g}{\left(1  + \epsilon y\right)^2}
+$$
+
+\begin{align*}
+\frac{dx}{dt} &= \frac{d}{dt} \left( x_c y(\tau) \right) \\
+&= x_c \frac{d y(\tau)}{d\tau} \frac{d \tau}{dt} \\
+&= \frac{x_c}{t_c} \frac{d y(\tau)}{d\tau}
+\end{align*}
+
+\begin{align*}
+\frac{d^2 x}{dt^2} &= \frac{d}{dt} \left( \frac{x_c}{t_c} \frac{d y(\tau)}{d\tau} \right) \\
+&=  \frac{x_c}{t_c} \frac{d}{dt} \frac{d y(\tau)}{d\tau} \\
+&= \frac{x_c}{t_c} \frac{d}{d (t_c \tau)} \frac{d y(\tau)}{d\tau} \\
+&= \frac{x_c}{t_{c}^2} \frac{d^2 y(\tau)}{d\tau^2} 
+\end{align*}
+
+Putting it all together,
+
+\begin{align*}
+\frac{d^2 x}{dt^2} &= \frac{x_c}{t_{c}^2} \frac{d^2 y(\tau)}{d\tau^2}
+= \frac{\cancel{v_{0}^2}}{\bcancel{g}} \frac{g^{\bcancel{2}}}{\cancel{v_{0}^2}} \frac{d^2 y(\tau)}{d\tau^2}
+= - \frac{g}{\left(1  + \epsilon y\right)^2}
+\end{align*}
+
+Hence, we get
+$$
+\frac{d^2 y(\tau)}{d\tau^2} = - \frac{1}{\left(1  + \epsilon y\right)^2}, \quad \tau \geq 0
+$$
