@@ -26,7 +26,7 @@ p(t) \frac{dy}{dx} + q(t)y = g(t)
 $$
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{Method of Integrating Factors}
+\subsection{Method of Integrating Factors}
 
 Multiply the equation my the integrating factor and the equation is converted into one that can
 be integrated using the product rule for derivates.
@@ -53,9 +53,34 @@ $$
 This integrating factor also looks like an exponential after differentiation.
 
 
+\subsubsection{Exercises and Problems}
+
+\textbf{Example 3}
+\\
+
+The integration by parts step that is skiped is done as follows.
+
+Recall the rule for integration by parts
+$$
+\int u dv = uv - \int v du
+$$
+
+\begin{align*}
+\int t e^{-2t} dt &= 
+    \left[
+      \begin{alignedat}{2}
+      u  &= t   \quad & v  &= -\frac{1}{2}e^{-2t} \\
+      du &= dt  \quad & dv &= e^{-2t} dt 
+      \end{alignedat}\,
+    \right] \\
+&= -\frac{1}{2} t e^{-2t} + \int \frac{1}{2}e^{-2t} dt \\
+&= -\frac{1}{2} t e^{-2t} - \frac{1}{4}e^{-2t} + c
+\end{align*}
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{Separable Equations}
+\subsection{Separable Equations}
 
 $$
 M(x) + N(y) \frac{dy}{dx} = 0
@@ -67,7 +92,8 @@ M(x)dx + N(y)dy = 0
 $$
 
 
-\subsubsection{Notes}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Notes}
 
 Sometimes equations of the form
 $$
