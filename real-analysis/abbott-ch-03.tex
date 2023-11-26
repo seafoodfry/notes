@@ -1278,6 +1278,8 @@ Which in turn means that $E$ cannot be disconnected, so it must be connected.
 
 
 %%%%%%%%%%%%%%%%%%%%%
+\phantomsection
+\label{abbott:3.4.7}
 \textbf{3.4.7}
 \\
 
@@ -1290,5 +1292,41 @@ with $x\in A$, $y \in B$, and $E = A \cup B$.
 (a) Show that $\mathbb{Q}$ is totally disconnected.
 \\
 
+If we simply chose $A = (-\infty, x) \cap \mathbb{Q}$ and $B = \mathbb{Q} \cap (y, \infty)$
+then we are leaving a gap in the middle.
+But if we remember that between any $x$ and $y$ there is an $z$ such that $x < z < y$
+and $i$ is a real number, then we can chose
+$A = (-\infty, z) \cap \mathbb{Q}$ and $B = \mathbb{Q} \cap (z, \infty)$
+\\
+
 (b) Is the set of irrational numbers totally disconnected?
+\\
+
+The density argument also works the otherway around - interestingly Rudin presents it this way
+in theorem 1.20 (b).
+If $x \in \mathbb{I}$, $y \in \mathbb{I}$, and $x < y$, then there exists a $p \in \mathbb{Q}$
+such that $x < p < y$.
+Then we can construct
+$A = (-\infty, p) \cap \mathbb{I}$ and $B = \mathbb{I} \cap (p, \infty)$
+\\~\\
+
+
+
+
+%%%%%%%%%%%%%%%%%%%
+\textbf{3.4.8}
+\\
+
+Follow these steps to show that the Cantor set is totally disconnected in the sense described in
+Exercise \ref{abbott:3.4.7}.
+Let $C = \bigcap_{n=0}^{\infty} C_n$, as defined in Section 3.1.
+\\
+
+(a) Given $x,y \in C$, with $x < y$, set $\epsilon = y - x$.
+For each $n = 0, 1, 2, \ldots$, the set $C_n$ consists of a finite number of closed intervals.
+Explain why there must exist an $N$ large enough so that it is impossible for $x$ and $y$ both to
+belong to the same closed interval of $C_N$.
+\\
+
+(b) Show that $C$ is totally disconnected.
 \\
