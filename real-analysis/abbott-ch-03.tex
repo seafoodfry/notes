@@ -523,6 +523,8 @@ will contain points outside of $E^c$.
 
 
 
+\phantomsection
+\label{abbott:3.2.15}
 \textbf{3.2.15}
 \\
 
@@ -690,7 +692,7 @@ This one is a bit more surprising, one could think that maybe the cantor set is 
 becuase maybe the reals are the limit points for it, as the case for the rational numbers, but this is not the case!
 
 First, the cantor set is bounded since $C \subset [0,1]$.
-Furhtermore, the cantor set, $C$, is made up of an infitine intersection of closed sets (Abbott gives us that hint).
+Furthermore, the cantor set, $C$, is made up of an infitine intersection of closed sets (Abbott gives us that hint).
 And as per theorem 3.2.14 (ii), the intersection of an arbitrary collection of closed sets is open.
 Hence, the cantor set is bounded and close and thus compact.
 
@@ -1149,7 +1151,7 @@ satisfying $|x - x_1| \leq 1/3$.
 
 Since the Cantor set $C$ is not empty and its made of a finite intersection of $C_n$ sets,
 then $C \cap C_1$ will not be empty and it will be closed.
-Furhtermore, the Cantor set is itself bounded, so there will be limit points within $C \cap C_1$,
+Furthermore, the Cantor set is itself bounded, so there will be limit points within $C \cap C_1$,
 meaning that there must exist some $(x_n) \rightarrow x$ where all $x_n$ differ from $x$.
 
 And since the limit points are contained within the interception and because we have a whole in the middle
@@ -1328,5 +1330,80 @@ Explain why there must exist an $N$ large enough so that it is impossible for $x
 belong to the same closed interval of $C_N$.
 \\
 
+There are some useful bits in Exercise \ref{abbott:3.4.3} and from the discussion of lenght and dimension
+of the Cantor set in Section 3.1.
+The bit that matters right now is that the lenght of subintervals is $1/3^n$ for $C_n$.
+Hence, for some $N$ large enough, we will have $1/3^N < \epsilon = y - x$, meaning that the distance
+between $x$ and $y$ is greater than the lenght of any subinterval of length $1/3^N$ for some
+sufficiently large $N$ no matter which $x$ or $y$ we pick.
+\\
+
 (b) Show that $C$ is totally disconnected.
+\\
+
+Again, to show that $C$ is totally disconnected we must prove that given any $x$ and $y$
+there exist separated sets $x \in A$, $y \in B$, such that $C = A \cup B$.
+
+And for $a$ and $B$ to be separated we must show that
+$\overline{A} \cap B = A \cap \overline{B} = \emptyset$.
+
+There are two ways to kind of see that $C$ is totally disconnected.
+The first is by noting that every $C_n$ is a closed set, so any $A$ and $B$ that we can form from
+a finite number of closed sets will themselves be closed, so $A = \overline{A}$ and $B = \overline{B}$.
+And since we can find an $x$ and a $y$ in different sets, then the intersection of $A$ and $B$ will
+be empty, showing that they are separated, and thus $C$ is totally disconnected.
+\\
+
+The other way follows the argument we used in Exercise \ref{abbott:3.4.7}.
+Since $x$ and $y$ are in different closed intervals of $C_n$, then between them there will be some
+$z$ that should be where a gap is (one of the removed subintervals), so $z \not\in C$ and
+$x < z < y$.
+
+Then we can construct $A = (-\infty, z) \cap C$ and $B = C \cap (z,\infty)$.
+\\~\\
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{3.4.9}
+\\
+
+Let $r = \{ r_1, r_2, r_3, \ldots \}$ be an enumeration of the rational numbers,
+and for each $n \in \mathbb{N}$ set $\epsilon_n = 1/2^n$.
+Define $O = \bigcup^{\infty}_{n=1} V_{\epsilon_n} ( r_n )$,
+and let $F = O^c$.
+\\
+
+(a) Argue that $F$ is a closed, nonempty set consisting only of irrational numbers.
+\\
+
+The union of an arbitrary collection of open sets is an open set.
+So $O$ must be open, and $F$ must be closed.
+
+Furthermore, since the epsilon neighborhoods are around rational numbers,
+then $\mathbb{Q} \subset O$ and $F$ will just be irrational numbers.
+
+It remains to prove that $F$ is nonempty. But to see that, intuitevely, one could argue that
+since the rationals are countably infinite and the reals are uncountable, that a countably inifite
+number of intervals of lengh $1/2^n$ won't be able to cover all of $\mathbb{R}$.
+A more convincing argument may be to note that
+$\sum_{n\in\mathbb{N}} \frac{1}{2^n} = \frac{1}{1/2} = 2$ (geometric series).
+\\
+
+(b) Does $F$ contain any nonempty open intervals?
+Is $F$ totally disconnected?
+\\
+
+This sounds a bit like Exercise \ref{abbott:3.2.15}.
+
+To show that $F$ is totally disconnected we must prove that given any $x$ and $y$
+there exist separated sets $x \in A$, $y \in B$, such that $F = A \cup B$.
+
+And for $a$ and $B$ to be separated we must show that
+$\overline{A} \cap B = A \cap \overline{B} = \emptyset$.
+\\
+
+(c) Is it possible to show whether $F$ is perfect?
+If not, can we modify this construction to produce a nonempty perfect set of irrational numbers?
 \\
