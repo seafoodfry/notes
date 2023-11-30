@@ -517,7 +517,7 @@ that do not belog to $E$ and are not limit points of $E$.
 Since these elements are do not intercept $E$, then they are contained within $E^c$.
 However, being contained within $E^c$ does not mean that there is an $V_\epsilon (x) \subseteq E^c$
 for every $x\in E^c$.
-This is only the case if $x\in (E^c)^o$, otherwise, there will be areas of $E$ where an $\epsilon$-neighboorhod
+This is only the case if $x\in (E^c)^o$, otherwise, there will be areas of $E$ where an $\epsilon$-neighborhood
 will contain points outside of $E^c$.
 \\~\\
 
@@ -1031,7 +1031,7 @@ Making an allusion to the definiton of the supremum: let's say that $s < b$, the
 have an open cover, then these should be some $s < y$ such that $[a,y]$ also has a cover, so $\sup S$ wouldn'T
 equal this value that is less than $y$, our first constradiction.
 
-And if we say that $s > b$, then we are demanding the existence of another neighboorhod that will cover
+And if we say that $s > b$, then we are demanding the existence of another neighborhood that will cover
 the difference between $s$ and $b$, thus leading to another contradiciton.
 
 Since our cover includes the endpoints of our interval, we can mimick of construction of a finite subcover from
@@ -1316,6 +1316,8 @@ $A = (-\infty, p) \cap \mathbb{I}$ and $B = \mathbb{I} \cap (p, \infty)$
 
 
 %%%%%%%%%%%%%%%%%%%
+\phantomsection
+\label{abbott:3.4.8}
 \textbf{3.4.8}
 \\
 
@@ -1395,13 +1397,28 @@ $\sum_{n\in\mathbb{N}} \frac{1}{2^n} = \frac{1}{1/2} = 2$ (geometric series).
 Is $F$ totally disconnected?
 \\
 
-This sounds a bit like Exercise \ref{abbott:3.2.15}.
+This may sound a bit like Exercise \ref{abbott:3.2.15}, because in order to make an argument about
+a set being open we need to show that all of the elements in a have an $\epsilon$-neighborhood
+that is also contained within the set, but let's follow another path.
+Remember how when we looked at the desnity of the reals we saw that between any tow rational numbers
+there was an irrational - and how Rudin presents its converse: between any two irrational numbers there
+is a rational one?
+
+Well, if we think about it, $F$ has a ton of irrationals, but if you look to the left or right of them
+you should encounter a rational number before the next irrational.
+The thing is that that rational number will now be part of $O$, so no matter how small you go,
+you will always have wholes from the numbers that went into $O$.
+\\
 
 To show that $F$ is totally disconnected we must prove that given any $x$ and $y$
 there exist separated sets $x \in A$, $y \in B$, such that $F = A \cup B$.
 
-And for $a$ and $B$ to be separated we must show that
+And for $A$ and $B$ to be separated we must show that
 $\overline{A} \cap B = A \cap \overline{B} = \emptyset$.
+
+And to do so, we can follow the exact same argument we used in Exercise \ref{abbott:3.4.7}
+and in Exercise \ref{abbott:3.4.8} since in between any two irrationals in $F$ we will have a gap
+from elements that were taken by $O$.
 \\
 
 (c) Is it possible to show whether $F$ is perfect?
