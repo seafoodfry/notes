@@ -618,16 +618,33 @@ then we have $g(k) = f(n_k)$, which we know is different from all other values o
 \\~\\
 
 
+%%%%%%%%%%%%%%%%%
 \phantomsection
 \label{abbott:1.5.3}
 \textbf{1.5.3}
+\\
+
+Use the following outline to supply proofs for the statements in Theorem 1.5.8:
+
+\begin{enumerate}[(a)]
+\item First, prove statement (i) for two countable sets, $A_1$ and $A_2$. Example 1.5.3 (ii) may be a useful reference.
+    Some technicalities can be avoided by first replacing $A_2$ with the set $B_2 = A_2\setminus A_1 = \{ x \in A_2 : x \not\in A_1 \}$.
+    The point of this is that the union $A_1 \cup B_2$ is equal to $A_1 \cup A_2$ and the sets $A_1$ and $B_2$ are disjoint.
+    (What happens if $B_2$ is finite?)
+    Now exaplain how the more general statement in (i) follows.
+
+\item Explain why induction cannot be used to prove part (ii) of Theorem 1.5.8 from part (i).
+
+\item Show how arranging $\mathbb{N}$ into a two-dimensional array leads to proof of Theorem 1.5.8
+\end{enumerate}
+
 
 \textbf{If $A_1, A_2, \ldots, A_m$ are each coutable sets, then the union $A_1 \cup A_2 \cup \ldots \cup A_m$ is countable.}
 
 Replace $A_2$ with $B_2 = A_2 - A_1 = \{ x \in A_2 : x \notin A_1 \}$.
 $A_1 \cup B_2  = A_1 \cup A_2$ while keeping the two sets disjoint.
 
-If we followed the example 1.4.8, then we could see how "laying out" the members of $A_1 \cup A_2 = A_1 \cup B_2$ could be
+If we followed the Example 1.5.3, then we could see how "laying out" the members of $A_1 \cup A_2 = A_1 \cup B_2$ could be
 mapped to by the natural numbers, $\{ a_1, a_2, \ldots, b_1, b_2, \ldots \}$.
 For the induction step, we can follow logic similar to when we prove the generalization of the de morgan laws in 1.2.12.
 \\
@@ -645,12 +662,12 @@ $\cup^{\infty}_{n=1} B_n = \mathbb{N}$.
 (Note how this can be a construction similar to the first instance in this problem where $B_1 = A_1$,
 $B_2 = A_2-A_1 = A_2 - B_1$, $B_3 = A_3 - B_2$, and so on.)
 
-We also now (and can see) that every $B$ has an $f_n$ has is 1-to-1 and onto.
+We also now, can see, that every $B$ has an $f_n$ that is 1-to-1 and onto (from the argument in part (a)).
 
-So in order to prove that there exists a mapping that maps the natural numbers into our tw-dimensional array of disjoint sets,
+So in order to prove that there exists a mapping that maps the natural numbers into our two-dimensional array of disjoint sets,
 it suffices to see that our way of ordering the sets is itself a mapping such that
 $f : \mathbb{N} \rightarrow \cup^{\infty}_{n=1} B_n$.
-The mapping could be expresed as $f (x_{m,n} \in \mathbb{N}) = (m, n) \in \cup B_n$.
+The mapping could be expresed as $f (x_{m,n} \in \text{2D array}) = (m, n) \in \cup B_n$.
 
 And since we organized the two-dimensional array in the way we have, then the we have
 $\mathbb{N} \subseteq \mathbb{N} \times \mathbb{N}$ and the mapping is bijective
@@ -752,6 +769,7 @@ Then we can map every $c$ to a unique $a$.
 
 
 
+%%%%%%%%%%%%%%%%%
 \textbf{1.5.9}
 
 \textbf{A real number $x\in \mathbb{R}$ is algebraic if there exists integers $a_0, a_1,\dots ,a_n \in \mathbb{Z}$,

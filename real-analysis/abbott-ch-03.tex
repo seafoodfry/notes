@@ -590,7 +590,8 @@ using an endpoint to the right of $a$, so the lower bound never contains $a$ but
 
 
 (c) Show that $\mathbb{Q}$ is an $F_\sigma$ set, and the set of irrationals $\mathbb{I}$ forms a $G_\delta$ set.
-(We will see in section 3.5 that $\mathbb{Q}$ is not a $G_\delta$ set, nor $\mathbb{I}$ is an $F_\sigma$ set.)
+(We will see in section 3.5 that $\mathbb{Q}$ is not a $G_\delta$ set, nor $\mathbb{I}$ is an $F_\sigma$ set.
+See \ref{abbott:baires-theorem})
 \\
 
 Since $\mathbb{Q}$ is countable, then $\cup_{q\in\mathbb{Q}} \{q\} = \mathbb{Q}$.
@@ -1400,7 +1401,7 @@ Is $F$ totally disconnected?
 This may sound a bit like Exercise \ref{abbott:3.2.15}, because in order to make an argument about
 a set being open we need to show that all of the elements in a have an $\epsilon$-neighborhood
 that is also contained within the set, but let's follow another path.
-Remember how when we looked at the desnity of the reals we saw that between any tow rational numbers
+Remember how when we looked at the density of the reals we saw that between any tow rational numbers
 there was an irrational - and how Rudin presents its converse: between any two irrational numbers there
 is a rational one?
 
@@ -1424,3 +1425,73 @@ from elements that were taken by $O$.
 (c) Is it possible to show whether $F$ is perfect?
 If not, can we modify this construction to produce a nonempty perfect set of irrational numbers?
 \\
+
+To have a perfect set we need all elements of $F$ to be a limit point.
+If we use the conventional notion of convergence then it begs the question of what is it that our limit points should be,
+but if we look back at the Cauchy criterion then if we can find any pair of
+$x_n$ and $x_m$ such that for any $\epsilon > 0$, $|x_n - x_m| < \epsilon$ as long as
+$n$ and $m$ are grater than some $N$, then it kinda helps us see what we need to have in order to have
+a perfect set.
+
+Note that the order in which we cover the reals is not specified, so we could use our $1/2^n$ convers
+to block out a continuous strip of $\mathbb{R}$, or something of the sort, and we would be left with a perfect set.
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Baire's Theorem}
+\label{abbott:baires-theorem}
+
+We first saw countable unions of closed sets and countable intersections of open sets back in
+Exercise \ref{abbott:3.2.15}.
+\\
+
+%%%%%%%%%%%%%%
+\textbf{3.5.1}
+
+Argue that a set $A$ is $G_\delta$ set if and only if its complement is an $F_\sigma$ set.
+\\
+
+A $G_\sigma$ set is a countable intersection of open sets.
+Theorem 3.2.3 (ii) says that the intersection of a finite collection of open sets is open
+- nothing is said about countably infinite intersections of open sets.
+So if $G_\sigma$ is a finite intersection of open sets, then it is open, and $F_\delta$ must be closed.
+
+The way to make this argument comes from DeMorgan's law.
+For example, if $G_\sigma = \bigcap O_\lambda$, then
+$G_{\sigma}^{c} = \left( \bigcap O_\lambda \right)^c = \bigcup O_{\lambda}^{c} = \bigcup C_n = F_\delta$.
+Where $O_\lambda$ is some open set and $C_n$ is some closed set.
+\\~\\
+
+
+%%%%%%%%%%%%%%
+\textbf{3.5.2}
+
+\begin{enumerate}[(a)]
+\item The \textbf{countable} union of $F_\sigma$ sets is an $F_\sigma$ set.
+
+The cauntable union of counatable unions of closed sets is a countable union of closed sets.
+See Theorem 1.5.8 and Exercise \ref{abbott:1.5.3}.
+
+\item The \textbf{finite} intersection of $F_\sigma$ sets is an $F_\sigma$ set.
+
+Distributive law.
+
+\item The \textbf{finite} union of $G_\delta$ sets is a $G_\delta$ set.
+
+Distributive law.
+
+\item The \textbf{countable} intersection of $G_\delta$ sets is a $G_\delta$ set.
+
+The countable intersectino of countable intersections of open sets is a countable intersection of open sets.
+See Exercise \ref{abbott:1.5.3}.
+
+\end{enumerate}
+
+
+
+%%%%%%%%%%%%%%%%%%%
+\textbf{3.5.3}
+
+This is Exercise \ref{abbott:3.2.15}
