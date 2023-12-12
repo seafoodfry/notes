@@ -101,7 +101,7 @@ $V_\epsilon (x) \subseteq O$ ($O$ and $O^c$ have no members in commmon, so if an
 in one then it cannot contain points in the other.)
 
 When reading the converse statement, again, keep in mind that the concept of limit points is to look for
-neighborhoods that are fully contained within a set, every $o \in v_\epsilon $ is also $x \ in O$ if
+neighborhoods that are fully contained within a set, every $o \in v_\epsilon $ is also $x \in O$ if
 $v_\epsilon \in O$.
 So looking at a limit point that is not part of $O^c$, means that $v_{\epsilon} (x) \in O$ by definition.
 \\~\\
@@ -118,13 +118,15 @@ open sets be finite gets used?
 
 Theorem 3.2.3 states that: the intersection of a finite collection of open sets is open.
 The "finite-ness" is used when we look for the smallest $\epsilon$-neighborhood contained in every $O_k$.
-If we assume that we are looking at the intersection of an infinite ammount of open sets, then the nested-interval
+If we assume that we are looking at the intersection of an infinite ammount of open sets, then the nested interval
 property doesn't hold and we cannot guarantee that there is an element contained within the inifity of neighborhoods (it may or mat not exist).
 See \ref{abbott:1.4.3}.
 \\~\\
 
-\textbf{(b)} Give an example of a countable collectionof open sets $\{O_1, O_2, O_3, \ldots\}$
+\textbf{(b)} Give an example of a countable collection of open sets $\{O_1, O_2, O_3, \ldots\}$
 whose intersection $\cup^{\infty}_{n=1} O_n$ is closed, not empty and not all of $\mathbb{R}$.
+
+TODO
 \\~\\
 
 
@@ -1471,7 +1473,7 @@ Where $O_\lambda$ is some open set and $C_n$ is some closed set.
 \begin{enumerate}[(a)]
 \item The \textbf{countable} union of $F_\sigma$ sets is an $F_\sigma$ set.
 
-The cauntable union of counatable unions of closed sets is a countable union of closed sets.
+The countable union of countable unions of closed sets is a countable union of closed sets.
 See Theorem 1.5.8 and Exercise \ref{abbott:1.5.3}.
 
 \item The \textbf{finite} intersection of $F_\sigma$ sets is an $F_\sigma$ set.
@@ -1484,14 +1486,39 @@ Distributive law.
 
 \item The \textbf{countable} intersection of $G_\delta$ sets is a $G_\delta$ set.
 
-The countable intersectino of countable intersections of open sets is a countable intersection of open sets.
+The countable intersection of countable intersections of open sets is a countable intersection of open sets.
 See Exercise \ref{abbott:1.5.3}.
 
 \end{enumerate}
-
 
 
 %%%%%%%%%%%%%%%%%%%
 \textbf{3.5.3}
 
 This is Exercise \ref{abbott:3.2.15}
+\\~\\
+
+
+
+%%%%%%%%%%%%%%%%%%
+\textbf{3.5.4}
+
+Starting with $n=1$,
+inductively construct a nested sequence of closed intervals $I_1 \supseteq I_2 \supseteq I_3 \supseteq \ldots$
+satisfying $I_n \subseteq G_n$.
+Give special attention to the issue of the endpoints of each $I_n$.
+Show how this leads to a proof of Theorem 3.5.2.
+\\
+
+To start the construction requested of us, note that $I_n \subseteq G_n$
+entails that $I_n$ is a closed set that contains $I_{n+1}$.
+By Theorem 1.4.1, the Nested Interval Property, we know that $\bigcap_{n\in\mathbb{N}} I_n \neq \emptyset$.
+
+This construction has in a way been foreshadowed throughout.
+Back in Theorem 1.5.6 (ii), when we proved that the reals are uncountable, we saw that a contradiction arosed
+when we thought the reals to be countable because at the very least the supremum would be in $I_n$.
+Exercise \ref{abbott:1.4.3} then also shows us that for the nested interval property to work
+that the intervals must not be open.
+And in Exercise \ref{abbott:3.2.4} (b) we saw that an open set cannot contain its supremum.
+
+This time, our construction must be such that a our dense, open set $G_n$ contains a closed interval $I_n$.

@@ -358,6 +358,7 @@ There rest of the proof in theorem 1.4.3 then applies as is.
 \\~\\
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Existence of square roots}
 
 $$
@@ -415,40 +416,11 @@ So we see that $\alpha - \frac{1}{n_0}$ is an upper bound and it is smaller than
 so $\alpha^2 > 2$ also be the case.
 
 
-\subsubsection{$N \sim R$}
-
-We known that for some real number $x_{n_0} \notin I$, so that
-$$
-x_{n_0} \notin \bigcap^{\infty}_{n=1} I_n
-$$
-
-Since we are assuming that $\mathbb{R} = \{ x_1, x_2, ... \}$ contains all the real numbers,
-then $n_0$ can be any of the real numbers.
-So for any given $n_0$, $I_{n_0}$ will not contain it, nor any $I_{n_0+1}$, or any of its subsets.
-Going in the other direction, $x_{n_0}$ will be in $I_{n_0 - 1}$, but
-$I_{n_0 - 1}$ will not contain $x_{n_0-1}$.
-Thus, there is no one number that is contained by all sets $I_n$, Hence
-
-$$
-\bigcap^{\infty}_{n=1} I_n = \emptyset
-$$
-
-Which contradicts the nested-interval property.
-
-When proving the nested interval property we showed that at the very elast the supremum of each interval $I_n$
-would be in every $I_n$, which lead us to the discovery that their intersection would be a non-empty set.
-However, if we don't have the supremum of each set present for each $I_n$, then by our experience with the axiom
-of completeness, we would think that there are gaps in our list of numbers.
-
-The "logical" issue in the above argument is that the real numbers are "enumerable", which doesn't show up in the original
-proof of the nested interval theorem because hte axiom of completeness creates a sort of "continuity" among the numbers
-(the filling in between the gaps).
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Exercises}
 
-\textbf{1.4.1}
+\textbf{1.4.1 v1 (not present in v2)}
 
 \textbf{For every two real numbers $a$ and $b$ with $a<b$, there exists a rational number satisfying $a < r < b$.}
 
@@ -467,7 +439,7 @@ such that $m > n$ and $an < m$.
 
 
 
-\textbf{1.4.2}
+\textbf{1.4.1}
 
 If we have $a = \frac{m}{n}$ and $b = \frac{p}{q}$, then
 
@@ -524,11 +496,48 @@ $$
 $$
 \\~\\
 
+%%%%%%%%%%%%%%%%%%%
+\phantomsection
+\label{abbott:1.4.3}
+\textbf{1.4.3}
+
+Prove that $\bigcap^{\infty}_{n=1} (0, 1/n) = \emptyset$. 
+Notice that this demonstrates that the intervals in the Nested Interval Property
+must be closed for the conclusion of the theorem to hold.
+
+The proof we used for the nested property theorem, theorem 1.4.1.
+Following a similar schema, we can see that the set of right-hand endpoints $\{ 1/n : n\in\mathbb{N} \}$ which we have
+already seen that its greatest lower bound is 0.
+We have also saw in exercise 1.3.3 that the supremum of the left-hand endpoints must equal the infinimum of the right-hand
+endpoints, which is zero.
+So the approach we followed in theorem 1.4.1 doesn't apply here since 0 is not even part of any of the intervals $I_n$.
+\\~\\
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{1.4.4 v1 (not present in v2)}
+
+Use the Archimedean property of $\mathbb{R}$ prove that $\inf \{ \frac{1}{n} : n \in \mathbb{N} \} = 0$.
+
+By the Archimedean property we know that for any $y>0 \in \mathbb{R}$, $\exists n \in \mathbb{N}$ such that
+$y > \frac{1}{n}$.
+
+We also know that for a number to be an infinimum then it has to be a lower bound and it has to be greater than any
+otther lower bounds.
+
+In the case of the set $A = \{ \frac{1}{n} : n \in \mathbb{N} \}$, we can see that 0 is indeed a lower bound.
+But let's say that we have another lower bound $b$ that is greater than 0 (assume the greatest lower bound is $b$).
+
+Since $0 \notin A$ and $b$ is a lower bound, then $b > 0$ but $b \leq a$, for any $a \in A$.
+However, the Archimedean property tells us that for any $b$ we could have, there will be a $\frac{1}{n}$ that is smaller than it.
+Thus disproving the fact that a $b>0$ could be a lower bound.
+\\~\\
+
+
+%%%%%%%%%%%%%%%%%%%%
 \phantomsection
 \label{abbott:1.4.5}
-\textbf{1.4.5}
+\textbf{1.4.5 v1 (not present in v2)}
 
 \textbf{Given any two real numbers $a < b$, there exists an irrational number $t$ satisfying $a < t < b$.}
 To prove this, we can use the results from the previous exercise by applying the theorem where we talked about the
@@ -551,49 +560,43 @@ We can arrive to the result we wanted to prove.
 
 
 
-\textbf{1.4.4}
-
-Use the Archimedean property of $\mathbb{R}$ prove that $\inf \{ \frac{1}{n} : n \in \mathbb{N} \} = 0$.
-
-By the Archimedean property we know that for any $y>0 \in \mathbb{R}$, $\exists n \in \mathbb{N}$ such that
-$y > \frac{1}{n}$.
-
-We also know that for a number to be an infinimum then it has to be a lower bound and it has to be greater than any
-otther lower bounds.
-
-In the case of the set $A = \{ \frac{1}{n} : n \in \mathbb{N} \}$, we can see that 0 is indeed a lower bound.
-But let's say that we have another lower bound $b$ that is greater than 0 (assume the greatest lower bound is $b$).
-
-Since $0 \notin A$ and $b$ is a lower bound, then $b > 0$ but $b \leq a$, for any $a \in A$.
-However, the Archimedean property tells us that for any $b$ we could have, there will be a $\frac{1}{n}$ that is smaller than it.
-Thus disproving the fact that a $b>0$ could be a lower bound.
-\\~\\
-
-
-\phantomsection
-\label{abbott:1.4.3}
-\textbf{1.4.3}
-
-Prove that $\bigcap^{\infty}_{n=1} (0, 1/n) = \emptyset$. 
-Notice that this demonstrates that the intervals in the Nested Interval Property
-must be closed for the con- clusion of the theorem to hold.
-
-The proof we used for the nested property theorem, theorem 1.4.1.
-Following a similar schema, we can see that the set of right-hand endpoints $\{ 1/n : n\in\mathbb{N} \}$ which we have
-already seen that its greatest lower bound is 0.
-We have also saw in exercise 1.3.3 that the supremum of the left-hand endpoints must equal the infinimum of the right-hand
-endpoints, which is zero.
-So the approach we followed in theorem 1.4.1 doesn't apply here since 0 is not even part of any of the intervals $I_n$.
-\\~\\
-
-
-
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Cardinality}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{$N \sim R$}
 
+We known that for some real number $x_{n_0} \notin I$, so that
+$$
+x_{n_0} \notin \bigcap^{\infty}_{n=1} I_n
+$$
+
+Since we are assuming that $\mathbb{R} = \{ x_1, x_2, ... \}$ contains all the real numbers,
+then $n_0$ can be any of the real numbers.
+So for any given $n_0$, $I_{n_0}$ will not contain it, nor any $I_{n_0+1}$, or any of its subsets.
+Going in the other direction, $x_{n_0}$ will be in $I_{n_0 - 1}$, but
+$I_{n_0 - 1}$ will not contain $x_{n_0-1}$.
+Thus, there is no one number that is contained by all sets $I_n$, Hence
+
+$$
+\bigcap^{\infty}_{n=1} I_n = \emptyset
+$$
+
+Which contradicts the nested interval property.
+
+When proving the nested interval property we showed that at the very least the supremum of each interval $I_n$
+would be in every $I_n$, which lead us to the discovery that their intersection would be a non-empty set.
+However, if we don't have the supremum of each set present for each $I_n$, then by our experience with the axiom
+of completeness, we would think that there are gaps in our list of numbers.
+
+The "logical" issue in the above argument is that the real numbers are "enumerable", which doesn't show up in the original
+proof of the nested interval theorem because hte axiom of completeness creates a sort of "continuity" among the numbers
+(the filling in between the gaps).
+\\~\\
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \textbf{1.5.1}
 
 \textbf{Theorem 1.5.7: if $A \subseteq B$ and $B$ is countable, then either $A$ is countable, finite, or empty.}
