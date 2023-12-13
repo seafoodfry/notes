@@ -62,7 +62,7 @@ The definition of a limit point is literally the defintion of the limit of a seq
 $\epsilon$-neighborhoods as $\lim (a_n) = x \rightarrow |a_n - x| < \epsilon$.
 \\~\\
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%
 \textbf{Theorem 3.2.5}
 
 Notice how in the first part of the proof we are being told about an $\epsilon = 1/n$.
@@ -71,6 +71,7 @@ $\epsilon = \epsilon (n)$ so that $|a_n - x|<\epsilon$.
 \\
 
 
+%%%%%%%%%%%%%%%%%%%%%%%
 \textbf{Example 3.2.9}
 
 The first example is $A = \{ \frac{1}{n} : n\in\mathbb{N} \}$, when $\epsilon = 1/n - 1/(n+1)$.
@@ -442,7 +443,8 @@ Therefore $B_1 \cup B_2 = \mathbb{R}$, $b_1 > b_2$, and $B = B_1 \cap B_2 \neq \
 
 
 
-
+\phantomsection
+\label{abbott:3.2.13}
 \textbf{3.2.13}
 \\
 
@@ -462,7 +464,7 @@ all limit points of $\mathbb{R}$ are members of $\mathbb{R}$.
 Now, let's fish for contraditions.
 One way is to use what we found in \ref{abbott:3.2.4}, that is: open sets cannot contain their supremum (or infinimum).
 So let's say there is some $A$ that is both open and closed but it is not $\mathbb{R}$ or $\emptyset$.
-If this is the case, then $A$ must be unbounded (it has no supremum or infinimum since it is open).
+If this is the case, then $A$ must be unbounded (a closed set would contain its supremum, but an open set would not, thus one would think there is no supremum, hence the set would be unbounded).
 And if $A$ has continuous [$\epsilon$-neighborhoods] elements, then it will be open.
 But since $A$ is closed, then it must also contain all of its limit points,
 So $A$ is a set that is unbounded, contains all of its limit points, and has continuous $\epsilon$-neighborhoods.
@@ -1450,6 +1452,8 @@ Exercise \ref{abbott:3.2.15}.
 \\
 
 %%%%%%%%%%%%%%
+\phantomsection
+\label{abbott:3.5.1}
 \textbf{3.5.1}
 
 Argue that a set $A$ is $G_\delta$ set if and only if its complement is an $F_\sigma$ set.
@@ -1468,6 +1472,8 @@ Where $O_\lambda$ is some open set and $C_n$ is some closed set.
 
 
 %%%%%%%%%%%%%%
+\phantomsection
+\label{abbott:3.5.2}
 \textbf{3.5.2}
 
 \begin{enumerate}[(a)]
@@ -1501,6 +1507,8 @@ This is Exercise \ref{abbott:3.2.15}
 
 
 %%%%%%%%%%%%%%%%%%
+\phantomsection
+\label{abbott:3.5.4}
 \textbf{3.5.4}
 
 Starting with $n=1$,
@@ -1522,3 +1530,98 @@ that the intervals must not be open.
 And in Exercise \ref{abbott:3.2.4} (b) we saw that an open set cannot contain its supremum.
 
 This time, our construction must be such that a our dense, open set $G_n$ contains a closed interval $I_n$.
+\\
+
+Roughly speaking, if we bind $I_1$, then all subsequent $I_n$ will be bounded as well as $I_n \supseteq I_{n+1}$.
+Since all $I_n$ will be bounded and closed, then they will be compact sets.
+Since $I_n$ is compact, then any open covering has a finite subcover ($G_n$).
+So our construction is completely doable.
+
+Furhtermore, since all $G_n$ are open and dense, then we can continue on defining smaller and smaller
+$I_n$ intervals.
+Hence creating a countable collection of $G_n$ sets is also feasible.
+\\~\\
+
+
+
+%%%%%%%%%%%%%%%%%%%%
+\textbf{3.5.5}
+
+Show that it is impossible to write
+$$
+\mathbb{R} = \bigcup^{\infty}_{n=1} F_n,
+$$
+
+where for each $n\in\mathbb{N}$, $F_n$ is a closed set containing no nonempty open intervals.
+\\
+
+In words, the exercise asks us to show that the reals cannot be formed from a infinetely countable
+union of closed sets containing no nonempty open intervals.
+(Also remember that we proved back in Exercise \ref{abbott:3.2.13} that $\mathbb{R}$ and $\emptyset$
+are the only sets that are both open and closed.)
+
+This could be thought of as an argument about creating an uncountable set from a countable collection of sets
+but a more readily made argument is by noting how much this looks like the complement of
+Exercise \ref{abbott:3.5.4}.
+
+
+So by contradiction, if $\mathbb{R} = \bigcup_{n\in\mathbb{N}} F_n$,
+then
+$$
+\mathbb{R}^c = \bigcap_{n\in\mathbb{N}} F_{n}^{c} = \bigcap_{n\in\mathbb{N}} G_{n} = \emptyset
+$$
+
+Which contradicts what we argued back in Exercise \ref{abbott:3.5.4}.
+
+Also note that the reason we are able to have $F_{n}^{c} = G_n$ is because we required all sets $F_n$
+to contain no nonempty open intervals.
+If we drop this requirement, then $F_{n}^{c}$ would not necessarily be bounded and the construction
+we made in Exercise \ref{abbott:3.5.4} would not be possible.
+\\~\\
+
+
+
+%%%%%%%%%%%%%%%
+\textbf{3.5.6}
+
+Show how the previous exercise implies that the set $\mathbb{I}$ of irrationals
+cannot be an $F_\sigma$ set, and $\mathbb{Q}$ cannot be a $G_\delta$ set.
+\\
+
+Let's put together a couple things we have discovered thus far.
+Back in Exercise \ref{abbott:3.2.15}, we argued that $\mathbb{Q}$ is an $F_\sigma$ set
+and that $\mathbb{I}$ is a $G_\delta$ set.
+
+Furhtermore, in Exercise \ref{abbott:3.5.1} we argued that
+a set $A$ is $G_\delta$ set if and only if its complement is an $F_\sigma$ set.
+
+Now we could say that like $\mathbb{R}$ and $\emptyset$ are both open and closed
+even in the face of Theorem 3.2.13 which states that
+a set $O$ is open if and only if $O^c$ is closed and that
+a set $F$ is closed if and only if $F^c$ is open,
+then maybe it is possible for some sets to also be $F_\sigma$ and $G_\delta$.
+
+But if we assumed that $\mathbb{I}$ is a $F_\sigma$ set, then as per Exercise \ref{abbott:3.5.2},
+a countable union of $F_\sigma$ sets is an $F_\sigma$ set.
+So $\mathbb{Q} \cup \mathbb{I} = \mathbb{R}$ would be a $F_\sigma$, which we just argued is not possible.
+
+Hence, we should be inclined to think that $\mathbb{I} = \mathbb{Q}^c$ is indeed $F_{\sigma}^{c} = G_\delta$ set and not possible for it to be
+both at the same time.
+consecuently, $\mathbb{Q}$ could not be a $G_\delta$ set.
+\\~\\
+
+
+%%%%%%%%%%%%%%%%%
+\textbf{3.5.7}
+
+Using Exercise 3.5.6 and versions of the satements in Exercise 3.5.2,
+construct a set that is neither in $F_\sigma$ nor in $G_\delta$.
+\\
+
+This time we will go looking for sets that are countable intersections of $F_\sigma$ sets
+(countable intersections of sets that are countable unions of closed sets)
+and countable unions of $G_\delta$ sets
+(countable unions of sets that are countable intersections of open sets).
+
+In symbolic forms, we are fishing for sets such as $\bigcap_{n} \bigcup_{n^\prime} F$
+and $\bigcup_n \bigcap_{n^\prime} O$.
