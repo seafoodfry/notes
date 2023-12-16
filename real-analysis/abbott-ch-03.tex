@@ -108,6 +108,8 @@ So looking at a limit point that is not part of $O^c$, means that $v_{\epsilon} 
 \\~\\
 
 
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Exercises}
 
@@ -325,7 +327,7 @@ If $s+\epsilon \in A$, then it would mean that $s \neq \sup A$.
 
 
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%
 \textbf{3.2.5}
 \\
 
@@ -353,7 +355,16 @@ And since every convergent sequence is a cauchy seuqnece, then we can state our 
 
 
 
-\textbf{Exercise 3.2.12}
+%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{3.2.6}
+
+TODO: it asks whether the Cantor set is closed, which is an interesting exercise.
+\\~\\
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{3.2.12}
 \\
 
 Let $A$ be an uncountable set and let $B$ be the set of real numbers that divides $A$ into two uncountable sets;
@@ -1545,6 +1556,8 @@ Hence creating a countable collection of $G_n$ sets is also feasible.
 
 
 %%%%%%%%%%%%%%%%%%%%
+\phantomsection
+\label{abbott:3.5.5}
 \textbf{3.5.5}
 
 Show that it is impossible to write
@@ -1700,9 +1713,56 @@ somewhere in between.
 \begin{enumerate}[(a)]
 \item $A = \mathbb{Q} \cap [0,5]$
 
+This is the set of rationals in $[0,5]$.
+Since every real in $[0,5]$, that is not a rational, is a limit point of $A$, then $A$ is dense in $[0,5]$
+but not dense in all of $\mathbb{R}$.
+
 \item $B = \{ 1/n : n\in\mathbb{N} \}$
+
+$B$ is nowhere dense, since $\overline{B} = B \cup \{0\}$ does not contain any nonempty open interval.
 
 \item The set of irrationals
 
+If the previous exercise thought us anything is to start by looking at the closure of the set in question.
+Here $\overline{\mathbb{I}} = \mathbb{I} \cup \mathbb{Q} = \mathbb{R}$ so the irrationals are dense in $\mathbb{R}$.
+
 \item The Cantor set
+
+Couple facts we know about the Cantor set: it is closed, $C = \overline{C}$, and it contains no intervals.
+Since $\overline{C}$ contain no nonempty open intervals, we'd say that the Cantor set is nowhere-dense.
+
+One could possibly want to make a similar argument for $C^c = \bigcup C_{n}^c$, where $C_{n}^c$ would be a
+bunch of open intervals, but in that case the closure of the complement does contain nonempty open sets
+(so it is not nowhere-dense) but every point in the reals is also not a limit point of it so it is also not dense in $\mathbb{R}$.
+
+So we are sticking with saying that the Cantor set is nowhere-dense.
 \end{enumerate}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%
+\textbf{3.5.10}
+
+The set of real numbers $\mathbb{R}$ cannot be written as the countable union of nowhere-dense sets.
+\\
+
+For contradiciton, assume $E_1$, $E_2$, $E_3$, ... are each nowhere-dense sets and satisfy
+$\mathbb{R} = \bigcup_{n\in\mathbb{N}} E_n$.
+
+Since each $E_n$ is nowhere-dense, then $\overline{E}_n$ contains no nonempty open sets.
+From here we could do an qualitative argument but also note that we can use Exercise \ref{abbott:3.5.5}.
+
+Since $E_n \subseteq \overline{E}_n$, then using Exercise \ref{abbott:3.5.5} we can see that is is
+impossible to write $\mathbb{R} = \bigcup_{n\in\mathbb{N}} \overline{E}_n$.
+Consequently, $\mathbb{R} \neq \bigcup_{n\in\mathbb{N}} E_n$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Open questions}
+
+\begin{itemize}
+\item The section of perfect and connected sets would make a great reminder for the cut property that was
+mentioned as an exercise in the latest version of the book in chapter 1.
+
+\item We should make a clear mention of how we discovered that the Canotr set is closed and that it has
+no intervals. These facts are used a lot in exercises.
+\end{itemize}
