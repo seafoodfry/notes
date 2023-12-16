@@ -1625,3 +1625,51 @@ and countable unions of $G_\delta$ sets
 
 In symbolic forms, we are fishing for sets such as $\bigcap_{n} \bigcup_{n^\prime} F$
 and $\bigcup_n \bigcap_{n^\prime} O$.
+
+But after some thinking and searching, we think
+\href{https://math.stackexchange.com/questions/73296/example-of-a-borel-set-that-is-neither-f-sigma-nor-g-delta}{Example of a Borel set that is neither F
+nor G}
+said it best.
+Also, note how the mathexchange thread is about Borel sets, and the wiki page on Borel sets then talks about
+measure theory.
+\\~\\
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{3.5.8}
+
+Show that a set $E$ is nowhere-dense in $\mathbb{R}$ if and only if the complement of
+$\overline{E}$ is dense in $\mathbb{R}$.
+\\
+
+That is, $E$ is nowhere-dense in $\mathbb{R}$ if and only if $\left(\overline{E}\right)^c$ is dense in
+$\mathbb{R}$.
+Where
+$$
+\left( \overline{E} \right)^c = \left( E \cup L \right)^c = \left( E^c \cap L^c \right)
+$$
+
+The proof in the forward direction is: if $E$ is nowhere-dense in $\mathbb{R}$ ($\overline{E}$ contains no nonempty open intervals),
+then $\left(\overline{E}\right)^c$ is dense in $\mathbb{R}$.
+
+The proof in the backward direction is: if $\left(\overline{E}\right)^c$ is dense in $\mathbb{R}$,
+then $E$ is nowhere-dense in $\mathbb{R}$ ($\overline{E}$ contains no nonempty open intervals).
+
+($\Rightarrow$) If $\overline{E}$ contains no nonempty open intervals then for any $a$ and $b$,
+$(a,b) \not\in \overline{E}$.
+And so for a $c$ such that $a < c < b$, $c \not\in \overline{E}$, which means that $c \in \overline{E}^c$.
+
+Since $a$, $b$, and $c$ are arbitrary and $a < c < b$, then $\overline{E}^c$ is dense.
+
+For the sake of notation, remember that $\overline{E}^c = \mathbb{R} \setminus \overline{E}$.
+
+Trying to verbalize it: if $\overline{E}$ contains no nonempty open intervals, then all nonempty open intervals
+must be in $\overline{E}^c$.
+Since the closure of $\overline{E}^c$ is $\overline{E}^c$ (all open nonempty intervals) the limit points of all
+nonempty open intervals, then $\overline{\overline{E}^c}$ must equal the reals.
+\\
+
+
+($\Leftarrow$) If $\left(\overline{E}\right)^c$ is dense in $\mathbb{R}$
+then $\overline{E}^c \cup L_{\overline{E}^c}$ are equal to the reals.
