@@ -1672,4 +1672,37 @@ nonempty open intervals, then $\overline{\overline{E}^c}$ must equal the reals.
 
 
 ($\Leftarrow$) If $\left(\overline{E}\right)^c$ is dense in $\mathbb{R}$
-then $\overline{E}^c \cup L_{\overline{E}^c}$ are equal to the reals.
+then $\overline{E}^c \cup L_{\overline{E}^c} = \mathbb{R}$.
+
+The urge to apply DeMorgan's law tells us that
+$\left( \overline{E}^c \cup L_{\overline{E}^c} \right)^c = \overline{E} \cap L_{\overline{E}^c}^c = \mathbb{R}^c = \emptyset$.
+Which read out loud says that there are no common elements between $\overline{E}$ and everything that is not a limit point of $\overline{E}^c$.
+Meaning that $\overline{E} \subseteq L_{\overline{E}^c}$ or $\overline{E} \supseteq L_{\overline{E}^c}$
+(if $\overline{E}$ and $L^c$ are disjoint, then $\overline{E}$ and $L$ aren't).
+
+From the above, we could argue that $\overline{E}$ must contain no nonempty open intervals as follows:
+consider some limit point of $\overline{E}^c$ that is also in $\overline{E}$, let's call it $a$.
+If there was a nonempty open interval in $\overline{E}$, then there would be some $\epsilon$-neighborhood,
+$(a-\epsilon, a+\epsilon)$, around said point.
+But since $\overline{E}^c$ is dense in $\mathbb{R}$, then any number in $(a-\epsilon, a+\epsilon)$
+that we could find it should be in $\overline{E}^c$, not in $\epsilon{E}$.
+It would thus be inconsistent to think that $\overline{E}$ can sustain a nonempty open interval.
+\\~\\
+
+
+
+%%%%%%%%%%%%%%%%%%%%%
+\textbf{3.5.9}
+
+Deside whether the following sets are dense in $\mathbb{R}$, nowhere-dense in $\mathbb{R}$, or
+somewhere in between.
+
+\begin{enumerate}[(a)]
+\item $A = \mathbb{Q} \cap [0,5]$
+
+\item $B = \{ 1/n : n\in\mathbb{N} \}$
+
+\item The set of irrationals
+
+\item The Cantor set
+\end{enumerate}
