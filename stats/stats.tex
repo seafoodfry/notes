@@ -7,15 +7,19 @@
 \usepackage{float} % here for H placement parameter
 \usepackage{hyperref} % for hyperlinks.
 \usepackage{listings} % for code.
-\usepackage[makeroom]{cancel} % corssing out terms in math https://tex.stackexchange.com/questions/75525/how-to-write-crossed-out-math-in-latex
+\usepackage[makeroom]{cancel} % crossing out terms in math https://tex.stackexchange.com/questions/75525/how-to-write-crossed-out-math-in-latex
+\usepackage[shortlabels]{enumitem} % enumerate with letters.
 
 
+% Make greek letters bold too.
+\usepackage{bm}
+\newcommand{\vect}[1]{\boldsymbol{\mathbf{#1}}}
 
 % Make paragrphs show in the table of contents.
 \setcounter{secnumdepth}{4}
 \setcounter{tocdepth}{4}
 
-\title{Notes on differential equations}
+\title{Notes on Stats}
 
 \numberwithin{equation}{section}
 
@@ -34,9 +38,7 @@
 \maketitle
 \tableofcontents
 
-\include{holmes-intro-to-perturbation-01}
-\include{first-order-diff-eqs}
-\include{Numerical-analysis}
+\include{propagation-of-errors}
 
 
 \end{document}

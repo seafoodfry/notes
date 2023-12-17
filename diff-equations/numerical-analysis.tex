@@ -1,0 +1,44 @@
+\section{Numerical Analysis}
+
+\subsection{Errors}
+
+As NR explains: Arithmetic among numbers in floating-point representation is not exact, even if
+the operands happen to be exactly represented.
+For example, two floating numbers are added by first right-shifting
+(dividing by two) the mantissa of the smaller (in magnitude) one and simultaneously
+increasing its exponent until the two operands have the same exponent. Low-order
+(least significant) bits of the smaller operand are lost by this shifting. If the two
+operands differ too greatly in magnitude, then the smaller operand is effectively re-
+placed by zero, since it is right-shifted to oblivion.
+\\
+
+The smallest (in magnitude) floating-point number that, when added to the
+floating-point number 1.0, produces a floating-point result different from 1.0 is term-
+ed the \textbf{machine accuracy}, $\epsilon_m$.
+
+It is important to understand that $\epsilon_m$ is not the smallest floating-point number
+that can be represented on a machine.
+That number depends on how many bits there
+are in the exponent, while $\epsilon_m$ depends on how many bits there are in the mantissa.
+
+
+Pretty much any
+arithmetic operation among floating numbers should be thought of as introducing an
+additional fractional error of at least $\epsilon_m$.
+This type of error is called roundoff error.
+
+Roundoff errors accumulate with increasing amounts of calculation. If, in the
+course of obtaining a calculated value, you perform $N$ such arithmetic operations,
+you might be so lucky as to have a total roundoff error on the order of $\sqrt{N}\epsilon_m$, if
+the roundoff errors come in randomly up or down. (The square root comes from
+a random-walk.) However, this estimate can be very badly off the mark for two
+reasons:
+
+(1) It very frequently happens that the regularities of your calculation, or the
+peculiarities of your computer, cause the roundoff errors to accumulate preferentially
+in one direction. In this case the total will be of order $N\epsilon_m$.
+
+(2) Some especially unfavorable occurrences can vastly increase the roundoff
+error of single operations. Generally these can be traced to the subtraction of two
+very nearly equal numbers, giving a result whose only significant bits are those (few)
+low-order ones in which the operands differed.
