@@ -11,9 +11,30 @@ The argument for this is presented in Abbott in Theorem 2.7.2, the Cauchy criter
 and in Theorem 2.7.3.
 \\~\\
 
+\textbf{D'Alembert (Cauchy) Ratio Test}
+
 While looking at the D'Alembert (Cauchy) ratio test, keep in mind that the geometric
 series defines $r = u_{n+1} / u_n$.
 
 Also, in Example 1.1.4, we have the $n \geq 2$ condition because if $n = 1$,
 then we would have an undeterminate result.
-\\
+\\~\\
+
+
+\textbf{Cauchy or Maclaurin Integral Test}
+
+The trick to making sense of the first set of inequalities goes as follows...
+
+$s_i$, by the fact that $f(x)$ is monotonic decreasing, will overestimate the area under the curve.
+So the difference between $s_i \geq \int_{1}^{i+1} f(x) dx$ and $s_i \leq a_1 + \int_{1}^{i} f(x) dx$
+is that there is a "shift" between the two (the graph as shown in the book).
+
+Where as $\int_{1}^{i+1} f(x) dx$ starts from 1 and always goes to $\{2, 3, 4, \ldots\}$,
+$\int_{1}^{i} f(x) dx$ cancels out its first "term" since $\int_{1}^{1} f(x) dx = 0$.
+
+So when we look at the first two partial sums in the context of the second inequality we get
+\begin{enumerate}
+    \item $s_1 = a_1             \leq a_1 + \int_{1}^{1} f(x) dx = a_1$. The claim that $a_1 \leq a_1$ is true.
+    \item $s_2 = a_1 + a_2       \leq a_1 + \int_{1}^{2} f(x) dx$. Here the claim is that $f(2) \leq \int_{1}^{2} f(x) dx$.
+    \item $s_3 = a_1 + a_2 + a_3 \leq a_1 + \int_{1}^{3} f(x) dx$. Here the claim is that $f(2) + f(3) \leq \int_{1}^{3} f(x) dx$.
+\end{enumerate}
