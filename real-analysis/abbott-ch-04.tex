@@ -6,22 +6,93 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Exercises}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%
 \textbf{4.2.1}
 \\
 
 \begin{enumerate}[(a)]
 
 \item Supply the details for how Corollary 4.2.4 part (ii) follows from the Sequential Criterion for Functional
-Limits in Theorem 4.2.3 and the Algebraic Limit theorem for sequences proved in Chapter 2.
+Limits in Theorem 4.2.3 and the Algebraic Limit Theorem for sequences proved in Chapter 2.
 \\
 
 For reference, the Algebraic Limit Theorem is Theorem 2.3.3.
 
+The Sequential Criterion for Functional Limits here tells us that since we know that since
+$\lim_{x\rightarrow c} f(x_n) \rightarrow L$ and
+$\lim_{x\rightarrow c} g(x_n) \rightarrow M$,
+then we know that $(x_n) \rightarrow c$ ($x_n \neq c$ for all $n$)
+and that $f(x_n) \rightarrow L$ and $g(x_n) \rightarrow M$.
+
+Since the later two expressions are sequences on their own, we can use now the Algebraic Limit Theorem,
+$\lim \left(a_n + b_n\right) = a+b$, implying that
+$\lim_{x\rightarrow c} \left( f(x_n) + f(x_n)\right) \rightarrow L + M$.
 
 
 \item Now, write another proof of Corollary 4.2.4 part (ii) directly from Definition 4.2.1 without using the
 Sequential Criterion for Functional Limits in Theorem 4.2.3.
 
+To do the same proof without the Sequential Criterion for Functional Limits we ought to go back to $\epsilon-\delta$ proofs.
+
+Since we know that $\lim_{x\rightarrow c} f(x_n) \rightarrow L$ and
+$\lim_{x\rightarrow c} g(x_n) \rightarrow M$, then we can define a $\delta_f$ such that when $0 < |x-c| < \delta_f$ $|f(x) - L|<\epsilon_f$
+(for any $\epsilon_f > 0$)
+and a $\delta_g$ sucht that when $0 < |x-c| < \delta_g$ $|g(x) - M| < \epsilon_g$ (for any $\epsilon_g > 0$).
+
+Then if we look for a $\delta = \min\left\{\delta_f, \delta_g \right\}$ such that
+$$
+\left| \left(f(x)+g(x)\right) - \left(L+M\right) \right| \leq
+\left|f(x) - L \right| + \left| g(x) - M \right| < \epsilon_f + \epsilon_g = \epsilon
+$$
+
+If you notice, this is pretty much the same sort of logic we used to prove the Algebraic Limit Theorem, so we could
+have a guess for what the proof for the next bit could be.
+
 \item Repeat (a) and (b) for Corollary 4.2.4 part (iii).
+
+The proof using the Sequential Criterion for Functional Limits is essentially the same as in part (a).
+(You should definetely write it out or read it out loud though!)
+So let's carry on with the proof without it.
+
+Similar to what we did while proving the Algebraic Limit Theorem, let's work backwards from what we want.
+
+\begin{align*}
+\left| f(x)g(x) - LM \right| &=  \left| f(x)g(x) - Lg(x) + Lg(x) - LM \right| \\
+&\leq \left| f(x)g(x) - Lg(x) \right| + \left| Lg(x) - LM \right| \\
+&= |g(x)| \left| f(x) - L \right| + |L|\left| g(x) - M \right|
+\end{align*}
+
+Again, we want to find the "worst case scenario" for $g(x)$.
+And since $g(x_n)$ is a convergent sequence, then it will have some bound $M$.
+If we also recall our $\delta_f$ and $\delta_g$ from part (b), then we have
+
+\begin{align*}
+\left| f(x)g(x) - LM \right| &\leq |g(x)| \left| f(x) - L \right| + |L|\left| g(x) - M \right| \\
+&\leq M \left| f(x) - L \right| + |L|\left| g(x) - M \right| \\
+&< |M| \epsilon_f + |L| \epsilon_g \\
+&= |M| \left( \frac{\epsilon}{2|M|} \right) + |L|\left( \frac{\epsilon}{2|L|} \right) = \epsilon
+\end{align*}
+
+At the end there, we went ahead and figured out how to define $\epsilon_f$ and $\epsilon_g$ in terms of some arbitrary $\epsilon$
+that could be used for the entire thing.
+
 \end{enumerate}
 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{4.2.2}
+\\
+
+For each stated limit, find the largest possible $\delta$-neighborhood that is a proper response to the $\epsilon$-challenge.
+
+\begin{enumerate}[(a)]
+\item $\lim_{x\rightarrow 3} \left( 5x - 6 \right) = 9$, where $\epsilon = 1$.
+
+\item $\lim_{x\rightarrow 4} \sqrt{x} = 2$, where $\epsilon = 1$.
+
+\item $\lim_{x\rightarrow \pi} [[x]] = 3$, where $\epsilon = 1$.
+(The function $[[x]]$ returns the greatest integer less than or ewual to $x$.)
+
+\item $\lim_{x\rightarrow \pi} [[x]]$, where $\epsilon = 0.01$.
+\end{enumerate}
