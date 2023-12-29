@@ -89,7 +89,38 @@ For each stated limit, find the largest possible $\delta$-neighborhood that is a
 \begin{enumerate}[(a)]
 \item $\lim_{x\rightarrow 3} \left( 5x - 6 \right) = 9$, where $\epsilon = 1$.
 
+We are looking for a $\delta$ such that when $0 < |x-3| < \delta$, $|5x -6 -9| = |5x- 15|= |5||x-3| = 5|x-3| < 1$.
+
+If we choose $\delta = 1/5$, then $5|x-3| < 5\delta = 1 = \epsilon$.
+
 \item $\lim_{x\rightarrow 4} \sqrt{x} = 2$, where $\epsilon = 1$.
+
+We are looking for a $\delta$ such that when $0 < |x-4| < \delta$, $|\sqrt{x}-2| < \epsilon$.
+
+One way to try this one out would be not note that
+$$
+|\sqrt{x}-2| = \frac{|x-4|}{|\sqrt{x}+2|} \leq \frac{|x-4|}{2} < \frac{\delta}{2}
+$$
+
+So we could choose $\delta = 2$ and have a proper response to our $\epsilon = 1$ challenge.
+But because we used an inequality, $\delta = 2$ is not the largest possible $\delta$-neighborhood available.
+
+After doing some internet research, we saw no better answer than to proceed with some numerical experiments.
+We are looking for a $\delta$ that will put us plus or minus 1 from $y = \sqrt{x} = 2$, so $1 < y = \sqrt{x} < 3$
+or $1 < x < 9$.
+This last expression is equivalent to $4-\delta < x < 4+\delta$ or $-(\delta +4) < x < \delta + 4$.
+Meaning that we have two options 3 or 5 (do the algebra to solve for $\delta$ using the last expression or just count using $1 < x < 9$).
+
+Now, we pick the smallest of the two possible values for $\delta$ because that one will give us an entire $V_\delta (c)$ that will result
+in $|\sqrt{x} - c| < \epsilon$ (imagine the graph - neighborhoods are symmetric so you ought to avoid a neighborhood that will give you $x$
+values that will put you outside of the desired $\epsilon$ tolerance).
+
+Numerically, if we chosed the largest value for delta, $\delta = 5$, then $0 < |x-4| < 5$ implies $-5 < x-4 < 5$ which means that $x$ could have any value
+$-1 < x < 9$, and $-1$ is not a valid value in this case.
+
+This analysis was based on
+\href{https://math.libretexts.org/Bookshelves/Calculus/Calculus_3e_(Apex)/01%3A_Limits/1.02%3A_Epsilon-Delta_Definition_of_a_Limit}{Calculus 3e Apex: Epsilon-Delta Definition of a Limit}
+
 
 \item $\lim_{x\rightarrow \pi} [[x]] = 3$, where $\epsilon = 1$.
 (The function $[[x]]$ returns the greatest integer less than or ewual to $x$.)
