@@ -1,0 +1,77 @@
+\section{Continuum mechanics}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Exercises}
+
+%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{1.1}
+\\
+
+(B) Consider an unsteady one-dimensional flow where the density and velocity depend on $x$ and $t$.
+A Galilean transformation into a new set of variables $x^\prime$, $t^\prime$ is given by the equation $x = x^\prime + V t^\prime$,
+$t = t^\prime$, where $V$ is a constant velocity.
+For the moment let $f = f(x,t)$ stand for a function that we wish to express in the $x^{\prime}-t^{\prime}$ coordinate system.
+By careful use of the chain rules of calculus, find the expressions for $\partial f / \partial t^\prime$ and $\partial f / \partial x^\prime$.
+Next, consider the substantial derivatives of $\rho$ and $v$, which are
+$$
+\frac{\partial \rho^\prime}{\partial t^\prime} + v^\prime \frac{\partial \rho^\prime}{\partial x^\prime},
+$$
+$$
+\frac{\partial v^\prime}{\partial t^\prime} + v^\prime \frac{\partial v^\prime}{\partial x^\prime},
+$$
+
+Show that the substantial derivatives above have exactly the same mathematical form when transformed into the $x-t$ coordinate system
+(note that $\rho^\prime = \rho$ and $v^\prime = v - V$).
+\\
+
+Let's start with the chain rule to obtain the coordinate transformation for our partial derivatives.
+Since $f = f(x,t) = f \left(x(x^\prime, t^\prime), t(t^\prime)\right)$, the new partial derivatives will be
+$$
+\frac{\partial f}{\partial t^\prime} = 
+    \frac{\partial f}{\partial x}\frac{\partial x}{\partial t^\prime} +
+    \frac{\partial f}{\partial t}\frac{\partial t}{\partial t^\prime}
+$$
+
+Since $t = t^\prime$, $\partial t / \partial t^\prime = 1$, and since $x = x^\prime + V t^\prime$,
+$\partial x / \partial t^\prime = \partial_{t^\prime} \left( x^\prime + V t^\prime \right) = V$.
+So
+$$
+\frac{\partial f}{\partial t} =
+    \frac{\partial f}{\partial t} +
+    V \frac{\partial f}{\partial x}
+$$
+
+Similarly,
+$$
+\frac{\partial f}{\partial x^\prime} = 
+    \frac{\partial f}{\partial x} \cancelto{1}{ \frac{\partial x}{\partial x^\prime} } +
+    \frac{\partial f}{\partial t} \cancelto{0}{ \frac{\partial t}{\partial x^\prime} }
+= \frac{\partial f}{\partial x}
+$$
+
+The first simplification comes about because $\partial_{x^\prime} x = \partial_{x^\prime} \left( x^\prime + Vt^\prime\right)$.
+The second because $t$ does not depend on $x^\prime$.
+
+
+Now we can look at the substantial derivatives.
+\begin{align*}
+\frac{\partial \rho^\prime}{\partial t^\prime} + v^\prime \frac{\partial \rho^\prime}{\partial x^\prime}
+    &\rightarrow \frac{\partial \rho}{\partial t^\prime} + (v-V) \frac{\partial \rho}{\partial x^\prime} \\
+&= \frac{\partial \rho}{\partial t} + V \frac{\partial \rho}{\partial x}
+    + (v-V) \frac{\partial \rho}{\partial x} \\
+&= \frac{\partial \rho}{\partial t} + v \frac{\partial \rho}{\partial x}
+\end{align*}
+
+
+
+And,
+\begin{align*}
+\frac{\partial v^\prime}{\partial t^\prime} + v^\prime \frac{\partial v^\prime}{\partial x^\prime}
+    &\rightarrow \frac{\partial (v-V)}{\partial t^\prime} + (v-V) \frac{\partial (v-V)}{\partial x^\prime} \\
+&= \frac{\partial v}{\partial t} + V \frac{\partial v}{\partial x} +
+    (v-V) \frac{\partial v}{\partial x} \\
+&= \frac{\partial v}{\partial t} + v \frac{\partial v}{\partial x}
+\end{align*}
+
+So $\frac{D\rho}{Dt}$ and $\frac{Dv}{Dt}$ are both invariant under Galilean transformation.
+\\~\\
