@@ -127,3 +127,39 @@ If the electric field makes an angle $\theta$ with the unit normal, then the pro
 infinitesimal area element along the normal of the surface is $\cos\theta da$.
 Using the solid angle formula, we then get $d\Omega = \cos\theta da / r^2$ or
 $r^2 d\Omega = \cos\theta da$.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Exercises}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{1.2}
+\\
+
+The Dirac delta function in three dimensions can be taken as the improper limit as $\alpha \rightarrow 0$ of the
+Gaussian function
+$$
+D\left(\alpha ; x, y, z \right) =
+    \frac{1}{\left(\alpha \sqrt{2\pi}\right)^3}
+    \exp{ \left[ -\frac{1}{2\alpha^2} \left( x^2 + y^2 + z^2 \right) \right] }
+$$
+
+Consider a general orthogonal coordinate system specified by the surfaces $u$ = constant, $v$ = constant,
+$w$ = constant, with length elements $du/U$, $dv/V$, $dw/W$ in the three perpendicular directions.
+Show that
+$$
+\delta\left( \mathbf{x} - \mathbf{x}^\prime \right) =
+    \delta\left(u - u^\prime\right) \delta\left(v - v^\prime\right) \delta\left(w - w^\prime\right) \cdot UVW
+$$
+
+by considering the limit of the Gaussian above.
+Note that as $\alpha \rightarrow 0$ only the infinitesimal length
+element need be used for the distance between the points in the exponent.
+\\
+
+\begin{align*}
+\delta (x) &= \lim_{b\rightarrow 0} \frac{1}{|b|\sqrt{\pi}} \exp{ \left[ -\frac{1}{b^2} x^2 \right]} \\
+    &= \lim_{b\rightarrow 0^+} \frac{1}{2\sqrt{\pi b}} \exp{ \left[ -\frac{1}{4b} x^2 \right]} \\
+    &= \lim_{b\rightarrow 0} \frac{1}{b \sqrt{2\pi}} \exp{ \left[ -\frac{1}{2b^2} x^2 \right]}
+\end{align*}
