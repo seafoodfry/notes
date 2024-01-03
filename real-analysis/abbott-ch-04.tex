@@ -125,5 +125,54 @@ This analysis was based on
 \item $\lim_{x\rightarrow \pi} [[x]] = 3$, where $\epsilon = 1$.
 (The function $[[x]]$ returns the greatest integer less than or ewual to $x$.)
 
+Once again, we are looking for a $\delta$ such that when $0 < |x- \pi| < \delta$, $|[[x]] - 3| < \epsilon = 1$.
+
+Doing a bit of thinking, any $x \in (2,5)$ will result in $[[x]] = 2, 3, 4$.
+All of these values are within a distance of 1 from 3.
+If we tried then $|2-\pi|$ or $|5-\pi|$ however, we would have something like $|[[2.001]]-3|$ or $|[[4.999]]-3|$
+which is are not strictly smaller than 1.
+
+Because of the nature of $[[x]]$ (you should draw it), the way to narrow our domain and stay some distance less than one unit
+from $3$ is to have $x$ such that $x\in (3,4)$.
+Specifically, the largest $\delta$-neighborhood would be $\pi - 3$, since any value greater than that would put $x$ in the domain of
+$x\in (2,3)$ which would make $[[x]]=2$.
+
 \item $\lim_{x\rightarrow \pi} [[x]]$, where $\epsilon = 0.01$.
+
+Same as above: $\delta = \pi - 3$.
+
+\item $\lim_{x\rightarrow 0} x^3 = 0$
+
+A $\delta$ such that when $0 < |x-0| = |x| < \delta$ $|x^3 - 0| = |x|^3 < \epsilon$ for every $\epsilon > 0$
+means that we can choose $\delta = \epsilon^{1/3}$.
+
+\item $\lim_{x\rightarrow 2} x^3 = 8$
+
+A $\delta$ such that when $0 < |x-2| < \delta$ $|x^3 - 8| < \epsilon$ for every $\epsilon > 0$.
+
+Following Example 4.2.2 (ii), we can agree that $|x-2|<1$, so $x=1,3$.
+Then we can factor $x^3 -8$ into $(x-2)(x^2 + 2x + 4)$ if we try $x=1$ then $x^2 + 2x + 4 = 7$.
+If we try $x=3$, $x^2 + 2x + 4 = 19$.
+Out of these two options, choosing 7 would lead us to chose $\delta = \epsilon /7$, which is a better upper bound than $\epsilon / 19$.
+So $\delta = \min(1, \epsilon/7)$ leads us to $|x-2| |x^2 +2x + 4| = \frac{\epsilon}{7} \cdot 7 = \epsilon$
+
+\end{enumerate}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{4.2.3}
+\\
+
+Review the defintion of Thomae's function $t(x)$ from Section 4.1.
+
+\begin{enumerate}[(a)]
+\item Construct three different sequences $(x_n)$, $(y_n)$, and $(z_n)$, each of which converges to 1 without using 1 as a term in
+the sequence.
+
+\item Now, compute $\lim t(x_n)$, $\lim t(y_n)$, and $\lim t(z_n)$.
+
+\item Make an educated conjecture for $\lim_{x\rightarrow 1} t(x)$, and use Definition 4.2.1B to verify the claim.
+(Given $\epsilon > 0$, consider the set of points $\{ x\in\mathbb{R} : t(x) \geq \epsilon \}$.
+Argue that all the points in this set are isolated.)
 \end{enumerate}
