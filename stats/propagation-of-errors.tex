@@ -55,3 +55,62 @@ Some great references we recommend watching and working through are
 \item \href{https://www.youtube.com/watch?v=jkytxdedxhU}{The impossible integral of e\^ (x\^ 2) \& the error function by blackpenredpen}
 \item \href{https://www.youtube.com/watch?v=zorcLisjRUI}{Integral of e\^(x\^2) \& the Imaginary Error Function by blackpenredpen}
 \end{enumerate}
+
+$$
+\erf(x) = \frac{2}{\sqrt{\pi}} \int_{0}^{x} e^{-t^2} dt
+$$
+
+This is the definite integral version of a Gaussian integral.
+Since $\int_{-\infty}^{\infty} x^{-x^2} dx = \sqrt{\pi}$ and since the definite integral we use to define the
+error function only goes from 0 to $x$ (only half the domain of the Gaussian),
+that's why we normalize the $\erf(x)$ with a $\sqrt{\pi}/2$.
+\\
+
+To draw the horizontal asymptotes of $\erf(x)$, note that the domain is $\left(-\infty, \infty\right)$, so we need to take the
+limits of $x$ as it tends to positive and negative infinity.
+
+\begin{align*}
+\lim_{x\rightarrow -\infty} \erf(x) &= \frac{2}{\sqrt{\pi}} \int_{0}^{-\infty} e^{-t^2} dt \\
+&= - \frac{2}{\sqrt{\pi}} \int_{-\infty}^{0} e^{-t^2} dt \\
+&= -1
+\end{align*}
+
+Similarly, $\lim_{x\rightarrow -\infty} \erf(x) = 1$.
+\\
+
+The derivative is also quite easy to get since we are taking the derivative of an integral and thus the fundamental theorem of calculus
+is all we need,
+$$
+\erf^{\prime} (x) = \frac{2}{\sqrt{\pi}} e^{-x^2}
+$$
+From the derivative we can also tell that $\erf(x)$ has no critical numbers and as a matter of fact, the derivative is always non-negative.
+
+And since we are talking about critical points, we can also go and take a look at the inflection points by computing the second
+derivative,
+$$
+\erf^{\prime\prime}(x) = -2x \frac{2}{\sqrt{\pi}} e^{-x^2}
+$$
+From this expression we can tell that $x=0$ is an inflection point, and that for all $x<0$ $\erf(x)$ is concave down, and for $x>0$
+$\erf(x)$ is concave up.
+\\
+
+Now, what about $\int e^{x^2} dx$, here we could do a variable transformation,
+\begin{align*}
+\int e^{x^2} dx &= \int e^{-\left(-x^2\right)} dx \\
+& = \int e^{-(ix)^2} dx \rightarrow
+\left[
+    \begin{alignedat}{2}
+        u  &= ix    \quad & x  &= \frac{1}{i}u = \frac{1}{i} \frac{i}{i} u = -iu \\
+        du &= i dx  \quad & dx &= -i du
+    \end{alignedat}\,
+\right] \\
+&= \int e^{-(u)^2} (-i) du \\
+&= -i \int e^{-u^2} du \\
+&= -i \frac{2}{\sqrt{\pi}} \erf(u) \\
+&= -i \frac{2}{\sqrt{\pi}} \erf(ix) = \erfi(x)
+\end{align*}
+
+There is one more property to mention before we continue looking into variable transformations and that is that
+$\erf(-z) = -\erf(z)$, the error function is an odd function.
+This directly results from the fact that the integrand $e^{-t^2}$ is an even function
+(the antiderivative of an even function which is zero at the origin is an odd function and vice versa).
