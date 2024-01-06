@@ -114,3 +114,55 @@ There is one more property to mention before we continue looking into variable t
 $\erf(-z) = -\erf(z)$, the error function is an odd function.
 This directly results from the fact that the integrand $e^{-t^2}$ is an even function
 (the antiderivative of an even function which is zero at the origin is an odd function and vice versa).
+\\
+
+Glasser's Master Theorem
+
+We originally learned of it thanks to
+\href{https://www.youtube.com/watch?v=yilsH_GrscM}{A masterful theorem for integration by Michael Penn}.
+But the theorem goes as follows:
+$$
+\int_{-\infty}^{\infty} f\left(x - \frac{a}{x}\right) dx = \int_{-\infty}^{\infty} f\left(x\right) dx
+$$
+for all $a>0$.
+
+If we try the most obvious u-substitution possible $u = x - \frac{a}{x}$, we can rewrite it as $ux = x^2 - a$
+or $x^2 - ux - a = 0$.
+If we apply the quadratic equation $x = \frac{1}{2} \left(u \pm \sqrt{u^2 + 4a}\right)$.
+This is also one of the reason why $a>0$ - to prevent a negavitve number inside of the square root.
+Consequently, $dx = \frac{1}{2}\left( 1 \pm \frac{u}{\sqrt{u^2 + 4a}} \right) du$.
+
+If we take the "+" sign, of $x$, then all of our values will be positive.
+And if we take the "-" sign, then all of our values will be negative.
+
+If we now do the u-substitution and take into account the nature of $x$ depending on what sign we take, then,
+\begin{align*}
+\int_{-\infty}^{\infty} f\left(x - \frac{a}{x}\right) dx
+    &= \int_{-\infty}^{0} f\left(x - \frac{a}{x}\right) dx + \int_{0}^{\infty} f\left(x - \frac{a}{x}\right) dx \\
+&= \frac{1}{2} \int f(u) \left(1 - \frac{u}{\sqrt{u^2 + 4a}}\right) du
+    + \frac{1}{2} \int f(u) \left(1 + \frac{u}{\sqrt{u^2 + 4a}}\right) du
+\end{align*}
+
+Now let's figure out the bounds fo integration.
+$\lim_{x\rightarrow -\infty} u = x - \frac{a}{x} = -\infty$ and
+$\lim_{x\rightarrow 0} u = x - \frac{a}{x} = \infty$ (because $x\rightarrow 0^-$ "$x$ approaches 0 from the left.")
+
+Similarly, in the second integral, $x$ will approach $0$ from above, $x\rightarrow 0^+$, so
+$\lim_{x\rightarrow 0^+} u = x - \frac{a}{x} = -\infty$.
+And $\lim_{x\rightarrow \infty} u = x - \frac{a}{x} = \infty$.
+So we have,
+
+\begin{align*}
+\int_{-\infty}^{\infty} f\left(x - \frac{a}{x}\right) dx
+    &= \int_{-\infty}^{0} f\left(x - \frac{a}{x}\right) dx + \int_{0}^{\infty} f\left(x - \frac{a}{x}\right) dx \\
+&= \frac{1}{2} \left[ \int_{-\infty}^{\infty} f(u) \left(1 - \frac{u}{\sqrt{u^2 + 4a}}\right) du
+    + \int_{-\infty}^{\infty} f(u) \left(1 + \frac{u}{\sqrt{u^2 + 4a}}\right) du \right] \\
+&= \int_{-\infty}^{\infty} f(u) du \\
+&= \int_{-\infty}^{\infty} f(x) dx
+\end{align*}
+
+$$
+\frac{\pi}{b} = \frac{1}{b}
+    \left( \lim_{x\rightarrow\infty} \arctan\left(\frac{x}{b}\right) -
+    \lim_{x\rightarrow -\infty} \arctan\left(\frac{x}{b}\right) \right)
+$$
