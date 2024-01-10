@@ -161,8 +161,61 @@ So we have,
 &= \int_{-\infty}^{\infty} f(x) dx
 \end{align*}
 
-$$
-\frac{\pi}{b} = \frac{1}{b}
+\begin{align*}
+\frac{\pi}{b} &= \frac{1}{b}
     \left( \lim_{x\rightarrow\infty} \arctan\left(\frac{x}{b}\right) -
-    \lim_{x\rightarrow -\infty} \arctan\left(\frac{x}{b}\right) \right)
+    \lim_{x\rightarrow -\infty} \arctan\left(\frac{x}{b}\right) \right) \\
+&= \frac{1}{b} \left( \frac{\pi}{2} + \frac{\pi}{2} \right)
+\end{align*}
+
+From calculus,
 $$
+\frac{d}{dx} \arctan x = \frac{1}{x^2 + 1}
+$$
+So if we had,
+\begin{align*}
+dy &= \frac{dx}{x^2 + b^2} = \frac{dx}{b^2 \left( \left(\frac{x}{b}\right)^2 + 1 \right)}
+\end{align*}
+
+If we choose $u = x/b$ so that $du = dx /b$, or $dx = b du$, then
+\begin{align*}
+\int dy &= \int \frac{1}{b^2} \frac{b du}{u^2 + 1 } = \int \frac{1}{b} \frac{du}{u^2 + 1} \\
+&= \frac{1}{b} \arctan u + C \\
+&= \frac{1}{b} \arctan\left(\frac{x}{b}\right) + C
+\end{align*}
+
+\href{https://en.wikipedia.org/wiki/Differentiation_of_trigonometric_functions#Differentiating_the_inverse_tangent_function}{Differentiating the inverse tangent function}
+
+Anyway, pluting everything together,
+\begin{align*}
+\frac{\pi}{b} &= \frac{1}{b}
+    \left( \lim_{x\rightarrow\infty} \arctan\left(\frac{x}{b}\right) -
+    \lim_{x\rightarrow -\infty} \arctan\left(\frac{x}{b}\right) \right) \\
+&= \int_{-\infty}^{\infty} \frac{dx}{x^2 + b^2}
+\end{align*}
+
+If we use Glasser's theorem,
+\begin{align*}
+\int_{-\infty}^{\infty} \frac{dx}{x^2 + b^2} &= \int_{-\infty}^{\infty} \frac{dx}{\left(x - \frac{a}{x}\right)^2 + b^2} \\
+&= \int_{-\infty}^{\infty} \frac{dx}{x^2 + \left(\frac{a}{x}\right)^2 - 2a + b^2} \\
+&= \int_{-\infty}^{\infty} \frac{x^2 dx}{x^4 + \left(b^2 - 2a\right) x^2 + a^2 } \\
+&= \frac{\pi}{b}
+\end{align*}
+
+Example of how the above can be used: consider
+$$
+\int_{-\infty}^{\infty} \frac{2x^2 dx}{x^4 + 2x^2 + 5}
+$$
+By comparison with our previous result we see that $a = \sqrt{5}$
+and so $b^2 - 2a = 2$.
+This system of equation can be solved by writing the latter equation in terms of $b$, that is
+$b = \sqrt{2 + 2\sqrt{5}}$.
+Hence,
+
+\begin{align*}
+\int_{-\infty}^{\infty} \frac{2x^2 dx}{x^4 + 2x^2 + 5} &= \frac{2\pi}{\sqrt{2 + 2\sqrt{5}}} \\
+&= \pi \sqrt{ \frac{2}{1 + \sqrt{5}} } \\
+&= \frac{\pi}{\sqrt{\phi}}
+\end{align*}
+
+Where $\phi$ is the golden ratio.
