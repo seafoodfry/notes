@@ -372,7 +372,73 @@ Well, $z^2 = (z + iy)(z + iy) = x^2 + 2ixy - y^2$.
 And we already saw that $\bar{z}^2 = \overline{z^2}$, so $\bar{z}^2 = x^2 - 2ixy - y^2$.
 From there the answer follows.
 
+Just kidding, here are the rest of the steps.
+But keep in mind that,
+\begin{enumerate}
+    \item $\left( z + \overline{z} \right) = z^2 + \overline{z}^2 + z\overline{z} + \overline{z}z$, and
+    \item $\left( z - \overline{z} \right) = z^2 + \overline{z}^2 - z\overline{z} - \overline{z}z$
+\end{enumerate}
 
+So if, $x^2 - y^2 = 1$, then,
+
+\begin{align*}
+x^2 - y^2 &= \Re^2 (z) - \Im^2 (z) = \left(\frac{z+\overline{z}}{2}\right)^2 - \left(\frac{z-\overline{z}}{2i}\right)^2 \\
+&= \frac{1}{4}\left(z+\overline{z}\right)^2 + \frac{1}{4}\left(z-\overline{z}\right)^2 \\
+&= \frac{1}{2} \left(z^2 + \overline{z}^2\right)
+\end{align*}
+
+Which is equivalent to saying that $2\left(x^2 - y^2\right) = z^2 + \overline{z}^2 = 2$, hence our answer.
+\\~\\
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Ex 15}
+\\
+
+Follow the steps below to give an algebraic derivation of the triangle inequality
+$$
+\left| z_1 + z_2 \right| \leq |z_1| + |z_2|
+$$
+
+\begin{enumerate}[(a)]
+\item Show that
+$$
+\left| z_1 + z_2 \right|^2 =
+\left(z_1 + z_2\right)\left(\overline{z_1} + \overline{z_2}\right) =
+z_1 \overline{z_1} + \left(z_1 \overline{z_2} + \overline{z_1 \overline{z_2}}\right) + z_2 \overline{z_2}
+$$
+
+This first step is just plain algebra, though keep in mind that $z\overline{z} = |z|^2$ and that
+$\overline{z_1 \overline{z_2}} = \overline{z_1} z_2$.
+
+\item Point out why $z_1 \overline{z_2} + \overline{z_1 \overline{z_2}} = 2 \Re\left(z_1 \overline{z_2}\right) \leq 2|z_1| |\overline{z_2}|$
+
+Now we are using the identity $z+\overline{z} = 2\Re(z)$, where $z = z_1 \overline{z_2}$
+along with the inequality $\Re(z) \leq \left|\Re(z)\right| \leq |z|$.
+
+\item Use the results in parts (a) and (b) to obtain the inequality
+$$
+\left| z_1 + z_2 \right|^2 \leq \left( |z_1| + |z_2| \right)^2,
+$$
+and note how the triangle inequality follows.
+
+This last inequality is obtained by boting that
+\begin{align*}
+\left| z_1 + z_2 \right|^2 &=
+    z_1 \overline{z_1} + \left(z_1 \overline{z_2} + \overline{z_1 \overline{z_2}}\right) + z_2 \overline{z_2} \\
+&\leq |z_1|^2 + |z_2|^2 + 2|z_1| |\overline{z_2}| \\
+&= \left( |z_1| + |z_2| \right)^2
+\end{align*}
+
+and since both, left and right, quantities are positive, then we get $\left| z_1 + z_2 \right| \leq |z_1| + |z_2|$.
+
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{7 Exponential Form}
+
+\subsubsection{Exercises}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{De Moivre's Theorem}
