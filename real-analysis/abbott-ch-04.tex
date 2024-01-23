@@ -326,11 +326,37 @@ Decide if the following claims are true or false, and give short justifications 
 \item If a particular $\delta$ has been constructed as asuitable response to an $\epsilon$ challenge, then any smaller positive
 $\delta$ will also suffice.
 
+This is true. As per the definition of a functional limit, if we have found a $\delta$ such that when $0 < |x-c| < \delta$
+then $|f(x) - L|<\epsilon$, then any $\delta^\prime < \delta$ will also suffice as this means that
+$0 < |x-c| < \delta^\prime < \delta$.
+
+
 \item If $\lim_{x\rightarrow a} f(x) = L$ and $a$ happens to be in the domain of $f$, then $L = f(a)$.
 
+Not necessarily.
+A counter example: the Dirac delta function.
+
 \item If $\lim_{x\rightarrow a} f(x) = L$, then $\lim_{x\rightarrow a} 3|f(x) - 2|^2 = 3(L-2)^2$.
+
+Think this is true due to the algebraic limit theorem - limits of sums or multiplications is okay but limits of divisions
+may be indeterminate, hence calling for the L'hopital (Bernoulli) rule.
 
 \item If $\lim_{x\rightarrow a} f(x) = 0$, $\lim_{x\rightarrow a} f(x)g(x) = 0$ for any function $g$ with domain equal to the
 domain of $f$.
 
+No because $g(x)$ is rather generic so we could actually be doing a division somewhere in there and then we would need the
+L'Hopital rule.
+
 \end{enumerate}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{4.2.7}
+\\
+
+Let $g : A \rightarrow \mathbb{R}$ and assume that $f$ is a bounded function in $A$
+in the sense that there exists an $M > 0$ satisfying $|f(x)| \leq M$ for all $x \in A$.
+Show that if $\lim_{x\rightarrow c} g(x) = 0$,
+then $\lim_{x\rightarrow c} g(x)f(x) = 0$ as well.
+\\
