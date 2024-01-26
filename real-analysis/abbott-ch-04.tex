@@ -123,7 +123,7 @@ This analysis was based on
 
 
 \item $\lim_{x\rightarrow \pi} [[x]] = 3$, where $\epsilon = 1$.
-(The function $[[x]]$ returns the greatest integer less than or ewual to $x$.)
+(The function $[[x]]$ returns the greatest integer less than or equal to $x$.)
 
 Once again, we are looking for a $\delta$ such that when $0 < |x- \pi| < \delta$, $|[[x]] - 3| < \epsilon = 1$.
 
@@ -353,6 +353,8 @@ L'Hopital rule.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
+\phantomsection
+\label{abbott:4.2.7}
 \textbf{4.2.7}
 \\
 
@@ -413,5 +415,43 @@ In our $\epsilon$-$\delta$ language, we want a $\delta$ such that $0 < 2-x < \de
 
 \item $\lim_{x \rightarrow 0} \left(-1\right)^{[[1/x]]}$
 
+Since $1/x \big|_{x\rightarrow 0} = \infty$, then $[[1/x]] \big|_{x\rightarrow 0} = \infty$ as well.
+But since we raising $-1$ to a power, depending on whether the exponent is even or odd, the limit will be 1 or -1, respectively.
+So, again, the limit does not exist.
+
+Using the sequential  criterion, we can look at the series $(x_n) = 1/2n$ and $(y_n) = 1/(2n+1)$, such that
+$\lim x_n = \lim y_n = 0$ but $\lim f(x_n) \neq \lim f(y_n)$.
+
+
 \item $\lim_{x \rightarrow 0} x^{1/3} \left(-1\right)^{[[1/x]]}$
+
+Now, we have two competing components, $\left(-1\right)^{[[1/x]]}$, which we just saw oscillates between -1 and 1, and
+$x^{1/3} \big|_{x\rightarrow 0} = 0$.
+If we look back, we can use Exercise \ref{abbott:4.2.7} to conclude that this limit is 0.
+
+Also, note that $| x^{1/3} \left(-1\right)^{[[1/x]]} | = | x^{1/3} | < \epsilon$.
+Given this, any $\delta = \epsilon^3$ will be able to raise to the challenge.
+
+\end{enumerate}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{4.2.9}
+\\
+
+(Infinite Limits) The statement $\lim_{x\rightarrow 0} 1/x^2 = \infty$ certainly makes intuitive sense.
+To construct a rigorous definition in the challenge-response style of Definition 4.2.1 for an infinite limit statement
+of this form, we replace the (arbitrarily small) $\epsilon > 0$ challenge with an (arbitrarily large) $M>0$ challenge:
+
+Definition: $\lim_{x\rightarrow c} f(x) = \infty$ means that for all $M>0$ we can find a $\delta >0$
+such that whenever $0 < |x-c| < \delta$, it follows that $f(x) > M$.
+
+\begin{enumerate}[(a)]
+\item Show $\lim_{x\rightarrow 0} 1/x^2 = \infty$ in the sense described in the previous definition.
+
+\item Now, construct a definition for the statement $\lim_{x\rightarrow \infty} f(x) = L$. Show $\lim_{x\rightarrow \infty} 1/x =0$.
+
+\item What would a rigorous definition for $\lim_{x\rightarrow \infty} f(x) = \infty$ look like?
+Give an example of such limit.
 \end{enumerate}
