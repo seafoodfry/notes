@@ -392,11 +392,24 @@ Use the tools developed in this section to justify your conclusion.
 \begin{enumerate}[(a)]
 \item $\lim_{x \rightarrow 2} \frac{|x-2|}{x-2}$
 
-$0 < |x-2| < \delta$
+The limit does not exist.
+There are a couple ways to go about arguing this.
 
-$\left| \frac{|x-2|}{x-2} \right| < \epsilon$
+The first is by remembering the defintino of $|x|$ as either $x$ or $-x$, if $x<0$.
+So the above could simplify to either 1 or $-1$.
+
+Another way is by using the sequential criterion for functional limits.
+For example, if $(x_n) = 2 + 1/n$, then the limit approaches 1.
+But if $(y_n) = 2 - 1/n$, then the limit is -1.
 
 \item $\lim_{x \rightarrow 7/4} \frac{|x-2|}{x-2}$
+
+Now, the limit does exist.
+$$
+\frac{|x-2|}{x-2} \Bigg|_{x=7/4} = \frac{\left|-\frac{1}{4}\right|}{-\frac{1}{4}} = -1
+$$
+This will be the case as long as $x<2$.
+In our $\epsilon$-$\delta$ language, we want a $\delta$ such that $0 < 2-x < \delta$.
 
 \item $\lim_{x \rightarrow 0} \left(-1\right)^{[[1/x]]}$
 
