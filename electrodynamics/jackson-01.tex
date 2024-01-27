@@ -137,11 +137,11 @@ $r^2 d\Omega = \cos\theta da$.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Exercises}
+\subsection{Problems}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\textbf{1.2}
-\\
+\subsubsection{Problem 1.2}
+
 
 The Dirac delta function in three dimensions can be taken as the improper limit as $\alpha \rightarrow 0$ of the
 Gaussian function
@@ -259,3 +259,100 @@ $$
 
 If we now take the limit of the $b_i$s, then we get our desired result.
 \\~\\
+
+Yet another way to look at this problem is as follows.
+The general property of the delta function is that
+$$
+\int \int \int \delta(x) \delta(y) \delta(z) dx dy dz = 1
+$$
+
+If we use our limit,
+$$
+\int \int \int \lim_{\alpha\rightarrow 0} D(\alpha; x, y, z) dx dy dz = 1
+$$
+
+In our general orthogonal coordinate system the above would look as
+$$
+\int \int \int \lim_{\alpha\rightarrow 0} D(\alpha; x, y, z \rightarrow u, v, w) \frac{du}{U} \frac{dv}{V} \frac{dw}{W} = 1
+$$
+
+Note that we do not know how to transform $D$, so we could wrap up our ignorance by defining an intermediate variable as such
+$$
+F(u,v,w) = \lim_{\alpha\rightarrow 0} D(\alpha; x, y, z \rightarrow u, v, w) \frac{1}{UVW}
+$$
+In which case we have
+$$
+\int \int \int F(u,v,w) du dv dw = 1
+$$
+
+If we conveniently generalize the above by taking into account the possibility of a translation - because we are integrating over
+the entire universe anyway - then we have,
+$$
+\int \int \int F(u-u^\prime, v-v^\prime, w-w^\prime) du dv dw = 1
+$$
+
+Which has the exact same form as the expression that we started with, except we are looking at some other set of integration variables.
+So we could make the claim that
+\begin{align*}
+F(u-u^\prime, v-v^\prime, w-w^\prime) &= \delta(u-u^\prime) \delta(v-v^\prime) \delta(w-w^\prime) \\
+&= \lim_{\alpha\rightarrow 0} D(\alpha; x, y, z \rightarrow u, v, w) \frac{1}{UVW}
+\end{align*}
+
+
+And the most interesting part of this problem is the application!
+
+Le'ts think again about spherical coordinates!
+The lenght elements along the three orthogonal coordinates are $dr$, $rd\theta$, and $r\sin\theta d\phi$.
+So $U=1$, $V=1/r$, and $W=1/r\sin\theta$.
+So a three-dimensional delta function is spherical coordinates becomes
+
+$$
+\delta\left(\mathbf{x}-\mathbf{x}^\prime\right) =
+\delta(r-r^\prime) \delta(\theta-\theta^\prime) \delta(\phi-\phi^\prime) \frac{1}{r^2 \sin\theta}
+$$
+
+One interesting way of writing the above is by using $\delta(\cos\theta)$.
+Since we have the composition of a function as an argument to our delta function, we can use the following formula
+$$
+\delta\left(f(x)\right) = \sum_i \frac{1}{\left|\frac{df}{dx} (x_i)\right|} \delta(x-x_i)
+$$
+where the sum extends over all simple roots.
+
+So,
+$$
+\delta(\cos\theta - \cos\theta^\prime)
+= \sum \frac{1}{\left|-\sin\theta^\prime \right|} \delta(\theta-\theta^\prime)
+= \frac{\delta(\theta-\theta^\prime)}{\sin\theta^\prime}
+$$
+
+Thus,
+$$
+\delta\left(\mathbf{x}-\mathbf{x}^\prime\right) =
+\delta(r-r^\prime) \delta(\cos\theta-\cos\theta^\prime) \delta(\phi-\phi^\prime) \frac{1}{r^2}
+$$
+
+Now, in cylindrical coordinates, the lenght elements are $dr$, $rd\theta$, and $dz$, so
+$U=1$, $V=1/r$, and $W=1$.
+And
+$$
+\delta\left(\mathbf{x}-\mathbf{x}^\prime\right) =
+\delta(r-r^\prime) \delta(\theta-\theta^\prime) \delta(z-z^\prime) \frac{1}{r}
+$$
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Problem 1.3}
+
+Using Dirac Delta functions in the appropiate coordinate, express the following charge distributions as three-dimensional
+charge densities $\rho(\mathbf{x})$.
+
+\begin{enumerate}[(a)]
+\item In spherical coordinates, a charge $Q$ uniformly distributed over a spherical shell of radius $R$.
+
+\item In cylindrical coordinates, a charge $\lambda$ per unit length uniformly distributed over a cylindrical
+surface of radius $b$.
+
+\item In cylindrical coordinates, a charge $Q$ spread uniformly over a flat circular disc of negligible thickness and radius $R$.
+
+\item The same as part (c), but using spherical coordinates.
+\end{enumerate}
