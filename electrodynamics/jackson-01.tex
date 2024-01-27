@@ -2,6 +2,67 @@
 
 \subsection{Gauss's Law}
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Surface elements $da$}
+
+The following logic comes from Griffith's electrodynamics chapter 1.4.
+
+In curvilinear coordinates, an infinitesimal displacement in the $\vect{\hat{r}}$ direction is
+simply $dr$.
+$$
+dl_r = dr
+$$
+
+An infinitesimal element of length in the $\vect{\hat{\theta}}$ is
+$$
+dl_\theta = r d\theta
+$$
+
+And an infinitesimal element of length along the $\vect{\hat{\phi}}$ direction
+is
+$$
+dl_\phi = r \sin\theta d\phi
+$$
+
+And thus, the general infinitesimal displacement becomes
+$$
+d\vect{l} =
+dr \vect{\hat{r}}
++ r d\theta \vect{\hat{\theta}}
++ r \sin\theta d\phi \vect{\hat{\phi}}
+$$
+
+From there one can see how the infinitesimal volume element $d\tau$ is then
+$$
+d\tau = dl_r dl_\theta dl_\phi =
+r^2 \sin\theta dr d\theta d\phi
+$$
+
+\textbf{However, the inifinitesimal area element depends on the orientation of the surface!}
+
+For example, if we integrate over the surface of a sphere, where r stays contant but $\theta$
+and $\phi$ vary,
+$$
+d\vect{a} = dl_\theta dl_\phi \vect{\hat{r}} = r^2 \sin\theta d\theta d\phi \vect{\hat{r}}
+$$
+
+Where as is the surface lies in the x-y plane, so that $\theta$ is contant, and let's say $\theta = \phi/2$,
+while $r$ and $\phi$ vary,
+$$
+d\vect{a} = dl_r dl_\phi \vect{\hat{\theta}}
+= r \sin\theta dr d\phi \vect{\hat{\theta}}
+= r dr d\phi \vect{\hat{\theta}}
+$$
+
+\textbf{The area element on the sphere can be calculated from the cross products of other two elements,}
+
+You should also, definetely, see
+\href{https://en.wikipedia.org/wiki/Spherical_coordinate_system#Integration_and_differentiation_in_spherical_coordinates}{Integration and differentiation in spherical coordinates}.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \subsubsection{Solid Angle}
 
 The following is all wikipedia.
@@ -65,61 +126,6 @@ $$
 where the surface area of a sphere is $A = 4\pi r^2$.
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{Surface elements $da$}
-
-The following logic comes from Griffith's electrodynamics chapter 1.4.
-
-In curvilinear coordinates, an infinitesimal displacement in the $\vect{\hat{r}}$ direction is
-simply $dr$.
-$$
-dl_r = dr
-$$
-
-An infinitesimal element of length in the $\vect{\hat{\theta}}$ is
-$$
-dl_\theta = r d\theta
-$$
-
-And an infinitesimal element of length along the $\vect{\hat{\phi}}$ direction
-is
-$$
-dl_\phi = r \sin\theta d\phi
-$$
-
-And thus, the general infinitesimal displacement becomes
-$$
-d\vect{l} =
-dr \vect{\hat{r}}
-+ r d\theta \vect{\hat{\theta}}
-+ r \sin\theta d\phi \vect{\hat{\phi}}
-$$
-
-From there one can see how the infinitesimal volume element $d\tau$ is then
-$$
-d\tau = dl_r dl_\theta dl_\phi =
-r^2 \sin\theta dr d\theta d\phi
-$$
-
-\textbf{However, the inifinitesimal area element depends on the orientation of the surface!}
-
-For example, if we integrate over teh surface of a sphere, where r stays contant but $\theta$
-and $\phi$ vary,
-$$
-d\vect{a} = dl_\theta dl_\phi \vect{\hat{r}} = r^2 \sin\theta d\theta d\phi \vect{\hat{r}}
-$$
-
-Where as is the surface lies in the x-y plane, so that $\theta$ is contant, and let's say $\theta = \phi/2$,
-while $r$ and $\phi$ vary,
-$$
-d\vect{a} = dl_r dl_\phi \vect{\hat{\theta}}
-= r \sin\theta dr d\phi \vect{\hat{\theta}}
-= r dr d\phi \vect{\hat{\theta}}
-$$
-
-\textbf{The area element on the sphere can be calculated from the cross products of other two elements,}
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Explanation of Jackson}
 
@@ -158,8 +164,98 @@ Note that as $\alpha \rightarrow 0$ only the infinitesimal length
 element need be used for the distance between the points in the exponent.
 \\
 
+Browsing through the web, one will see the following defintions of the delta function,
 \begin{align*}
 \delta (x) &= \lim_{b\rightarrow 0} \frac{1}{|b|\sqrt{\pi}} \exp{ \left[ -\frac{1}{b^2} x^2 \right]} \\
     &= \lim_{b\rightarrow 0^+} \frac{1}{2\sqrt{\pi b}} \exp{ \left[ -\frac{1}{4b} x^2 \right]} \\
     &= \lim_{b\rightarrow 0} \frac{1}{b \sqrt{2\pi}} \exp{ \left[ -\frac{1}{2b^2} x^2 \right]}
 \end{align*}
+
+The thing to note here is how the arguments of the exponent make it into the constant that's infront of the exponent.
+And the reason to even look at this now is because we found this amazingly interesting approach to this problem in
+\href{https://www.wtamu.edu/~cbaird/courses.html}{West Texas CS Baird's} site:
+
+We start with
+$$
+D\left(\alpha ; x, y, z \right) =
+    \frac{1}{\left(\alpha \sqrt{2\pi}\right)^3}
+    \exp{ \left[ -\frac{1}{2\alpha^2} \left( x^2 + y^2 + z^2 \right) \right] }
+$$
+and then we make a change of variables, a displacement if you will, by changing $x \rightarrow x - x^\prime$, etc.
+This gives us
+$$
+D\left(\alpha ; x-x^\prime, y-y^\prime, z-z^\prime \right) =
+    \frac{1}{\left(\alpha \sqrt{2\pi}\right)^3}
+    \exp{ \left[ -\frac{1}{2\alpha^2} \left( (x-x^\prime)^2 + (y-y^\prime)^2 + (z-z^\prime)^2 \right) \right] }
+$$
+
+Now comes the limit taking.
+First off is whether the limit is some actual number orr just infinity (we are skipping over the question of existence).
+Since an exponent grows faster than a ever-increasing number to a power,
+$\lim_{\alpha\rightarrow \infty} \alpha^3 \cdot e^{-\alpha} = 0$,
+then we would expect our function $D$ to be bounded.
+But, anyway, if we take the limit as $\alpha\rightarrow 0$, and if we look for a case where $D\not\rightarrow 0$,
+then we would want $x-x^\prime$ to "balance out" $\alpha$ just enough so that we have some non-zero bounded value.
+
+Let's assume the above is possible and rewirte $D$ as
+$$
+D\left(\alpha ; x-x^\prime, y-y^\prime, z-z^\prime \right) =
+    \frac{1}{\left(\alpha \sqrt{2\pi}\right)^3}
+    \exp{ \left[ -\frac{1}{2\alpha^2} \left( (dx)^2 + (dy)^2 + (dz)^2 \right) \right] }
+$$
+
+The infinitesimal displacements in the argument to the exponent look like an arc lenght, so let's rewrite it now as
+$$
+D\left(\alpha ; x-x^\prime, y-y^\prime, z-z^\prime \right) =
+    \frac{1}{\left(\alpha \sqrt{2\pi}\right)^3}
+    \exp{ \left[ -\frac{1}{2\alpha^2} \left( ds \right)^2 \right] }
+$$
+
+Since an arc length is a concept independent of the coordinate system, we can use our given general orthogonal coordinate system,
+and rewrite our equation once more,
+$$
+D\left(\alpha ; u-u^\prime, v-v^\prime, w-w^\prime \right) =
+    \frac{1}{\left(\alpha \sqrt{2\pi}\right)^3}
+    \exp{ \left[ -\frac{1}{2\alpha^2} \left( 
+        \left(\frac{du}{U}\right)^2 + \left(\frac{dv}{V}\right)^2 + \left(\frac{dw}{W}\right)^2 \right) 
+    \right] }
+$$
+
+And if we reverse the process, by writing the differentials as differences,
+$$
+D\left(\alpha ; u-u^\prime, v-v^\prime, w-w^\prime \right) =
+    \frac{1}{\left(\alpha \sqrt{2\pi}\right)^3}
+    \exp{ \left[ -\frac{1}{2\alpha^2} \left(
+        \left(\frac{u-u^\prime}{U}\right)^2 + \left(\frac{v-v^\prime}{V}\right)^2 + \left(\frac{w-w^\prime}{W}\right)^2 \right) 
+    \right] }
+$$
+
+We can now look at the first couple definition of the delta function and make a final change of variahles.
+For example, if we let $b_1 = \alpha U$, $b_2 = \alpha V$, and $b_3 = \alpha W$,
+$$
+D =
+    \left[ \frac{
+            \exp{ \left[ -\frac{
+                \left(u-u^\prime\right)^2
+            }{2b_{1}^{2}}  \right] }
+        }{b_1 \sqrt{2\pi}}
+        U
+     \right]
+     \left[ \frac{
+            \exp{ \left[ -\frac{
+                \left(v-v^\prime\right)^2
+            }{2b_{2}^{2}}  \right] }
+        }{b_2 \sqrt{2\pi}}
+        V
+     \right]
+     \left[ \frac{
+            \exp{ \left[ -\frac{
+                \left(w-w^\prime\right)^2
+            }{2b_{3}^{2}}  \right] }
+        }{b_3 \sqrt{2\pi}}
+        W
+     \right]
+$$
+
+If we now take the limit of the $b_i$s, then we get our desired result.
+\\~\\
