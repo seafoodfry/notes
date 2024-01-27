@@ -7,7 +7,8 @@
 \usepackage{float} % here for H placement parameter
 \usepackage{hyperref} % for hyperlinks.
 \usepackage{listings} % for code.
-\usepackage[makeroom]{cancel} % corssing out terms in math https://tex.stackexchange.com/questions/75525/how-to-write-crossed-out-math-in-latex
+\usepackage[makeroom]{cancel} % crossing out terms in math https://tex.stackexchange.com/questions/75525/how-to-write-crossed-out-math-in-latex
+\usepackage[shortlabels]{enumitem} % enumerate with letters.
 \usepackage{tikz}
 \usepackage{tikz-3dplot}
 
@@ -21,6 +22,11 @@
 \def\rcurs{{\mbox{$\resizebox{.16in}{.08in}{\includegraphics{ScriptR}}$}}}
 \def\brcurs{{\mbox{$\resizebox{.16in}{.08in}{\includegraphics{BoldR}}$}}}
 \def\hrcurs{{\mbox{$\hat \brcurs$}}}
+
+
+% Make paragrphs show in the table of contents.
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{4}
 
 
 \title{Notes on Electrodynamics}
