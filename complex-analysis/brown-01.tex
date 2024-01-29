@@ -436,12 +436,10 @@ and since both, left and right, quantities are positive, then we get $\left| z_1
 \end{enumerate}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{7 Exponential Form}
-
-\subsubsection{Exercises}
+\subsection{8 Product's and Powers in Exponential Form}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{De Moivre's Theorem}
+\subsubsection{De Moivre's Theorem}
 $$
 (a + ib)^n = [r(\cos \theta + i \sin \theta)]^n = r^n (\cos n\theta + i \sin n\theta)
 $$
@@ -454,8 +452,11 @@ $$
 
 De Moiver's Theorem 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{9 Arguments of products and Quotients}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Roots of Complex Numbers}
+\subsubsection{Roots of Complex Numbers}
 
 Nth roots: for any positive integer n, the nth distinct roots of
 $(a+ ib)^n = r^n (\cos nx +i\sin nx)$ are
@@ -463,3 +464,57 @@ $$
 r^{\frac{1}{n}} \left[\cos \frac{x + 2\pi k}{n} + i\sin \frac{x + 2\pi k}{n}\right]
 $$
 for $k = 0, 1, \dots, n-1$.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Exercises}
+
+\textbf{9.1}
+\\
+
+Find the principal argument $\Arg z$ when
+\begin{enumerate}
+\item $z = \frac{-2}{1 + \sqrt{3}i}$
+
+$$
+\Arg (-2) = \pi
+$$
+
+$$
+\Arg (1 + \sqrt{3}i) = \frac{\pi}{3}
+$$
+To get the above answer, we drew it out and searched for special triangles.
+It just so happens that we can use the 30-60-90 triangle whose $\tan \sqrt{3} = \pi/3$.
+
+If we subtract the two, we get $2\pi/3$ which falls within the valid range for a principal argument, $-\pi < \Theta \leq \pi$.
+
+\item $z = \left(\sqrt{3}-i\right)^6$
+
+If we graph where $\sqrt{3}-i$ is, we will find it in the foruth quadrant, so the principal argument must be negative.
+The angle in this case is $\tan 1/\sqrt{3}$, which is now the 30-degrees side of the 30-60-90 triangle and so $\Theta = -\pi/6$.
+
+However, now we have to raise it to the 6-th power.
+$\left(e^{i\theta}\right)^6 = e^{-i\pi} = -1$.
+Also, $r = |z| = \sqrt{\overline{z}z} = \sqrt{\Re{(z)}^2 + \Im{(z)}^2 } = 2$.
+So $z^6 = (2^6)(-1) = -64$.
+Since the value is all real and it lies in the negative side of the graph, the principal argument is $\Theta = \pi$.
+
+\end{enumerate}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{9.4}
+\\
+
+Using the fact that the modulus $|e^{i\theta} - 1|$ is the distance between teh points $e^{i\theta}$ and $1$
+(See section 4), give a geometric argument to find a value of $\theta$ in the interval $0 \leq \theta < 2\pi$
+that satisifes $|e^{i\theta} - 1| = 2$.
+\\
+
+We saw in section 4 that $|z - z_0| = R$ can be interpreted as the set of complex numbers $z$ ($e^{i\theta}$)
+centered at $z_0$ (1) and with a radius of $R$ (2).
+So what complex numbers, lying on the unit circle, also lie on the circle centered at 1 and whose radisu is 2?
+The point that meets this criteria is $\theta = \pi$.
+\\~\\
+
+
