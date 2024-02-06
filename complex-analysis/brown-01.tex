@@ -26,7 +26,7 @@ $$
 |z|^2 = z\bar{z} = (a + ib)(a - ib) = a^2 + b^2
 $$
 
-The generalization of $|z|^2 = (\Re(z))^2 + (\Im(z))^2$ does hold!
+The generalization of $|z|^2 = (\re(z))^2 + (\im(z))^2$ does hold!
 \\
 
 
@@ -66,21 +66,21 @@ Kline has some great exercises to get you acquainted with Ellipses, parabolas, a
 Some interesting properties
 
 $$
-z + \bar{z} = (a+ib) + (a-ib) = 2a = 2\Re (z)
+z + \bar{z} = (a+ib) + (a-ib) = 2a = 2\re (z)
 $$
 
 Similarly,
 $$
-z - \bar{z} = (a+ib) - (a-ib) = 2ib = 2\Im (z)
+z - \bar{z} = (a+ib) - (a-ib) = 2ib = 2\im (z)
 $$
 
 Following the same mechanics,
 $$
-\Re (iz) = \Re (i(a+ib)) = \Re (ai-b) = -\Im (z)
+\re (iz) = \re (i(a+ib)) = \re (ai-b) = -\im (z)
 $$
 And
 $$
-\Im (iz) = \Im (ai -b) = \Re (z)
+\im (iz) = \im (ai -b) = \re (z)
 $$
 
 
@@ -138,7 +138,7 @@ The rest of the argument in the book is algebra.
 %%%%%%%%%%%%%%%%%%%%
 \textbf{Ex 4}
 \\
-Verify $\sqrt{2}|z| \geq |\Re(z)| + |\Im(z)|$.
+Verify $\sqrt{2}|z| \geq |\re(z)| + |\im(z)|$.
 Suggestion: reduce the above inequality to $(|x| - |y|)^2 \geq 0$.
 \\
 
@@ -152,12 +152,12 @@ $$
 
 Following the tip of the book, a thing to try is something like
 $$
-(|\Re(z)| + |\Im(z)|)^2 = |x|^2 + |y|^2 + 2|x||y| = x^2 + y^2 + 2|x||y|
+(|\re(z)| + |\im(z)|)^2 = |x|^2 + |y|^2 + 2|x||y| = x^2 + y^2 + 2|x||y|
 $$
 
 Then
 \begin{align*}
-(\sqrt{2} |z|)^2  -  (|\Re(z)| + |\Im(z)|)^2 &= x^2 + y^2 - 2|x||y| \\
+(\sqrt{2} |z|)^2  -  (|\re(z)| + |\im(z)|)^2 &= x^2 + y^2 - 2|x||y| \\
 &= |x|^2 + |y|^2 - 2|x||y| \\
 &= (|x| - |y|)^2 \geq 0
 \end{align*}
@@ -220,7 +220,7 @@ then point out how the identity $|z_1 z_2| = |z_1| |z_2|$ follows.
 \\
 
 The trick to the first part is to make use of
-$|z| = \sqrt{ (\Re(z))^2 + (\Im(z))^2 }$ 
+$|z| = \sqrt{ (\re(z))^2 + (\im(z))^2 }$ 
 
 First of,
 $$
@@ -229,12 +229,12 @@ $$
 
 From there, we can see that
 \begin{align*}
-\Re(z_1 z_2)^2 &= (x_1 x_2 - y_1 y_2) (x_1 x_2 - y_1 y_2) \\
+\re(z_1 z_2)^2 &= (x_1 x_2 - y_1 y_2) (x_1 x_2 - y_1 y_2) \\
 &= (x_1 x_2)^2 + (y_1 y_2)^2 - 2(x_1 x_2)(y_1 y_2)
 \end{align*}
 and
 \begin{align*}
-\Im(z_1 z_2)^2 &= (x_1 y_2 + x_2 y_1) (x_1 y_2 + x_2 y_1) \\
+\im(z_1 z_2)^2 &= (x_1 y_2 + x_2 y_1) (x_1 y_2 + x_2 y_1) \\
 &= (x_1 y_2)^2 + (x_2 y_1)^2 + 2(x_1 x_2)(y_1 y_2)
 \end{align*}
 
@@ -350,7 +350,7 @@ And this happens when $z$ is either real or pure imaginary.
 Show that the equation $|z - z_0| = R$ of a circle, centered at $z_0$ with radisu $R$
 can be written as
 $$
-|z|^2 - 2\Re(zz_0) + |z_0|^2 = R
+|z|^2 - 2\re(zz_0) + |z_0|^2 = R
 $$
 
 To see why, note that
@@ -359,7 +359,7 @@ To see why, note that
     &= (\bar{z} - \bar{z_0}) (z - z_0) \\
     &= \bar{z}z - \bar{z}z_0 - z\bar{z_0} + \bar{z_0}z_0 \\
     &= |z|^2 - (z\bar{z_0} + \bar{z}z_0) + |z_0|^2 \\
-    &= |z|^2 - 2\Re(z\bar{z_0}) + |z_0|^2
+    &= |z|^2 - 2\re(z\bar{z_0}) + |z_0|^2
 \end{align*}
 
 
@@ -382,7 +382,7 @@ But keep in mind that,
 So if, $x^2 - y^2 = 1$, then,
 
 \begin{align*}
-x^2 - y^2 &= \Re^2 (z) - \Im^2 (z) = \left(\frac{z+\overline{z}}{2}\right)^2 - \left(\frac{z-\overline{z}}{2i}\right)^2 \\
+x^2 - y^2 &= \re^2 (z) - \im^2 (z) = \left(\frac{z+\overline{z}}{2}\right)^2 - \left(\frac{z-\overline{z}}{2i}\right)^2 \\
 &= \frac{1}{4}\left(z+\overline{z}\right)^2 + \frac{1}{4}\left(z-\overline{z}\right)^2 \\
 &= \frac{1}{2} \left(z^2 + \overline{z}^2\right)
 \end{align*}
@@ -412,10 +412,10 @@ $$
 This first step is just plain algebra, though keep in mind that $z\overline{z} = |z|^2$ and that
 $\overline{z_1 \overline{z_2}} = \overline{z_1} z_2$.
 
-\item Point out why $z_1 \overline{z_2} + \overline{z_1 \overline{z_2}} = 2 \Re\left(z_1 \overline{z_2}\right) \leq 2|z_1| |\overline{z_2}|$
+\item Point out why $z_1 \overline{z_2} + \overline{z_1 \overline{z_2}} = 2 \re\left(z_1 \overline{z_2}\right) \leq 2|z_1| |\overline{z_2}|$
 
-Now we are using the identity $z+\overline{z} = 2\Re(z)$, where $z = z_1 \overline{z_2}$
-along with the inequality $\Re(z) \leq \left|\Re(z)\right| \leq |z|$.
+Now we are using the identity $z+\overline{z} = 2\re(z)$, where $z = z_1 \overline{z_2}$
+along with the inequality $\re(z) \leq \left|\re(z)\right| \leq |z|$.
 
 \item Use the results in parts (a) and (b) to obtain the inequality
 $$
@@ -495,7 +495,7 @@ The angle in this case is $\tan 1/\sqrt{3}$, which is now the 30-degrees side of
 
 However, now we have to raise it to the 6-th power.
 $\left(e^{i\theta}\right)^6 = e^{-i\pi} = -1$.
-Also, $r = |z| = \sqrt{\overline{z}z} = \sqrt{\Re{(z)}^2 + \Im{(z)}^2 } = 2$.
+Also, $r = |z| = \sqrt{\overline{z}z} = \sqrt{\re{(z)}^2 + \im{(z)}^2 } = 2$.
 So $z^6 = (2^6)(-1) = -64$.
 Since the value is all real and it lies in the negative side of the graph, the principal argument is $\Theta = \pi$.
 
@@ -518,3 +518,52 @@ The point that meets this criteria is $\theta = \pi$.
 \\~\\
 
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{9.6}
+\\
+
+Show that if $\re{z_1} > 0$ and $\re{z_2} > 0$, then
+$$
+\Arg{(z_1 z_2)} = \Arg{z_1} + \Arg{z_2},
+$$
+
+where principal arguments are used.
+\\
+
+If $\re{z} > 0$, then that means that when we draw $z$ in a polar graph, the point $z$ will lie in either the first
+or the fourth quadrants.
+Meaning that $\Arg{z} \in (\pi/2, -\pi/2)$.
+
+Because of this, $\Arg{z_1} + \Arg{z_2} \in (\pi, -\pi)$, which meets the constraints for the range of the principal argument,
+no need to add or subtract any multiples of $2\pi$.
+\\~\\
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{9.8}
+\\
+
+Prove that two nonzero complex numbers $z_1$ and $z_2$ have the same moduli if and only if there are complex numbers
+$c_1$ and $c_2$ such that $z_1 = c_1 c_2$ and $z_2 = c_1 \overline{c_2}$.
+
+Suggestion: Note that
+$$
+\exp\left(i\frac{\theta_1 + \theta_2}{2}\right) \exp\left(i\frac{\theta_1 - \theta_2}{2}\right) = \exp\left(i \theta_1 \right)
+$$
+Remember that $\overline{e^{i\theta}} = e^{-i\theta}$.
+$$
+\exp\left(i\frac{\theta_1 + \theta_2}{2}\right) \overline{
+    \exp\left(i\frac{\theta_1 - \theta_2}{2}\right)
+ } = \exp\left(i \theta_2 \right)
+$$
+
+$$
+|z_1|^2 = z_1 \overline{z_1} = c_1 c_2 \overline{c_1 c_2} = c_1 \overline{c_1} c_2 \overline{c_2}
+= |c_1|^2 |c_2|^2
+$$
+$$
+|z_2|^2 = z_2 \overline{z_2} = c_1 \overline{c_2} \overline{c_1 \overline{c_2}} = c_1 \overline{c_2} \overline{c_1} c_2
+= c_1 \overline{c_1} c_2 \overline{c_2}
+= |c_1|^2 |c_2|^2
+$$
