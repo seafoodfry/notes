@@ -567,3 +567,63 @@ $$
 = c_1 \overline{c_1} c_2 \overline{c_2}
 = |c_1|^2 |c_2|^2
 $$
+
+Ignoring the modulus of all complex numbers we are thinking about, we can equate $c_1 \sim e^{i\theta_1}$ and $c_2 \sim e^{i\theta_2}$.
+Thus $z_1 = c_1 c_2 \sim \exp\left(i\left(\theta_1 + \theta_2\right)\right)$
+and $z_1 = c_1 \overline{c_2} \sim \exp\left(i\left(\theta_1 - \theta_2\right)\right)$.
+
+If we look at the suggested expressions,
+we'd have something like
+$$
+\exp\left(i\left(\theta_1 + \theta_2\right)\right) \exp\left(i\left(\theta_1 - \theta_2\right)\right)
+\sim
+\left(c_1 c_2\right) \left(c_1 \overline{c_2}\right)
+\sim
+z_1 z_2
+$$
+and
+$$
+\exp\left(i\left(\theta_1 + \theta_2\right)\right) \overline{ \exp\left(i\left(\theta_1 - \theta_2\right)\right) }
+\sim
+\left(c_1 c_2\right) \left(\overline{c_1 \overline{c_2}}\right)
+\sim
+z_1 \overline{z_2}
+$$
+
+This doesn't quite tells us much of anything, so let's try fliping the assignments and instead
+assume that $c_1 \sim \exp\left(\frac{i}{2}(\theta_1 + \theta_2)\right)$
+and $c_2 \sim \exp\left(\frac{i}{2}(\theta_1 - \theta_2)\right)$.
+
+Then $z_1 \sim e^{i\theta_1}$ and $z_2 \sim e^{i\theta_2}$ would mean that $c_1 c_2 \sim z_1$ and $c_1 \overline{c_2} \sim z_2$.
+
+The big take away from such a manipulation is to note how the "angular" part of a complex number just works out in certain siuations.
+\\
+
+To see the prove the other way, you can write $c_1 = a_1 + ib_1$ and $c_2 = a_2 + ib_2$, carry out the multiplication,
+then use the fact that $|z| = \sqrt{\re(z)^2 + \im(z)^2}$, and note that $|z_1| = |z_2|$.
+\\~\\
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{9.9}
+\\
+
+Establish the identity
+$$
+1 + z + z^2 + \ldots + z^n = \frac{ 1 - z^{n+1} }{ 1-z }, \quad (z\neq 1)
+$$
+
+and then use it to derive \textbf{Lagrange's trigonometric identity}:
+$$
+1 + \cos\theta + \cos 2\theta + \ldots + \cos n\theta =
+\frac{1}{2} + \frac{ \sin\left[(2n+1)\theta/2\right] }{ 2\sin(\theta/2) },
+\quad (0 < \theta < 2\pi)
+$$
+
+Suggestion: As for the first identity, write $S = 1 + z + z^2 + \ldots + z^n$
+and consider the difference $S - zS$.
+To derive the second identity, write $z = e^{i\theta}$ into the first one.
+\\
