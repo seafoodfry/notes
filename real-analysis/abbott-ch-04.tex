@@ -450,8 +450,56 @@ such that whenever $0 < |x-c| < \delta$, it follows that $f(x) > M$.
 \begin{enumerate}[(a)]
 \item Show $\lim_{x\rightarrow 0} 1/x^2 = \infty$ in the sense described in the previous definition.
 
+Using our new definiton, we are looking for a $\delta$ such that for every $M>0$, there is a $\delta$ such that when
+$0 < |x-c| < \delta$ it is the case that $f(x) > M$.
+
+intuitively, we can see that if $M=100$, then $x> 1/\sqrt{10}$ would work.
+So if we set $\delta = 1/\sqrt{M} > |x|$, then $1/M > x^2$ or $1/x^2 = f(x)> M$.
+
+
+
 \item Now, construct a definition for the statement $\lim_{x\rightarrow \infty} f(x) = L$. Show $\lim_{x\rightarrow \infty} 1/x =0$.
+
+The subtle difference here is that we are taking the limit as $x\rightarrow\infty$, so we are not looking at a formal limit point.
+Now we would want something like: for every $\epsilon>0$, there exists an $N\in\mathbb{R}$ such that when $x \geq N$
+$|f(x) - L| < \epsilon$.
+
+
+For the example given here, if for some $\epsilon > 0$, $x \geq N$ results in $|f(x)-L| = |1/x|<\epsilon$,
+then if $N = 1/\epsilon$, we have $x \geq 1/\epsilon \rightarrow \epsilon \geq 1/x = f(x)$.
+Which is close to what we wanted, except for the $\geq$ sign.
+Indicating that we should have used $x>N$ in our definition.
+
+
 
 \item What would a rigorous definition for $\lim_{x\rightarrow \infty} f(x) = \infty$ look like?
 Give an example of such limit.
+
+
+The subtle difference here is that we are taking the limit as $x\rightarrow\infty$, so we are not looking at a formal limit point.
+Now we would want something like: for every $M>0$, there exists an $N\in\mathbb{R}$ such that when $x \geq N$
+it follows that $f(x)>M$.
+
+For en example: $\lim_{x\rightarrow\infty} x = \infty$.
+Here choosing $N=M$, would mean that $x > M$ and so $x = f(x) > M$.
+
+\end{enumerate}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{4.2.10}
+\\
+
+(Right and left limits) Introductory calculus courses typically refer to the right-hand limit of a function as the limit
+obtained by "letting $x$ approach $a$ from the right-side."
+
+\begin{enumerate}[(a)]
+\item Give a proper definition in the style of 4.2.1 for the right-hand and left-hand limit statements:
+$$
+\lim_{x\rightarrow a^+} f(x) = L \quad \text{ and } \lim_{x\rightarrow a^-} f(x) = M
+$$
+
+\item Prove that $\lim_{x\rightarrow a} f(x) = L$ exists if and only if both the right and left-hand limits equal $L$.
 \end{enumerate}
