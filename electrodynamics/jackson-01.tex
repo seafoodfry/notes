@@ -1,5 +1,56 @@
 \section{Introduction to Electrostatics}
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Charge distributions}
+
+\subsubsection{Work done by a particle}
+
+\textbf{Taken from Kline, Chapter 7, Section 7, problem 3}
+
+AM is a straight vertical line.
+MO is a straight horizontal line. O is to the right of M.
+
+A particle moving along AM is attracted to a fixed point O with a force that varies inversely
+as the square of the distance from O.
+Find the work done on the particle as it moves from A to a distance B (between A and M).
+
+Suggestion: let $x$ be the distance from A to any point P on AB
+and let $r$ be the variable distance from P to O.
+The force $F$ attracting P to O is $k/r^2$.
+But only the component of this force along AB serves to move the particle along AB.
+This component is $(k/r^2) \cos OPM = (k/r^2) (c-x)/r$.
+Then $dW/dx = k (c-x)/r^3$ and $r = \sqrt{p^2 + (c-x)^2}$.
+\\
+
+\begin{align*}
+W &= \int_{A}^{B} \frac{dW}{dx} dx \\
+&= \int_{A}^{B} \frac{k (c-x)}{r^3} \\
+&= \int_{A}^{B} \frac{k (c-x)}{\left(p^2 + (c-x)^2\right)^{3/2}} dx \\
+\end{align*}
+
+The trick here is to note that if we chose $u = p^2 + (c-x)^2$, then $du = -2(c-x) dx$, so that
+$$
+\frac{k (c-x)}{\left(p^2 + (c-x)^2\right)^{3/2}} dx \rightarrow -\frac{k}{2}\frac{1}{u^{3/2}} du
+$$
+
+Since $\int u^{-3/2} du = -2 u^{-1/2} + C$.
+So putting everything together,
+\begin{align*}
+W &= \int_{A}^{B} \frac{k (c-x)}{\left(p^2 + (c-x)^2\right)^{3/2}} dx \\
+&= -\frac{k}{2} (-2) \frac{1}{u^{1/2}} \Big|_{A}^{B} \\
+&= k \left( \frac{1}{\sqrt{p^2 + (c-B)^2}} - \frac{1}{\sqrt{p^2 + (c-A)^2}} \right) \\
+&= \frac{k}{r_B} - \frac{k}{r_A}
+\end{align*}
+
+\textbf{Note:} the two interesting bits to note from this exercise are first, when we were looking for the component
+of motion that contributed to the work being done, the vertix of the angle used was the point we were "on".
+Second, note how our the u-substitution we used went, doing it the normal way may confuse you
+and try to get you for somewhere where to use $u = p^2 + (c-x)^2$, which is not needed.
+\\~\\
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Gauss's Law}
 
 
