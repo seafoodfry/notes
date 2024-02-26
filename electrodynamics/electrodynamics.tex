@@ -23,6 +23,14 @@
 \def\brcurs{{\mbox{$\resizebox{.16in}{.08in}{\includegraphics{BoldR}}$}}}
 \def\hrcurs{{\mbox{$\hat \brcurs$}}}
 
+% \arg already exists.
+\DeclareMathOperator\Arg{Arg}
+
+% Create an alternate definition of \Re, because the gothic lettering looks weird.
+\DeclareMathOperator\re{Re}
+\DeclareMathOperator\im{Im}
+
+
 
 % Make paragrphs show in the table of contents.
 \setcounter{secnumdepth}{4}
@@ -51,6 +59,7 @@
 \include{griffiths-01}
 \include{griffiths-03}
 \include{jackson-01}
+\include{qft-misc-01}
 
 
 \end{document}
