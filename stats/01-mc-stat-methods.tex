@@ -1,0 +1,61 @@
+\section{Censored Data Models}
+
+Censored data models are missing data models where densities are not sample directly.
+And like any sort of model, we want to obtain estimates and make inferences.
+
+In a typical statistical model, we would observe random variables $Y_1, \ldots, Y_n$, drawn from a
+populaion with distribution $f(y|\theta)$.
+The distribution of the sample would then be given by $\prod^{u}_{i=1} f(y_i | \theta)$.
+Inference about $\theta$ would be based on this distribution.
+
+In many situations we have to deal with Censored random variables; that is, rather than observing $Y_i$
+we may observe $\min\{ Y_i, \overline{u} \}$, where $\overline{u}$ is a constant.
+
+Several types of censoring can be categorized by their relation with an underlying, unobserved, model
+$Y_i \sim f(y_i|\theta)$.
+
+\begin{enumerate}
+\item Given random variables $Y_i$, which are, for instance, times of observation, the actual observations
+    are $Y^{*}_i = \min\{Y_i, \overline{u}\}$, where $\overline{u}$ is the maximal observation duration or some truncation point.
+
+\item The original variables $Y_i$ are kept in the sample with probabilities $p(y_i)$ and the numver of censored variables is either
+    known or unkown.
+    \begin{enumerate}
+    \item This concept introduces a probabilistic approach to censoring, where each observation $Y_i$ has a certain probability
+        $p(y_i)$ of being included (i.e., not censored) in the sample. This probability can depend on the value of $Y_i$ itself,
+        introducing a form of randomness to which observations are censored.
+    \item This contrasts with traditional views of censoring, where the censoring mechanism might be considered non-random or fixed.
+    \item Known or unknown number of censored variables refers to whether the total count of censored observations in the sample
+        is a known quantity or not. In some studies, the design might ensure that a specific number of observations will be censored
+        (known), whereas in others, the number might vary randomly (unknown).
+    \end{enumerate}
+
+\item The variables $Y_i$ are associated with auxilliary variables $X_i \sim g$ such that $y^{*}_{i} = h(y_i, x_i)$ is the observation.
+Typically $h(y_i,x_i) = \min(y_i, x_i)$. The fact that truncation ocurred, namely the variable $\mathbb{I}_{Y_i > X_i}$,
+may be either known or unknown.
+\end{enumerate}
+
+$X \sim N(\theta, \sigma^2)$ and $Y \sim N(\mu, \tau^2)$
+
+the variables $Z = X \land Y = \min(X, Y)$ is distributed as
+
+$$
+\left[ 1 - \Phi\left( \frac{z-\theta}{\sigma} \right) \right] \times \frac{1}{\tau} \phi\left( \frac{z-\mu}{\tau} \right) +
+\left[ 1 - \Phi\left( \frac{z-\mu}{\tau} \right) \right] \times \frac{1}{\sigma} \phi\left( \frac{z-\theta}{\sigma} \right)
+$$
+
+where $\phi$ is the density of the normal $N(0,1)$ distribution and $\Phi$ is the corresponding CDF.
+
+The density of $Z = \min(X,Y)$ is derived from considering the ways in which $Z$ could take a particular value $z$.
+
+First, $X < Y$ and $X = z$. Here the density at $z$ is given by $\phi\left( \frac{z-\theta}{\sigma} \right)$ ($\phi$ is the PDF ox $X$),
+and $Y$ must be greater than $X=z$, hence $1 - \Phi\left( \frac{z-\mu}{\tau} \right)$ ($\Phi$ is the CDF of $Y$).
+
+Second, $X > Y$ and $Y = z$.
+So for $Z$ to equal $z$, $Y$ must equal $z$, which is given by the PDF of $Y$ at $z$, $\phi\left( \frac{z-\mu}{\tau} \right)$.
+And $X$ must be greater than $z$, the probability of which is $1 - \Phi\left( \frac{z-\theta}{\sigma} \right)$.
+
+The scaling factors of $\sigma^{-1}$ and $\tau^{-1}$ come because when you standardize $X$ and $Y$ 
+the standard normal density function $\phi$ is used,
+but you must also scale by the standard deviation because the change of variables affects the density's height.
+This ensures that the total area under the PDF remains 1, preserving the probability density function's properties.
