@@ -1,0 +1,195 @@
+\section{Lattic Simulations of a $\phi^4$ scalar Theory}
+
+
+This document is a guide to help anyone wanting to learn quantum field theory.
+
+This document has come about because I spent a way too much time trying to learn QFT.
+There are plenty of great books out there but they only made sense after I had spent a very considerable time
+inmersed in mathematics, engineering, and other sciences.
+
+The one thing that always caused me issues is that almost all textbooks or calss notes build the subject from the ground up
+- the same way any other subject is taught in school.
+You probably even thought "duh!" while reading that previous sentence.
+But recent studies, see \cite{hidden-potential}, made me rethink this approach for QFT!
+So instead of picking up from whatever may have been taught in your last QM or EM course, I will start with an actual
+non-trivial research problem.
+This will have you doing research type work right away.
+Then we will work backwards and provide you with the background you need!
+
+For a better argument as to why, definetely go and read \cite{hidden-potential}, but the TL;DR is: starting with a real
+problem right away will help you start building the experience for what matters and what tools are applied when.
+When we go from the ground up, there is the unspoken rule that you agically have to remember some key fact or formula
+that someone mentioned years ago and magically know how to apply it to your problem now.
+Here, we won't have that issue.
+
+We will begin by building upon the work of \cite{david-lattice-qft}, which is one of the few works available that is more or
+less self-contained but also provides some of the code used for its simulations.
+A lot of the code snippets in \cite{david-lattice-qft} does not actually work as in, so we fixed it and made it
+available in \cite{our-phi-4}.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Metropolis Algorithm for the Ising Model}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Metropolis Algorithm for a Scalar Field}
+
+We will begin by building upon the work of \cite{david-lattice-qft}, which is one of the few works available that is more or
+less self-contained and provides some of the code used to obtain its results.
+A lot of the code snippets in \cite{david-lattice-qft} do not actually work as-is, so we fixed it and made it
+available in \cite{our-phi-4}.
+
+For the metropolis steps, we need to be able to compute the energy of our system in order to determine whether we
+accept or reject a change.
+
+As we saw in the Isisng model example, in order to meet the more rigurous condition of detailed balance we need to
+probabilitically accept a change according to
+
+$$
+A(\mu \rightarrow \nu)
+=
+\begin{cases}
+1           & \text{if } E_\nu \leq E_\mu \quad(\Delta E \leq 0) \\
+e^{-\beta (E_\nu - E_\mu)} = e^{-\beta \Delta E}   & \text{if } E_\nu > E_\mu \quad(\Delta E > 0)
+\end{cases}
+$$
+
+And this is where we will take a more research-based pedagogy and work backwards - as opposed to sending you off
+to learn QFT, quantum mechanics, electrodynamics, etc, etc.
+
+The $\phi^4$ theory in four-dimensional Euclidean space has the following expression for its action
+
+$$
+S_{E} = 
+\int d^4 x_E \mathcal{L}_{E} =
+\int d^4 x \left[ 
+    \frac{1}{2} \left( \partial_{E_\mu} \phi \right)^2 + \frac{1}{2} \mu_0 \phi^2 + \frac{1}{4} \lambda_0 \phi^4
+\right]
+$$
+
+And it turns out that in Euclidean space the action, or Euclidean action, has the same units as the energy,
+so from here on out we will refer to the above as the energy.
+
+Just to start out simple, we will work in 2D first.
+And we will:
+
+\begin{itemize}
+\item Discretize $\phi$: the continuous function $\phi(x_\mu)$ will be represented by $\phi_n$ for $0 \leq n \leq N$,
+    on an Lattice of zise $N$ and spacing $a$ between points.
+\item Discretize the derivatives: for example, $\partial \phi / \partial x$ becomes
+    $\frac{1}{a} \left( \phi_n(x+a,t) - \phi_n(x,t) \right)$
+\item Discretize the integral: $\int dx f$ becomes $\sum^{N}_{i} f(n_i) a$
+\end{itemize}
+
+All to define the operations we need in a lattice.
+Following these steps, and again, starting in 2D, our Euclidean action, the energy, first becomes
+
+$$
+S_{E}^{(2)} = 
+\int dx dy
+\left[ 
+    \frac{1}{2} \left[ \left( \frac{\partial \phi}{\partial t} \right)^2 +  \left( \frac{\partial \phi}{\partial x} \right)^2 \right] 
+    + \frac{1}{2} \mu_0 \phi^2 + \frac{1}{4} \lambda_0 \phi^4
+\right]
+$$
+
+Note the kinetic term!
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsubsection{Interlude: The Kinetic Term}
+
+Note how we started with the kinetic term
+$$
+\frac{1}{2} \left( \partial_{E_\mu} \phi \right)^2
+$$
+and in 2D it became
+$$
+\frac{1}{2} \left[ 
+    \left( \frac{\partial \phi}{\partial t} \right)^2 +  \left( \frac{\partial \phi}{\partial x} \right)^2
+\right]
+$$
+
+The first thing to note is that we are in Euclidean space where the four-vector
+$x_{E}^{2} = x_{0}^{2} + x_{1}^{2} + x_{2}^{2} + x_{3}^{2}$.
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Tensors}
+
+Working with a spacetime with a metric signature $(+ - - -)$,
+$$
+\begin{pmatrix}
+    1 & 0  & 0  & 0  \\
+    0 & -1 & 0  & 0  \\
+    0 & 0  & -1 & 0  \\
+    0 & 0  & 0  & -1 \\
+\end{pmatrix}
+$$
+
+$x^\mu = (x^0, \vect{x})$ and $x_\mu = g_{\mu\nu} x^\nu = (x^0, -\vect{0})$.
+To see this explciitly, let's carry out the summations.
+
+When $\mu = 0$, $x_0 = g_{00}x^0 + g_{01}x^1 + g_{02}x^2 + g_{03}x^3 = x^0 + 0 + 0 +0 = x^0$.
+For $\mu = 1$, $x_1 = g_{10}x^0 + g_{11}x^1 + g_{12}x^2 + g_{13}x^3 = 0 + x^1 + 0 +0 = -x^0$.
+Similarly, when $\mu = 2$, $x_2 = -x^2$, and when $\mu =3$, $x_3 = -x^3$.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Inner Product}
+
+Why does $p \cdot x = g_{\mu\nu} p^\mu x^\nu = g^{\mu\nu} p_\mu x_\nu = p_\mu x^\nu = p^\mu x_\nu = p^0 x^0 - \vect{p}\cdot\vect{x}$?
+
+The metric tensor defines the geometry of spacetime, including the way distances and angles are measured.
+The implied summation, einstein summation, effectively 'weights' the components according to the geometry of spacetime.
+
+$g_{\mu\nu}$ lowers indices, while $g^{\mu\nu}$ raises them.
+$\delta^{\mu}_{\nu}$ is a diagonal matrix with ones on the diagonal and zeros elsewhere.
+It selects the $\mu$-th component when used in a summation, acting like an identity element.
+
+$g^{\mu\alpha} g_{\alpha\nu} = \delta^{\mu}_{\nu}$
+
+$$
+g^{\mu\alpha} g_{\alpha\nu} = \sum_{\alpha = 0} g^{\mu\alpha} g_{\alpha\nu} =
+g^{\mu 0} g_{0 \nu} + g^{\mu 1} g_{1\nu} + g^{\mu 2} g_{2\nu} + g^{\mu 3} g_{3\nu}
+$$
+
+This is essentially a matrix multiplication.
+$$
+\begin{pmatrix}
+    1 & 0  & 0  & 0  \\
+    0 & -1 & 0  & 0  \\
+    0 & 0  & -1 & 0  \\
+    0 & 0  & 0  & -1 \\
+\end{pmatrix}
+\cdot
+\begin{pmatrix}
+    1 & 0  & 0  & 0  \\
+    0 & -1 & 0  & 0  \\
+    0 & 0  & -1 & 0  \\
+    0 & 0  & 0  & -1 \\
+\end{pmatrix}
+=
+\begin{pmatrix}
+    1 & 0 & 0 & 0 \\
+    0 & 1 & 0 & 0 \\
+    0 & 0 & 1 & 0 \\
+    0 & 0 & 0 & 1 \\
+\end{pmatrix}
+$$
+
+Going component by component, take the second row and second column, $\mu=1$ and $\nu=1$.
+The element for that entry is given by
+$$
+g^{1\alpha}g_{\alpha 1} =
+g^{1 0} g_{0 1} + g^{1 1} g_{1 1} + g^{1 2} g_{2 1} + g^{1 3} g_{3 1}
+= 0 + (-1)(-1) + 0 + 0 = 1
+$$
