@@ -392,6 +392,34 @@ $$
     \left( \frac{\partial x^\nu}{\partial \overline{x}^\mu} \right) \frac{\partial \phi}{\partial x^\nu}
 $$
 
+The determinant of the Jacobian matrix is used specifically when you are dealing with volume transformations
+(like integrating over a volume or changing the measure of integration) because it scales the volume elements according
+to how the coordinate transformation stretches or compresses the space.
+
+When transforming vectors, however, you're not scaling a volume but rather reorienting or rescaling each component
+of the vector according to how the coordinate axes themselves have changed.
+This is why the transformation involves a sum over the product of vector components and the appropriate Jacobian elements:
+
+\begin{itemize}
+\item Contravariant vectors (standard vectors): The components of these vectors are transformed by multiplying with the
+    Jacobian matrix $\partial \overline{x}^\mu / \partial x^\nu$. Here, each new vector component is a linear combination
+    of old components weighted by how much each new coordinate axis changes with respect to each old axis.
+    \begin{itemize}
+        \item These objects, such as displacement vectors, inherently "follow" the coordinate axes. As the axes stretch
+        or rotate, so do the components of the vector. 
+    \end{itemize}
+\item Covariant vectors (gradients and one-forms): These vectors transform using the inverse of the Jacobian matrix
+    $\partial x^\nu / \partial \overline{x}^\mu$. This reflects how changes in the old coordinates map to the new
+    coordinates, suitable for objects that naturally pair with vectors, like gradients.
+    \begin{itemize}
+        \item They measure rates of change along these coordinates.
+        \item A larger coordinate stretch means a smaller gradient in that direction to maintain the same rate of change.
+    \end{itemize}
+\end{itemize}
+
+
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{The Kinetic Term}
@@ -412,20 +440,14 @@ $x_{E}^{2} = x_{0}^{2} + x_{1}^{2} + x_{2}^{2} + x_{3}^{2}$.
 If we were back in Mikowski space with out metric signature $(+ - - -)$,
 then $x^{2} = x_{0}^{2} - x_{1}^{2} - x_{2}^{2} - x_{3}^{2}$.
 
-To see why the kinetic term looks the way it does, it helps to see it other ways
+To see why the kinetic term looks the way it does, it helps to see it other ways.
 
-
+For example, its definition is
 $$
 \frac{1}{2} (\partial_{\mu} \phi)^2 = \frac{1}{2} \sum_{\mu=0}^{3} (\partial^{\mu} \phi)^2
 $$
 
-\begin{align*}
-\partial^2 &= \partial^\mu \partial_\mu \\
-&= \frac{\partial^2}{\partial t^2} - \frac{\partial^2}{\partial x^2} - \frac{\partial^2}{\partial y^2} - \frac{\partial^2}{\partial z^2} \\
-&= \frac{\partial^2}{\partial t^2} - \vect{\nabla}^2
-\end{align*}
-
-
+and so in 4D it looks like
 
 $$
 \frac{1}{2} (\partial_{\mu} \phi)^2 =
@@ -436,3 +458,20 @@ $$
     \left(\frac{\partial \phi}{\partial z}\right)^2
 \right)
 $$
+
+However, remember that this is all in Euclidean space.
+In Mikowski space we have,
+\begin{align*}
+\partial^2 &= \partial^\mu \partial_\mu \\
+&= \frac{\partial^2}{\partial t^2} - \frac{\partial^2}{\partial x^2} - \frac{\partial^2}{\partial y^2} - \frac{\partial^2}{\partial z^2} \\
+&= \frac{\partial^2}{\partial t^2} - \vect{\nabla}^2
+\end{align*}
+
+And this is why it sometimes helps to see the metric included in the definition,
+
+\begin{align*}
+\eta^{\mu\nu} \partial_\mu \partial_\nu \phi &= \partial_\mu \partial^\nu \phi \\
+&= \left( \partial_t \phi \right)^2 - \delta^{ij} \partial_i \partial_j \phi
+\end{align*}
+
+If $\eta^{\mu\nu}$ has the signature $(+ - - -)$.
