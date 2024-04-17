@@ -1,0 +1,477 @@
+\section{Lattic Simulations of a $\phi^4$ scalar Theory}
+
+
+This document is a guide to help anyone wanting to learn quantum field theory.
+
+This document has come about because I spent a way too much time trying to learn QFT.
+There are plenty of great books out there but they only made sense after I had spent a very considerable time
+inmersed in mathematics, engineering, and other sciences.
+
+The one thing that always caused me issues is that almost all textbooks or calss notes build the subject from the ground up
+- the same way any other subject is taught in school.
+You probably even thought "duh!" while reading that previous sentence.
+But recent studies, see \cite{hidden-potential}, made me rethink this approach for QFT!
+So instead of picking up from whatever may have been taught in your last QM or EM course, I will start with an actual
+non-trivial research problem.
+This will have you doing research type work right away.
+Then we will work backwards and provide you with the background you need!
+
+For a better argument as to why, definetely go and read \cite{hidden-potential}, but the TL;DR is: starting with a real
+problem right away will help you start building the experience for what matters and what tools are applied when.
+When we go from the ground up, there is the unspoken rule that you agically have to remember some key fact or formula
+that someone mentioned years ago and magically know how to apply it to your problem now.
+Here, we won't have that issue.
+
+We will begin by building upon the work of \cite{david-lattice-qft}, which is one of the few works available that is more or
+less self-contained but also provides some of the code used for its simulations.
+A lot of the code snippets in \cite{david-lattice-qft} does not actually work as in, so we fixed it and made it
+available in \cite{our-phi-4}.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Metropolis Algorithm for the Ising Model}
+
+Single site is updated at a time and the probability of generating such as state is $1/N$.
+
+The detailed condition for Markov Chains Monte Carlos is
+$$
+\frac{P(\mu \rightarrow \nu)}{P(\nu \rightarrow \mu)}
+= \frac{g(\mu \rightarrow \nu) A(\mu \rightarrow \nu)}{g(\nu \rightarrow \mu) A(\mu \rightarrow \nu)}
+= \frac{A(\mu \rightarrow \nu)}{A(\mu \rightarrow \nu)}
+$$
+
+Where $g$ is the probability of generating a given state and $A$ is the probability of accepting the transition.
+
+Remember that the more stringent expression of detailed balance to guarantee static equilibirum is written as
+$$
+p_mu P(\mu\rightarrow\nu) = p_nu P(\nu\rightarrow\mu)
+$$
+
+and since the probabilities $p_mu$ and $p_nu$ are $e^{-\beta E_mu}/Z$ and $e^{-\beta E_nu}/Z$ respectively,
+
+$$
+\frac{P(\mu \rightarrow \nu)}{P(\nu \rightarrow \mu)}
+= \frac{A(\mu \rightarrow \nu)}{A(\mu \rightarrow \nu)}
+= \frac{p_\nu}{p_\mu}
+= e^{-\beta (E_\nu - E_\mu)}
+$$
+
+Note that if $E_\nu \leq E_\mu$, then $e^{-\beta (E_\nu - E_\mu)}$, then the argument of the exponent will be zero
+or positive, so $e^{+(\ldots)} \geq 1$.
+And if $E_\nu > E_\mu$, then $e^{-\beta (E_\nu - E_\mu)}$ will looke like $e^{-(\ldots)} < 1$.
+Which intuitevely makes sense, transitioning to a state $\nu$ from a state $\mu$ is favored when
+the end state $\nu$ has a lower energy (rememeber that the exponents are proportional to the probability of the given state).
+
+Thus, the Metropolis algorithm 
+$$
+A(\mu \rightarrow \nu)
+=
+\begin{cases}
+    1                                                    & \text{if } E_\nu \leq E_\mu \quad(\Delta E \leq 0) \\
+    e^{-\beta (E_\nu - E_\mu)} = e^{-\beta \Delta E} \   & \text{if } E_\nu > E_\mu \quad(\Delta E > 0)
+\end{cases}
+$$
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Metropolis Algorithm for a Scalar Field}
+
+We will begin by building upon the work of \cite{david-lattice-qft}, which is one of the few works available that is more or
+less self-contained and provides some of the code used to obtain its results.
+A lot of the code snippets in \cite{david-lattice-qft} do not actually work as-is, so we fixed it and made it
+available in \cite{our-phi-4}.
+
+For the metropolis steps, we need to be able to compute the energy of our system in order to determine whether we
+accept or reject a change.
+
+As we saw in the Isisng model example, in order to meet the more rigurous condition of detailed balance we need to
+probabilitically accept a change according to
+
+$$
+A(\mu \rightarrow \nu)
+=
+\begin{cases}
+1           & \text{if } E_\nu \leq E_\mu \quad(\Delta E \leq 0) \\
+e^{-\beta (E_\nu - E_\mu)} = e^{-\beta \Delta E}   & \text{if } E_\nu > E_\mu \quad(\Delta E > 0)
+\end{cases}
+$$
+
+And this is where we will take a more research-based pedagogy and work backwards - as opposed to sending you off
+to learn QFT, quantum mechanics, electrodynamics, etc, etc.
+
+The $\phi^4$ theory in four-dimensional Euclidean space has the following expression for its action
+
+$$
+S_{E} = 
+\int d^4 x_E \mathcal{L}_{E} =
+\int d^4 x \left[ 
+    \frac{1}{2} \left( \partial_{E_\mu} \phi \right)^2 + \frac{1}{2} \mu_0 \phi^2 + \frac{1}{4} \lambda_0 \phi^4
+\right]
+$$
+
+And it turns out that in Euclidean space the action, or Euclidean action, has the same units as the energy,
+so from here on out we will refer to the above as the energy.
+
+Just to start out simple, we will work in 2D first.
+And we will:
+
+\begin{itemize}
+\item Discretize $\phi$: the continuous function $\phi(x_\mu)$ will be represented by $\phi_n$ for $0 \leq n \leq N$,
+    on an Lattice of zise $N$ and spacing $a$ between points.
+\item Discretize the derivatives: for example, $\partial \phi / \partial x$ becomes
+    $\frac{1}{a} \left( \phi_n(x+a,t) - \phi_n(x,t) \right)$
+\item Discretize the integral: $\int dx f$ becomes $\sum^{N}_{i} f(n_i) a$
+\end{itemize}
+
+All to define the operations we need in a lattice.
+Following these steps, and again, starting in 2D, our Euclidean action, the energy, first becomes
+
+$$
+S_{E}^{(2)} = 
+\int dx dy
+\left[ 
+    \frac{1}{2} \left[ \left( \frac{\partial \phi}{\partial t} \right)^2 +  \left( \frac{\partial \phi}{\partial x} \right)^2 \right] 
+    + \frac{1}{2} \mu_0 \phi^2 + \frac{1}{4} \lambda_0 \phi^4
+\right]
+$$
+
+Note the kinetic term!
+But before that, let's look into tensors, because I never saw a class where this material was clearly covered.
+Most of my physics courses just magically skipped over this or gave you the results.
+And the math courses I found dove right into the "analysis" (which is pretty damn important but it is not where one
+ought to start.)
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Tensors}
+
+Working with a spacetime metric signature $(+ - - -)$,
+$$
+\begin{pmatrix}
+    1 & 0  & 0  & 0  \\
+    0 & -1 & 0  & 0  \\
+    0 & 0  & -1 & 0  \\
+    0 & 0  & 0  & -1 \\
+\end{pmatrix}
+$$
+
+$x^\mu = (x^0, \vect{x})$ and $x_\mu = g_{\mu\nu} x^\nu = (x^0, -\vect{x})$.
+To see this explciitly, let's carry out the summations.
+
+When $\mu = 0$, $x_0 = g_{00}x^0 + g_{01}x^1 + g_{02}x^2 + g_{03}x^3 = x^0 + 0 + 0 +0 = x^0$.
+For $\mu = 1$, $x_1 = g_{10}x^0 + g_{11}x^1 + g_{12}x^2 + g_{13}x^3 = 0 + x^1 + 0 +0 = -x^0$.
+Similarly, when $\mu = 2$, $x_2 = -x^2$, and when $\mu =3$, $x_3 = -x^3$.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Inner Product}
+
+Why does $p \cdot x = g_{\mu\nu} p^\mu x^\nu = g^{\mu\nu} p_\mu x_\nu = p_\mu x^\nu = p^\mu x_\nu = p^0 x^0 - \vect{p}\cdot\vect{x}$?
+
+The metric tensor defines the geometry of spacetime, including the way distances and angles are measured.
+The implied summation, einstein summation, effectively 'weights' the components according to the geometry of spacetime.
+
+$g_{\mu\nu}$ lowers indices, while $g^{\mu\nu}$ raises them.
+$\delta^{\mu}_{\nu}$ is a diagonal matrix with ones on the diagonal and zeros elsewhere.
+It selects the $\mu$-th component when used in a summation, acting like an identity element.
+
+$g^{\mu\alpha} g_{\alpha\nu} = \delta^{\mu}_{\nu}$
+
+$$
+g^{\mu\alpha} g_{\alpha\nu} = \sum_{\alpha = 0} g^{\mu\alpha} g_{\alpha\nu} =
+g^{\mu 0} g_{0 \nu} + g^{\mu 1} g_{1\nu} + g^{\mu 2} g_{2\nu} + g^{\mu 3} g_{3\nu}
+$$
+
+This is essentially a matrix multiplication.
+$$
+\begin{pmatrix}
+    1 & 0  & 0  & 0  \\
+    0 & -1 & 0  & 0  \\
+    0 & 0  & -1 & 0  \\
+    0 & 0  & 0  & -1 \\
+\end{pmatrix}
+\cdot
+\begin{pmatrix}
+    1 & 0  & 0  & 0  \\
+    0 & -1 & 0  & 0  \\
+    0 & 0  & -1 & 0  \\
+    0 & 0  & 0  & -1 \\
+\end{pmatrix}
+=
+\begin{pmatrix}
+    1 & 0 & 0 & 0 \\
+    0 & 1 & 0 & 0 \\
+    0 & 0 & 1 & 0 \\
+    0 & 0 & 0 & 1 \\
+\end{pmatrix}
+$$
+
+Going component by component, take the second row and second column, $\mu=1$ and $\nu=1$.
+The element for that entry is given by
+$$
+g^{1\alpha}g_{\alpha 1} =
+g^{1 0} g_{0 1} + g^{1 1} g_{1 1} + g^{1 2} g_{2 1} + g^{1 3} g_{3 1}
+= 0 + (-1)(-1) + 0 + 0 = 1
+$$
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Derivatives}
+
+The examples here come from \cite{tensor-calc}.
+The aim here is to see a few examples to get used to the quantities we are going to be seeing later on.
+\\
+
+Some useful identities before we carry on:
+\begin{enumerate}
+    \item
+    $$
+    \frac{\partial x_p}{\partial x_q} = \delta_{pq}
+    $$
+\end{enumerate}
+
+
+
+\textbf{Example 1}
+
+If $a_{ij}$ are contants, to compute the partial derivative
+$$
+\frac{\partial}{\partial x_k} a_{ij} x_i x_j
+$$
+
+We'll firs write out the sums explciitly.
+\begin{align*}
+a_{ij} x_i x_j &= \sum_{i,j} a_{ij} x_i x_j
+\end{align*}
+
+Someone once happened to noticed that the sum could be broken into parts depending on when $x_{\{i,j\}} = x_k$, where $x_k$
+is the one we want to differentiate with respect to,
+\begin{align*}
+\sum_{i,j} a_{ij} x_i x_j &=
+    \sum_{i \neq k, j \neq k} a_{ij} x_i x_j +
+    \sum_{i, j \neq k} a_{ij} x_i x_j + 
+    \sum_{i \neq k, j} a_{ij} x_i x_j +
+    \sum_{i=k, j=k} a_{ij} x_i x_j \\
+&= C + \sum_{j \neq k} \left( a_{kj} x_j \right) x_k +
+    \sum_{i \neq k} \left( a_{ik} x_i \right) x_k +
+    a_{kk} x_k x_k \\
+    &= C + \sum_{j \neq k} \left( a_{kj} x_j \right) x_k +
+    \sum_{i \neq k} \left( a_{ik} x_i \right) x_k +
+    a_{kk} (x_k)^2 \\
+\end{align*}
+
+We wrote the first sum, where no $x$s are equal to $x_k$ as $C$, because as you may guess this is going to go away with
+any derivative.
+
+Back to our original task,
+\begin{align*}
+\frac{\partial}{\partial x_k} a_{ij} x_i x_j &=
+    0 + \sum_{j \neq k} a_{kj} x_j +
+    \sum_{i \neq k} a_{ik} x_i +
+    2 a_{kk} x_k \\
+&= \sum_{j} a_{kj} x_j + \sum_{i} a_{ik} x_i \\
+&= a_{kj} x_j + a_{ik} x_i \\
+&= a_{ki} x_i + a_{ik} x_i \\
+&= (a_{ik} + a_{ki}) x_i
+\end{align*}
+
+
+
+\textbf{Example 2}
+
+Another way to work out
+$$
+\frac{\partial}{\partial x_k} a_{ij} x_i x_j
+$$
+goes as follows.
+
+\begin{align*}
+\frac{\partial}{\partial x_k} a_{ij} x_i x_j &= a_{ij} \frac{\partial}{\partial x_k} x_i x_j \\
+&= a_{ij} \left( \frac{\partial x_i}{\partial x_k} x_j + x_i \frac{\partial x_j}{\partial x_k} \right) \\
+&= a_{ij} \left( \delta_{ik} x_j + x_i \delta_{jk} \right) \\
+&= a_{kj} x_j + a_{ik} x_i \\
+&= (a_{ik} + a_{ki}) x_i
+\end{align*}
+
+
+\textbf{Example 3}
+
+If $a_{ij} = a_{ji}$ are constants, compute
+$$
+\frac{\partial^2}{\partial x_k \partial x_l} a_{ij} x_i x_j
+$$
+
+Let's start with our previous result,
+\begin{align*}
+\frac{\partial^2}{\partial x_k \partial x_l} a_{ij} x_i x_j &=
+    \frac{\partial}{\partial x_k} \left[ \frac{\partial}{\partial x_l} a_{ij} x_i x_j \right] \\
+&= \frac{\partial}{\partial x_k} (a_{il} + a_{li}) x_i \\
+&= 2 a_{li} \frac{\partial x_i}{\partial x_k} \\
+&= 2 a_{li} \delta_{ik} \\
+&= 2 a_{lk}
+\end{align*}
+
+
+
+\paragraph{Changing Variables: the Jacobian}
+
+
+Promise we are not doing the conventional thing where we go from scratch but there is one more pattern we have to covered
+now in order for some other equations to make sense and this is the Jacobian.
+
+
+There is a result from calculus that is presented a bit like this (the following presentation comes from
+\cite{jacobian}):
+
+
+If we define the Jacobian of a transformation $x = g(u,v)$, $y = h(u,v)$ as
+\begin{align*}
+\frac{ \partial (x,y) }{ \partial (u,v) } &= 
+\begin{vmatrix}
+\dfrac{ \partial x }{ \partial u } & \dfrac{ \partial x }{ \partial v } \\ \addlinespace
+\dfrac{ \partial y }{ \partial u } & \dfrac{ \partial y }{ \partial v }
+\end{vmatrix} \\
+&= \frac{ \partial x }{ \partial u } \frac{ \partial y }{ \partial v } -
+    \frac{ \partial x }{ \partial v }\frac{ \partial y }{ \partial u }
+\end{align*}
+
+Then if we want to integrate $f(x)$ over some surface $R$, this region will become some other surface $S$
+following our transformation and the integral can be computed as follows:
+$$
+\int \int_{R} f(x,y) dA
+= \int \int_{S} f\left( g(u,v), h(u,v) \right) \Biggl| \frac{ \partial (x,y) }{ \partial (u,v) } \Biggl| d\overline{A}
+$$
+
+For example, when we go from Euclidean to polar coordinates, the transformation we use is $x = r\cos\theta$
+and $y = r\sin\theta$ and the Jacobian is $r$ so
+$dA = \left| \frac{\partial (x, y)}{\partial (r, \theta)} \right| dx dy = r dr d\theta$:
+
+\begin{align*}
+\frac{\partial (x, y)}{\partial (r, \theta)} &= 
+\begin{vmatrix}
+    \dfrac{ \partial x }{ \partial r } & \dfrac{ \partial x }{ \partial \theta } \\ \addlinespace
+    \dfrac{ \partial y }{ \partial r } & \dfrac{ \partial y }{ \partial \theta }
+\end{vmatrix} \\
+& = \begin{vmatrix}
+    \cos\theta & -r\sin\theta \\ \addlinespace
+    \sin\theta & r\cos\theta
+\end{vmatrix} \\
+&= r \cos^2 \theta + r \sin^2 \theta \\
+&= r
+\end{align*}
+
+
+
+In 3-dimensions this extends to
+$$
+\int \int \int_{V} f(x,y,z) dV
+= \int \int \int_{B} f\left( g(u,v,w), h(u,v,w), k(u,v,w) \right) \Biggl| \frac{ \partial (x,y,z) }{ \partial (u,v,w) } \Biggl| d\overline{V}
+$$
+
+For the case of the transformation of Euclidean coordinates to spherical coordinates, the transformation of variables is
+$x = r \sin\phi \cos\theta $, $y = r \sin\phi \sin\theta$, and $z = r\cos\phi$.
+In that case the Jacobian is $r^2 \sin\phi$ and thus
+$dV = \left| \frac{\partial (x, y, z)}{\partial (r, \theta, \phi)} \right| dx dy dz = r^2 \sin\phi dr d\phi d\theta$.
+
+
+Besides being very widely used, the reason we mentioned it is because this is also that is very well used in
+\cite{gifted-qft} to introduce the notation we see so much in QFT.
+Specifically, the Jacobian as we have been writing it, can also be seen in expressions such as
+
+$$
+\overline{a}^{\mu} = \left( \frac{\partial \overline{x}^\mu}{\partial x^\nu} \right) a^\nu
+$$
+
+$$
+\frac{\partial \phi}{\partial \overline{x}^\mu} =
+    \left( \frac{\partial x^\nu}{\partial \overline{x}^\mu} \right) \frac{\partial \phi}{\partial x^\nu}
+$$
+
+The determinant of the Jacobian matrix is used specifically when you are dealing with volume transformations
+(like integrating over a volume or changing the measure of integration) because it scales the volume elements according
+to how the coordinate transformation stretches or compresses the space.
+
+When transforming vectors, however, you're not scaling a volume but rather reorienting or rescaling each component
+of the vector according to how the coordinate axes themselves have changed.
+This is why the transformation involves a sum over the product of vector components and the appropriate Jacobian elements:
+
+\begin{itemize}
+\item Contravariant vectors (standard vectors): The components of these vectors are transformed by multiplying with the
+    Jacobian matrix $\partial \overline{x}^\mu / \partial x^\nu$. Here, each new vector component is a linear combination
+    of old components weighted by how much each new coordinate axis changes with respect to each old axis.
+    \begin{itemize}
+        \item These objects, such as displacement vectors, inherently "follow" the coordinate axes. As the axes stretch
+        or rotate, so do the components of the vector. 
+    \end{itemize}
+\item Covariant vectors (gradients and one-forms): These vectors transform using the inverse of the Jacobian matrix
+    $\partial x^\nu / \partial \overline{x}^\mu$. This reflects how changes in the old coordinates map to the new
+    coordinates, suitable for objects that naturally pair with vectors, like gradients.
+    \begin{itemize}
+        \item They measure rates of change along these coordinates.
+        \item A larger coordinate stretch means a smaller gradient in that direction to maintain the same rate of change.
+    \end{itemize}
+\end{itemize}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{The Kinetic Term}
+
+Note how we started with the kinetic term
+$$
+\frac{1}{2} \left( \partial_{E_\mu} \phi \right)^2
+$$
+and in 2D it became
+$$
+\frac{1}{2} \left[ 
+    \left( \frac{\partial \phi}{\partial t} \right)^2 +  \left( \frac{\partial \phi}{\partial x} \right)^2
+\right]
+$$
+
+The first thing to note is that we are in Euclidean space where the four-vector
+$x_{E}^{2} = x_{0}^{2} + x_{1}^{2} + x_{2}^{2} + x_{3}^{2}$.
+If we were back in Mikowski space with out metric signature $(+ - - -)$,
+then $x^{2} = x_{0}^{2} - x_{1}^{2} - x_{2}^{2} - x_{3}^{2}$.
+
+To see why the kinetic term looks the way it does, it helps to see it other ways.
+
+For example, its definition is
+$$
+\frac{1}{2} (\partial_{\mu} \phi)^2 = \frac{1}{2} \sum_{\mu=0}^{3} (\partial^{\mu} \phi)^2
+$$
+
+and so in 4D it looks like
+
+$$
+\frac{1}{2} (\partial_{\mu} \phi)^2 =
+\frac{1}{2} \left( 
+    \left(\frac{\partial \phi}{\partial t}\right)^2 +
+    \left(\frac{\partial \phi}{\partial x}\right)^2 +
+    \left(\frac{\partial \phi}{\partial y}\right)^2 +
+    \left(\frac{\partial \phi}{\partial z}\right)^2
+\right)
+$$
+
+However, remember that this is all in Euclidean space.
+In Mikowski space we have,
+\begin{align*}
+\partial^2 &= \partial^\mu \partial_\mu \\
+&= \frac{\partial^2}{\partial t^2} - \frac{\partial^2}{\partial x^2} - \frac{\partial^2}{\partial y^2} - \frac{\partial^2}{\partial z^2} \\
+&= \frac{\partial^2}{\partial t^2} - \vect{\nabla}^2
+\end{align*}
+
+And this is why it sometimes helps to see the metric included in the definition,
+
+\begin{align*}
+\eta^{\mu\nu} \partial_\mu \partial_\nu \phi &= \partial_\mu \partial^\nu \phi \\
+&= \left( \partial_t \phi \right)^2 - \delta^{ij} \partial_i \partial_j \phi
+\end{align*}
+
+If $\eta^{\mu\nu}$ has the signature $(+ - - -)$.
