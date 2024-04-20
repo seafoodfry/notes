@@ -1,10 +1,148 @@
-\section{Introduction to Electrostatics}
+\chapter{Introduction to Electrostatics}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Charge distributions}
+\section{Charge distributions}
 
-\subsubsection{Work done by a particle}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Surface elements $da$}
+
+The following logic comes from Griffith's electrodynamics chapter 1.4.
+
+In curvilinear coordinates, an infinitesimal displacement in the $\vect{\hat{r}}$ direction is
+simply $dr$.
+$$
+dl_r = dr
+$$
+
+An infinitesimal element of length in the $\vect{\hat{\theta}}$ is
+$$
+dl_\theta = r d\theta
+$$
+
+And an infinitesimal element of length along the $\vect{\hat{\phi}}$ direction
+is
+$$
+dl_\phi = r \sin\theta d\phi
+$$
+
+$\theta$ is the polar angle, the angle from the $z$ axis, and its range is $[0, \pi]$.
+$\phi$ is the azimuthal angle, which is the angle around from the $x$ axis and its range is $[0, 2\pi]$.
+
+The general infinitesimal displacement becomes
+$$
+d\vect{l} =
+dr \vect{\hat{r}}
++ r d\theta \vect{\hat{\theta}}
++ r \sin\theta d\phi \vect{\hat{\phi}}
+$$
+
+From there one can see how the infinitesimal volume element $d\tau$ is then
+$$
+d\tau = dl_r dl_\theta dl_\phi =
+r^2 \sin\theta dr d\theta d\phi
+$$
+
+\textbf{However, the inifinitesimal area element depends on the orientation of the surface!}
+
+For example, if we integrate over the surface of a sphere, where r stays contant but $\theta$
+and $\phi$ vary,
+$$
+d\vect{a} = dl_\theta dl_\phi \vect{\hat{r}} = r^2 \sin\theta d\theta d\phi \vect{\hat{r}}
+$$
+
+Where as is the surface lies in the x-y plane, so that $\theta$ is contant, and let's say $\theta = \phi/2$,
+while $r$ and $\phi$ vary,
+$$
+d\vect{a} = dl_r dl_\phi \vect{\hat{\theta}}
+= r \sin\theta dr d\phi \vect{\hat{\theta}}
+= r dr d\phi \vect{\hat{\theta}}
+$$
+
+\textbf{The area element on the sphere can be calculated from the cross products of other two elements,}
+
+You should also, definetely, see
+\href{https://en.wikipedia.org/wiki/Spherical_coordinate_system#Integration_and_differentiation_in_spherical_coordinates}{Integration and differentiation in spherical coordinates}.
+\\~\\
+
+
+\textbf{Example 1}
+
+One good example to get practice is Griffith's Example 1.13: find the volume of a sphere of radius $R$.
+
+As we saw above, the optimal way to an answer is to integrate the volume element $d\tau$ in spherical coordinates.
+
+\begin{align*}
+V = \int d\tau &=
+\int_{r=0}^{R} \int_{\theta=0}^{\pi} \int_{\phi=0}^{2\pi} dr \, d\theta \, d\phi r^2 \sin\theta \\
+&=  \left( \int_{r=0}^{R} dr \,r^2 \right)
+    \left( \int_{\theta=0}^{\pi} d\theta \, \sin\theta \right)
+    \left( \int_{\phi=0}^{2\pi} d\phi \right) \\
+&= \left( \frac{1}{3} R^3 \right) \left( -\cos\theta \Big|_{0}^{\pi} \right) \left( 2\pi \right) \\
+&= \frac{4}{3} \pi R^3
+\end{align*}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Fundamental Theorems}
+
+This presentation is a quick summary of Griffith's 1.3.2 to 1.3.5.
+
+The fundamental theorem of calculus states
+
+$$
+\int_{a}^{b} dx \, \left(\frac{df}{dx}\right) = f(b) - f(a)
+$$
+
+The fundamental theorem for gradients is
+
+$$
+\int_{\vect{a}}^{\vect{b}} \left(\nabla T\right) \cdot d\vect{l}
+= T(\vect{b}) - T(\vect{a})
+$$
+
+Here $T$ is a scalar-values function, $T : \mathbb{R}^3 \rightarrow \mathbb{R}$, and the application of the
+$\nabla$ operator ($\nabla = \left< \partial_x, \partial_y, \partial_z \right>$) makes $\nabla T$ a vector-valued function,
+$\nabla T : \mathbb{R}^3 \rightarrow \mathbb{R}^3$.
+The gradient points in the direction of maximum increase of the function $T$ and it expreses the rate of change of $T$
+along a given direction.
+
+The interesting bit of our fundamental theorem for gradients is that $\int_{\vect{a}}^{\vect{b}} \left(\nabla T\right) \cdot d\vect{l}$
+is path independent.
+And by consequence, $\oint \left(\nabla T\right) \cdot d\vect{l} = 0$
+(if you go up the stairs, measure how many meters above sea-level you are, then go back down, and come back up, then your
+change is 0).
+\\
+
+The fundamental theorem for divergences (Gauss's of Green's theorem) states that
+
+$$
+\int_{\mathcal{V}} \left(\nabla\cdot \vect{v}\right) \, d\tau
+= \oint_{\mathcal{S}} \vect{v}\cdot d\vect{a}
+$$
+
+For the two previous fundamental theorems we saw that the boundary of a line was two points, and now we see that the boundary
+of a volume $\mathcal{V}$ is the closed region $\mathcal{S}$.
+Accordingly, if we sum how much quantity $\vect{v}$ spreads out over an entire volume, this is equal to how much
+is $\vect{v}$ is crossing through the closed enclosing surface.
+\\
+
+The fundamental theorem for curls (Stoke's theorem) states that
+
+$$
+\int_{\mathcal{S}} \left( \nabla\times\vect{v} \right) \cdot d\vect{a}
+= \oint_{\mathcal{P}} \vect{v} \cdot d\vect{l}
+$$
+
+Now the boundary of a region $\mathcal{S}$ is the perimeter (a line) $\mathcal{P}$.
+Here we see that the circulation of $\vect{v}$, $\oint_{\mathcal{P}} \vect{v} \cdot d\vect{l}$, over a perimeter,
+is equal to the sum of the flux of the "twisting" of $\vect{v}$ over a surface.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Work done by a particle}
 
 \textbf{Taken from Kline, Chapter 7, Section 7, problem 3}
 
@@ -51,70 +189,13 @@ and try to get you for somewhere where to use $u = p^2 + (c-x)^2$, which is not 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Gauss's Law}
+\section{Gauss's Law}
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{Surface elements $da$}
-
-The following logic comes from Griffith's electrodynamics chapter 1.4.
-
-In curvilinear coordinates, an infinitesimal displacement in the $\vect{\hat{r}}$ direction is
-simply $dr$.
-$$
-dl_r = dr
-$$
-
-An infinitesimal element of length in the $\vect{\hat{\theta}}$ is
-$$
-dl_\theta = r d\theta
-$$
-
-And an infinitesimal element of length along the $\vect{\hat{\phi}}$ direction
-is
-$$
-dl_\phi = r \sin\theta d\phi
-$$
-
-And thus, the general infinitesimal displacement becomes
-$$
-d\vect{l} =
-dr \vect{\hat{r}}
-+ r d\theta \vect{\hat{\theta}}
-+ r \sin\theta d\phi \vect{\hat{\phi}}
-$$
-
-From there one can see how the infinitesimal volume element $d\tau$ is then
-$$
-d\tau = dl_r dl_\theta dl_\phi =
-r^2 \sin\theta dr d\theta d\phi
-$$
-
-\textbf{However, the inifinitesimal area element depends on the orientation of the surface!}
-
-For example, if we integrate over the surface of a sphere, where r stays contant but $\theta$
-and $\phi$ vary,
-$$
-d\vect{a} = dl_\theta dl_\phi \vect{\hat{r}} = r^2 \sin\theta d\theta d\phi \vect{\hat{r}}
-$$
-
-Where as is the surface lies in the x-y plane, so that $\theta$ is contant, and let's say $\theta = \phi/2$,
-while $r$ and $\phi$ vary,
-$$
-d\vect{a} = dl_r dl_\phi \vect{\hat{\theta}}
-= r \sin\theta dr d\phi \vect{\hat{\theta}}
-= r dr d\phi \vect{\hat{\theta}}
-$$
-
-\textbf{The area element on the sphere can be calculated from the cross products of other two elements,}
-
-You should also, definetely, see
-\href{https://en.wikipedia.org/wiki/Spherical_coordinate_system#Integration_and_differentiation_in_spherical_coordinates}{Integration and differentiation in spherical coordinates}.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsubsection{Solid Angle}
+\subsection{Solid Angle}
 
 The following is all wikipedia.
 
@@ -178,7 +259,7 @@ where the surface area of a sphere is $A = 4\pi r^2$.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{Explanation of Jackson}
+\subsection{Explanation of Jackson}
 
 If the electric field makes an angle $\theta$ with the unit normal, then the projection of the
 infinitesimal area element along the normal of the surface is $\cos\theta da$.
@@ -188,10 +269,10 @@ $r^2 d\Omega = \cos\theta da$.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Problems}
+\section{Problems}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{Problem 1.2}
+\subsection{Problem 1.2}
 \label{jackson:problem-1.2}
 
 
@@ -393,7 +474,7 @@ $$
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{Problem 1.3}
+\subsection{Problem 1.3}
 
 Using Dirac Delta functions in the appropiate coordinate, express the following charge distributions as three-dimensional
 charge densities $\rho(\mathbf{x})$.
