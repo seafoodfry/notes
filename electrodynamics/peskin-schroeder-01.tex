@@ -1,0 +1,60 @@
+\chapter{Intro to QFT}
+
+\section{Inivitation}
+
+\subsection{Polarization Vectors}
+
+In the invitation, we are presented with the polarization vector $\epsilon^\mu = (0, 1, i, 0)$.
+
+To understand this notation let's go through some examples taken from
+\href{https://scholar.harvard.edu/files/schwartz/files/lecture14-polarization.pdf}{Lecture 14: Polarization}.
+
+We say that a plane wave is \textbf{linearly polarized} if there is no phase difference between $E_x$ and $E_y$:
+$$
+\vect{E}_0 = \left( E_x, E_y, 0 \right)
+$$
+
+Then a linearly polarized plane wave in the x direction looks like $\vect{E} = E_0 e^{i(kz-wt)} (1, 0, 0)$.
+And a linearly polarized plane wave in the y direction looks like $\vect{E} = E_0 e^{i(kz-wt)} (0, 1, 0)$.
+
+The thing to remember is that we are implicitly only looking at the real part, so a linearly polarized wave in the x
+direction is actually $(E_0 \cos(kz-wt), 0, 0)$.
+\\
+
+\textbf{Circular polarization} is when the electric field components are one-quarter out of phase ($\pi /2$).
+Then the field can be written as,
+
+\begin{align*}
+\vect{E}_0 &= \left( E_0, E_0 e^{i\pi/2}, 0 \right) \\
+&= \left( E_0, iE_0, 0 \right) \\
+&= E_0 \left( e^{i(kz-wt)}, ie^{i(kz-wt)}, 0 \right)
+\end{align*}
+
+And since we only care about the real parts,
+$$
+\vect{E}_0 = \left( cos(kz-wt), -sin(kz-wt), 0 \right)
+$$
+
+This is interesting because if you jump to the wikipedia page for "List of trigonometric identities"
+and look for the "Shift by one quarter period" table, you'll see that
+$$
+\sin(\theta + \frac{\pi}{2}) = \cos(\theta)
+$$
+and
+$$
+\cos(\theta + \frac{\pi}{2}) = -\cos(\theta)
+$$
+
+(A shit by a quarter wavelength is essentially differentiation!)
+
+But here is the catch and the connection with P\&S: we can also get the same result if we have
+$$
+\vect{E} = E_0 \left( \cos(wt-kz)\hat{x} + \sin(wt-kz)\hat{y} \right)
+$$
+We can also write is as,
+$$
+E_0 e^{i(wt - kz)} (0, 1, i, 0)
+$$
+and remembering that you only care about the real part.
+If you do so, you'll end up with terms such as $\cos \hat{x} - \sin \hat{y}$ which just so happen to again be the
+a $\sin$ and a $\cos$ (our original plane wave components) shifted by $\pi/2$.
