@@ -58,3 +58,36 @@ $$
 and remembering that you only care about the real part.
 If you do so, you'll end up with terms such as $\cos \hat{x} - \sin \hat{y}$ which just so happen to again be the
 a $\sin$ and a $\cos$ (our original plane wave components) shifted by $\pi/2$.
+
+
+
+
+\subsection{Cross Sections}
+
+The next thing we want to document is how to solve the differential cross section (per unit solid angle).
+The expression given was
+
+$$
+\frac{d\sigma}{d\Omega} = \frac{\alpha^2}{4E_{cm}^{2}} (1 + \cos^2 \theta)
+$$
+
+That when integrated gives the total cross section
+$$
+\sigma_{total} = \frac{4\pi\alpha^2}{3E_{cm}^{2}}
+$$
+
+The trick here is to identity $d\Omega = \sin\theta \, d\theta \, d\phi$.
+So essentially the problem is to integrate
+
+\begin{align*}
+\int d\Omega \, \left( 1 + \cos\theta \right) &=
+    \int_{\phi=0}^{2\pi} \int_{\theta=0}^{\pi} \left( 1 + \cos\theta \right) \sin\theta \, d\theta \, d\phi \\
+&= \left( \int_{\phi=0}^{2\pi} \int_{\theta=0}^{\pi} \sin\theta \, d\theta \, d\phi \right)
+    + \left( \int_{\phi=0}^{2\pi} \int_{\theta=0}^{\pi} \cos\theta \sin\theta \, d\theta \, d\phi \right) \\
+&= \left( 4\pi \right) + \left( -\int u^2 du \right) \\
+&= \left( 4\pi \right) + \left( -\frac{1}{3} \cos^3 \theta \Big|_{0}^{\pi} du \right) \\
+&= \left( 4\pi \right) \left( 2\pi \frac{8}{3} \right) \\
+&= \frac{16\pi}{3}
+\end{align*}
+
+Note that we did a $u$-substitution in the second integral: $u = \cos\theta$, so $du = -\sin\theta \, d\theta$.
