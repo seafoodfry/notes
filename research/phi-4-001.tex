@@ -107,7 +107,7 @@ $$
 S_{E} = 
 \int d^4 x_E \mathcal{L}_{E} =
 \int d^4 x \left[ 
-    \frac{1}{2} \left( \partial_{E_\mu} \phi \right)^2 + \frac{1}{2} \mu_0 \phi^2 + \frac{1}{4} \lambda_0 \phi^4
+    \frac{1}{2} \left( \partial_{E_\mu} \phi \right)^2 + \frac{1}{2} \mu^{2} \phi^2 + \frac{1}{4!} \lambda \phi^4
 \right]
 $$
 
@@ -133,7 +133,7 @@ S_{E}^{(2)} =
 \int dx dy
 \left[ 
     \frac{1}{2} \left[ \left( \frac{\partial \phi}{\partial t} \right)^2 +  \left( \frac{\partial \phi}{\partial x} \right)^2 \right] 
-    + \frac{1}{2} \mu_0 \phi^2 + \frac{1}{4} \lambda_0 \phi^4
+    + \frac{1}{2} \mu^{2} \phi^2 + \frac{1}{4!} \lambda \phi^4
 \right]
 $$
 
@@ -587,10 +587,10 @@ The other two products, $- 2\phi(n) \left( \phi(n-i) + \phi(n-j) \right)$, would
 periodic boundary conditions.
 If we use this, we can now write,
 
-\begin{align*}
+\begin{align}
 \int dt dx \left[ \left( \partial_t \phi \right)^2 + \left( \partial_x \phi \right)^2 \right] &\approx
-- 2 \sum_{<ij>} \phi_i \phi_j + 4 \sum_n \phi^{2}_{n} 
-\end{align*}
+- 2 \sum_{<ij>} \phi_i \phi_j + 4 \sum_n \phi^{2}_{n} \label{phi4:2d-kinetic-term-lattice}
+\end{align}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -599,7 +599,7 @@ If we use this, we can now write,
 To get the 4-dimensional expression of the kinetic term we need to go back to \ref{phi4:2d-kinetic-term}, which now becomes
 
 \begin{align*}
-\int dt dx dy dz & \left[ 
+\int dt \, dx \, dy \, dz & \left[ 
     \left( \partial_t \phi \right)^2 + \left( \partial_x \phi \right)^2 +  \left( \partial_y \phi \right)^2 + \left( \partial_z \phi \right)^2
 \right] \approx \\
 \sum & \left[ \phi^2 + \phi^2 - 2\phi(t+a, \ldots) \phi \right. \\
@@ -614,10 +614,129 @@ To get the 4-dimensional expression of the kinetic term we need to go back to \r
 Which again, since the summation is over the entire lattice and we have periodic boundary conditions,
 we end up with
 \begin{align*}
-\int dt dx dy dz \left[ 
+\int dt \, dx \, dy \, dz \left[ 
     \left( \partial_t \phi \right)^2 + \left( \partial_x \phi \right)^2 +  \left( \partial_y \phi \right)^2 + \left( \partial_z \phi \right)^2
 \right] \approx 
 - 2 \sum_{<ij>} \phi_i \phi_j + 8 \sum_n \phi^{2}_{n}
 \end{align*}
 
 Keep in mind that the product of nearest neighbours is now for each $ij$ over each dimension, so it is 8 multiplications in total.
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{The Potential Term}
+
+The next piece of wisdom we need to use is to make our phisical quantities dimensionless.
+This helps during the simulation to sustain numerical stability.
+Imagine if we were working with electrons and had to multiply everything by $9.1 \times 10^{-31}$ kg.
+The electron Mass in MeV is just 0.5 but hopefully you get the point that
+it could happen that we are working with a quantity that is just right for us to run into a numerical
+underflow.
+
+Let's now look at our potential.
+Based on what we did for the kinetic term, we can see right away that
+
+$$
+\int dt \, dx \left( \frac{1}{2} \mu^{2} \phi^2 + \frac{1}{4!} \lambda \phi^4 \right)
+\approx \sum a^2 \left( \frac{1}{2} \mu^{2} \phi^2 + \frac{1}{4!} \lambda \phi^4 \right)
+$$
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Dimensional Analysis}
+
+Defining a unitless mass $\mu_0$ is straightforward: in natural units, mass has the units of inverse length.
+If we square a mass term, then we need to multiply it by a square length term to have a unitless quantity,
+and it just so happens that we get that term from the double integral.
+So we can define the unitless quantity $\mu^{2} = a^2 \mu^{2}$.
+
+The logic we just followed was a lucky coincidence that happens in 2D.
+For example, one could naively think that the coupling constant $\lambda$ would have the units of energy, inverse length.
+But since we have an $a^2$ term, that would make our new coupling constant have units of length.
+
+To get the correct answer, in two and four dimensions we have to go back a bit.
+
+To start, the action $S$ is dimensionless - $S = \int dt \, L$, the lagrangian has units of energy,
+inverse lenght, so it cancels with $dt$.
+
+In four dimensions, the action is $S = \int d^4x \, L$.
+The integration "volume" has units of $[M]^{-4}$, so all terms in the lagrangian need to have units of $[M]^4$.
+(In two dimensions all terms would need units of $[M]^2$.)
+
+The first term in our laganragian in a spacetime derivative $\partial_\mu$.
+If you remember your calculus days, derivatives are rates of change, i.e.,
+$\dot{y}$ is the velocity which has dimensions of meters per second.
+And thus $[\partial_mu] = [L^{-1}] = [M^1]$.
+
+From here we can figure out the dimensions of the field $\phi$,
+$$
+[\left(\partial_\mu \phi\right)^2] = [M]^2 [\phi]^2 = [M]^4
+$$
+Meaning that $[\phi]^2 = [M]^2$, or $[\phi] = [M]$.
+
+This result is often generalized by noting that
+$$
+[\left(\partial_\mu \phi\right)^2] = [M]^2 [\phi]^2 = [M]^d
+$$
+which makes $[\phi] = [M]^{(d-2)/2}$ in $d$ dimensions.
+($[\phi] = 1$ (unitless) in two dimensions.)
+
+
+Let's keep going we are on a roll!
+The next term in our lagrangian is,
+
+$$
+\left[ \frac{1}{2} \mu^2 \phi^2 \right] = [M]^4
+$$
+
+So it happens that in four dimensions, $[\mu]^2 = [M]^2$, since $[\phi]^2 = [M]^2$.
+(In two dimensions, $[\mu] = [M]$ as well since $\phi$ is dimensionless.)
+
+
+Finally, our interaction term, the one that made us start this route,
+$$
+\left[ \frac{1}{4!} \lambda \phi^4 \right] = [\lambda] [M]^4 = [M]^4
+$$
+Therefore, $[\lambda] = 1$, so it is dimensionless in four dimensions.
+But in two dimensions we have,
+
+$$
+\left[ \frac{1}{4!} \lambda \phi^4 \right] = [\lambda] [M]^0 = [M]^2
+$$
+
+Here, $[\lambda] = [M]^2 = [\mu^2]$.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Full Lagrangian in 2D}
+
+The results we need to highlight from the previous section are that $[\lambda] = [M]^2 = [\mu^2]$.
+So we can define the dimensionless quantities in 2D $\mu^{2}_{L} = a^2 \mu^2$ and $\lambda_L = a^2 \lambda$,
+but we will drop the $L$ subscript since it gets old.
+
+That way the potential term for our Lagrangian becomes
+
+$$
+\int dt \, dx \left( \frac{1}{2} \mu^{2} \phi^2 + \frac{1}{4!} \lambda \phi^4 \right)
+\approx \sum \left( \frac{1}{2} \mu^{2} \phi^2 + \frac{1}{4!} \lambda \phi^4 \right)
+$$
+
+Putting it together with the kinetic term \ref{phi4:2d-kinetic-term-lattice} (and the factor of $1/2$ we didn't carry around)
+we have
+
+\begin{equation}
+\begin{split}
+\int dt \, dx & \left(
+    \frac{1}{2} \left[ \left( \partial_t \phi \right)^2 + \left( \partial_x \phi \right)^2 \right] + 
+    \frac{1}{2} \mu^{2} \phi^2 + \frac{1}{4!} \lambda \phi^4
+\right) \\
+& \approx - \sum_{<ij>} \phi_i \phi_j + 2 \sum_n \phi^{2}_{n}
+    + \sum_n \left( \frac{1}{2} \mu^{2} \phi^{2}_{n} + \frac{1}{4!} \lambda \phi^{4}_{n} \right) \\
+&= - \sum_{<ij>} \phi_i \phi_j 
++ \sum_n \left( 2 + \frac{\mu^{2}}{2} \right) \phi^{2}_{n} + \frac{\lambda}{4!} \phi^{4}_{n} \label{phi4:2d-lattice-lagrangian}
+\end{split}
+\end{equation}
