@@ -91,3 +91,171 @@ So essentially the problem is to integrate
 \end{align*}
 
 Note that we did a $u$-substitution in the second integral: $u = \cos\theta$, so $du = -\sin\theta \, d\theta$.
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{The Klein-Gordon Field}
+
+\subsection{Klein-Gordon Inconsistensies}
+
+The Schrodinger equation canr readily be abtain treating the energy and momentum as operators.
+In quantum mechanics $E = i\partial_t$ and $p = -i\nabla$.
+Using the realtionship $E = \frac{p^2}{2}$, we get
+
+
+$$
+i\partial_t \ket{\psi} = -\frac{1}{2m} \nabla^2 \ket{\psi}
+$$
+
+Note that we are still in natural units, otherwise there would be an $\hbar$.
+
+The Klein-Gordon equation comes if we instead use $E^2 - p^2 = m^2$,
+
+$$
+-\partial_{t}^2 \ket{\psi} + \nabla^2 \ket{\psi} = m^2 \ket{\psi}
+$$
+
+And remember that $\partial^2 = \partial_{t}^{2} - \nabla^2$, so there comes $(\partial^2 - m)\psi = 0$ equation.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Klein-Gordon Solution}
+
+One method to solve the equation is to use Fourier transforms.
+So we can begin by expressing the wave function $\phi(x,t)$ as a Fourier integral,
+
+$$
+\psi(x, t) =
+\int \frac{d^4k}{\left(2\pi\right)^4} \tilde{\psi}(k, \omega) e^{-i(k\cdot x - \omega t)}
+$$
+
+Here, $\tilde{\psi}(k, \omega)$ is the Fourier transform of $\psi(x, t)$.
+One thing that's often missed is the rgument of the exponent: if you look back to examples where we talk about plane waves
+(just go back to the previous section), a wave with positive momentum moving in positive direction $x$ has the argument $wt - xk$.
+And the convention is to hae such a wave in the Fourier transform.
+
+With this Fourier transofrm in place, we take the Fourier transform of our entire differential equation to reduce
+the solution into an algebraic problem.
+
+For example, applying the Fourier transform to the time derivative goes as follows:
+
+\begin{align*}
+\mathcal{F}\{ \partial_t \psi \} &=
+    \int \frac{d^4k}{(2\pi)^4} \partial_t \psi e^{-i(\vect{k}\cdot\vect{x} - \omega t)}
+\rightarrow
+\left[
+    \begin{alignedat}{2}
+        u  &= e^{-i(\vect{k}\cdot\vect{x} - \omega t)}                \quad & v  &= \psi \\
+        du &= i\omega e^{-i(\vect{k}\cdot\vect{x} - \omega t)} \, dt  \quad & dv &= \partial_t \psi \, dt
+    \end{alignedat}\,
+\right] \\
+&= \cancelto{0}{ \psi(\vect{x}, t) e^{-i(\vect{k}\cdot\vect{x} - \omega t)} } \Big|_{t=-\infty}^{t=\infty}
+    - \int \frac{d^4k}{(2\pi)^4} \psi(\vect{x}, t) \left(i\omega\right) e^{-i(\vect{k}\cdot\vect{x} - \omega t)} \\
+&= -i\omega \tilde{\psi} (\vect{k}, \omega)
+\end{align*}
+
+We made use of the integration by parts technique ($\int u \, dv = uv - \int v \, du$) to transfer the time derivative
+on $\psi$ to the exponent term.
+
+As per the boudnary term, we have a couple words to say: physically, the wave function (or even field) should vanish at infinity.
+Mathematically, in order for the Fourier transform to converge to a value the function that is being "transformed", $\psi$,
+must be a \textbf{rapidly decreasing function} (a function of \href{https://en.wikipedia.org/wiki/Schwartz_space}{Schwartz space}).
+
+Similarly then,
+
+\begin{align*}
+\mathcal{F}\{ \partial_{t}^2 \psi \} &=
+    \int \frac{d^4k}{(2\pi)^4} \partial_{t}^{2} \psi e^{-i(\vect{k}\cdot\vect{x} - \omega t)}
+\rightarrow
+\left[
+    \begin{alignedat}{2}
+        u  &= e^{-i(\vect{k}\cdot\vect{x} - \omega t)}                \quad & v  &= \partial_t \psi \\
+        du &= i\omega e^{-i(\vect{k}\cdot\vect{x} - \omega t)} \, dt  \quad & dv &= \partial_{t}^{2} \psi \, dt
+    \end{alignedat}\,
+\right] \\
+&= \cancelto{0}{ \partial _t \psi(\vect{x}, t) e^{-i(\vect{k}\cdot\vect{x} - \omega t)} } \Big|_{t=-\infty}^{t=\infty}
+    - \int \frac{d^4k}{(2\pi)^4} \partial_t \psi(\vect{x}, t) \left(i\omega\right) e^{-i(\vect{k}\cdot\vect{x} - \omega t)} \\
+&= -i\omega \mathcal{F}\{ \partial_t \psi \} \\
+&= - \omega^2 \tilde{\psi} (\vect{k}, \omega)
+\end{align*}
+
+The boundary term again goes to zero here.
+We will skip the physical argument and just mention that a rapidly decreasin function also requires all of its derivatives
+tend to zero.
+
+
+
+For the spatial derivatives, each $\partial_i$ will bring down a factor of $-i k_i$, resulting in a factor of
+$- k_{i}^2$ for each $\partial_{i}^{2}$.
+And this is something that always triped me up: one may be inclined to write $-k^2$ in the Fourier transform
+but that same one ought to remember that $k$ is actually $\vec{k}$ (a vector) and that is why we must
+write $-|k|^2$, because we want the [L-2] norm.
+
+But anyways, the Fourier transform of the Laplacian is,
+
+\begin{align*}
+\mathcal{F}\{ \nabla \psi \} &=
+    \int \frac{d^4k}{(2\pi)^4} \nabla \psi e^{-i(\vect{k}\cdot\vect{x} - \omega t)}
+\rightarrow
+\left[
+    \begin{alignedat}{2}
+        u  &= e^{-i(\vect{k}\cdot\vect{x} - \omega t)}                          \quad & v  &= \psi \\
+        du &= -i\vect{k} e^{-i(\vect{k}\cdot\vect{x} - \omega t)} \, d\vect{x}  \quad & dv &= \nabla \psi \, d\vect{x}
+    \end{alignedat}\,
+\right] \\
+&= \cancelto{0}{ \psi(\vect{x}, t) e^{-i(\vect{k}\cdot\vect{x} - \omega t)} } \Big|_{\vect{x}=-\infty}^{\vect{x}=\infty}
+    - \int \frac{d^4k}{(2\pi)^4} \psi(\vect{x}, t) \left(-i\vect{k}\right) e^{-i(\vect{k}\cdot\vect{x} - \omega t)} \\
+&= -i\vect{k} \tilde{\psi} (\vect{k}, \omega)
+\end{align*}
+
+
+and
+
+\begin{align*}
+\mathcal{F}\{ \nabla^2 \psi \} &=
+    \int \frac{d^4k}{(2\pi)^4} \nabla^2 \psi e^{-i(\vect{k}\cdot\vect{x} - \omega t)}
+\rightarrow
+\left[
+    \begin{alignedat}{2}
+        u  &= e^{-i(\vect{k}\cdot\vect{x} - \omega t)}                          \quad & v  &= \nabla \psi \\
+        du &= -i\vect{k} e^{-i(\vect{k}\cdot\vect{x} - \omega t)} \, d\vect{x}  \quad & dv &= \nabla^2 \psi \, d\vect{x}
+    \end{alignedat}\,
+\right] \\
+&= \cancelto{0}{ \nabla\psi(\vect{x}, t) e^{-i(\vect{k}\cdot\vect{x} - \omega t)} } \Big|_{\vect{x}=-\infty}^{\vect{x}=\infty}
+    - \int \frac{d^4k}{(2\pi)^4} \nabla\psi(\vect{x}, t) \left(-i\vect{k}\right) e^{-i(\vect{k}\cdot\vect{x} - \omega t)} \\
+&= -i\vect{k} \mathcal{F}\{ \nabla \psi \} \\
+&= - |\vect{k}|^2 \tilde{\psi} (\vect{k}, \omega)
+\end{align*}
+
+
+
+And since the above must hold throughout all of space, that's where
+$$
+\left(-\omega^2 + |\vect{k}|^2 + m^2 \right) \tilde{\psi}(\vect{k}, \omega) = 0
+$$
+comes from!
+
+Now, in order for us to not have a trivial solution, $\psi(\vect{x}, t) = 0$, it must be so that
+$\left(-\omega^2 + |\vect{k}|^2 + m^2 \right) = 0$, and so our dispersion relation comes about
+$$
+\omega^2 = |\vect{k}|^2 + m^2
+$$
+So $\omega = \pm \sqrt{ |\vect{k}|^2 + m^2 }$.
+So essentially any function will do as long as the dispersion relation (momentum conservation) is respected.
+
+A thing that people do, specially since we are talking about Fourier transforms is to define
+
+$$
+\psi(\vect{k}, \omega) = A(\vec{k}) \delta\left( \omega - \sqrt{ |\vect{k}|^2 + m^2 }\right) +
+    B(\vec{k}) \delta\left( \omega + \sqrt{ |\vect{k}|^2 + m^2 }\right)
+$$
+
+Note that $A(\vec{k})$ and $B(\vec{k})$ are arbitrary functions that only depend on $\vect{k}$ since the
+Direact delta functions specify $\omega$.
