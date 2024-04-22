@@ -88,7 +88,7 @@ G_K \left(\vect{R}^\prime, \vect{R}, t\right) &=
 
 The following integral comes from Peskin and schroeder Section 2.1
 \begin{align}
-& \int d^3p \, e^{-i(\vect{p}^2/2m)t} e^{i\vect{p}\cdot(\vect{x}-\vect{x}_0)} \label{kg:nonrelativistic-03} \\
+& \int \frac{d^3p}{(2\pi)^3} \, e^{-i(\vect{p}^2/2m)t} e^{i\vect{p}\cdot(\vect{x}-\vect{x}_0)} \label{kg:nonrelativistic-03} \\
 &= \left( \frac{m}{2\pi i t} \right)^{3/2} e^{im (\vect{x}-\vect{x}_0)^2 /2t} \label{kg:nonrelativistic-04}
 \end{align}
 
@@ -104,8 +104,14 @@ $$
 
 and
 \begin{align*}
--\frac{b^2}{4a} &= frac{2m \left(\vect{x}-\vect{x}_0\right)^2}{-4it} \\
-&= frac{im \left(\vect{x}-\vect{x}_0\right)^2}{2t}
+-\frac{b^2}{4a} &= \frac{2m \left(\vect{x}-\vect{x}_0\right)^2}{-4it} \\
+&= \frac{im \left(\vect{x}-\vect{x}_0\right)^2}{2t}
+\end{align*}
+
+So the solution is
+\begin{align*}
+& \frac{1}{(2\pi)^3} \left( \frac{2\pi m}{it} \right)^{3/2} e^{\frac{im \left(\vect{x}-\vect{x}_0\right)^2}{2t}} \\
+&= \left( \frac{m}{2\pi it} \right)^{3/2} e^{im \left(\vect{x}-\vect{x}_0\right)^2 /2t}
 \end{align*}
 
 

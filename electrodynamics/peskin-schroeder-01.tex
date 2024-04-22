@@ -428,11 +428,16 @@ $$
 In nonrelativistic quantum mechanics we have $E = \frac{1}{2m} p^2$, so
 \begin{align}
 U(t) &= \bra{\vect{x}} e^{-i(\vect{p}^2/2m)t} \ket{\vect{x}_0} \label{kg:nonrelativistic-01} \\
-&= \int \frac{d^3p}{(2\pi)^3} \bra{\vect{x}} e^{-i(\vect{p}^2/2m)t} \ket{\vect{p}} \braket{\vect{p} | \vect{x}_0} \label{kg:nonrelativistic-02} \\
+&= \int d^3p \, \bra{\vect{x}} e^{-i(\vect{p}^2/2m)t} \ket{\vect{p}} \braket{\vect{p} | \vect{x}_0} \label{kg:nonrelativistic-02} \\
 &= \int \frac{d^3p}{(2\pi)^3} e^{-i(\vect{p}^2/2m)t} e^{i\vect{p}\cdot(\vect{x}-\vect{x}_0)} \label{kg:nonrelativistic-03} \\
 &= \left( \frac{m}{2\pi i t} \right)^{3/2} e^{im (\vect{x}-\vect{x}_0)^2 /2t} \label{kg:nonrelativistic-04}
 \end{align}
 
+\textbf{Note:} we think Peskin and Schroeder have a typo when doing the expansion in the momentum state.
+The integral starts with $\int \frac{d^3p}{(2\pi)^3}$ but the identity used to project the eigenstate into momentum
+state is just $\mathbb{I} = \int dp\, \ket{p}\bra{p}$, see the section below.
+There is a $1/(2\pi)^3$ that comes from simplifing $\braket{\vect{x} | \vect{p}} \braket{\vect{p} | \vect{x}_0}$ though.
+More on this later.
 
 
 To go from \ref{kg:nonrelativistic-01} to \ref{kg:nonrelativistic-02},
