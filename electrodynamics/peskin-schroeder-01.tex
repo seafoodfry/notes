@@ -598,3 +598,59 @@ Along with $\delta(x-x^\prime) = \int \frac{dk}{2\pi} e^{ik(x-x^\prime)}$.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Causality Arguments: The Relativistic Case}
+
+And now let's look at
+\begin{align*}
+U(t) &= \bra{\vect{x}} e^{-it\sqrt{\vect{p}^2 + m^2}} \ket{\vect{x}_0} \\
+&= \int d^3p \, \bra{\vect{x}} e^{-it\sqrt{\vect{p}^2 + m^2}} \ket{\vect{p}} \braket{\vect{p} | \vect{x}_0} \\
+&= \int d^3p \, e^{-it\sqrt{\vect{p}^2 + m^2}} \braket{\vect{x} | \vect{p}} \braket{\vect{p} | \vect{x}_0} \\
+&= \int \frac{d^3p}{(2\pi)^3} \, e^{-it\sqrt{\vect{p}^2 + m^2}} e^{i\vect{p}\cdot\vect{x}} e^{-i\vect{p}\cdot\vect{x}_0} \\
+&= \int \frac{d^3p}{(2\pi)^3} \, e^{-it\sqrt{\vect{p}^2 + m^2}} e^{i\vect{p}\cdot(\vect{x} - \vect{x}_0)} \\
+\end{align*}
+
+The result then happens to be
+$$
+\frac{1}{2\pi^2 |\vect{x}-\vect{x}_0|}
+    \int_{0}^{\infty} dp \, p \sin(p|\vect{x}-\vect{x}_0|) e^{-it\sqrt{\vect{p}^2 + m^2}}
+$$
+
+The trick for this one is to use spherical variables to simplify it a bit.
+$$
+\int \frac{d^3p}{(2\pi)^3} \, e^{-it\sqrt{\vect{p}^2 + m^2}} e^{i\vect{p}\cdot(\vect{x} - \vect{x}_0)} 
+$$
+becomes
+$$
+\int \frac{dp}{(2\pi)^3} d\Omega \, p^2 e^{-it\sqrt{p^2 + m^2}} e^{ip\vect{r}\cos\theta} 
+$$
+where $\vect{r} = |\vect{x} - \vect{x}_0|$ and $p = |\vect{p}|$.
+
+From here we can do the angular integrals first,
+
+\begin{align*}
+\int d\Omega \, e^{ip\vect{r}\cos\theta} &= 
+    \int_{0}^{2\pi} d\phi \int_{0}^{\pi} \sin\theta e^{ip\vect{r}\cos\theta} \\
+&= 2\pi \int_{0}^{\pi} \sin\theta e^{ip\vect{r}\cos\theta} \\
+&= -2\pi \int_{1}^{-1} du \, e^{ip\vect{r} u} \\
+&= -2\pi \left( \frac{ e^{ip\vect{r} u} }{ ip\vect{r} } \right) \Big|_{u=1}^{u=-1} \\
+&= -\frac{2\pi}{ip\vect{r}} \left( e^{-ip\vect{r}} - e^{ip\vect{r}} \right)
+\end{align*}
+
+Next, we can make use of the formula $\im{z} = \frac{z - \overline{z}}{2i}$ and apply it to $z = e^{ix}$.
+Or just do it manually: $e^{ix} = \cos + i\sin$, $e^{-ix} = \cos -i\sin$, so
+$e^{-ix} - e^{ix} = -i\sin -i\sin = -2i \sin$.
+
+\begin{align*}
+\int d\Omega \, e^{ip\vect{r}\cos\theta} &= 
+    -\frac{2\pi}{ip\vect{r}} \left( e^{-ip\vect{r}} - e^{ip\vect{r}} \right) \\
+&= -\frac{2\pi}{ip\vect{r}} \left(-2i \sin(p\vect{r}) \right) \\
+&= \frac{4\pi}{p\vect{r}} \sin(p\vect{r})
+\end{align*}
+
+Pluging this back in,
+We got
+\begin{align*}
+\int \frac{dp}{(2\pi)^3} d\Omega \, |p|^2 e^{-it\sqrt{p^2 + m^2}} e^{ip\vect{r}\cos\theta} &=
+\int \frac{dp}{(2\pi)^3} p \frac{4\pi}{\vect{r}} \sin(p\vect{r}) e^{-it\sqrt{p^2 + m^2}} \\
+&= \frac{1}{2\pi^2 |\vect{x}-\vect{x}_0|}
+    \int_{0}^{\infty} dp \, p \sin(p|\vect{x}-\vect{x}_0|) e^{-it\sqrt{p^2 + m^2}}
+\end{align*}
