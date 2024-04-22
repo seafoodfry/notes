@@ -428,10 +428,50 @@ $$
 In nonrelativistic quantum mechanics we have $E = \frac{1}{2m} p^2$, so
 \begin{align}
 U(t) &= \bra{\vect{x}} e^{-i(\vect{p}^2/2m)t} \ket{\vect{x}_0} \label{kg:nonrelativistic-01} \\
-&= \int \frac{d^3p}{(2\pi)^3} \bra{\vect{x}} e^{-i(\vect{p}^2/2m)t} \ket{\vect{p}} \bra{\vect{p}}\ket{\vect{x}_0} \label{kg:nonrelativistic-02} \\
+&= \int \frac{d^3p}{(2\pi)^3} \bra{\vect{x}} e^{-i(\vect{p}^2/2m)t} \ket{\vect{p}} \braket{\vect{p} | \vect{x}_0} \label{kg:nonrelativistic-02} \\
 &= \int \frac{d^3p}{(2\pi)^3} e^{-i(\vect{p}^2/2m)t} e^{i\vect{p}\cdot(\vect{x}-\vect{x}_0)} \label{kg:nonrelativistic-03} \\
 &= \left( \frac{m}{2\pi i t} \right)^{3/2} e^{im (\vect{x}-\vect{x}_0)^2 /2t} \label{kg:nonrelativistic-04}
 \end{align}
+
+
+
+To go from \ref{kg:nonrelativistic-01} to \ref{kg:nonrelativistic-02},
+we chanegd the basis to the momentum space.
+
+Then from \ref{kg:nonrelativistic-02} to \ref{kg:nonrelativistic-03} we used the fact that the exponential corresponds
+to a Hermitian operator so we could get it out of the way to form
+$$
+\braket{\vect{x} | \vect{x}_0} = \delta^{3} (\vect{x} - \vect{x}_0)
+= \int \frac{d^3p}{(2\pi)^3} e^{i\vect{p}\cdot (\vect{x} - \vect{x}_0)}
+$$
+
+When you see the integrals over states in quantum mechanics, especially when involving time evolution and position states,
+the calculation often utilizes the well-known expressions for the overlap of position and momentum eigenstates
+$\braket{\vect{x} | \vect{p}}$ and $\braket{\vect{p} | \vect{x_0}}$.
+These expressions are crucial in converting between position and momentum representations,
+which allows us to analyze the system's dynamics.
+
+$$
+\braket{\vect{x} | \vect{p}} = \frac{1}{(2\pi)^3/2} e^{i\vect{p}\cdot\vect{x}}
+$$
+and 
+$$
+\braket{\vect{p} | \vect{x_0}} = \frac{1}{(2\pi)^3/2} e^{-i\vect{p}\cdot\vect{x_0}}
+$$
+
+\begin{align*}
+& \int \frac{d^3p}{(2\pi)^3} e^{-i(\vect{p}^2/2m)t} \braket{\vect{x} | \vect{p}} \braket{\vect{p} | \vect{x}_0} \\
+&= \int \frac{d^3p}{(2\pi)^3} e^{-i(\vect{p}^2/2m)t} \frac{1}{(2\pi)^3} e^{i\vect{p}\cdot(\vect{x}-\vect{x}_0} 
+\end{align*}
+
+If these details don't ring a bell, read the following section.
+
+
+As per the solution, see \ref{ps-kg:nonrelativistic-propagator}.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{A Bit of Formalism}
 
 The couple facts used in the above integral go as follows.
 
@@ -468,10 +508,10 @@ of norm 1, the orthogonal projection onto the subspace spanned by $\ket{\psi}$ i
 The "Unit operator" section on \href{https://en.wikipedia.org/wiki/Bra%E2%80%93ket_notation}{Wikipedia: Bra-Ket Notation},
 also has this: if we have a complete orthonormal basis $\{ e_i | i\in\mathbb{N} \}$,
 functional analysis tells us that any $\ket{\psi}$ can also be written as
-$$
+\begin{equation}
 \ket{\psi} =
-\sum_{i\in\mathbb{N}} \bra{e_i}\ket{\psi} \ket{e_i}
-$$
+\sum_{i\in\mathbb{N}} \braket{e_i | \psi} \ket{e_i} \label{qm-formalism:discrete-basis}
+\end{equation}
 
 This is how we "project" $\psi$ into a new basis.
 
@@ -499,6 +539,52 @@ and that
 $$
 \braket{x | x^\prime} = \delta(x - x^\prime)
 $$
+\\~\\
 
-All this to say that to go from \ref{kg:nonrelativistic-01} to \ref{kg:nonrelativistic-02},
-we chanegd the basis to the momentum space.
+
+The analogous to \ref{qm-formalism:discrete-basis} in the continuous case is
+$$
+\ket{\psi} = \int dx\, \psi(x) \ket{x}
+$$
+where $\psi (x) = \braket{x | psi}$ by analogy.
+\\
+
+
+
+
+The following bit of formalism comes from James Binney's book, section 2.3.2.
+
+Position operator $\hat{x}$ acts in position space as $\hat{x} \psi = x\psi$.
+The momentum operator in the position representation is $\hat{p} = -i\nabla$.
+
+A position eigenstate $\ket{x}$ satisfies $\hat{x}\ket{x} = x\ket{x}$.
+Similarly, momentum eigenstate $\ket{p}$ satisfies $\hat{p}\ket{p} = p\ket{p}$.
+
+The state $\ket{p}$ in which a measurement of the momentum will yield the value $p$ has to be an eigenstate
+of $\hat{p}$.
+To find the wave function $u_p (x) = \braket{x | p}$ of this important state, $\ket{p}$,
+we can use the following argument
+
+$$
+\hat{p} \phi(x) = -i\nabla \phi(x) = p\phi
+$$
+
+This results in a differential equation with a simple solution,
+$$
+-i\nabla u_p(x) = p u_p(x) \rightarrow u_p(x) = Ae^{ipx}
+$$
+
+Thus the wavefunction of a particle of well-defined momentum is a plane wave.
+To normalize the wave function, we need to find $A$ which can be done as follows:
+
+\begin{align*}
+\delta(p - p^\prime) &= \braket{p | p^\prime} \\
+&= \int dx \, \braket{p | x} \braket{x | p^\prime} \\
+&= |A|^2 \int dx \, u_{p}^{*} (x) u_{p^\prime} (x) \\
+&= |A|^2 \int dx \, e^{-ipx} e^{ip^\prime x} \\
+&= |A|^2 \int dx \, e^{i(p - p^\prime) x} \\
+&= 2\pi |A|^2 \delta(p - p^\prime)
+\end{align*}
+
+Here we used $\mathbb{I} = \int dx \, \ket{x}\bra{x}$ again.
+Along with $\delta(x-x^\prime) = \int \frac{dk}{2\pi} e^{ik(x-x^\prime)}$.
