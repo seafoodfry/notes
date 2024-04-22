@@ -284,6 +284,40 @@ boundary conditions will result in a specific sort of function.
 \subsubsection{Klein-Gordon Negative Density}
 
 
+Take Klein-Gordon multiply it by $\psi^*$
+take the complex conjugate multiply it by $\psi$
+subtract the two and you get something like the continuity equation
+
+$$
+\frac{d\rho}{dt} + \nabla\cdot \vect{j} = 0
+$$
+
+
+Suppose we had a $\psi =  e^{-i(\vect{k}\cdot\vect{x} -\omega t)}$ as solution.
+
+Since probability density is given by
+$$
+\rho = 
+-\frac{i}{2m} \left( \psi^* \partial_t \psi - \psi \partial_t \psi^* \right)
+$$
+
+Then,
+\begin{align*}
+\rho &=
+    -\frac{i}{2m} \left( 
+        e^{i(\vect{k}\cdot\vect{x} -\omega t)} \partial_t e^{-i(\vect{k}\cdot\vect{x} -\omega t)} -
+        e^{-i(\vect{k}\cdot\vect{x} -\omega t)} \partial_t e^{i(\vect{k}\cdot\vect{x} -\omega t)} 
+    \right) \\
+&= -\frac{i}{2m} \left(
+    e^{i(\vect{k}\cdot\vect{x} -\omega t)} \left(i\omega\right) e^{-i(\vect{k}\cdot\vect{x} -\omega t)} -
+    e^{-i(\vect{k}\cdot\vect{x} -\omega t)} \left(-i\omega\right) e^{i(\vect{k}\cdot\vect{x} -\omega t)}
+    \right) \\
+&= -\frac{i}{2m} \left(i\omega\right) \left( 2 \right) \\
+&= \frac{\omega}{m}
+\end{align*}
+
+And since $\omega = \pm \sqrt{|\vect{k}|^ + m^2}$, then the density can be negative!
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
