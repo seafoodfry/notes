@@ -352,6 +352,13 @@ So the $|\psi|^2$ term needs to cancel out the integration over space.
 Hence $[|\psi|^2] = [L]^{-3} = [M]^{3}$.
 From there we can say that $[\psi] = [L]^{-3/2}$ and
 $[\psi^* \partial_{t}^2 \psi] = [L]^{-3/2}[L]^{-2}[L]^{-3/2} = [L]^{-5} = [M]^{5}$.
+
+This same term we just evaluated needs to match the dimensions of
+the time derivative, $[L]^{-1}$,a probability density, $[L]^{-3}$.
+It should be then that $[\partial_t \rho] = [L]^{-4} = [M^4]$.
+But hey, what a coincidence that if we were to divide $\psi^* \partial_{t}^2 \psi$ by a mass
+that we would get just the right dimensions for our probability current!
+And so it goes that the expression we are used to seeing turns out to be excused as such in the Klein-Gordon case.
 \\
 
 
@@ -404,3 +411,94 @@ $$
 D_F(x-y) = \int \frac{d^4k}{(2\pi)^4}
     \frac{ e^{-i(\vect{k}\cdot\vect{x} -\omega t)} }{ \omega^2 - |\vect{k}|^2 - m^2 + i\epsilon }
 $$
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Causality Arguments}
+
+Consider the amplitude for a free particle to propagate from $\vect{x}_0$ to $\vect{x}$
+$$
+U(t) = \bra{\vect{x}} e^{-iHt} \ket{\vect{x}_0}
+$$
+
+In nonrelativistic quantum mechanics we have $E = \frac{1}{2m} p^2$, so
+\begin{align}
+U(t) &= \bra{\vect{x}} e^{-i(\vect{p}^2/2m)t} \ket{\vect{x}_0} \label{kg:nonrelativistic-01} \\
+&= \int \frac{d^3p}{(2\pi)^3} \bra{\vect{x}} e^{-i(\vect{p}^2/2m)t} \ket{\vect{p}} \bra{\vect{p}}\ket{\vect{x}_0} \label{kg:nonrelativistic-02} \\
+&= \int \frac{d^3p}{(2\pi)^3} e^{-i(\vect{p}^2/2m)t} e^{i\vect{p}\cdot(\vect{x}-\vect{x}_0)} \label{kg:nonrelativistic-03} \\
+&= \left( \frac{m}{2\pi i t} \right)^{3/2} e^{im (\vect{x}-\vect{x}_0)^2 /2t} \label{kg:nonrelativistic-04}
+\end{align}
+
+The couple facts used in the above integral go as follows.
+
+First, this comes from the section "outer products" in
+\href{https://en.wikipedia.org/wiki/Bra%E2%80%93ket_notation}{Wikipedia: Bra-Ket Notation},
+we have to keep in mind that $\ket{\psi}\bra{\psi}$ defines an \textbf{outer product}.
+In a finite-dimensional vector space the outer product is defined as
+
+$$
+\ket{\phi}\bra{\psi}
+=
+\begin{pmatrix}
+    \phi_1 \\
+    \phi_2 \\
+    \vdots \\
+    \phi_N 
+\end{pmatrix}
+\begin{pmatrix}
+    \psi_{1}^{*} & \psi_{2}^{*} & \ldots & \psi_{N}^{*}
+\end{pmatrix}
+=
+\begin{pmatrix} 
+    \phi_1 \psi_{1}^{*} & \phi_1 \psi_{2}^{*} & \dots  & \phi_1 \psi_{N}^{*} \\
+    \phi_2 \psi_{1}^{*} & \phi_2 \psi_{2}^{*} & \dots  & \phi_2 \psi_{N}^{*} \\
+    \vdots              & \vdots              & \ddots & \vdots              \\
+    \phi_N \psi_{1}^{*} & \phi_N \psi_{2}^{*} & \dots  & \phi_N \psi_{N}^{*} \\
+\end{pmatrix}
+$$
+
+One of the uses of the outer product is to construct \textbf{projection operators}. Given a ket $\ket{\psi}$
+of norm 1, the orthogonal projection onto the subspace spanned by $\ket{\psi}$ is $\ket{\psi}\bra{\psi}$.
+
+
+The "Unit operator" section on \href{https://en.wikipedia.org/wiki/Bra%E2%80%93ket_notation}{Wikipedia: Bra-Ket Notation},
+also has this: if we have a complete orthonormal basis $\{ e_i | i\in\mathbb{N} \}$,
+functional analysis tells us that any $\ket{\psi}$ can also be written as
+$$
+\ket{\psi} =
+\sum_{i\in\mathbb{N}} \bra{e_i}\ket{\psi} \ket{e_i}
+$$
+
+This is how we "project" $\psi$ into a new basis.
+
+It mentions that it can also be shown that
+$$
+\mathbb{I} = \sum_{i\in\mathbb{N}} \ket{e_i} \bra{\psi}
+$$
+
+There is also this result called
+\href{https://en.wikipedia.org/wiki/Borel_functional_calculus#Resolution_of_the_identity}{resolution of the identity in Borel functional calculus}
+that allows us to generalized this result to the continuous case,
+
+$$
+\mathbb{I} = \int dx \, \ket{x} \bra{x} = \int dp \, \ket{p} \bra{p}
+$$
+
+The difference with out notation is that we attach factor of $1/(2\pi)^d$ to our momentum-space integrals.
+\\
+
+The next bit of muscle memory to train is to remember that
+$$
+\delta^{4} (k) = \int \frac{d^4x}{(2\pi)^4} e^{ik\cdot x}
+$$
+and that
+$$
+\braket{x | x^\prime} = \delta(x - x^\prime)
+$$
+
+All this to say that to go from \ref{kg:nonrelativistic-01} to \ref{kg:nonrelativistic-02},
+we chanegd the basis to the momentum space.
