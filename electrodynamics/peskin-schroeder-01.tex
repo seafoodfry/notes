@@ -284,22 +284,78 @@ boundary conditions will result in a specific sort of function.
 \subsubsection{Klein-Gordon Negative Density}
 
 
-Take Klein-Gordon multiply it by $\psi^*$
-take the complex conjugate multiply it by $\psi$
-subtract the two and you get something like the continuity equation
+The expression to compute a probability current is derived by using the analogous continuity equation
+from fluid dynamics
 
 $$
-\frac{d\rho}{dt} + \nabla\cdot \vect{j} = 0
+\frac{\partial\rho}{\partial t} + \nabla\cdot \vect{j} = 0
 $$
 
 
-Suppose we had a $\psi =  e^{-i(\vect{k}\cdot\vect{x} -\omega t)}$ as solution.
-
-Since probability density is given by
+Using the Schrodinger equation and using the fact that $\rho = |\psi|^2 = \psi^* \psi$ one
+can arrive at the probability density
 $$
 \rho = 
 -\frac{i}{2m} \left( \psi^* \partial_t \psi - \psi \partial_t \psi^* \right)
 $$
+
+For the Klein Gordon equation, the way to massage it and get an expression for $\partial_t \rho$
+and for its probability current is to:
+take Klein-Gordon multiply it by $\psi^*$,
+take the complex conjugate multiply it by $\psi$,
+subtract the two and rearange to get something like the continuity equation.
+
+Following those steps we have,
+
+$$
+\left( \partial_{t}^{2} - \nabla^2 + m^2 \right) \psi = 0
+$$
+and
+$$
+\left( \partial_{t}^{2} - \nabla^2 + m^2 \right) \psi^* = 0
+$$
+
+Multiplying them with $\psi^*$ and $\psi$ respectively we get,
+$$
+\psi^* \partial_{t}^{2} \psi - \psi^* \nabla^2 \psi + \psi^* m^2 \psi = 0
+$$
+and
+$$
+\psi \partial_{t}^{2} \psi^* - \psi \nabla^2 \psi^* + \psi m^2 \psi^* = 0
+$$
+
+Subtracting the latter from the former,
+\begin{align*}
+& \psi^* \partial_{t}^{2} \psi - \psi^* \nabla^2 \psi + \psi^* m^2 \psi -
+    \psi \partial_{t}^{2} \psi^* + \psi \nabla^2 \psi^* - \psi m^2 \psi^* \\
+&= \left( \psi^* \partial_{t}^{2} \psi - \psi \partial_{t}^{2} \psi^* \right)
+    - \left( \psi^* \nabla^2 \psi - \psi \nabla^2 \psi^* \right)
+    + \left( \psi^* m^2 \psi - \psi m^2 \psi^* \right) \\
+&= \left( \psi^* \partial_{t}^{2} \psi - \psi \partial_{t}^{2} \psi^* \right)
+    - \left( \psi^* \nabla^2 \psi - \psi \nabla^2 \psi^* \right) \\
+&= \partial_t \left( \psi^* \partial_{t} \psi - \psi \partial_{t} \psi^* \right)
+    -\nabla \cdot \left( \psi^* \nabla \psi - \psi \nabla \psi^* \right)
+\end{align*}
+
+The time derivative is then equated to $\partial_t \rho$ and the spatial derivatives to the current.
+though one interesting tangent to take here is concerning the missing $\frac{i}{2m}$ factor that
+these equations have.
+
+If you remember, the imaginery part of of a complex number can be isolated by taking the different of it with its
+complex conjugate: $\im{z} = \frac{1}{2i}(z - \overline{z})$. (Recall that if $z = a +ib$, then $\im{z} = b$, not $ib$.)
+It just so happens that we are doing the same sort of operation here, so we can throw an $i/2$ factor into our equation
+to ensure we get a real quantity.
+
+For the $1/m$ factor we have to do some dimensional analysis.
+To get the probability we have to integrate $\int d^3x \, |\psi|^2$, which is dimensionless.
+So the $|\psi|^2$ term needs to cancel out the integration over space.
+Hence $[|\psi|^2] = [L]^{-3} = [M]^{3}$.
+From there we can say that $[\psi] = [L]^{-3/2}$ and
+$[\psi^* \partial_{t}^2 \psi] = [L]^{-3/2}[L]^{-2}[L]^{-3/2} = [L]^{-5} = [M]^{5}$.
+\\
+
+
+Suppose we had a $\psi =  e^{-i(\vect{k}\cdot\vect{x} -\omega t)}$ as solution.
 
 Then,
 \begin{align*}
