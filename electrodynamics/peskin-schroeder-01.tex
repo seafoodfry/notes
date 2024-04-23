@@ -433,18 +433,17 @@ U(t) &= \bra{\vect{x}} e^{-i(\vect{p}^2/2m)t} \ket{\vect{x}_0} \label{kg:nonrela
 &= \left( \frac{m}{2\pi i t} \right)^{3/2} e^{im (\vect{x}-\vect{x}_0)^2 /2t} \label{kg:nonrelativistic-04}
 \end{align}
 
-\textbf{Note:} we think Peskin and Schroeder have a typo when doing the expansion in the momentum state.
-The integral starts with $\int \frac{d^3p}{(2\pi)^3}$ but the identity used to project the eigenstate into momentum
-state is just $\mathbb{I} = \int dp\, \ket{p}\bra{p}$, see the section below.
-There is a $1/(2\pi)^3$ that comes from simplifying $\braket{\vect{x} | \vect{p}} \braket{\vect{p} | \vect{x}_0}$ though.
-More on this later.
-\\
-
 
 To go from \ref{kg:nonrelativistic-01} to \ref{kg:nonrelativistic-02},
 we changed the basis to momentum eigenstates in order to apply the Hamiltonian operator and "extract" the exponential.
 If we have the operator $\hat{p}$ act on a pure momentum eigenstate $\ket{p}$, then we get $\hat{p}\ket{p} = p\ket{p}$.
 So changing basis helps us work with real quantities.
+
+Here we are differing on convetnion from the book a bit.
+The identity we used was $\mathbb{I} = \int dp\, \ket{p}\bra{p}$, whereas Pesking and Schroeder use the identity
+$\mathbb{I} = \int \frac{d^dp}{(2\pi)^d} \ket{p}\bra{p}$.
+The additional $1/(2\pi)^d$ factor picks up the normalization for factors such as $\braket{p | x_0}$.
+But keep reading for details on those.
 See the next section on formalism for more details (its a brief summary of stuff from quantum mechanics).
 
 
@@ -467,10 +466,20 @@ We used these identities to go from \ref{kg:nonrelativistic-02} to \ref{kg:nonre
 
 \begin{align*}
 & \int \frac{d^3p}{(2\pi)^3} e^{-i(\vect{p}^2/2m)t} \braket{\vect{x} | \vect{p}} \braket{\vect{p} | \vect{x}_0} \\
-&= \int \frac{d^3p}{(2\pi)^3} e^{-i(\vect{p}^2/2m)t} \frac{1}{(2\pi)^3} e^{i\vect{p}\cdot(\vect{x}-\vect{x}_0} 
+&= \int \frac{d^3p}{(2\pi)^3} e^{-i(\vect{p}^2/2m)t} \frac{1}{(2\pi)^3} e^{i\vect{p}\cdot(\vect{x}-\vect{x}_0)} 
 \end{align*}
 
 If these details don't ring a bell, read the following section.
+
+Pesking and schroeder seem to use
+$$
+\braket{\vect{x} | \vect{p}} = e^{i\vect{p}\cdot\vect{x}}
+$$
+and 
+$$
+\braket{\vect{p} | \vect{x_0}} = e^{-i\vect{p}\cdot\vect{x_0}}
+$$
+Since the projection into momentum space carries the appropiate normalization factor.
 
 
 As per the solution, see \ref{ps-kg:nonrelativistic-propagator}.
@@ -551,6 +560,11 @@ $$
 and that
 $$
 \braket{x | x^\prime} = \delta(x - x^\prime)
+$$
+
+and
+$$
+\braket{p | q} = (2\pi)^d \delta^{(d)}(p - q)
 $$
 
 Along with the following bit of formalism comes from James Binney's book, section 2.3.2.
@@ -654,3 +668,38 @@ We got
 &= \frac{1}{2\pi^2 |\vect{x}-\vect{x}_0|}
     \int_{0}^{\infty} dp \, p \sin(p|\vect{x}-\vect{x}_0|) e^{-it\sqrt{p^2 + m^2}}
 \end{align*}
+
+The reference to Gradsheteyn and Ryzhik to 3.914 lists the following: on page 491, item 6 has
+$$
+\int_{0} dx\, x \sin(bx) e^{-\beta \sqrt{x^2 \gamma^2}} =
+    \frac{b \beta \gamma^2}{\beta^2 + b^2} K_2\left(\gamma \sqrt{b^2 + \beta^2}\right)
+$$
+ET I 175(35).
+I refers to volume 1 of the reference, 175 is the page where it should be found, (35) refers to the number of the formula
+in that work.
+
+We found a PDF of ET and on said place we found ourselves in the Laplace transofrms section.
+This section has two columns, one of them is $f(t)$ and the other one is $g(p) = \int_{0}^{\infty} dt\, f(t) d^{-pt}$.
+Forumal 35 had on the first column
+$$
+t^\alpha L_{n}^{\alpha} (\lambda t) L_{m}^{\alpha} (k t)
+$$
+for $\re{\alpha} > -1$.
+
+On the second column was the following:
+\begin{align*}
+\frac{\Gamma(m+n+\alpha + 1)}{m! n!}
+\frac{(p-\lambda)^n (p-k)^m}{p^{m+n+\alpha +1}}
+{}_{2}F_{1} \left[ -m, -n; -m-n-\alpha; \frac{p(p-\lambda -k)}{(p-\lambda)(p-k)} \right]
+\end{align*}
+When $\re{p} > 0$.
+
+Anyway, backing up a bit, $K_\nu (z)$ is a Bessel function for an imaginary argument.
+Which is defined in 8.407 and in 8.43.
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{The Method of Stationary Phase}
