@@ -662,18 +662,19 @@ $e^{-ix} - e^{ix} = -i\sin -i\sin = -2i \sin$.
 
 Pluging this back in,
 We got
-\begin{align*}
+\begin{align}
 \int \frac{dp}{(2\pi)^3} d\Omega \, |p|^2 e^{-it\sqrt{p^2 + m^2}} e^{ipr\cos\theta} &=
 \int \frac{dp}{(2\pi)^3} p \frac{4\pi}{r} \sin(pr) e^{-it\sqrt{p^2 + m^2}} \\
 &= \frac{1}{2\pi^2 |\vect{x}-\vect{x}_0|}
-    \int_{0}^{\infty} dp \, p \sin(p|\vect{x}-\vect{x}_0|) e^{-it\sqrt{p^2 + m^2}}
-\end{align*}
+    \int_{0}^{\infty} dp \, p \sin(p|\vect{x}-\vect{x}_0|) e^{-it\sqrt{p^2 + m^2}} \label{kg-relativistic-simplified}
+\end{align}
 
 The reference to Gradsheteyn and Ryzhik to 3.914 lists the following: on page 491, item 6 has
-$$
-\int_{0} dx\, x \sin(bx) e^{-\beta \sqrt{x^2 \gamma^2}} =
-    \frac{b \beta \gamma^2}{\beta^2 + b^2} K_2\left(\gamma \sqrt{b^2 + \beta^2}\right)
-$$
+\begin{equation}
+\int_{0} dx\, x \sin(bx) e^{-\beta \sqrt{x^2 + \gamma^2}} =
+    \frac{b \beta \gamma^2}{\beta^2 + b^2} K_2\left(\gamma \sqrt{b^2 + \beta^2}\right) \label{Gradsheteyn-kg-relativistic}
+\end{equation}
+
 ET I 175(35).
 I refers to volume 1 of the reference, 175 is the page where it should be found, (35) refers to the number of the formula
 in that work.
@@ -693,13 +694,132 @@ On the second column was the following:
 {}_{2}F_{1} \left[ -m, -n; -m-n-\alpha; \frac{p(p-\lambda -k)}{(p-\lambda)(p-k)} \right]
 \end{align*}
 When $\re{p} > 0$.
+\\
 
 Anyway, backing up a bit, $K_\nu (z)$ is a Bessel function for an imaginary argument.
-Which is defined in 8.407 and in 8.43.
+Which is defined in 8.407 and in 8.43, on page 911.
+Gradsheteyn and Ryzhik have the following definitions.
+If $-\pi < \arg{z} \leq \frac{1}{2}\pi$, then
+$$
+K_\nu (z) = \frac{i\pi}{2} e^{i\pi\nu /2} H_{\nu}^{(1)} \left(z e^{\frac{1}{2} i\pi} \right)
+$$
 
+If $-\frac{1}{2}\pi < \arg{z} \leq \pi$, then
+$$
+K_\nu (z) = -\frac{i\pi}{2} e^{-i\pi\nu /2} H_{-\nu}^{(2)} \left(z e^{-\frac{1}{2} i\pi} \right)
+$$
 
+$H_{\nu}^{(1)} (z)$ and $H_{\nu}^{(2)} (z)$ are Bessel function of the third kind, or Hankel functions.
+Which are defined in terms of the Bessel functions of the first kind, $J_{\nu}(z)$, and on Bessel functions
+of the second kind, $Y_\nu (z)$ (also called Neumman functions and written as $N_\nu (z)$).
 
+$$
+H_{\nu}^{(1)} (z) = J_\nu (z) + i Y_\nu (z)
+$$
+$$
+H_{\nu}^{(2)} (z) = J_\nu (z) - i Y_\nu (z)
+$$
 
+Comparing \ref{kg-relativistic-simplified} with \ref{Gradsheteyn-kg-relativistic},
+\begin{itemize}
+    \item $x \rightarrow p$
+    \item $b \rightarrow |x-x_0|$
+    \item $\beta \rightarrow it$
+    \item $\gamma \rightarrow m$
+\end{itemize}
+
+So
+$$
+\frac{b \beta \gamma^2}{\beta^2 + b^2} K_2\left(\gamma \sqrt{b^2 + \beta^2}\right)
+$$
+becomes
+$$
+\frac{it m^2 |x-x_0| }{-t^2 + |x-x_0|^2} K_2\left(m \sqrt{ -t^2 + |x-x_0|^2}\right)
+$$
+
+Now let's look at the modified function $K_2$,
+\begin{align*}
+K_2\left(m \sqrt{ -t^2 + |x-x_0|^2}\right) &=
+    \frac{i\pi}{2} e^{i\pi} H_{2}^{(1)} \left(m \sqrt{ -t^2 + |x-x_0|^2} e^{\frac{1}{2} i\pi} \right) \\
+    &= - \frac{i\pi}{2} H_{2}^{(1)} \left(m \sqrt{ -t^2 + |x-x_0|^2} \right)
+\end{align*}
+
+Looking at Gradsheteyn and Ryzhik again,
+$$
+H_{2}^{(1)} \left(m \sqrt{ -t^2 + |x-x_0|^2} \right) =
+    J_2 \left(m \sqrt{ -t^2 + |x-x_0|^2} \right) + i Y_2 \left(m \sqrt{ -t^2 + |x-x_0|^2} \right)
+$$
+
+And here we stop and appreciate why the method of stationary phase was mentioned and use by the authors.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{The Method of Stationary Phase}
+
+To understand this method well it helps to first read
+\href{https://en.wikipedia.org/wiki/Laplace%27s_method}{Wikipedia: Laplace's Method}.
+
+If anything we think these are the highlights from Laplace's method.
+
+If $f(x)$ has a unique global maximum at $x_0$ and $M>0$ and if we deifne the following functions
+$$
+g(x) = Mf(x)
+$$
+and
+$$
+h(x) = e^{g(x)} = e^{Mf(x)}
+$$
+
+Then look at the ratios
+$$
+\frac{g(x_0)}{g(x)} = \frac{f(x_0)}{f(x)}
+$$
+and
+$$
+\frac{h(x_0)}{h(x)} = e^{M(f(x_0) - f(x))}
+$$
+
+As $M$ increases, the ratio for $h$ will grow exponentially, while the ratio for $g$ does not change.
+Since $f(x) \leq f(x_0)$, then the ratio of $h$ will always look like $e^{+{x}M}$.
+Said another way, in places where the value of $f(x)$ is a lot smaller than $f(x_0)$, the ratio of $h$ will look like
+$e^{Mf(x_0)}$, in places where the value of $f(x)$ is close to $f(x_0)$, the ratio will be smaller.
+\\
+
+But in general the trick is to expand $f(x)$ around $x_0$ following Taylor's theorem
+$$
+f(x) \approx
+    f(x_0) + f^{\prime} (x_0) (x-x_0) + \frac{2}{2} f^{\prime\prime} (x_0) (x-x_0)^2 + R
+$$
+
+Since $x_0$ is a global maxima, then $f^{\prime} (x_0) = 0$ and $f^{\prime\prime} (x_0) < 0$.
+Hence,
+$$
+f(x) \approx
+    f(x_0) - \frac{1}{2} |f^{\prime\prime} (x_0)| (x-x_0)^2 + R
+$$
+
+So we have this approximation,
+$$
+\int_{a}^{b} e^{Mf(x)} dx \approx
+    e^{Mf(x_0)} \int_{a}^{b} e^{- \frac{1}{2} M |f^{\prime\prime} (x_0)| (x-x_0)^2} dx
+$$
+
+So we are approximating the function with a Gaussian.
+Here the last part of the approximation is to extend the limits of itnegration so that we do indeed have a Gaussian integral,
+which we assume we can ebcause the tails decay quickly.
+Since
+$$
+\int dx\, e^{-a(x+b)^2} = \sqrt{ \frac{\pi}{a} }
+$$
+
+$$
+int_{a}^{b} e^{Mf(x)} dx \approx
+    e^{Mf(x_0)} \sqrt{ \frac{2\pi}{M |f^{\prime\prime} (x_0)|} }
+$$
+
+The next stepping stone is
+\href{https://en.wikipedia.org/wiki/Method_of_steepest_descent}{Wikipedia: the method of steepest descent}.
+This method build upon Laplace's method and aplies to contour integrals in the complex plane.
+So now we are looking at approximating integrals such as
+$$
+\int_{C} f(z) e^{\lambda g(z)} dz
+$$
