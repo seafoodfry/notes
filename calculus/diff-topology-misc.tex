@@ -1,0 +1,137 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Morse Theory}
+
+Critical points can be degenerate or non-degenerate.
+A non-degenerate critical point has a Hessian that can be inverted - the Hessian of the function $f$ does not vanish
+at the critical point.
+
+One associated a number called the \textbf{index}, the number of independent directions in which
+$f$ decreases from a critical point.
+More precisely, the index of a non-degenerate critical point $p$ of $f$ is the dimension of the largest subspace
+of the tangent space to $M$ at $p$, where $M$ is a "landscape surface" function and $f : M \rightarrow \mathbb{R}$,
+on which the Hessian of $f$ is negavite definite.
+
+In mathematics, a symmetric matrix $M$ with real entries is positive-definite if the real number $z^T M z$
+is positive for every nonzero real column vector $z$.
+More generally, a Hermitian matrix (that is, a complex matrix equal to its conjugate transpose) is positive-definite
+if the real number $z^* M z$ is positive for every nonzero complex column vector $z$.
+
+The \textbf{index} also corresponds to the number of negative eigenvalues of the Hessian matrix at the critical cpoint $p$.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Morse's Lemma}
+
+This lemma is fundamental because it tells us that near a non-degenerate critical point, the function looks
+like a quadratic form, and this form is determined by the signature of the Hessian matrix
+(i.e., the number of positive and negative eigenvalues).
+
+For example, suppose we have $f(x,y) = x^2 + y^2 - 2x + 4y$, $f : \mathbb{R}^2 \rightarrow \mathbb{R}$.
+
+First, we find the critical point $\nabla f(x,y) = 0$,
+\begin{align*}
+\nabla f &= \left< \partial_x f, \partial_y f \right> \\
+&= \left< 2x -2, 2y + 4 \right>
+\end{align*}
+
+and we set $\left( 2x -2, 2y + 4 \right) = \left( 0, 0 \right)$.
+So we have $2x - 2 = 0$ or $x = 1$.
+And then $2y + 4 = 0$, or $y = -2$.
+So $p = (1, -2)$.
+
+Now, let's see if the critical point is non-degenerate.
+For that, let's compute the Hessian.
+Remember that the Hessian is given by,
+$$
+H_f
+=
+\begin{pmatrix} 
+    \dfrac{\partial^2 f}{\partial x_{1}^{2}}         & \dfrac{\partial^2 f}{\partial x_1 \partial x_2} & \dots  & \dfrac{\partial^2 f}{\partial x_1 \partial x_n}  \\[2.2ex]
+    \dfrac{\partial^2 f}{\partial x_2 \partial x_1}  & \dfrac{\partial^2 f}{\partial x_{2}^{2}}        & \dots  & \dfrac{\partial^2 f}{\partial x_2 \partial x_n}  \\[2.2ex]
+    \vdots                                           & \vdots                                          & \ddots & \vdots                                           \\[2.2ex]
+    \dfrac{\partial^2 f}{\partial x_n \partial x_1}  & \dfrac{\partial^2 f}{\partial x_n \partial x_2} & \dots  & \dfrac{\partial^2 f}{\partial x_{n}^{2}}         \\
+\end{pmatrix}
+$$
+
+That is, the entry of the $i$-th row and the $j$-th column is
+$$
+\left(H_f\right)_{i,j} = \frac{\partial^2 f}{\partial x_i \partial x_j}
+$$
+
+So we want to compute
+\begin{align*}
+H_f
+&=
+\begin{pmatrix} 
+    \dfrac{\partial^2 f}{\partial x^{2}}         & \dfrac{\partial^2 f}{\partial x \partial y}  \\[2.2ex]
+    \dfrac{\partial^2 f}{\partial y \partial x}  & \dfrac{\partial^2 f}{\partial y^{2}}         \\
+\end{pmatrix} \\
+&= \begin{pmatrix} 
+    \partial_x \partial_x f  & \partial_x \partial_y f  \\[2.2ex]
+    \partial_y \partial_x f  & \partial_y \partial_y f  \\
+\end{pmatrix} \\
+&= \begin{pmatrix} 
+    \partial_x (2x -2)  & \partial_x (2y + 4)  \\[2.2ex]
+    \partial_y (2x -2)  & \partial_y (2y + 4)  \\
+\end{pmatrix} \\
+&= \begin{pmatrix} 
+    2  & 0  \\
+    0  & 2  \\
+\end{pmatrix}
+\end{align*}
+
+Given that all the entries on the diagonal are positive and there are no off-diagonal terms, it suggests that 
+$f$ has a parabolic behavior in both the $x$ and $y$ directions independently,
+which typically indicates a local minimum at the critical point if the function is convex or a saddle point if it is not. 
+
+Anyway, the Hessian is invertible and its eigenvalues are positive, so $p$ is a minimum.
+\\
+
+Now we can apply Morse' lemma!
+Since both eigenvalues of our Hessian are positive, then index, $k$, is 0 (no negative eigenvalues),
+Morse's lemma tells us that near $p$ we can find coordinates $(u, v)$ such that
+$$
+f(u, v) = f(p) + u^2 + v^2 = -5 + u^2 +v^2
+$$
+
+So near the critical point, $f$ looks like a \textbf{paraboloid} downshifted by 5.
+
+$$
+f(x) = f(p) - x_{1}^{2} - \ldots - x_{\gamma}^{2} + x_{\gamma +1}^{2} + \ldots + x_{n}^{2}
+$$
+
+$\gamma$ is the index of $f$ at $p$.
+The index $\gamma$ essentially determines how many negative squared terms appear in the local form of the function.
+Our index was 0 so we didn't have any.
+
+In Morse's lemma, when it says there exists a chart $(x_1, x_2, \ldots , x_n)$
+it means that near the critical point $p$, you can introduce a new coordinate system where:
+
+\begin{itemize}
+    \item Each $x_i$ for $i = 1, \ldots , \gamma$ corresponds to a direction in which the function decreases
+        (related to the negative eigenvalues of the Hessian).
+    \item Each $x_i$ for $i = \gamma +1, \ldots, n$ corresponds to a direction in which the function increases
+        (related to the positive eigenvalues of the Hessian).
+\end{itemize}
+
+The coordinates $x_i (p) = 0$ imply that the critical point $p$ is at the origin of this new coordinate system.
+The transformation to this new coordinate system is achieved by a linear change of variables that diagonalizes
+the Hessian matrix (through a process similar to eigendecomposition).
+
+So here we added $u^2 + v^2$ because our Hessian matrix had 2 positive eignevalues.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Matrix Diagonalization and Eigendecomposition}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Homotopy}
+
+If $M$ is a "landscape surface" function and $f : M \rightarrow \mathbb{R}$,
+and $M^a = f^{-1} (-\infty, a]$,
+The topology of $M^{a}$ does not change except when $a$ passes the height of a critical point;
+at this point, a $\gamma$-cell is attached to $M^{a}$, where $\gamma$ is the index of the point.
+This does not address what happens when two critical points are at the same height,
+which can be resolved by a slight perturbation of $f$.
+In the case of a landscape or a manifold embedded in Euclidean space, this perturbation might simply be tilting slightly, rotating the coordinate system. 
