@@ -11,12 +11,14 @@ More precisely, the index of a non-degenerate critical point $p$ of $f$ is the d
 of the tangent space to $M$ at $p$, where $M$ is a "landscape surface" function and $f : M \rightarrow \mathbb{R}$,
 on which the Hessian of $f$ is negavite definite.
 
+The \textbf{index} also corresponds to the number of negative eigenvalues of the Hessian matrix at the critical cpoint $p$.
+
+
 In mathematics, a symmetric matrix $M$ with real entries is positive-definite if the real number $z^T M z$
 is positive for every nonzero real column vector $z$.
 More generally, a Hermitian matrix (that is, a complex matrix equal to its conjugate transpose) is positive-definite
 if the real number $z^* M z$ is positive for every nonzero complex column vector $z$.
 
-The \textbf{index} also corresponds to the number of negative eigenvalues of the Hessian matrix at the critical cpoint $p$.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -81,7 +83,8 @@ H_f
 \end{align*}
 
 Given that all the entries on the diagonal are positive and there are no off-diagonal terms, it suggests that 
-$f$ has a parabolic behavior in both the $x$ and $y$ directions independently,
+$f$ has a parabolic behavior in both the $x$ and $y$ directions independently
+(recall the second derivative test; both diagonal entries are positive so the function is concave up),
 which typically indicates a local minimum at the critical point if the function is convex or a saddle point if it is not. 
 
 Anyway, the Hessian is invertible and its eigenvalues are positive, so $p$ is a minimum.
