@@ -828,8 +828,88 @@ $$
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{A Bit of Formalism: Bilinear Maps}
 
+$$
+\left( x \times y \right)^i = \sum_{j,k=1}^{n=3} \epsilon_{ijk} x_j y_k = \epsilon_{ijk} x_j y_k
+$$
 
-The \textbf{tensor product} $V \otimes W$ of two vector spaces $V$ and $W$ over some field $F$ is a vector space itself
-with an associated bilinear map $V \times W \rightarrow V \otimes W$ that for $u \in V$ and $w \in W$, it maps the
-pair $(u, w)$ to an element $v \otimes w$ in $V \otimes W$.
-This element $v \otimes w$ on $V \otimes W$ is a tensor.
+Expanding the sum it looks like
+\begin{align*}
+\left( x \times y \right)^i =& \, \epsilon_{ijk} x_j y_k \\
+=& \, \epsilon_{ij1} x_j y_1 + \epsilon_{ij2} x_j y_2 + \epsilon_{ij3} x_j y_3 \\
+=& \, \epsilon_{i11} x_1 y_1 + \epsilon_{i12} x_1 y_2 + \epsilon_{i13} x_1 y_3 \\
+    & \epsilon_{i21} x_2 y_1 + \epsilon_{i22} x_2 y_2 + \epsilon_{i23} x_2 y_3 \\
+    & \epsilon_{i31} x_3 y_1 + \epsilon_{i32} x_3 y_2 + \epsilon_{i33} x_3 y_3 \\
+=& \, 0 + \epsilon_{i12} x_1 y_2 + \epsilon_{i13} x_1 y_3 \\
+    & \epsilon_{i21} x_2 y_1 + 0 + \epsilon_{i23} x_2 y_3 \\
+    & \epsilon_{i31} x_3 y_1 + \epsilon_{i32} x_3 y_2 + 0 \\
+\end{align*}
+
+The thing to notice here is that the above operation was just to obtain the $i$-th component of the cross product
+of $x \times y$.
+
+This also leads us to the notation where a tensor of rank 3 is to be fed 3 vectors,
+
+$$
+\epsilon (e_i, e_j, e_k) = \epsilon_{ijk} = e_i \cdot (e_j \times e_k)
+$$
+
+Where, again, we see that the rank 3 tensor takes 3 vectors as input and produces a number.
+(a linear map or a functional one might say.)
+
+From the explicit computation of the cross product we can also see that we obtain this matrix-like
+structure from computing each of the $i$-th components
+$$
+\begin{pmatrix}
+\epsilon_{i11} & \epsilon_{i12} & \epsilon_{i13} \\
+\epsilon_{i21} & \epsilon_{i22} & \epsilon_{i23} \\
+\epsilon_{i31} & \epsilon_{i32} & \epsilon_{i33}
+\end{pmatrix}
+$$
+
+when $i=1$,
+$$
+\begin{pmatrix}
+\epsilon_{111} & \epsilon_{112} & \epsilon_{113} \\
+\epsilon_{121} & \epsilon_{122} & \epsilon_{123} \\
+\epsilon_{131} & \epsilon_{132} & \epsilon_{133}
+\end{pmatrix}
+=
+\begin{pmatrix}
+0 & 0 & 0 \\
+0 & 0 & 1 \\
+0 & -1 & 0
+\end{pmatrix}
+$$
+
+and for $n=3$ there are two other such matrices.
+And such is the Levi-Civita tensor of rank 3!
+
+The other two "layers" of the tensor are
+
+$$
+\begin{pmatrix}
+\epsilon_{211} & \epsilon_{212} & \epsilon_{213} \\
+\epsilon_{221} & \epsilon_{222} & \epsilon_{223} \\
+\epsilon_{231} & \epsilon_{232} & \epsilon_{233}
+\end{pmatrix}
+=
+\begin{pmatrix}
+0 & 0 & -1 \\
+0 & 0 & 0 \\
+1 & 0 & 0
+\end{pmatrix}
+$$
+
+$$
+\begin{pmatrix}
+\epsilon_{311} & \epsilon_{312} & \epsilon_{313} \\
+\epsilon_{321} & \epsilon_{322} & \epsilon_{323} \\
+\epsilon_{331} & \epsilon_{332} & \epsilon_{333}
+\end{pmatrix}
+=
+\begin{pmatrix}
+0 & 1 & 0 \\
+-1 & 0 & 0 \\
+0 & 0 & 0
+\end{pmatrix}
+$$
