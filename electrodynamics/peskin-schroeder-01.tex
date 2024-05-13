@@ -833,7 +833,8 @@ $$
 $$
 
 Expanding the sum it looks like
-\begin{align*}
+\begin{align}
+    \begin{split}
 \left( x \times y \right)^i =& \, \epsilon_{ijk} x_j y_k \\
 =& \, \epsilon_{ij1} x_j y_1 + \epsilon_{ij2} x_j y_2 + \epsilon_{ij3} x_j y_3 \\
 =& \, \epsilon_{i11} x_1 y_1 + \epsilon_{i12} x_1 y_2 + \epsilon_{i13} x_1 y_3 \\
@@ -842,7 +843,8 @@ Expanding the sum it looks like
 =& \, 0 + \epsilon_{i12} x_1 y_2 + \epsilon_{i13} x_1 y_3 \\
     & \epsilon_{i21} x_2 y_1 + 0 + \epsilon_{i23} x_2 y_3 \\
     & \epsilon_{i31} x_3 y_1 + \epsilon_{i32} x_3 y_2 + 0 \\
-\end{align*}
+    \end{split}
+\end{align} \label{tensors:levi-civita-component-i}
 
 The thing to notice here is that the above operation was just to obtain the $i$-th component of the cross product
 of $x \times y$.
@@ -911,5 +913,27 @@ $$
 0 & 1 & 0 \\
 -1 & 0 & 0 \\
 0 & 0 & 0
+\end{pmatrix}
+$$
+
+These matrix representation of a tensor is actually the tensor evaluated on the basis $(\hat{x}, \hat{y}, \hat{z})$.
+So the multilinear function on a vector space that is a tensor can be visualized as a matrix when it is a rank 2 tensor
+(it eats two vectors as input; keep reading, it'll make sense) when we are looking at just one component of
+$x \times y$, that is, by comparing what we just learned with \ref{tensors:levi-civita-component-i} we can see that
+
+$$
+\left( x \times y \right)^i =
+\begin{pmatrix}
+    x_1, x_2, x_3 \\
+\end{pmatrix}
+\begin{pmatrix}
+    \epsilon_{i11} & \epsilon_{i12} & \epsilon_{i13} \\
+    \epsilon_{i21} & \epsilon_{i22} & \epsilon_{i23} \\
+    \epsilon_{i31} & \epsilon_{i32} & \epsilon_{i33}
+\end{pmatrix}
+\begin{pmatrix}
+    y_1 \\
+    y_2 \\
+    y_3
 \end{pmatrix}
 $$

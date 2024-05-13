@@ -187,3 +187,117 @@ g^{1\alpha}g_{\alpha 1} =
 g^{1 0} g_{0 1} + g^{1 1} g_{1 1} + g^{1 2} g_{2 1} + g^{1 3} g_{3 1}
 = 0 + (-1)(-1) + 0 + 0 = 1
 $$
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Pauli Matrices}
+
+The Pauli matrices actually form a basis for $2 \times 2$ Hermitian matrices.
+Let's see how: a generic $2 \times 2$ Hermitian matrix would look like
+
+$$
+\begin{pmatrix}
+a & b\\
+c & d
+\end{pmatrix}
+=
+\begin{pmatrix}
+a^* & c^* \\
+b^* & d^*
+\end{pmatrix}
+$$
+
+Meaning that $a, b \in \mathbb{R}$ and that $b = c^*$.
+So we could write our Hermitian matrix as
+
+$$
+\begin{pmatrix}
+a      & x - iy \\
+x + iy & d
+\end{pmatrix}
+$$
+
+Another requirement that is imposed on $H_2 (\mathbb{C})$ is that they must be unitary, that is $U^\dagger U = I$, so
+
+\begin{align*}
+\begin{pmatrix}
+a      & x - iy \\
+x + iy & d
+\end{pmatrix}
+\begin{pmatrix}
+a      & x - iy \\
+x + iy & d
+\end{pmatrix}
+&=
+\begin{pmatrix}
+a^2 + x^2 - y^2         & a(x - iy) + b(x - iy) \\
+a(x + iy) + b(x + iy) & d^2 + x^2 - y^2
+\end{pmatrix}
+\\
+&=
+\begin{pmatrix}
+1 & 0 \\
+0 & 1
+\end{pmatrix}
+\end{align*}
+
+One way to make this happen is to set $a = -d$, this will also have the happy side effect of meeting another requirement
+for the Pauli matrices to be traceless.
+So now we have our candidate bases that ought to look like
+
+$$
+\begin{pmatrix}
+a      & x - iy \\
+x + iy & -a
+\end{pmatrix}
+$$
+
+This then means that our requirement for our matrix $H_2 (\mathbb{C})$ to be unitary simplifies to
+$$
+\begin{pmatrix}
+a^2 + x^2 - y^2 & 0                \\
+0               & a^2 + x^2 - y^2
+\end{pmatrix}
+=
+\begin{pmatrix}
+1 & 0 \\
+0 & 1
+\end{pmatrix}
+$$
+
+Here is where our 3 Pauli matrices comes!
+
+$$
+\sigma_1 = \sigma_x =  
+\begin{pmatrix}
+1 & 0 \\
+0 & 1
+\end{pmatrix}
+$$
+comes from assuming that $x=1$, so $a^2 + x^2 - y^2 = 1$ can be met by assuming that $a = y = 0$.
+
+$$
+\sigma_2 = \sigma_y =  
+\begin{pmatrix}
+0 & -i \\
+i & 0
+\end{pmatrix}
+$$
+
+comes from assuming that $y=1$, so $a^2 + x^2 - y^2 = 1$ can be met by assuming that $a = x = 0$.
+
+Finally,
+$$
+\sigma_3 = \sigma_z =  
+\begin{pmatrix}
+1 & 0 \\
+0 & -1
+\end{pmatrix}
+$$
+
+Where we took $a=1$ and $x = y = 0$.
