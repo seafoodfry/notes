@@ -29,19 +29,67 @@ But we have $n$ roots, that are equally spaced and correspond to $\frac{2\pi k}{
 
 The next interesting bit of the problem is about the \textbf{primitive roots} which are
 "roots the power of each which give all the roots".
-One could also express this as a complex number $z_{k}$ such that $(z_k)^k$ gives the root $k$.
-This is the \textbf{generator of a cyclic group} see
-\href{https://en.wikipedia.org/wiki/Cyclic_group}{wikipedia: cyclic group}.
+This, along with the rest of the problem, is outlined in
+\href{https://en.wikipedia.org/wiki/Root_of_unity}{wikipedia: root of unity}:
+
+Given a primitive nth root of unity $\omega$, the other nth roots are powers of $\omega$.
+This means that the group of the nth roots of unity is a \textbf{cyclic group} and the primitive root is a
+generator of the cyclic group, \href{https://en.wikipedia.org/wiki/Cyclic_group}{wikipedia: cyclic group}.
 
 Now, to see why the number of primitive roots is the number of integers (including unity) less than $n$ and prime to it
 we need to go back to our argument of why we $k$ ranged from 0 to $n-1$ instead of $n$ and then see that any number
-coprime (or relatively prime) to $n$ (any number that shares a factor with $n$ other than 1) will result in a "degenerate root".
+that is not coprime (or relatively prime) to $n$ (any number that shares a factor with $n$ other than 1)
+will result in a root that could have been obtained in another way.
 
 For example, if $n=6$, then $k = \{ 0, 1, 2, 3, 4, 5 \}$.
 From that set, the integers that are coprime to 6 are 1 and 5.
-You can also see why this is so by explicitly listing the multiples of $2\pi k / n$ for this example
+The actual roots are
+\begin{itemize}
+    \item $e^{0} = 1$
+    \item $e^{2i\pi / 6} = e^{i\pi / 3}$
+    \item $e^{2(2)i\pi / 6} = e^{2i\pi / 3}$
+    \item $e^{2(3)i\pi / 6} = e^{i\pi} = -1$
+    \item $e^{2(4)i\pi / 6} = e^{4i\pi / 3}$
+    \item $e^{2(5)i\pi / 6} = e^{5i\pi / 3}$
+\end{itemize}
 
-\begin{align*}
-2\pi k / n &= \{ 0, 2\pi/6, 2(2)\pi/6, 2(3)\pi/6, 2(4)\pi/6, 2(5)\pi/6 \} \\
-&= \{ 0, \pi/3, 2\pi/3, \pi, 4\pi/3, 5\pi/3 \}
-\end{align*}
+The first primitve root is $z_1 = e^{2i\pi / 6} = e^{i\pi / 3}$,
+for which
+\begin{itemize}
+    \item $z_{1}^{1} = e^{i\pi / 3}$
+    \item $z_{1}^{2} = e^{2i\pi / 3}$
+    \item $z_{1}^{3} = e^{i\pi} = -1$
+    \item $z_{1}^{4} = e^{4i\pi / 3}$
+    \item $z_{1}^{5} = e^{5i\pi / 3}$
+    \item $z_{1}^{6} = e^{2i\pi } = 1$
+\end{itemize}
+
+We see that the powers $z_{1}^{1}, z_{1}^{2}, z_{1}^{3}, z_{1}^{4}, z_{1}^{5}, z_{1}^{6}$ cycle through all the roots.
+
+Similarly then for $k = 5$, the other primitive root, $z_{5} = e^{5i\pi / 3}$, and so
+\begin{itemize}
+    \item $z_{5}^{1} = e^{5i\pi / 3}$
+    \item $z_{5}^{2} = e^{10i\pi / 3} = e^{(6+4)i\pi / 3} = 1 \cdot e^{4i\pi / 3}$
+    \item $z_{5}^{3} = e^{15i\pi / 3} = e^{(6*2+3)i\pi / 3} = e^{3i\pi / 3} = -1$
+    \item $z_{5}^{4} = e^{20i\pi / 3} = e^{(6*3+2)i\pi / 3} = e^{2i\pi / 3}$
+    \item $z_{5}^{5} = e^{25i\pi / 3} = e^{(6*4+1)i\pi / 3} = e^{i\pi / 3}$
+    \item $z_{5}^{6} = e^{30i\pi / 3} = e^{(6*5)i\pi / 3} = 1$
+\end{itemize}
+
+Again we see that the powers of $z_{5}^{1}, z_{5}^{2}, z_{5}^{3}, z_{5}^{4}, z_{5}^{5}, z_{5}^{6}$ cycle through all the roots
+exactly once.
+
+And to explicitly see why a primitive root is such, let's try computing the roots for $k=2$, here $z_2 = e^{2(2)i\pi/6} = e^{2i\pi/3}$
+\begin{itemize}
+    \item $z_{2}^{1} = e^{2i\pi / 3}$
+    \item $z_{2}^{2} = e^{4i\pi / 3}$
+    \item $z_{2}^{3} = e^{6i\pi / 3} = 1$
+    \item $z_{2}^{4} = e^{(6+2)i\pi / 3} = e^{2i\pi / 3}$
+\end{itemize}
+
+So after $x_{2}^{3}$ the roots repeat and we don't even see them all.
+
+This is concept of primitive roots is so interesting that there is even a function associated to it:
+\href{https://en.wikipedia.org/wiki/Euler%27s_totient_function}{wikipedia: Euler's totient function}
+counts the positive integers up to a given integer n that are relatively prime to n.
+Which means that it also gives the number of primitive roots of unity.
