@@ -1,0 +1,47 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Whittaker: Complex Numbers}
+
+One of the problems posed in chapter 1 goes as follows:
+
+Determine the nth roots of unity by aid of the argand diagram and show that the number of primitive roots
+(roots the powers of each give all the roots) is the number of integers (including unity) less than n and prime to it.
+
+To start, the "Nth roots of unity" mean the solutions to the equation
+$$
+x^n = 1
+$$
+
+Using Euler's formula, $e^{i\theta} = \cos\theta + i\sin\theta$,
+$$
+\left( e^{i\theta} \right)^n = e^{in\theta} =
+\left( \cos\theta + i\sin\theta \right)^n = 
+\cos n\theta + i\sin n\theta = 1
+$$
+
+From there we can see that multiples of $2\pi$ will be solutions, that means
+we can express argument (or phase) as $\theta = 2i\pi k /n$, which turns our solution into
+$$
+e^{2i\pi k /n} = \cos \left(\frac{2\pi k}{n}\right) + i\sin \left(\frac{2\pi k}{n}\right)
+$$
+for $k = 0, \dots, n-1$.
+Note that we have $n$ roots, not $n+1$ as $k$ ranges from 0 to $n-1$ because when $k=n$ we get the same root as when $k=1$.
+But we have $n$ roots, that are equally spaced and correspond to $\frac{2\pi k}{n}$.
+
+The next interesting bit of the problem is about the \textbf{primitive roots} which are
+"roots the power of each which give all the roots".
+One could also express this as a complex number $z_{k}$ such that $(z_k)^k$ gives the root $k$.
+This is the \textbf{generator of a cyclic group} see
+\href{https://en.wikipedia.org/wiki/Cyclic_group}{wikipedia: cyclic group}.
+
+Now, to see why the number of primitive roots is the number of integers (including unity) less than $n$ and prime to it
+we need to go back to our argument of why we $k$ ranged from 0 to $n-1$ instead of $n$ and then see that any number
+coprime (or relatively prime) to $n$ (any number that shares a factor with $n$ other than 1) will result in a "degenerate root".
+
+For example, if $n=6$, then $k = \{ 0, 1, 2, 3, 4, 5 \}$.
+From that set, the integers that are coprime to 6 are 1 and 5.
+You can also see why this is so by explicitly listing the multiples of $2\pi k / n$ for this example
+
+\begin{align*}
+2\pi k / n &= \{ 0, 2\pi/6, 2(2)\pi/6, 2(3)\pi/6, 2(4)\pi/6, 2(5)\pi/6 \} \\
+&= \{ 0, \pi/3, 2\pi/3, \pi, 4\pi/3, 5\pi/3 \}
+\end{align*}
