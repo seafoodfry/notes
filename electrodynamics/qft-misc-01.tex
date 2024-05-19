@@ -670,3 +670,120 @@ the third column represents $L_z(e_3)$.
 In physics speak this would be read as the wave functions
 $\frac{1}{\sqrt{2}} (x +iy)$, $z$, and $- \frac{1}{\sqrt{2}} (x -iy)$
 have eigenvalues 1, 0, and -1, respectively.
+
+
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Frobenius Method}
+
+The following example comes from
+\href{https://en.wikipedia.org/wiki/Frobenius_method}{wikipedia: frobenius method}:
+
+$$
+z^2 f^{\prime\prime} - zf^\prime + (1-z)f = 0
+$$
+
+We assume the solution has the form,
+$$
+f = \sum_{k=0} A_k z^{k+r}
+$$
+
+Plugging the above series into the ODE and organizing like terms we land in
+$$
+\sum_k \left[ (k+r)(k+r-1) - (k+r) + (1-z) \right] A_k z^{k+r} = 0
+$$
+which can be further simplified to
+
+$$
+\sum_k \left[ (k+r)(k+r-1) - (k+r) + 1 \right] A_k z^{k+r}
+    - \sum_k A_k z^{k+r+1} 
+= 0
+$$
+
+The indicial polynomial can then be obtained by considering the lowest power of $z$, which is $z^r$,
+$$
+(r(r-1) + 1) A_0 z^r
+$$
+
+We now set $z=0$ and obtain
+$$
+r(r-1) + 1 = r^2 -r + 1 = (r-1)^2 = 0
+$$
+
+Meaning that $r=1$ (double root).
+
+We now need to find the recurrence relation by plugging $f = \sum_{k=0} A_k z^{k+1}$ back into our original proble,
+equate coefficients of like powers of $z$, and find a recurrence relation for $A_k$.
+
+We now have,
+$$
+f^\prime = \sum_{k=0} A_k (k+1) z^k
+$$
+and
+$$
+f^{\prime\prime} = \sum_{k=0} A_k k(k+1) z^{k-1}
+$$
+
+And our ODE now becomes,
+\begin{align*}
+& z^2 \sum_{k} A_k k(k+1) z^{k-1}
+    - z \sum_{k} A_k (k+1) z^k
+    + (1-z) \sum_{k} A_k z^{k+1} \\
+&= \sum_{k} A_k k(k+1) z^{k+1}
+    - \sum_{k} A_k (k+1) z^{k+1}
+    + \sum_{k} A_k z^{k+1}
+    - \sum_{k} A_k z^{k+2} \\
+&= \sum_k \left[ k(k+1) - (k+1) + 1 \right] A_k z^{k+1} - \sum_{k} A_k z^{k+2} \\
+&= \sum_k k^2 A_k z^{k+1} - \sum_{k} A_k z^{k+2}
+\end{align*}
+
+To find a recurrence relation we need to align the sums.
+So we can write
+\begin{align*}
+& \sum_{k=0} k^2 A_k z^{k+1} - \sum_{k=0} A_k z^{k+2} \\
+&= \sum_{k=0} k^2 A_k z^{k+1} - \sum_{k=1} A_{k-1} z^{k+1}
+\end{align*}
+
+We could do a similar shift for the first sum but since the first term $k=0$ has a $k^2$ term then we can ignore it.
+Thus,
+$$
+\sum_{k=1} \left( k^2 A_k - A_{k-1} \right) z^{k+1} = 0
+$$
+
+Since this sum must be zero for all $z$, the coefficients must satisfy,
+$$
+k^2 A_k - A_{k-1} = 0
+$$
+or
+$$
+A_k = \frac{ A_{k-1} }{k^2} 
+$$
+
+This recurrence realtionship now gives us all coefficients in terms of $A_0$.
+The first couple coefficients are,
+$$
+A_1 = \frac{ A_0 }{1^2} = A_0
+$$
+
+$$
+A_2 = \frac{ A_1 }{2^2} = \frac{ A_0 }{2^2}
+$$
+
+$$
+A_3 = \frac{ A_2 }{3^2} = \frac{ A_0 }{2^2 3^2}
+$$
+
+This means that our general solution looks like
+$$
+f(z) = \sum_{k=0} A_k z^{k+1}
+= A_0 \sum_{k=0} \frac{ z^{k+1} }{k!^2}
+$$
