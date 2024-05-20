@@ -903,7 +903,7 @@ In the $s=1$ case, if we plug in $y_2$ into our ODE,
     - 2 \sum_j a_j (j+1) x^{j+1}
     + \lambda \sum_j a_j x^{j+1} \\
 &= \sum_j a_j j(j+1) x^{j-1}
-    + \sum_j \left[ -j(j+1) -2(j+1) + \lambda \right] a_j x^j
+    + \sum_j \left[ -j(j+1) -2(j+1) + \lambda \right] a_j x^{j+1}
 \end{align*}
 
 Following the procedure we have been building: look for a series with redundant terms, and then try to shift it to match
@@ -925,13 +925,41 @@ $$
 \sum_{j=0} a_{j+1} (j+1)(j+2) x^{j}
 $$
 
-Equating coefficients, we have
+At this point we have,
+
 $$
-a_{j+1} (j+1)(j+2)
+\sum_{j=0} a_{j+1} (j+1)(j+2) x^{j}
+    + \sum_j \left[ -j(j+1) -2(j+1) + \lambda \right] a_j x^{j+1}
+$$
+
+We need to do another shift and doing it on the first sum seems like the simplest approach.
+If we do so, then we can arrive at
+
+$$
+\sum_{j=-1} a_{j+2} (j+2)(j+3) x^{j+1}
+    + \sum_j \left[ -j(j+1) -2(j+1) + \lambda \right] a_j x^{j+1}
+$$
+
+But let's separate the first term of the first sum.
+When $j=-1$, we get $a_1 (1)(2) x^0 = 2a_1$.
+Thus,
+
+$$
+2 a_1 +
+    \sum_{j=0} a_{j+2} (j+2)(j+3) x^{j+1}
+    + \sum_j \left[ -j(j+1) -2(j+1) + \lambda \right] a_j x^{j+1} = 0
+$$
+
+And this equation must hold for all $x$, so the coefficients of each power of $x$ must be zero.
+This means that $a_1 must be 0$.
+And we are left with
+$$
+a_{j+2} (j+2)(j+3)
     + \left( -j(j+1) -2(j+1) + \lambda \right) a_j = 0
 $$
 
 Which simplifies to
 $$
-a_{j+1} = \frac{ j^2 + 3j + 2 - \lambda }{ (j+1)(j+2) } a_j
+a_{j+2} = \frac{ j^2 + 3j + 2 - \lambda }{ (j+2)(j+3) } a_j
+= \frac{ (j+1)(j+2) - \lambda }{ (j+2)(j+3) } a_j
 $$
