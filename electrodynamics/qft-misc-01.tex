@@ -963,3 +963,16 @@ $$
 a_{j+2} = \frac{ j^2 + 3j + 2 - \lambda }{ (j+2)(j+3) } a_j
 = \frac{ (j+1)(j+2) - \lambda }{ (j+2)(j+3) } a_j
 $$
+
+In order to obtain the eignevalues we need to go back to the beginning.
+If you remember, this is how the problem was initially framed:
+$$
+\mathcal{L} y(x) =
+-(1-x^2) y^{\prime\prime} + 2x y^\prime = \lambda y
+$$
+
+So whatever we can do to find a $\lambda$ will give us our eigenvalues.
+And that is why Arfken and other resources look for the conditions that make both of the recursion relations result in
+a series solution that converges.
+In the first case we need a value of lambda that will cancel the numerator $j(j+1)$ and in the second we need a value that
+will cancel the $(j+1)(j+2)$.

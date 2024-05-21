@@ -25,8 +25,8 @@ direction is actually $(E_0 \cos(kz-wt), 0, 0)$.
 Then the field can be written as,
 
 \begin{align*}
-\vect{E}_0 &= \left( E_0, E_0 e^{i\pi/2}, 0 \right) \\
-&= \left( E_0, iE_0, 0 \right) \\
+\vect{E}_0 &= \left( E, E e^{i\pi/2}, 0 \right) \\
+&= \left( E, iE, 0 \right) \\
 &= E_0 \left( e^{i(kz-wt)}, ie^{i(kz-wt)}, 0 \right)
 \end{align*}
 
@@ -42,14 +42,14 @@ $$
 $$
 and
 $$
-\cos(\theta + \frac{\pi}{2}) = -\cos(\theta)
+\cos(\theta + \frac{\pi}{2}) = -\sin(\theta)
 $$
 
 (A shit by a quarter wavelength is essentially differentiation!)
 
 But here is the catch and the connection with P\&S: we can also get the same result if we have
 $$
-\vect{E} = E_0 \left( \cos(wt-kz)\hat{x} + \sin(wt-kz)\hat{y} \right)
+\vect{E} = E_0 \left( \cos(wt-kz)\hat{x} - \sin(wt-kz)\hat{y} \right)
 $$
 We can also write is as,
 $$
@@ -59,7 +59,19 @@ and remembering that you only care about the real part.
 If you do so, you'll end up with terms such as $\cos \hat{x} - \sin \hat{y}$ which just so happen to again be the
 a $\sin$ and a $\cos$ (our original plane wave components) shifted by $\pi/2$.
 
+This polarization vector corresponds to a "\textbf{right handed}" field.
 
+To be a "\textbf{left handed}" polarization vector, we would write
+$$
+\epsilon^\mu = (0, 1, -i, 0)
+$$
+
+Corresponding to
+$$
+\vect{E} = E_0 \left( \cos(wt-kz)\hat{x} + \sin(wt-kz)\hat{y} \right)
+$$
+
+J. Binney section 1.4.4 is also a great reference.
 
 
 \subsection{Cross Sections}
