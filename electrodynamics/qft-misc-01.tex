@@ -411,6 +411,309 @@ This is why the transformation involves a sum over the product of vector compone
 
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{From Tensors to Matrices}
+
+Tensors can be expressed as matrices only once a basis has been chosen.
+the example being given is with the angular momentum operator $L_z$ on the spherical harmonics $H_l (\mathbb{R}^3)$.
+
+It says that $H_l (\mathbb{R}^3)$ is the set of all linear functions on $\mathbb{R}^3$ that
+
+$$
+\{ r Y_{m}^{l} \}_{ -1 \leq m \leq 1 } =
+\Big\{ \frac{1}{\sqrt{2}} (x +iy), \, z, \, - \frac{1}{\sqrt{2}} (x -iy) \Big\}
+$$
+
+and $\{ x, y, z \}$ are both basis for the space.
+
+Then having the angular momentum operator $L_z = -i ( x\partial_y - y \partial_x )$ on this space we got
+$$
+\frac{1}{\sqrt{2}} L_z (x + iy) = \frac{1}{\sqrt{2}} (x + iy)
+$$
+$$
+L_z (z) = 0
+$$
+$$
+-\frac{1}{\sqrt{2}} L_z (x -iy) = \frac{1}{\sqrt{2}} (x -iy)
+$$
+
+which implies that in the spherical harmonics basis
+
+$$
+L_z = 
+\begin{pmatrix}
+1 & 0 & 0 \\
+0 & 0 & 0 \\
+0 & 0 & -1
+\end{pmatrix}
+$$
+
+Could you tell me how that tensor representation of $L_z$ is implies by saying that
+$T(e_i) = \sum^{n}_{j=1} T_{i}^{j} e_j$ ?
+
+
+$$
+\frac{1}{\sqrt{2}} L_z (x + iy)
+\rightarrow
+L_z \left( \frac{1}{\sqrt{2}} (x + iy) \right)
+$$
+
+$$
+L_z (z) = 0
+$$
+
+$$
+-\frac{1}{\sqrt{2}} L_z (x -iy)
+\rightarrow
+L_z \left( -\frac{1}{\sqrt{2}} (x + iy) \right)
+$$
+
+Since
+
+$$
+\{ r Y_{m}^{l} \}_{ -1 \leq m \leq 1 } =
+\Big\{ \frac{1}{\sqrt{2}} (x +iy), \, z, \, - \frac{1}{\sqrt{2}} (x -iy) \Big\}
+$$
+
+then we can say that $e_1 = \frac{1}{\sqrt{2}} (x +iy)$, $e_2 = z$, and $e_3 = -\frac{1}{\sqrt{2}} (x -iy)$.
+
+Meaning that $L_z (e_1) = e_1 = 1\cdot e_1 + 0\cdot e_2 + 0\cdot e_3$,
+$L_z (e_2) = 0 = 0\cdot e_1 + 0\cdot e_2 + 0\cdot e_3$, and
+$l_z (e_3) = -e_3 = 0\cdot e_1 + 0\cdot e_2 - 1\cdot e_3$.
+From here, we can then adopt write this as a matrix
+
+$$
+T_{i}^{j}
+=
+L_z
+=
+\begin{pmatrix}
+1 & 0 & 0 \\
+0 & 0 & 0 \\
+0 & 0 & -1
+\end{pmatrix}
+$$
+
+The columns of a matrix representation of a linear operator correspond to the action of the operator on the basis vectors.
+However, due to the specific diagonal form of the matrix in this example, both the row and column perspectives
+give the same result, which can indeed be confusing.
+
+The first column represents $L_z(e_1)$,
+the second column represents $L_z(e_2)$,
+the third column represents $L_z(e_3)$.
+
+In physics speak this would be read as the wave functions
+$\frac{1}{\sqrt{2}} (x +iy)$, $z$, and $- \frac{1}{\sqrt{2}} (x -iy)$
+have eigenvalues 1, 0, and -1, respectively.
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Now Let's Talk Tensors}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Transformation Matrices}
+
+The previous section gave us a good place to begin talking about tensors.
+Now let's actually talk about them.
+
+Tensors have been historically defined based on how they transform.
+Think of the conventional axis rotation formula in 2D.
+If we rotate the axis by an angle $\theta$, then
+
+$$
+x^\prime = x \cos\theta - y \sin\theta
+$$
+and
+$$
+y^\prime = x \sin\theta + y \cos\theta
+$$
+
+As we saw in the previous section,
+where we derived the matrix representation of the angular momentum operator,
+the columns of a matrix representation of a multilinear map (tensor) correspond to the action of
+the map (tensor) on the basis vectors.
+Which is most commonly seen as
+
+$$
+\begin{pmatrix}
+x^\prime \\
+y^\prime
+\end{pmatrix}
+=
+\begin{pmatrix}
+\cos\theta & - \sin\theta \\
+\sin\theta & \cos\theta
+\end{pmatrix}
+\begin{pmatrix}
+x \\
+y
+\end{pmatrix}
+$$
+
+If we envision $x$ and $y$, and $x^\prime$ and $y^\prime$, and some basis sets,
+such that $x \rightarrow e_1$ and $y \rightarrow e_2$ (similarly for the primed components).
+We can rewrite the above as
+$$
+e_{1^\prime} = e_1 \cos\theta - e_2 \sin\theta
+$$
+and
+$$
+e_{2^\prime} = e_1 \sin\theta + e_2 \cos\theta
+$$
+
+Meaning that our problem becomes,
+$$
+\begin{pmatrix}
+e_{1^\prime} \\
+e_{2^\prime}
+\end{pmatrix}
+=
+\begin{pmatrix}
+\cos\theta & - \sin\theta \\
+\sin\theta & \cos\theta
+\end{pmatrix}
+\begin{pmatrix}
+e_1 \\
+e_2
+\end{pmatrix}
+$$
+
+Following the Einstein summation convention, we could write
+
+$$
+e_{i^\prime} = A_{i^\prime}^{j} e_j
+$$
+
+which also means that the original basis can be obtained as follows
+$$
+e_{i} = A_{i}^{j^\prime} e_{j^\prime}
+$$
+
+It is interesting to now quickly pursue the exercise of expressing our basis in terms of itself
+as it will show us some properties about these numbers $A_{i^\prime}^{j}$ and $A_{i}^{j^\prime}$.
+
+
+Combining the previous two expressions we get,
+$$
+e_{i} = A_{i}^{j^\prime} e_{j^\prime}
+= A_{i}^{j^\prime} A_{j^\prime}^{k} e_k
+$$
+
+From here we can see that
+$$
+A_{i}^{j^\prime} A_{j^\prime}^{k} = \delta_{i}^{k}
+$$
+
+If we consider the same example but with the primed-basis.
+
+$$
+e_{i^\prime} = A_{i^\prime}^{j} e_j 
+= A_{i^\prime}^{j} A_{j}^{k^\prime} e_{k^\prime}
+$$
+
+Meaning that
+
+$$
+A_{i^\prime}^{j} A_{j}^{k^\prime} = \delta_{i^\prime}^{k^\prime}
+$$
+
+So the different $A$s are inverse of one another.
+
+It is also worth noting that These $A$s are not tensor components since their indices refer to different basis.
+In expressions such as $A_{i^{\prime}}^{j} A_{j}^{k^{\prime}}$, the indices $i^{\prime}$ and $k^{\prime}$ refer
+to the primed basis, while the index $j$ refers to the unprimed basis.
+This mixing of basis sets in a single expression is why the numbers $A_{i^{\prime}}^{j}$ and $A_{j}^{k^{\prime}}$
+are not considered tensor components.
+
+The transformation matrices $A_{i^{\prime}}^{j}$ and $A_{j}^{k^{\prime}}$ are not tensor components themselves,
+but rather express the relationship between components in different bases.
+The fact that these matrices are inverses of each other, which is a consequence of the transformation law for
+tensor components.
+
+Another useful thing to note is that the transformation for dual vectors looks the same but with uppoer indices.
+
+$$
+e^{i^\prime} = A_{j}^{i^\prime} e^j
+$$
+and
+$$
+e^{i} = A_{j^\prime}^{i} e^{j^\prime}
+$$
+
+With this info at hand, we can guesstimate the matrix transformation laws for tensors,
+
+$$
+A =
+\begin{pmatrix}
+A_{1}^{1^\prime} & A_{2}^{1^\prime} & \dots  & A_{n}^{1^\prime} \\
+A_{1}^{2^\prime} & A_{2}^{2^\prime} & \dots  & A_{n}^{2^\prime} \\
+\vdots           & \vdots           & \ddots & \vdots           \\
+A_{1}^{n^\prime} & A_{2}^{n^\prime} & \dots  & A_{n}^{n^\prime}
+\end{pmatrix}
+$$
+
+Its inverse is
+$$
+A^{-1}
+=
+\begin{pmatrix}
+A_{1^\prime}^{1} & A_{2^\prime}^{1} & \dots  & A_{n^\prime}^{1} \\
+A_{1^\prime}^{2} & A_{2^\prime}^{2} & \dots  & A_{n^\prime}^{2} \\
+\vdots           & \vdots           & \ddots & \vdots           \\
+A_{1^\prime}^{n} & A_{2^\prime}^{n} & \dots  & A_{n^\prime}^{n} \\
+\end{pmatrix}
+$$
+
+These are unitary matrices
+$$
+A A^{-1} = A^{-1} A = I
+$$
+
+Equating the above with our 2D rotation example,
+$$
+A^{-1}
+=
+\begin{pmatrix}
+\cos\theta & - \sin\theta \\
+\sin\theta & \cos\theta
+\end{pmatrix}
+$$
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Contravariant and Covariant Vectors}
+
+One fun fact about vectors is that they can be seen as tensors of type (0,1), that is, they feed
+on 1 dual vector.
+A vector can be viewed as a tensor of type (0, 1) because it transforms according to the contravariant
+transformation law under a change of coordinates. The key idea is that a vector represents a directed
+quantity that "eats" or operates on dual vectors (covectors or linear functionals) to produce scalars.
+
+This is mathematically said as,
+$$
+v^{i^\prime} = A^{i^\prime}_{j} v^j
+$$
+As we saw above, this is the transformation for dual vectors - expressions with contravariant indices.
+
+And as we saw above, these transform according to the Jacobian.
+
+A dual vector in turn transforms as
+$$
+f_{i^\prime} = A_{i^\prime}^{j} v_j
+$$
+
+Note how the transformation are the contrary to what we saw for the basis vectors!
+Where as the components of the dual vector transform in the same way as the basis.
+
+
+
+
+
+
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Pauli Matrices}
@@ -519,112 +822,6 @@ $$
 $$
 
 Where we took $a=1$ and $x = y = 0$.
-
-
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{From Tensors to Matrices}
-
-tensors can be expressed as matrices only once a basis has been chosen.
-the example being given is with the angular momentum operator $L_z$ on the spherical harmonics $H_l (\mathbb{R}^3)$.
-
-It says that $H_l (\mathbb{R}^3)$ is the set of all linear functions on $\mathbb{R}^3$ that
-
-$$
-\{ r Y_{m}^{l} \}_{ -1 \leq m \leq 1 } =
-\Big\{ \frac{1}{\sqrt{2}} (x +iy), \, z, \, - \frac{1}{\sqrt{2}} (x -iy) \Big\}
-$$
-
-and $\{ x, y, z \}$ are both basis for the space.
-
-Then having the angular momentum operator $L_z = -i ( x\partial_y - y \partial_x )$ on this space we got
-$$
-\frac{1}{\sqrt{2}} L_z (x + iy) = \frac{1}{\sqrt{2}} (x + iy)
-$$
-$$
-L_z (z) = 0
-$$
-$$
--\frac{1}{\sqrt{2}} L_z (x -iy) = \frac{1}{\sqrt{2}} (x -iy)
-$$
-
-which implies that in the spherical harmonics basis
-
-$$
-L_z = 
-\begin{pmatrix}
-1 & 0 & 0 \\
-0 & 0 & 0 \\
-0 & 0 & -1
-\end{pmatrix}
-$$
-
-Could you tell me how that tensor representation of $L_z$ is implies by saying that
-$T(e_i) = \sum^{n}_{j=1} T_{i}^{j} e_j$ ?
-
-
-$$
-\frac{1}{\sqrt{2}} L_z (x + iy)
-\rightarrow
-L_z \left( \frac{1}{\sqrt{2}} (x + iy) \right)
-$$
-
-$$
-L_z (z) = 0
-$$
-
-$$
--\frac{1}{\sqrt{2}} L_z (x -iy)
-\rightarrow
-L_z \left( -\frac{1}{\sqrt{2}} (x + iy) \right)
-$$
-
-Since
-
-$$
-\{ r Y_{m}^{l} \}_{ -1 \leq m \leq 1 } =
-\Big\{ \frac{1}{\sqrt{2}} (x +iy), \, z, \, - \frac{1}{\sqrt{2}} (x -iy) \Big\}
-$$
-
-then we can say that $e_1 = \frac{1}{\sqrt{2}} (x +iy)$, $e_2 = z$, and $e_3 = -\frac{1}{\sqrt{2}} (x -iy)$.
-
-Meaning that $L_z (e_1) = e_1 = 1\cdot e_1 + 0\cdot e_2 + 0\cdot e_3$,
-$L_z (e_2) = 0 = 0\cdot e_1 + 0\cdot e_2 + 0\cdot e_3$, and
-$l_z (e_3) = -e_3 = 0\cdot e_1 + 0\cdot e_2 - 1\cdot e_3$.
-From here, we can then adopt write this as a matrix
-
-$$
-T_{i}^{j}
-=
-L_z
-=
-\begin{pmatrix}
-1 & 0 & 0 \\
-0 & 0 & 0 \\
-0 & 0 & -1
-\end{pmatrix}
-$$
-
-The columns of a matrix representation of a linear operator correspond to the action of the operator on the basis vectors.
-However, due to the specific diagonal form of the matrix in this example, both the row and column perspectives
-give the same result, which can indeed be confusing.
-
-The first column represents $L_z(e_1)$,
-the second column represents $L_z(e_2)$,
-the third column represents $L_z(e_3)$.
-
-In physics speak this would be read as the wave functions
-$\frac{1}{\sqrt{2}} (x +iy)$, $z$, and $- \frac{1}{\sqrt{2}} (x -iy)$
-have eigenvalues 1, 0, and -1, respectively.
-
-
-
-
-
-
-
 
 
 
