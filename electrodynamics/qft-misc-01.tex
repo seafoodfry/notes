@@ -621,7 +621,9 @@ $$
 
 So the different $A$s are inverse of one another.
 
-It is also worth noting that These $A$s are not tensor components since their indices refer to different basis.
+It is also worth noting that these $A$s are tensor components.
+
+
 In expressions such as $A_{i^{\prime}}^{j} A_{j}^{k^{\prime}}$, the indices $i^{\prime}$ and $k^{\prime}$ refer
 to the primed basis, while the index $j$ refers to the unprimed basis.
 This mixing of basis sets in a single expression is why the numbers $A_{i^{\prime}}^{j}$ and $A_{j}^{k^{\prime}}$
@@ -742,47 +744,8 @@ The matrix elements of $U$ in the $\ket{e_i}$ basis are given by:
 $U_{i^{\prime}}^{j} = \bra{e_{i^{\prime}}} U \ket{e_j}$.
 These matrix elements play the same role as the $A_{i^{\prime}}^{j}$ in your classical expression.
 
-To see the analogy, let's use the completeness relation in the $\ket{e_i}$ basis, we can write
-$$
-\ket{e_{i^{\prime}}} = U \ket{e_i}
-= \sum_j U \ket{e_j} \braket{e_j | e_i}
-= \sum_j U \ket{e_j} \delta_{ij}
-= \sum_j U_{i^{\prime}}^{j} \ket{e_j}
-$$
-This is the quantum analog of your expression $e_{i^{\prime}} = A_{i^{\prime}}^{j} e_j$.
-
-Furthermore, we can use the completeness relation in the $\ket{e_{i^{\prime}}}$ basis to write:
-$$
-\ket{e_j} = \sum_{k^{\prime}} \ket{e_{k^{\prime}}} \braket{ e_{k^{\prime}} | e_j} = \sum_{k^{\prime}} (U^{\dagger})_{j}^{k^{\prime}} \ket{e_{k^{\prime}}}
-$$
-Substituting this into the previous expression, we get:
-$$
-\ket{e_{i^{\prime}}} = \sum_j U_{i^{\prime}}^{j} \sum_{k^{\prime}} (U^{\dagger})_{j}^{k^{\prime}} \ket{e{k^{\prime}}} = \sum_{k^{\prime}} (\sum_j U_{i^{\prime}}^{j} (U^{\dagger})_{j}^{k^{\prime}}) \ket{e_{k^{\prime}}}
-$$
-This is the quantum analog of your expression $e_{i^{\prime}} = A_{i^{\prime}}^{j} A_{j}^{k^{\prime}} e_{k^{\prime}}$.
-\\
 
 
-%%%%%%% notes from chat
-
-If a state vector $\ket{\psi}$ is expressed in the $\{\ket{e_i}\}$ basis as:
-
-$$
-\ket{\psi} = \sum_i c_i \ket{e_i}
-$$
-
-then in the $\{\ket{e_{i^{\prime}}}\}$ basis, it is expressed as:
-
-$$
-\ket{\psi} = \sum_{i^{\prime}} c_{i^{\prime}} \ket{e_{i^{\prime}}}
-$$
-
-where $c^\prime = A c$.
-Note that we are not doing the component notation because the above expression is seldom expressed in terms of contravariant
-or covariant components, so it is easy to make sense of it this way.
-
-So, the components of the state vector transform with the matrix $A$, while the basis vectors transform with the
-matrix $A^{-1}$, just as in the tensor formalism.
 
 
 
