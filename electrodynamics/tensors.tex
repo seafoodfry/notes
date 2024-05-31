@@ -1,0 +1,883 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Tensors}
+
+Working with a spacetime metric signature $(+ - - -)$,
+$$
+\begin{pmatrix}
+    1 & 0  & 0  & 0  \\
+    0 & -1 & 0  & 0  \\
+    0 & 0  & -1 & 0  \\
+    0 & 0  & 0  & -1 \\
+\end{pmatrix}
+$$
+
+$x^\mu = (x^0, \vect{x})$ and $x_\mu = g_{\mu\nu} x^\nu = (x^0, -\vect{x})$.
+To see this explciitly, let's carry out the summations.
+
+When $\mu = 0$, $x_0 = g_{00}x^0 + g_{01}x^1 + g_{02}x^2 + g_{03}x^3 = x^0 + 0 + 0 +0 = x^0$.
+For $\mu = 1$, $x_1 = g_{10}x^0 + g_{11}x^1 + g_{12}x^2 + g_{13}x^3 = 0 + x^1 + 0 +0 = -x^0$.
+Similarly, when $\mu = 2$, $x_2 = -x^2$, and when $\mu =3$, $x_3 = -x^3$.
+
+The contravariant components of the vector $x^\mu$ are just its components.
+The covariant compoents $x_\mu$, defined to be equal to $x_\mu = x^\nu g_{\nu\mu}$, are actually the components
+of the associated dual vector.
+Why? well, in order to obtain $x_\mu$ we had to use a "non-degenerate hermitian form"
+(something that looks like an inner product; though it isn't since this metric is not positive definite).
+This makes it a dual vector by definition.
+\\
+
+Also note that $g_{\mu\nu}$ forms a \textbf{bilinear form} since $g(x_1, x_2) = g(x_2, x_1)$
+(linearity on both sides of the non-degenerate hermitian form).
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Inner Product}
+
+Why does $p \cdot x = g_{\mu\nu} p^\mu x^\nu = g^{\mu\nu} p_\mu x_\nu = p_\mu x^\nu = p^\mu x_\nu = p^0 x^0 - \vect{p}\cdot\vect{x}$?
+
+To start, we ought to know that there is the implicit defintion of
+$x_\mu = x^\nu g_{\nu\mu}$.
+So the covariant vector is defined through the application of a non-degenerate hermitian form
+and it constitutes a dual vector.
+From there the rest is linear algebra.
+
+The metric tensor defines the geometry of spacetime, including the way distances and angles are measured.
+The implied summation, einstein summation, effectively 'weights' the components according to the geometry of spacetime.
+
+$g_{\mu\nu}$ lowers indices, while $g^{\mu\nu}$ raises them.
+$\delta^{\mu}_{\nu}$ is a diagonal matrix with ones on the diagonal and zeros elsewhere.
+It selects the $\mu$-th component when used in a summation, acting like an identity element.
+
+$g^{\mu\alpha} g_{\alpha\nu} = \delta^{\mu}_{\nu}$
+
+$$
+g^{\mu\alpha} g_{\alpha\nu} = \sum_{\alpha = 0} g^{\mu\alpha} g_{\alpha\nu} =
+g^{\mu 0} g_{0 \nu} + g^{\mu 1} g_{1\nu} + g^{\mu 2} g_{2\nu} + g^{\mu 3} g_{3\nu}
+$$
+
+This is essentially a matrix multiplication.
+$$
+\begin{pmatrix}
+    1 & 0  & 0  & 0  \\
+    0 & -1 & 0  & 0  \\
+    0 & 0  & -1 & 0  \\
+    0 & 0  & 0  & -1 \\
+\end{pmatrix}
+\cdot
+\begin{pmatrix}
+    1 & 0  & 0  & 0  \\
+    0 & -1 & 0  & 0  \\
+    0 & 0  & -1 & 0  \\
+    0 & 0  & 0  & -1 \\
+\end{pmatrix}
+=
+\begin{pmatrix}
+    1 & 0 & 0 & 0 \\
+    0 & 1 & 0 & 0 \\
+    0 & 0 & 1 & 0 \\
+    0 & 0 & 0 & 1 \\
+\end{pmatrix}
+$$
+
+Going component by component, take the second row and second column, $\mu=1$ and $\nu=1$.
+The element for that entry is given by
+$$
+g^{1\alpha}g_{\alpha 1} =
+g^{1 0} g_{0 1} + g^{1 1} g_{1 1} + g^{1 2} g_{2 1} + g^{1 3} g_{3 1}
+= 0 + (-1)(-1) + 0 + 0 = 1
+$$
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Derivatives}
+
+The examples here come from \cite{tensor-calc}.
+The aim here is to see a few examples to get used to the quantities we are going to be seeing later on.
+\\
+
+Some useful identities before we carry on:
+\begin{enumerate}
+    \item
+    $$
+    \frac{\partial x_p}{\partial x_q} = \delta_{pq}
+    $$
+\end{enumerate}
+
+
+
+\textbf{Example 1}
+
+If $a_{ij}$ are contants, to compute the partial derivative
+$$
+\frac{\partial}{\partial x_k} a_{ij} x_i x_j
+$$
+
+We'll firs write out the sums explciitly.
+\begin{align*}
+a_{ij} x_i x_j &= \sum_{i,j} a_{ij} x_i x_j
+\end{align*}
+
+Someone once happened to noticed that the sum could be broken into parts depending on when $x_{\{i,j\}} = x_k$, where $x_k$
+is the one we want to differentiate with respect to,
+\begin{align*}
+\sum_{i,j} a_{ij} x_i x_j &=
+    \sum_{i \neq k, j \neq k} a_{ij} x_i x_j +
+    \sum_{i, j \neq k} a_{ij} x_i x_j + 
+    \sum_{i \neq k, j} a_{ij} x_i x_j +
+    \sum_{i=k, j=k} a_{ij} x_i x_j \\
+&= C + \sum_{j \neq k} \left( a_{kj} x_j \right) x_k +
+    \sum_{i \neq k} \left( a_{ik} x_i \right) x_k +
+    a_{kk} x_k x_k \\
+    &= C + \sum_{j \neq k} \left( a_{kj} x_j \right) x_k +
+    \sum_{i \neq k} \left( a_{ik} x_i \right) x_k +
+    a_{kk} (x_k)^2 \\
+\end{align*}
+
+We wrote the first sum, where no $x$s are equal to $x_k$ as $C$, because as you may guess this is going to go away with
+any derivative.
+
+Back to our original task,
+\begin{align*}
+\frac{\partial}{\partial x_k} a_{ij} x_i x_j &=
+    0 + \sum_{j \neq k} a_{kj} x_j +
+    \sum_{i \neq k} a_{ik} x_i +
+    2 a_{kk} x_k \\
+&= \sum_{j} a_{kj} x_j + \sum_{i} a_{ik} x_i \\
+&= a_{kj} x_j + a_{ik} x_i \\
+&= a_{ki} x_i + a_{ik} x_i \\
+&= (a_{ik} + a_{ki}) x_i
+\end{align*}
+
+
+
+\textbf{Example 2}
+
+Another way to work out
+$$
+\frac{\partial}{\partial x_k} a_{ij} x_i x_j
+$$
+goes as follows.
+
+\begin{align*}
+\frac{\partial}{\partial x_k} a_{ij} x_i x_j &= a_{ij} \frac{\partial}{\partial x_k} x_i x_j \\
+&= a_{ij} \left( \frac{\partial x_i}{\partial x_k} x_j + x_i \frac{\partial x_j}{\partial x_k} \right) \\
+&= a_{ij} \left( \delta_{ik} x_j + x_i \delta_{jk} \right) \\
+&= a_{kj} x_j + a_{ik} x_i \\
+&= (a_{ik} + a_{ki}) x_i
+\end{align*}
+
+
+\textbf{Example 3}
+
+If $a_{ij} = a_{ji}$ are constants, compute
+$$
+\frac{\partial^2}{\partial x_k \partial x_l} a_{ij} x_i x_j
+$$
+
+Let's start with our previous result,
+\begin{align*}
+\frac{\partial^2}{\partial x_k \partial x_l} a_{ij} x_i x_j &=
+    \frac{\partial}{\partial x_k} \left[ \frac{\partial}{\partial x_l} a_{ij} x_i x_j \right] \\
+&= \frac{\partial}{\partial x_k} (a_{il} + a_{li}) x_i \\
+&= 2 a_{li} \frac{\partial x_i}{\partial x_k} \\
+&= 2 a_{li} \delta_{ik} \\
+&= 2 a_{lk}
+\end{align*}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Changing Variables: the Jacobian}
+
+
+Promise we are not doing the conventional thing where we go from scratch but there is one more pattern we have to covered
+now in order for some other equations to make sense and this is the Jacobian.
+
+
+There is a result from calculus that is presented a bit like this (the following presentation comes from
+\cite{jacobian}):
+
+
+If we define the Jacobian of a transformation $x = g(u,v)$, $y = h(u,v)$ as
+\begin{align*}
+\frac{ \partial (x,y) }{ \partial (u,v) } &= 
+\begin{vmatrix}
+\dfrac{ \partial x }{ \partial u } & \dfrac{ \partial x }{ \partial v } \\ \addlinespace
+\dfrac{ \partial y }{ \partial u } & \dfrac{ \partial y }{ \partial v }
+\end{vmatrix} \\
+&= \frac{ \partial x }{ \partial u } \frac{ \partial y }{ \partial v } -
+    \frac{ \partial x }{ \partial v }\frac{ \partial y }{ \partial u }
+\end{align*}
+
+Then if we want to integrate $f(x)$ over some surface $R$, this region will become some other surface $S$
+following our transformation and the integral can be computed as follows:
+$$
+\int \int_{R} f(x,y) dA
+= \int \int_{S} f\left( g(u,v), h(u,v) \right) \Biggl| \frac{ \partial (x,y) }{ \partial (u,v) } \Biggl| d\overline{A}
+$$
+
+For example, when we go from Euclidean to polar coordinates, the transformation we use is $x = r\cos\theta$
+and $y = r\sin\theta$ and the Jacobian is $r$ so
+$dA = \left| \frac{\partial (x, y)}{\partial (r, \theta)} \right| dx dy = r dr d\theta$:
+
+\begin{align*}
+\frac{\partial (x, y)}{\partial (r, \theta)} &= 
+\begin{vmatrix}
+    \dfrac{ \partial x }{ \partial r } & \dfrac{ \partial x }{ \partial \theta } \\ \addlinespace
+    \dfrac{ \partial y }{ \partial r } & \dfrac{ \partial y }{ \partial \theta }
+\end{vmatrix} \\
+& = \begin{vmatrix}
+    \cos\theta & -r\sin\theta \\ \addlinespace
+    \sin\theta & r\cos\theta
+\end{vmatrix} \\
+&= r \cos^2 \theta + r \sin^2 \theta \\
+&= r
+\end{align*}
+
+
+
+In 3-dimensions this extends to
+$$
+\int \int \int_{V} f(x,y,z) dV
+= \int \int \int_{B} f\left( g(u,v,w), h(u,v,w), k(u,v,w) \right) \Biggl| \frac{ \partial (x,y,z) }{ \partial (u,v,w) } \Biggl| d\overline{V}
+$$
+
+For the case of the transformation of Euclidean coordinates to spherical coordinates, the transformation of variables is
+$x = r \sin\phi \cos\theta $, $y = r \sin\phi \sin\theta$, and $z = r\cos\phi$.
+In that case the Jacobian is $r^2 \sin\phi$ and thus
+$dV = \left| \frac{\partial (x, y, z)}{\partial (r, \theta, \phi)} \right| dx dy dz = r^2 \sin\phi dr d\phi d\theta$.
+
+
+Besides being very widely used, the reason we mentioned it is because this is also that is very well used in
+\cite{gifted-qft} to introduce the notation we see so much in QFT.
+Specifically, the Jacobian as we have been writing it, can also be seen in expressions such as
+
+$$
+\overline{a}^{\mu} = \left( \frac{\partial \overline{x}^\mu}{\partial x^\nu} \right) a^\nu
+$$
+
+$$
+\frac{\partial \phi}{\partial \overline{x}^\mu} =
+    \left( \frac{\partial x^\nu}{\partial \overline{x}^\mu} \right) \frac{\partial \phi}{\partial x^\nu}
+$$
+
+The determinant of the Jacobian matrix is used specifically when you are dealing with volume transformations
+(like integrating over a volume or changing the measure of integration) because it scales the volume elements according
+to how the coordinate transformation stretches or compresses the space.
+
+When transforming vectors, however, you're not scaling a volume but rather reorienting or rescaling each component
+of the vector according to how the coordinate axes themselves have changed.
+This is why the transformation involves a sum over the product of vector components and the appropriate Jacobian elements:
+
+\begin{itemize}
+\item Contravariant vectors (standard vectors): The components of these vectors are transformed by multiplying with the
+    Jacobian matrix $\partial \overline{x}^\mu / \partial x^\nu$. Here, each new vector component is a linear combination
+    of old components weighted by how much each new coordinate axis changes with respect to each old axis.
+    \begin{itemize}
+        \item These objects, such as displacement vectors, inherently "follow" the coordinate axes. As the axes stretch
+        or rotate, so do the components of the vector. 
+    \end{itemize}
+\item Covariant vectors (gradients and one-forms): These vectors transform using the inverse of the Jacobian matrix
+    $\partial x^\nu / \partial \overline{x}^\mu$. This reflects how changes in the old coordinates map to the new
+    coordinates, suitable for objects that naturally pair with vectors, like gradients.
+    \begin{itemize}
+        \item They measure rates of change along these coordinates.
+        \item A larger coordinate stretch means a smaller gradient in that direction to maintain the same rate of change.
+    \end{itemize}
+\end{itemize}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{From Tensors to Matrices}
+
+Tensors can be expressed as matrices only once a basis has been chosen.
+the example being given is with the angular momentum operator $L_z$ on the spherical harmonics $H_l (\mathbb{R}^3)$.
+
+It says that $H_l (\mathbb{R}^3)$ is the set of all linear functions on $\mathbb{R}^3$ that
+
+$$
+\{ r Y_{m}^{l} \}_{ -1 \leq m \leq 1 } =
+\Big\{ \frac{1}{\sqrt{2}} (x +iy), \, z, \, - \frac{1}{\sqrt{2}} (x -iy) \Big\}
+$$
+
+and $\{ x, y, z \}$ are both basis for the space.
+
+Then having the angular momentum operator $L_z = -i ( x\partial_y - y \partial_x )$ on this space we got
+$$
+\frac{1}{\sqrt{2}} L_z (x + iy) = \frac{1}{\sqrt{2}} (x + iy)
+$$
+$$
+L_z (z) = 0
+$$
+$$
+-\frac{1}{\sqrt{2}} L_z (x -iy) = \frac{1}{\sqrt{2}} (x -iy)
+$$
+
+which implies that in the spherical harmonics basis
+
+$$
+L_z = 
+\begin{pmatrix}
+1 & 0 & 0 \\
+0 & 0 & 0 \\
+0 & 0 & -1
+\end{pmatrix}
+$$
+
+Could you tell me how that tensor representation of $L_z$ is implies by saying that
+$T(e_i) = \sum^{n}_{j=1} T_{i}^{j} e_j$ ?
+
+
+$$
+\frac{1}{\sqrt{2}} L_z (x + iy)
+\rightarrow
+L_z \left( \frac{1}{\sqrt{2}} (x + iy) \right)
+$$
+
+$$
+L_z (z) = 0
+$$
+
+$$
+-\frac{1}{\sqrt{2}} L_z (x -iy)
+\rightarrow
+L_z \left( -\frac{1}{\sqrt{2}} (x + iy) \right)
+$$
+
+Since
+
+$$
+\{ r Y_{m}^{l} \}_{ -1 \leq m \leq 1 } =
+\Big\{ \frac{1}{\sqrt{2}} (x +iy), \, z, \, - \frac{1}{\sqrt{2}} (x -iy) \Big\}
+$$
+
+then we can say that $e_1 = \frac{1}{\sqrt{2}} (x +iy)$, $e_2 = z$, and $e_3 = -\frac{1}{\sqrt{2}} (x -iy)$.
+
+Meaning that $L_z (e_1) = e_1 = 1\cdot e_1 + 0\cdot e_2 + 0\cdot e_3$,
+$L_z (e_2) = 0 = 0\cdot e_1 + 0\cdot e_2 + 0\cdot e_3$, and
+$l_z (e_3) = -e_3 = 0\cdot e_1 + 0\cdot e_2 - 1\cdot e_3$.
+From here, we can then adopt write this as a matrix
+
+$$
+T_{i}^{j}
+=
+L_z
+=
+\begin{pmatrix}
+1 & 0 & 0 \\
+0 & 0 & 0 \\
+0 & 0 & -1
+\end{pmatrix}
+$$
+
+The columns of a matrix representation of a linear operator correspond to the action of the operator on the basis vectors.
+However, due to the specific diagonal form of the matrix in this example, both the row and column perspectives
+give the same result, which can indeed be confusing.
+
+The first column represents $L_z(e_1)$,
+the second column represents $L_z(e_2)$,
+the third column represents $L_z(e_3)$.
+
+In physics speak this would be read as the wave functions
+$\frac{1}{\sqrt{2}} (x +iy)$, $z$, and $- \frac{1}{\sqrt{2}} (x -iy)$
+have eigenvalues 1, 0, and -1, respectively.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Transformation Matrices}
+
+The previous section gave us a good place to begin talking about tensors.
+Now let's actually talk about them.
+
+Tensors have been historically defined based on how they transform.
+Think of the conventional axis rotation formula in 2D.
+If we rotate the axis by an angle $\theta$, then
+
+$$
+x^\prime = x \cos\theta - y \sin\theta
+$$
+and
+$$
+y^\prime = x \sin\theta + y \cos\theta
+$$
+
+As we saw in the previous section,
+where we derived the matrix representation of the angular momentum operator,
+the columns of a matrix representation of a multilinear map (tensor) correspond to the action of
+the map (tensor) on the basis vectors.
+Which is most commonly seen as
+
+$$
+\begin{pmatrix}
+x^\prime \\
+y^\prime
+\end{pmatrix}
+=
+\begin{pmatrix}
+\cos\theta & - \sin\theta \\
+\sin\theta & \cos\theta
+\end{pmatrix}
+\begin{pmatrix}
+x \\
+y
+\end{pmatrix}
+$$
+
+If we envision $x$ and $y$, and $x^\prime$ and $y^\prime$, and some basis sets,
+such that $x \rightarrow e_1$ and $y \rightarrow e_2$ (similarly for the primed components).
+We can rewrite the above as
+$$
+e_{1^\prime} = e_1 \cos\theta - e_2 \sin\theta
+$$
+and
+$$
+e_{2^\prime} = e_1 \sin\theta + e_2 \cos\theta
+$$
+
+Meaning that our problem becomes,
+$$
+\begin{pmatrix}
+e_{1^\prime} \\
+e_{2^\prime}
+\end{pmatrix}
+=
+\begin{pmatrix}
+\cos\theta & - \sin\theta \\
+\sin\theta & \cos\theta
+\end{pmatrix}
+\begin{pmatrix}
+e_1 \\
+e_2
+\end{pmatrix}
+$$
+
+Following the Einstein summation convention, we could write
+
+$$
+e_{i^\prime} = A_{i^\prime}^{j} e_j
+$$
+
+which also means that the original basis can be obtained as follows
+$$
+e_{i} = A_{i}^{j^\prime} e_{j^\prime}
+$$
+
+It is interesting to now quickly pursue the exercise of expressing our basis in terms of itself
+as it will show us some properties about these numbers $A_{i^\prime}^{j}$ and $A_{i}^{j^\prime}$.
+
+
+Combining the previous two expressions we get,
+$$
+e_{i} = A_{i}^{j^\prime} e_{j^\prime}
+= A_{i}^{j^\prime} A_{j^\prime}^{k} e_k
+$$
+
+From here we can see that
+$$
+A_{i}^{j^\prime} A_{j^\prime}^{k} = \delta_{i}^{k}
+$$
+
+If we consider the same example but with the primed-basis.
+
+$$
+e_{i^\prime} = A_{i^\prime}^{j} e_j 
+= A_{i^\prime}^{j} A_{j}^{k^\prime} e_{k^\prime}
+$$
+
+Meaning that
+
+$$
+A_{i^\prime}^{j} A_{j}^{k^\prime} = \delta_{i^\prime}^{k^\prime}
+$$
+
+So the different $A$s are inverse of one another.
+
+It is also worth noting that these $A$s are tensor components.
+
+
+In expressions such as $A_{i^{\prime}}^{j} A_{j}^{k^{\prime}}$, the indices $i^{\prime}$ and $k^{\prime}$ refer
+to the primed basis, while the index $j$ refers to the unprimed basis.
+This mixing of basis sets in a single expression is why the numbers $A_{i^{\prime}}^{j}$ and $A_{j}^{k^{\prime}}$
+are not considered tensor components.
+
+The transformation matrices $A_{i^{\prime}}^{j}$ and $A_{j}^{k^{\prime}}$ are not tensor components themselves,
+but rather express the relationship between components in different bases.
+The fact that these matrices are inverses of each other, which is a consequence of the transformation law for
+tensor components.
+
+Another useful thing to note is that the transformation for dual vectors looks the same but with uppoer indices.
+
+$$
+e^{i^\prime} = A_{j}^{i^\prime} e^j
+$$
+and
+$$
+e^{i} = A_{j^\prime}^{i} e^{j^\prime}
+$$
+
+With this info at hand, we can guesstimate the matrix transformation laws for tensors,
+
+$$
+A =
+\begin{pmatrix}
+A_{1}^{1^\prime} & A_{2}^{1^\prime} & \dots  & A_{n}^{1^\prime} \\
+A_{1}^{2^\prime} & A_{2}^{2^\prime} & \dots  & A_{n}^{2^\prime} \\
+\vdots           & \vdots           & \ddots & \vdots           \\
+A_{1}^{n^\prime} & A_{2}^{n^\prime} & \dots  & A_{n}^{n^\prime}
+\end{pmatrix}
+$$
+
+Its inverse is
+$$
+A^{-1}
+=
+\begin{pmatrix}
+A_{1^\prime}^{1} & A_{2^\prime}^{1} & \dots  & A_{n^\prime}^{1} \\
+A_{1^\prime}^{2} & A_{2^\prime}^{2} & \dots  & A_{n^\prime}^{2} \\
+\vdots           & \vdots           & \ddots & \vdots           \\
+A_{1^\prime}^{n} & A_{2^\prime}^{n} & \dots  & A_{n^\prime}^{n} \\
+\end{pmatrix}
+$$
+
+These are unitary matrices
+$$
+A A^{-1} = A^{-1} A = I
+$$
+
+Equating the above with our 2D rotation example,
+$$
+A^{-1}
+=
+\begin{pmatrix}
+\cos\theta & - \sin\theta \\
+\sin\theta & \cos\theta
+\end{pmatrix}
+$$
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Contravariant and Covariant Vectors}
+
+One fun fact about vectors is that they can be seen as tensors of type (0,1), that is, they feed
+on 1 dual vector.
+A vector can be viewed as a tensor of type (0, 1) because it transforms according to the contravariant
+transformation law under a change of coordinates. The key idea is that a vector represents a directed
+quantity that "eats" or operates on dual vectors (covectors or linear functionals) to produce scalars.
+
+This is mathematically said as,
+$$
+v^{i^\prime} = A^{i^\prime}_{j} v^j
+$$
+As we saw above, this is the transformation for dual vectors - expressions with contravariant indices.
+
+And as we saw above, these transform according to the Jacobian.
+
+A dual vector in turn transforms as
+$$
+f_{i^\prime} = A_{i^\prime}^{j} v_j
+$$
+
+Note how the transformation are the contrary to what we saw for the basis vectors!
+Where as the components of the dual vector transform in the same way as the basis.
+
+In matrix notation we have contravariant vectors transform as
+$$
+v_{\mathcal{B}^\prime} = A v_{\mathcal{B}}
+$$
+
+and covariant ones as
+$$
+f_{\mathcal{B}^\prime} = \left( A^{-1} \right)^T f_{\mathcal{B}}
+$$
+
+But remember that basis and dual basis transform in the opposite ways!
+\\
+
+
+Now, in quantum mechanics, if we consider an orthonormal basis ${\ket{e_{i^{\prime}}}}$ in the same Hilbert space.
+And assume that both ${\ket{e_i}}$ and ${\ket{e_{i^{\prime}}}}$ are complete bases,
+so there must be a unitary transformation $U$ that relates them.
+We would write, $\ket{e_{i^{\prime}}} = U \ket{e_i}$ for this.
+Consecuently, the dual basis transforms as follows, $\bra{ e_{i^\prime} } = \bra{e_i} U^\dagger $.
+
+Here, $U$ plays the role of $A^{-1}$, or $A_{i^{\prime}}^{j}$ in the tensor formalism.
+
+Following the previous approach, we get the following results for transformations into a primed basis set,
+$$
+\ket{e_{i^{\prime}}} = U \ket{e_i}
+$$
+and
+$$
+\bra{ e_{i^\prime} } = \bra{e_i} U^\dagger
+$$
+
+The matrix elements of $U$ in the $\ket{e_i}$ basis are given by:
+$U_{i^{\prime}}^{j} = \bra{e_{i^{\prime}}} U \ket{e_j}$.
+These matrix elements play the same role as the $A_{i^{\prime}}^{j}$ in your classical expression.
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Pauli Matrices}
+
+The Pauli matrices actually form a basis for $2 \times 2$ Hermitian matrices.
+Let's see how: a generic $2 \times 2$ Hermitian matrix would look like
+
+$$
+\begin{pmatrix}
+a & b\\
+c & d
+\end{pmatrix}
+=
+\begin{pmatrix}
+a^* & c^* \\
+b^* & d^*
+\end{pmatrix}
+$$
+
+Meaning that $a, b \in \mathbb{R}$ and that $b = c^*$.
+So we could write our Hermitian matrix as
+
+$$
+\begin{pmatrix}
+a      & x - iy \\
+x + iy & d
+\end{pmatrix}
+$$
+
+Another requirement that is imposed on $H_2 (\mathbb{C})$ is that they must be unitary, that is $U^\dagger U = I$, so
+
+\begin{align*}
+\begin{pmatrix}
+a      & x - iy \\
+x + iy & d
+\end{pmatrix}
+\begin{pmatrix}
+a      & x - iy \\
+x + iy & d
+\end{pmatrix}
+&=
+\begin{pmatrix}
+a^2 + x^2 - y^2         & a(x - iy) + b(x - iy) \\
+a(x + iy) + b(x + iy) & d^2 + x^2 - y^2
+\end{pmatrix}
+\\
+&=
+\begin{pmatrix}
+1 & 0 \\
+0 & 1
+\end{pmatrix}
+\end{align*}
+
+One way to make this happen is to set $a = -d$, this will also have the happy side effect of meeting another requirement
+for the Pauli matrices to be traceless.
+So now we have our candidate bases that ought to look like
+
+$$
+\begin{pmatrix}
+a      & x - iy \\
+x + iy & -a
+\end{pmatrix}
+$$
+
+This then means that our requirement for our matrix $H_2 (\mathbb{C})$ to be unitary simplifies to
+$$
+\begin{pmatrix}
+a^2 + x^2 - y^2 & 0                \\
+0               & a^2 + x^2 - y^2
+\end{pmatrix}
+=
+\begin{pmatrix}
+1 & 0 \\
+0 & 1
+\end{pmatrix}
+$$
+
+Here is where our 3 Pauli matrices comes!
+
+$$
+\sigma_1 = \sigma_x =  
+\begin{pmatrix}
+1 & 0 \\
+0 & 1
+\end{pmatrix}
+$$
+comes from assuming that $x=1$, so $a^2 + x^2 - y^2 = 1$ can be met by assuming that $a = y = 0$.
+
+$$
+\sigma_2 = \sigma_y =  
+\begin{pmatrix}
+0 & -i \\
+i & 0
+\end{pmatrix}
+$$
+
+comes from assuming that $y=1$, so $a^2 + x^2 - y^2 = 1$ can be met by assuming that $a = x = 0$.
+
+Finally,
+$$
+\sigma_3 = \sigma_z =  
+\begin{pmatrix}
+1 & 0 \\
+0 & -1
+\end{pmatrix}
+$$
+
+Where we took $a=1$ and $x = y = 0$.
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Tensor Product}
+
+Given two vectors $v \in V$ and $w \in W$,
+the tensor product $v \otimes w$ is defined as the element of $V \otimes W$ such that
+$$
+(v \otimes w)(h, g) = h(v) g(w)
+$$
+For all $h \in V^*$ and $g \in W^*$.
+
+If we consider some $T \in V \otimes W$ such that
+$$
+T(h, g) = h_i g_j T(e^i, f^j) = h_i g_j T^{i j}
+$$
+
+
+We defined $T^{i j}$ as $T^{i j} = T(e^i, f^j)$, $T$ which is a (0,2) tensor,
+meaning that it's a multilinear map that takes two dual vectors as inputs and returns a scalar.
+The vectors it takes as inputs are from the dual spaces (or covectors) $V^*$ and $W^*$.
+$\{e^i\}$ is a basis for $V^*$ and $\{f^j\}$ is a basis for $W^*$.
+Both sets of dual basis vectors, which is how we know $T^{ij}$ is a type (0,2) tensor.
+
+
+
+The next term in our expression is $e_i \otimes f_j$.
+This tensor product takes two dual vectors as inputs and returns a scalar,
+$$
+(e_i \otimes f_j)(v^*, w^*) = v^*(e_i) w^*(f_j)
+$$
+
+The action of the tensor product on these dual vectors is given by the action of each dual vector on its
+corresponding basis vector.
+
+This is exactly the behavior of a (0,2) tensor - it takes two dual vectors as inputs and returns a scalar.
+$v^*(e_i)$ is a scalar because - a linear functional acting on a vector. Similarly,
+$w^*(f_j)$.
+\\
+
+If we expand the dual vectors $v^*$ and $w^*$ in terms of their respective dual bases:
+$$
+v^* = v_i e^i
+$$
+$$
+w^* = w_j f^j
+$$
+
+Then,
+
+\begin{align*}
+(e_i \otimes f_j)(v^*, w^*) &= v^*(e_i) w^*(f_j) \\
+&= v_k e^k(e_i) \, w_l f^l(f_j) \\
+&= v_i w_j
+\end{align*}
+
+This follows the same approach as in the book when deriving the expression after 3.39.
+\\
+
+
+
+
+
+
+Now let's put this into practice.
+
+
+Suppose we have two vectors, $\vec{v} = (v_1, v_2)$ and $\vec{w} = (w_1, w_2, w_3)$.
+The tensor product of these vectors, denoted $\vec{v} \otimes \vec{w}$,
+is a new object that lives in a higher-dimensional space. It's defined as:
+
+$$
+\vec{v} \otimes \vec{w} = (v_1 w_1, v_1 w_2, v_1 w_3, v_2 w_1, v_2 w_2, v_2 w_3)
+$$
+
+This is a 6-dimensional vector, where each component is a product of a component from
+$\vec{v}$ and a component from $\vec{w}$.
+
+More generally, if $\vec{v}$ is an $n$-dimensional vector and $\vec{w}$ is an $m$-dimensional vector,
+their tensor product $\vec{v} \otimes \vec{w}$ is an $nm$-dimensional vector.
+\\
+
+Now, let's look at the tensor product of two matrices.
+If $A$ is an $n \times m$ matrix and $B$ is a $p \times q$ matrix,
+their tensor product $A \otimes B$ is an $np \times mq$ matrix:
+
+$$
+A \otimes B = 
+\begin{pmatrix} 
+a_{11}B & a_{12}B & \cdots & a_{1m}B \\
+a_{21}B & a_{22}B & \cdots & a_{2m}B \\
+\vdots & \vdots & \ddots & \vdots \\
+a_{n1}B & a_{n2}B & \cdots & a_{nm}B
+\end{pmatrix}
+$$
+
+Each block in this block matrix is a scalar multiple of the matrix $B$.
+\\
+
+In quantum mechanics, the state space of a composite system is
+the tensor product of the state spaces of the individual systems.
+If $\ket{\psi}$ is a state vector in one system and $\ket{\phi}$ is a state vector in another system,
+the state of the composite system is $\ket{\psi} \otimes \ket{\phi}$
+the notation $\ket{\psi \phi}$ is often used as a shorthand,
+so that the tensor product $\ket{\psi} \otimes \ket{\phi} = \ket{\psi \phi}$,
+especially when dealing with composite systems.
+
+The tensor product $\ket{\psi} \otimes \ket{\phi}$ is a formal mathematical operation that combines
+two state vectors into a single state vector in a higher-dimensional space.
+This is the correct way to describe the state of a composite system in quantum mechanics.
+
+If $\ket{\psi}$ is the state of one particle and $\ket{\phi}$ is the state of
+another particle, then $\ket{\psi \phi}$ would typically be understood to mean
+$\ket{\psi} \otimes \ket{\phi}$.
+\\~\\
+
+The tensor product itself is not a Hermitian form, but it can be used to construct a Hermitian form.
+
+A Hermitian form on a complex vector space $V$ is a map
+$h: V \times V \to \mathbb{C}$.
+A sesquilinear form then it is a map $h: \overline{V} \times V \to \mathbb{C}$.
+\\
+
+The universal property of the tensor product is a key concept that
+characterizes the tensor product in terms of a unique mapping property.
+The "universal-property definition" of the tensor product of two vector spaces is the following
+(see \href{https://en.wikipedia.org/wiki/Tensor_product#Universal_property}{wikipedia: tensor product}):
+
+The tensor product of two vector spaces $V$ and $W$ is a vector space denoted as
+$V\otimes W$, together with a bilinear map $\otimes : (v,w) \mapsto v\otimes w$
+from $V\times W$ to $V\otimes W$, such that, for every bilinear map
+$h : V\times W\to Z$, there is a unique linear map $\tilde{h} :V\otimes W\to Z$,
+such that $h= \tilde{h} \circ \otimes$,
+that is, $h(v,w) = \tilde{h} (v\otimes w)$ for every $v\in V$ and $w\in W$.
+
+
+In other words, the tensor product $U \otimes V$ is the "most general" vector space that can be constructed
+from $U$ and $V$ using a bilinear map.
+Any bilinear map from $U \times V$ to another vector space $W$ factors uniquely through the tensor product
+via a linear map from $U \otimes V$ to $W$.
+\\
+
+The phrase "up to isomorphism" is a common one in abstract algebra.
+It means that two mathematical objects (in this case, vector spaces) are not necessarily identical,
+but they are isomorphic, meaning that there exists an isomorphism between them.
+
+An isomorphism between two vector spaces $V$ and $W$ is a bijective (one-to-one and onto)
+linear map $f: V \to W$.
+If such a map exists, we say that $V$ and $W$ are isomorphic, and we write $V \cong W$.
