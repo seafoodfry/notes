@@ -881,3 +881,194 @@ but they are isomorphic, meaning that there exists an isomorphism between them.
 An isomorphism between two vector spaces $V$ and $W$ is a bijective (one-to-one and onto)
 linear map $f: V \to W$.
 If such a map exists, we say that $V$ and $W$ are isomorphic, and we write $V \cong W$.
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Tensor Contraction}
+
+Tensor contractions are used to reduce the rank of a tensor by summing over pairs of indices.
+
+For example, let's consider a rank-2 tensor (it looks like a matrix) $A_{ij}$.
+If we contract the indices $i$ and $j$, we get a scalar value:
+
+$$
+A_{ii} = A_{11} + A_{22} + \dots + A_{nn}
+$$
+
+Here, the repeated indices $i$ and $i$ are summed over, resulting in a scalar value.
+This is called a trace of a matrix.
+\\
+
+Now, let's look at a more general case.
+Consider a rank-3 tensor $T_{ijk}$ and a rank-2 tensor (matrix) $M_{jk}$.
+We can contract these tensors over the indices $j$ and $k$:
+
+$$
+(TM)_i = T_{ijk} M_{jk}
+$$
+
+Let's assume that the indices $i$, $j$, and $k$ range from 1 to 3.
+
+Step 1: Write out the contraction explicitly.
+$$
+(TM)_i = T_{ijk} M_{jk}
+$$
+
+Step 2: Expand the contraction for each value of the free index $i$.
+\begin{align*}
+(TM)_1 = T_{1jk} M_{jk} \\
+(TM)_2 = T_{2jk} M_{jk} \\
+(TM)_3 = T_{3jk} M_{jk}
+\end{align*}
+
+Step 3: For each value of $i$, perform the summation over the repeated indices $j$ and $k$.
+
+For $i = 1$:
+\begin{align*}
+(TM)_1 &= (T_{111} M_{11}) + (T_{112} M_{12}) + (T_{113} M_{13}) + \\
+        & (T_{121} M_{21}) + (T_{122} M_{22}) + (T_{123} M_{23}) + \\
+        & (T_{131} M_{31}) + (T_{132} M_{32}) + (T_{133} M_{33})
+\end{align*}
+
+
+For $i = 2$:
+\begin{align*}
+(TM)_2 &= (T_{211} M_{11}) + (T_{212} M_{12}) + (T_{213} M_{13}) + \\
+        & (T_{221} M_{21}) + (T_{222} M_{22}) + (T_{223} M_{23}) + \\
+        & (T_{231} M_{31}) + (T_{232} M_{32}) + (T_{233} M_{33})
+\end{align*}
+
+For $i = 3$:
+\begin{align*}
+(TM)_3 &= (T_{311} M_{11}) + (T_{312} M_{12}) + (T_{313} M_{13}) + \\
+        & (T_{321} M_{21}) + (T_{322} M_{22}) + (T_{323} M_{23}) + \\
+        & (T_{331} M_{31}) + (T_{332} M_{32}) + (T_{333} M_{33})
+\end{align*}
+
+The result of the contraction is a rank-1 tensor (vector) with components $(TM)_1$, $(TM)_2$, and $(TM)_3$.
+
+In contractions can be done by
+\begin{enumerate}
+\item Write out the contraction explicitly.
+\item Expand the contraction for each value of the free index.
+\item For each value of the free index, perform the summation over the repeated indices.
+\end{enumerate}
+
+
+Tensor contractions can be used to raise or lower indices when the tensor being contracted with
+is a metric tensor.
+In general relativity, the metric tensor $g_ij$ is used to raise or lower indices:
+$$
+v^i = g^{ij} v_j
+$$
+$$
+v_i = g_{ij} v^j
+$$
+
+Here, $g^ij$ is the inverse of the metric tensor $g_ij$.
+\\
+
+
+given $T \in T{s}^{r} (V)$ which has components $T_{i_1, \dots , 1_r }^{j_1 , \dots , js}$
+forms a tensor product of the form
+$$ 
+V^{*}{s} \times \dots \times V^{*}_{r} \times V_s \times \dots \times V_s
+$$
+
+so that,
+$$
+T = T_{i_1, \dots , 1_r }^{j_1 , \dots , j_s} e^{i_1} \otimes \dots \otimes e^{i_r} \otimes e{j_1} \otimes \dots \otimes e{j_s}
+$$
+
+
+
+Perform the contraction by feeding $e_i$ into the $r$-th slot and $e^i$ into the $(r+s)$-th slot.
+
+The $r$-th slot corresponds to the basis vector $e^{i_r}$, and the $(r+s)$-th slot corresponds to the basis vector $e_{j_s}$.
+$$
+T_{i_1, \dots, i_{r-1}, i}^{j_1, \dots, j_{s-1}, i} =
+T_{i_1, \dots, i_r}^{j_1, \dots, j_s} e^{i_1} \otimes \dots \otimes e^{i_{r-1}} \otimes e^i \otimes e_{j_1} \otimes \dots \otimes e_{j_{s-1}} \otimes e_i
+$$
+
+Perform the summation over the repeated index $i$.
+$$
+T_{i_1, \dots, i_{r-1}}^{j_1, \dots, j_{s-1}} = \sum_i T_{i_1, \dots, i_{r-1}, i}^{j_1, \dots, j_{s-1}, i}
+$$
+
+
+Example 1: Contraction of a rank-2 tensor (matrix) $A_{ij}$,
+$$
+A^i_i = \sum_i A^i_i = A^1_1 + A^2_2 + ... + A^n_n
+$$
+
+$$
+A = A^i_j e_i \otimes e^j
+$$
+Its contraction would be
+$$
+A_{i}^{i} e^i \otimes e_i
+$$
+
+However, this is not equal to the summation notation $\sum_i A_{ii}$.
+The correct way to express the contraction using the summation notation is:
+$$
+A^i_i = \sum_i A^i_i
+$$
+
+The reason for this is that the tensor product notation $e_i \otimes e^i$
+represents the basis vectors, not the components of the tensor.
+When we perform the contraction, we are summing over the components of the tensor, not the basis vectors.
+In other words:
+$$
+A^i_i = \sum_i A^i_i = A^1_1 + A^2_2 + ... + A^n_n
+$$
+
+Then, we perform the summation over the repeated index $i$:
+$$
+A_{ii} = \sum_i A_{ii} = A_{11} + A_{22} + ... + A_{nn}
+$$
+
+This is a special case where $r = s = 1$,
+and the contraction is performed over the only contravariant and covariant indices.
+
+
+
+Example 2: Contraction of a rank-3 tensor $T_{ijk}$ with a rank-2 tensor $M_{jk}$.
+
+$$
+(TM)_i = \sum_j \sum_k T_{ijk} M_{jk}
+$$
+
+In this case, $r = 1$ and $s = 2$ for the rank-3 tensor $T_{ijk}$,
+and the contraction is performed over the 2nd and 3rd slots ($j$ and $k$ indices).
+
+$$
+T = T_{i}^{jk} e^i \otimes e_j \otimes e_k
+$$
+
+$$
+M = M_{jk} e^j \otimes e^k
+$$
+
+In terms of components, a  contraction can be taken with respect to any pair of indices
+provided that one is  covariant and the other contravariant.
+
+Jeevanjee, Nadir. An Introduction to Tensors and Group Theory for Physicists (p. 73). Springer International Publishing. Kindle Edition. 
+
+To perform the contraction, we feed $e_j$ into the 2nd slot and $e^j$ into the 3rd slot of the tensor $T$,
+then we do the same with $e_k$ and $e^k$,
+and then multiply componentwise with $M$:
+$$
+(TM)_{ik} = T_{i}^{jk} M_{jk} e^i \otimes e_j \otimes e_k \otimes e^j \otimes e^k
+$$
+Then, we perform the summation over the repeated indices $j$ and $k$:
+$$
+(TM)_i = \sum_j \sum_k T_{ijk} M_{jk} e^i
+$$
+The resulting tensor is a rank-1 tensor (vector) with components $(TM)_i$.
