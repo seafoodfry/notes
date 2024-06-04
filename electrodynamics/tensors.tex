@@ -326,8 +326,8 @@ L_z =
 \end{pmatrix}
 $$
 
-Could you tell me how that tensor representation of $L_z$ is implies by saying that
-$T(e_i) = \sum^{n}_{j=1} T_{i}^{j} e_j$ ?
+That tensor representation of $L_z$ is implies by saying that
+$T(e_i) = \sum^{n}_{j=1} T_{i}^{j} e_j$.
 
 
 $$
@@ -357,7 +357,7 @@ then we can say that $e_1 = \frac{1}{\sqrt{2}} (x +iy)$, $e_2 = z$, and $e_3 = -
 
 Meaning that $L_z (e_1) = e_1 = 1\cdot e_1 + 0\cdot e_2 + 0\cdot e_3$,
 $L_z (e_2) = 0 = 0\cdot e_1 + 0\cdot e_2 + 0\cdot e_3$, and
-$l_z (e_3) = -e_3 = 0\cdot e_1 + 0\cdot e_2 - 1\cdot e_3$.
+$L_z (e_3) = -e_3 = 0\cdot e_1 + 0\cdot e_2 - 1\cdot e_3$.
 From here, we can then adopt write this as a matrix
 
 $$
@@ -737,6 +737,71 @@ Where we took $a=1$ and $x = y = 0$.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Tensor Product}
 
+
+By definition, a \textbf{vector} can be writen as
+$$
+v = v^i e_i
+$$
+See section 2.3.
+$v^i$ are called the \textbf{contravariant} components of $v$.
+
+From section 2.5, we see that we can also define the dual vector $e^i$ as
+$$
+e^i(v) = v^i
+$$
+
+A \textbf{dual vector} $f$ can then be defined as (remember that a dual vector is a linear functional
+that takes a vector $v$ and returns a scalar)
+$$
+f(v)
+= f(v^i e_i)
+= v^i f(e_i)
+= v^i f_i
+$$
+So while we refer to the compoents of a vector as $v^i$ on a basis $e_i$,
+we refer to the components of a dual vector as $f_i$.
+And you might have guessed that the dual vector itself can be writen as
+$$
+f_i = f_i e^i
+$$
+
+$f_i$ are the \textbf{covariant} components of $f$.
+
+Given that a tensor is a multilinear map, the \textbf{linear operator}
+can be seen as a case of a (1, 1) type tensor.
+So for example, a linear operator $T$
+$$
+T(v)
+= T(v^i e_i)
+= v^i T(e_i)
+= v^i T_{i}^{j} e_j
+$$
+Remember that we are using the Einstein summation convention so there is actually a double sum in the last
+expression, $\sum_{i=1}^{n} \sum_{j=1}^{n} = \sum_{i,j}$.
+Note that we also used the definition of linearity to "take out" the $v^i$ factor from the action of the
+tensor.
+
+Components of a tensor are the values of the tensor on a set of basis vectors.
+For example, the components
+$$
+H_{i}^{j} = H(e_i, e^j)
+$$
+
+A vector can be considered a $(0, 1)$ type tensor (it feeds on a dual vector)
+and its components transform like
+$$
+v^i = A_{j}^{i} v^j
+$$
+And a dual vector can be considered a $(1, 0)$ type tensor (it feeds on a vector)
+and it compoents transform like
+$$
+f_i = A_{i}^{j} f_j
+$$
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Formal definition}
+
 Given two vectors $v \in V$ and $w \in W$,
 the tensor product $v \otimes w$ is defined as the element of $V \otimes W$ such that
 $$
@@ -829,6 +894,10 @@ a_{n1}B & a_{n2}B & \cdots & a_{nm}B
 $$
 
 Each block in this block matrix is a scalar multiple of the matrix $B$.
+
+The above is actually a specialized version of the tensor product called the
+\textbf{Kronecker product}, see
+\href{https://en.wikipedia.org/wiki/Kronecker_product}{wikipedia: kronecker products}.
 \\
 
 In quantum mechanics, the state space of a composite system is
@@ -886,11 +955,128 @@ If such a map exists, we say that $V$ and $W$ are isomorphic, and we write $V \c
 
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Practical definition}
 
+Given two vector spaces $V$ and $W$ with basis vectors $e^i$ and $e^j$,
+respectively, the tensor product of these spaces, denoted as $V \otimes W$,
+is \textbf{a new vector space spanned} by the basis vectors $e^i \otimes e^j$ 
+for all possible combinations of $i$ and $j$.
+
+For example, if $V$ is a 2D space with basis vectors $\{e^a, e^b\}$ and
+$W$ is a 3D space with basis vectors $\{e^1, e^2, e^3 \}$,
+then the tensor product space $V \otimes W$ will be a 6D space with basis vectors:
+$$
+\{e^a \otimes e^1, e^a \otimes e^2, e^a \otimes e^3, e^b \otimes e^1, e^b \otimes e^2, e^b \otimes e^3\}
+$$
+
+To understand this further, let's look at $e^a \otimes e^1$.
+Consider the original vector spaces $V$ and $W$.
+
+In the 2D space $V$, $e^a$ might represent the unit vector along the $x$-axis, $(1, 0)$.
+In the 3D space $W$, $e^1$ might represent the unit vector along the $x$-axis, $(1, 0, 0)$.
+Remember that when we say vectors, we are actually thinking about column vectors.
+And it turns out the way to obtain an explicit answer is through the kronecker product again.
+In this case, our tensor product can be computed as an \textbf{outer product}.
+Remember that the outer product of two vectors $x$ and $y$ is defined as $xy^\dagger$, or
+simply $xy^T$, if we are dealing with solely real numbers.
+This is in contrast with an inner product which would be $x^\dagger y$ or $x^T y$.
+
+So now we have a great comparison between non-degenerate Hermitian forms and outer product.
+(Remember that for a Hermitian form to be an iner product we need the Hermitian form to be
+positive definite, that is $(x | y) = \braket{x | y }$ if
+ $(x | y)> 0$, see\href{https://en.wikipedia.org/wiki/Inner_product_space}{wikipedia: inner product space}.)
+
+$$
+u \otimes v = uv^\dagger
+$$
+and
+$$
+\braket{u, v} = \braket{u | v} = u^\dagger v
+$$
+
+So when we go on talking about components as in
+$$
+u \otimes v 
+= (u^i e_i) \otimes (v^j b_j)
+= u^i v^j e_i \otimes b_j
+$$
+
+It means that
+$$
+(u \otimes v)_{ij} = u^i v^j
+$$
+That is, the tensor product can be pieced together through normal products between components.
+
+For example,
+
+$$
+u \otimes V
+= u v^\dagger
+=
+\begin{pmatrix}
+    u_1 \\
+    u_2 \\
+    \vdots \\
+    u_n
+\end{pmatrix}
+\begin{pmatrix}
+    v_1 & v_2 & \dots & v_m
+\end{pmatrix}
+=
+\begin{pmatrix}
+u_1 v_1 & u_1 v_2 & \dots  & u_1 v_m \\
+u_2 v_1 & u_2 v_2 & \dots  & u_2 v_m \\
+\vdots  & \vdots  & \ddots & \vdots \\
+u_n v_1 & u_n v_2 & \dots & u_n v_m \\
+\end{pmatrix}
+$$
+
+In practice, $e^a \otimes e^1$ can be thought of as a 6D unit vector that points in the direction
+corresponding to the combination of the x-axis direction from space $V$ and the x-axis direction from space $W$.
+It is a basis vector that allows you to describe vectors in the 6D space that have components along this combined direction.
+
+Using what we noted above,
+$$
+e^a \otimes e^1
+= 
+\begin{pmatrix}
+    1 \\
+    0
+\end{pmatrix}
+\begin{pmatrix}
+    1 & 0 & 0
+\end{pmatrix}
+=
+\begin{pmatrix}
+u_1 v_1 & u_1 v_2 & u_1 v_3 \\
+u_2 v_1 & u_2 v_2 & u_2 v_3 \\
+\end{pmatrix}
+=
+\begin{pmatrix}
+(1) (1) & (1) (0) & (1) (0) \\
+(0) (1) & (0) (0) & (0) (0) \\
+\end{pmatrix}
+=
+\begin{pmatrix}
+1 & 0 & 0 \\
+0 & 0 & 0 \\
+\end{pmatrix}
+$$
+
+Here is where we make our comback to quantum mechanics.
+If $\ket{\psi} \in V$ and $\ket{\phi} \ in W$, then a member of the tensor product $V \otimes W$ can be written
+as
+$$
+\ket{\psi}\ket{\phi} = \ket{\psi, \phi} = \ket{\psi\phi} = \ket{\psi} \otimes \ket{\phi}
+$$
+See
+\href{https://en.wikipedia.org/wiki/Bra%E2%80%93ket_notation}{wikipedia: braket notation - composite bras and kets}.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Tensor Contraction}
+
 
 Tensor contractions are used to reduce the rank of a tensor by summing over pairs of indices.
 
