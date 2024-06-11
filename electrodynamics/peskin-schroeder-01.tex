@@ -949,3 +949,118 @@ $$
     y_3
 \end{pmatrix}
 $$
+
+And from here you should go and reach \ref{chapter:tensors}.
+We'll wait for you here.
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{On the Way to the Method of Stationary Phase: Method of Steepest Descent}
+
+Building on top of the Laplace method, we now want to approximate
+$$
+\mathcal{I}(z) 
+= \int_{C} f(z) e^{\lambda g(z)} dz
+$$
+
+Where $f(z)$ and $g(z)$ are analytical and we can deform the contour of integration
+into any $C^\prime$ without changing the integral.
+This is the complex analogue to the "fundamental theorem for gradients", where if the function whose gradient we are
+integrating along a path is continuous, then its line integral along a close path is zero.
+
+In complex analysis, this is the theorem called "Cauchy's integral theorem".
+The theorem actually talks about holomorphic functions $f(z)$ being integrated on a simply connected
+domain $\Omega$.
+But since all holomorphic functions are analytical, this is the topic of Cauchy Riemman's Theorem,
+and we can assume that we will always be on a simply connected domain (read Abbott's book on
+analysis if you want to know more about that concept), then
+$$
+\int_{C} f(z) dz = 0
+$$
+\\
+
+We have an analytic function $g(z) = X(z) + iY(z)$, where $X(z)$ and $Y(z)$ are real-valued functions.
+
+The method of steepest descent relies on finding a contour along which the imaginary part of $g(z)$
+is constant, i.e., $Y(z) = c$ for some constant $c$.
+This is called a \textbf{constant phase contour} because
+$$
+e^{\lambda g(z)} = e^{\lambda (X(z) + iY(z))} = e^{\lambda X(z)} e^{i\lambda c}
+$$
+and the phase of this complex exponential is constant along the contour.
+
+
+Now, let's see why constant phase contours are equivalent to steepest descent contours.
+
+The steepest descent direction is the direction in which $X(z)$ decreases most rapidly ($Y(z) = c$).
+This is given by the negative gradient of $X(z)$:
+
+$$
+-\nabla X = -\left(\frac{\partial X}{\partial x}, \frac{\partial X}{\partial y}\right)
+$$
+
+The constant phase contour is defined by $Y(z) = c$.
+This means that the contour is a level curve of the function $Y(z)$.
+The gradient of $Y(z)$, on the other hand, is always perpendicular to the level curves of $Y(z)$.
+This is because the gradient points in the direction of the steepest ascent of $Y(z)$,
+which is perpendicular to the directions along which $Y(z)$ does not change (i.e., the level curves).
+
+The direction of this contour is given by the gradient of $Y(z)$ rotated by 90 degrees,
+$$
+\left(-\frac{\partial Y}{\partial y}, \frac{\partial Y}{\partial x}\right)
+$$
+
+The direction perpendicular to the gradient of $Y(z)$ is given by $\left(\frac{\partial Y}{\partial y}, -\frac{\partial Y}{\partial x}\right)$.
+
+To understand why the direction perpendicular to the gradient of $Y(z)$ is given by $\left(\frac{\partial Y}{\partial y}, -\frac{\partial Y}{\partial x}\right)$, let's consider the properties of the gradient and perpendicular vectors in 2D space.
+
+The gradient of $Y(z)$ is given by,
+
+$\nabla Y = \left(\frac{\partial Y}{\partial x}, \frac{\partial Y}{\partial y}\right)$
+
+Now, let's find a vector that is perpendicular to $\nabla Y$. In 2D space, if a vector $(a, b)$ is perpendicular to a vector $(c, d)$, their dot product must be zero:
+
+$(a, b) \cdot (c, d) = ac + bd = 0$
+
+If we choose $(a, b) = \left(\frac{\partial Y}{\partial y}, -\frac{\partial Y}{\partial x}\right)$, then:
+
+$\left(\frac{\partial Y}{\partial y}, -\frac{\partial Y}{\partial x}\right) \cdot \left(\frac{\partial Y}{\partial x}, \frac{\partial Y}{\partial y}\right) = \frac{\partial Y}{\partial y} \frac{\partial Y}{\partial x} - \frac{\partial Y}{\partial x} \frac{\partial Y}{\partial y} = 0$
+
+This proves that the vector $\left(\frac{\partial Y}{\partial y}, -\frac{\partial Y}{\partial x}\right)$ is perpendicular to the gradient of $Y(z)$.
+
+Geometrically, this perpendicular vector is obtained by rotating the gradient vector $\nabla Y$ by 90 degrees counterclockwise. This is because the rotation matrix for a 90-degree counterclockwise rotation in 2D is:
+
+$R_{90^\circ} = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}$
+
+Applying this rotation matrix to the gradient vector:
+
+$\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix} \begin{pmatrix} \frac{\partial Y}{\partial x} \\ \frac{\partial Y}{\partial y} \end{pmatrix} = \begin{pmatrix} -\frac{\partial Y}{\partial y} \\ \frac{\partial Y}{\partial x} \end{pmatrix} = \begin{pmatrix} \frac{\partial Y}{\partial y} \\ -\frac{\partial Y}{\partial x} \end{pmatrix}$
+
+This confirms that the vector $\left(\frac{\partial Y}{\partial y}, -\frac{\partial Y}{\partial x}\right)$ is indeed perpendicular to the gradient of $Y(z)$.
+
+
+
+
+
+
+Since $g(z)$ is analytic, the Cauchy-Riemann equations hold,
+
+$$
+\frac{\partial X}{\partial x} = \frac{\partial Y}{\partial y}
+$$
+and
+$$
+\frac{\partial X}{\partial y} = -\frac{\partial Y}{\partial x}
+$$
+
+4) Using the Cauchy-Riemann equations, we can rewrite the direction of the constant phase contour:
+
+   $\left(-\frac{\partial Y}{\partial y}, \frac{\partial Y}{\partial x}\right) = \left(-\frac{\partial X}{\partial x}, -\frac{\partial X}{\partial y}\right) = -\nabla X$
+
+5) This shows that the direction of the constant phase contour is the same as the steepest descent direction.
+
+So, the statement "for analytic $g(z)$, constant phase contours are equivalent to steepest descent contours" means that the contours along which the imaginary part of $g(z)$ is constant are the same as the contours along which the real part of $g(z)$ decreases most rapidly.
+
+The fact that $\nabla X \cdot \nabla Y = 0$ shows that these contours are orthogonal to each other, which is a nice property, but it's not the main point of the statement.
