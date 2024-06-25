@@ -1250,8 +1250,27 @@ $$
 =
 \sum_{i=1}^{n} z_i \frac{\partial f}{\partial z_i}
 $$
+\\
 
 
+$$
+\mathcal{I}_j
+=
+\int_{-\infty}^{\infty} e^{\frac{1}{2}\lambda_j y^2} dy
+=
+2 \int_{0}^{\infty} e^{-\frac{1}{2}\lambda\left(\sqrt{-\mu_j} y\right)^2} dy
+=
+2 \int_{0}^{\infty} e^{-\frac{1}{2}\lambda |-\mu_j|^2 y^2 \exp(2i \arg \sqrt{-\mu_j})} dy
+$$
+
+The last expression is obtained by writing the complex number $\mu$ as
+$$
+-\mu_j = |-\mu_j| e^{i \arg(-\mu_j)}
+$$
+or
+$$
+\sqrt{-\mu_j} = \sqrt{|-\mu_j|} e^{i \arg(\sqrt{-\mu_j})}
+$$
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Homotopy}
