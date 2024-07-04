@@ -1232,6 +1232,26 @@ $$
 
 and $\det(\phi^{\prime}_{w} (0)) = 1$.
 Here $\mu_j$ are the eignevalues of $S^{\prime\prime}_{zz} (z^0)$.
+
+The use of the complex morse lemma is that we can separate our initial problem into components.
+Remember that we started with
+
+$$
+I(\lambda) =
+\int_{C} f(z) e^{\lambda g(z)} dz
+$$
+
+The integral is broken into the domain with the saddle point and the one without it, and then expressed in terms of
+the bijective function $\phi$, that maps a domain around $z^0$ to some other domain $U$.
+So we in the limit of $\lambda \rightarrow \infty$
+
+$$
+I(\lambda) = I_0 (\lambda) =
+\int_{C_w} f(\phi(w)) e^{\lambda S(\phi(w))} \, d\left(\phi (w)\right) =
+\int_{C_w} f(\phi(w)) \left( e^{\lambda S(z^0)} e^{\frac{1}{2} \lambda \sum_j \mu_j w_{j}^{2}} \right) \, d\left(\phi (w)\right)
+$$
+
+To simplify the expression we have to remember how to use the Jacobian to fully do our transformation of variables.
 \\
 
 $$
