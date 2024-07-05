@@ -1245,11 +1245,12 @@ The integral is broken into the domain with the saddle point and the one without
 the bijective function $\phi$, that maps a domain around $z^0$ to some other domain $U$.
 So we in the limit of $\lambda \rightarrow \infty$
 
-$$
-I(\lambda) = I_0 (\lambda) =
-\int_{C_w} f(\phi(w)) e^{\lambda S(\phi(w))} \, d\left(\phi (w)\right) =
-\int_{C_w} f(\phi(w)) \left( e^{\lambda S(z^0)} e^{\frac{1}{2} \lambda \sum_j \mu_j w_{j}^{2}} \right) \, d\left(\phi (w)\right)
-$$
+\begin{align*}
+I(\lambda) &= I_0 (\lambda) =
+\int_{C_w} f(\phi(w)) e^{\lambda S(\phi(w))} \, d\left(\phi (w)\right) \\
+&= \int_{C_w} f(\phi(w)) \left( e^{\lambda S(z^0)} e^{\frac{1}{2} \lambda \sum_j \mu_j w_{j}^{2}} \right) \, d\left(\phi (w)\right) \\
+&= e^{\lambda S(z^0)} \int_{C_w} f(\phi(w)) \exp\left( \frac{1}{2} \lambda \sum_j \mu_j w_{j}^{2} \right) \, \Big| \det \phi^{\prime}_{w}\Big| dw
+\end{align*}
 
 To simplify the expression we have to remember how to use the Jacobian to fully do our transformation of variables.
 \\
