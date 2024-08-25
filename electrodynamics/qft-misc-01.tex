@@ -1,189 +1,294 @@
-\section{Integrals in QFT}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Frobenius Method}
 
-\subsection{Kinetic operator and a Green Function} \label{integral:kinetic-operator}
+\subsection{A Generic Example}
 
-This problem is part of
-\href{https://arxiv.org/abs/physics/0609191}{MontePython: Implementing Quantum Monte Carlo using Python}.
-
-There is a kinetic operator defined as
-$$
-G_K \left(\mathbf{R}^\prime, \mathbf{R}, t\right) =
-\frac{1}{\left(2\pi\right)^{3N}} \int e^{-i\mathbf{k}\mathbf{R}^\prime} e^{-Dtk^2} e^{-i\mathbf{k}\mathbf{R}} d\mathbf{k}
-$$
-
-This integral then is integrated and the following Green function is obtained
-$$
-G_K \left(\mathbf{R}^\prime, \mathbf{R}, t\right) =
-\frac{1}{\left(4\pi Dt\right)^{3N/2}} e^{-\left(\mathbf{R}-\mathbf{R}^\prime\right) / 4Dt}
-$$
-
-And as we saw in \hyperref[jackson:problem-1.2]{Jackson problem 1.2}, the Green function we just got is equivalent to
-$\delta\left(\mathbf{R} - \mathbf{R}^\prime\right)$.
-
-But coming back to the integral, the trick is to complete the square!
-\begin{align*}
-G_K \left(\vect{R}^\prime, \vect{R}, t\right) &=
-\frac{1}{\left(2\pi\right)^{3N}} \int e^{-i\vect{k}\vect{R}^\prime} e^{-Dtk^2} e^{-i\vect{k}\vect{R}} d\vect{k} \\
-&= \frac{1}{\left(2\pi\right)^{3N}} \int e^{-Dtk^2 + -i\vect{k}\cdot\left(\vect{R}-\vect{R}^\prime\right)} d\mathbf{k}
-\end{align*}
-
-This last integral has the form $\int e^{ax^2 + bx} dx$, which can be solved as follows,
-\begin{align*}
-\int e^{ax^2 + bx} dx &= \int \exp\left\{ a\left(x^2 + \frac{b}{a}x\right) \right\} dx \\
-&= \int \exp\left\{ a\left(x^2 + \frac{b}{a}x + \left(\frac{b}{2a}\right)^2 - \left(\frac{b}{2a}\right)^2 \right) \right\} dx \\
-&= \int \exp\left\{ a\left(x + \frac{b}{2a}\right)^2 - \frac{b^2}{4a} \right\} dx \\
-&= e^{-b^2/4a} \int e^{ a\left(x + \frac{b}{2a}\right)^2 } dx
-\end{align*}
-
-Now, let's look at $\int e^{ a\left(x + b/2a\right)^2 } dx$.
-First, we need to make a transformation.
-Let's define $u = x + b/2a$, then $du = dx$, the measure remains invariant (so do the limits of integration), so
-$\int e^{ a\left(x + b/2a\right)^2 } dx = \int e^{ au^2 } du$.
-Now, if we define $a = -c$, then 
-
-\begin{align*}
-\int e^{ a\left(x + b/2a\right)^2 } dx &= \int e^{ au^2 } du \\
-&= \int e^{ -cu^2 } du \\
-&= \sqrt{ \frac{\pi}{c} } = \sqrt{ \frac{\pi}{-a} } 
-\end{align*}
-
-This whole thing works if $a < 0$ but it turns out that this is also valid if $\re{(a)} \leq 0$ but $a \neq 0$.
-
-Putting everything back together,
-$$
-\int e^{ax^2 + bx} dx = \sqrt{ \frac{\pi}{-a} } e^{-b^2/4a}
-$$
-
-Looking back at our original problem, we can chose $a = -Dt$ and $b = i \vect{r}$, where $\vect{r} = \vect{R}-\vect{R}^\prime$.
-and so
-\begin{align*}
-G_K \left(\vect{R}^\prime, \vect{R}, t\right) &=
-\frac{1}{\left(2\pi\right)^{3N}} \int e^{-Dtk^2 + -i\vect{k}\cdot\vect{r}} d\mathbf{k} \\
-&= \frac{1}{\left(2\pi\right)^{3N}} \int e^{-Dt \left( k^2 + \frac{i\vect{k}}{Dt}\cdot\vect{r} \right)} d\mathbf{k} \\
-&= \frac{1}{\left(2\pi\right)^{3N}} \int e^{-Dt \left( k^2 + \frac{i\vect{r}}{Dt}\cdot\vect{k} + \left(\frac{i\vect{r}}{2Dt}\right)^2 - \left(\frac{i\vect{r}}{2Dt}\right)^2 \right)} d\mathbf{k} \\
-&= \frac{1}{\left(2\pi\right)^{3N}} \int e^{-Dt \left( k + \frac{i\vect{r}}{2Dt}\right)^2 - \frac{ \vect{r}^2 }{ 4Dt } } d\mathbf{k} \\
-&= \frac{1}{\left(2\pi\right)^{3N}} e^{-\vect{r}^2 /4Dt } \int e^{-Dt \left( k + \frac{i\vect{r}}{2Dt}\right)^2 } d\mathbf{k} \\
-\end{align*}
-
-Again, since $\int e^{-ax^2} dx = \sqrt{ \frac{\pi}{a} }$,
-then
-\begin{align*}
-\int e^{-Dt \left( k + \frac{i\vect{r}}{2Dt}\right)^2 } dk &= \sqrt{ \frac{\pi}{Dt} }
-\end{align*}
-
-Thus,
-\begin{align*}
-G_K \left(\vect{R}^\prime, \vect{R}, t\right) &=
-\frac{1}{\left(2\pi\right)^{3N}} e^{-\vect{r}^2 /4Dt } \int e^{-Dt \left( k + \frac{i\vect{r}}{2Dt}\right)^2 } d\mathbf{k} \\
-&= \frac{1}{\left(2\pi\right)^{3N}} e^{-\vect{r}^2 /4Dt } \left( \sqrt{ \frac{\pi}{Dt} } \right)^{3N} \\
-&= \frac{1}{\left(4\pi^2\right)^{3N/2}} \frac{\pi^{3N/2}}{(Dt)^{3N/2}} e^{-\vect{r}^2 /4Dt } \\
-&= \frac{1}{\left(4\pi Dt\right)^{3N/2}} e^{-\left(\vect{R} - \vect{R}^\prime\right)^2 /4Dt }
-\end{align*}
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsection{Klein-gordon Non-relativistic Amplitude} \label{ps-kg:nonrelativistic-propagator}
-
-The following integral comes from Peskin and schroeder Section 2.1
-\begin{align}
-& \int \frac{d^3p}{(2\pi)^3} \, e^{-i(\vect{p}^2/2m)t} e^{i\vect{p}\cdot(\vect{x}-\vect{x}_0)} \label{kg:nonrelativistic-03} \\
-&= \left( \frac{m}{2\pi i t} \right)^{3/2} e^{im (\vect{x}-\vect{x}_0)^2 /2t} \label{kg:nonrelativistic-04}
-\end{align}
-
-This integral follows the same procedure as \ref{integral:kinetic-operator}.
-
-Here we have $a = -\frac{it}{2m}$ and $b = i(\vect{x}-\vect{x_0})$.
-Since $\re{a} = -t/2m \leq 0$ and $a\neq 0$ when $t\neq 0$ oru solution is valid for $t\neq 0$.
-Then
+The following example comes from
+\href{https://en.wikipedia.org/wiki/Frobenius_method}{wikipedia: frobenius method}:
 
 $$
-\sqrt{ \frac{\pi}{-a} } = \sqrt{ \frac{2\pi m}{it} }
+z^2 f^{\prime\prime} - zf^\prime + (1-z)f = 0
 $$
 
+We assume the solution has the form,
+$$
+f = \sum_{k=0} A_k z^{k+r}
+$$
+
+Plugging the above series into the ODE and organizing like terms we land in
+$$
+\sum_k \left[ (k+r)(k+r-1) - (k+r) + (1-z) \right] A_k z^{k+r} = 0
+$$
+which can be further simplified to
+
+$$
+\sum_k \left[ (k+r)(k+r-1) - (k+r) + 1 \right] A_k z^{k+r}
+    - \sum_k A_k z^{k+r+1} 
+= 0
+$$
+
+The indicial polynomial can then be obtained by considering the lowest power of $z$, which is $z^r$,
+$$
+(r(r-1) + 1) A_0 z^r
+$$
+
+We now set $z=0$ and obtain
+$$
+r(r-1) + 1 = r^2 -r + 1 = (r-1)^2 = 0
+$$
+
+Meaning that $r=1$ (double root).
+
+We now need to find the recurrence relation by plugging $f = \sum_{k=0} A_k z^{k+1}$ back into our original proble,
+equate coefficients of like powers of $z$, and find a recurrence relation for $A_k$.
+
+We now have,
+$$
+f^\prime = \sum_{k=0} A_k (k+1) z^k
+$$
 and
+$$
+f^{\prime\prime} = \sum_{k=0} A_k k(k+1) z^{k-1}
+$$
+
+And our ODE now becomes,
 \begin{align*}
--\frac{b^2}{4a} &= \frac{2m \left(\vect{x}-\vect{x}_0\right)^2}{-4it} \\
-&= \frac{im \left(\vect{x}-\vect{x}_0\right)^2}{2t}
+& z^2 \sum_{k} A_k k(k+1) z^{k-1}
+    - z \sum_{k} A_k (k+1) z^k
+    + (1-z) \sum_{k} A_k z^{k+1} \\
+&= \sum_{k} A_k k(k+1) z^{k+1}
+    - \sum_{k} A_k (k+1) z^{k+1}
+    + \sum_{k} A_k z^{k+1}
+    - \sum_{k} A_k z^{k+2} \\
+&= \sum_k \left[ k(k+1) - (k+1) + 1 \right] A_k z^{k+1} - \sum_{k} A_k z^{k+2} \\
+&= \sum_k k^2 A_k z^{k+1} - \sum_{k} A_k z^{k+2}
 \end{align*}
 
-So the solution is
+To find a recurrence relation we need to align the sums.
+So we can write
 \begin{align*}
-& \frac{1}{(2\pi)^3} \left( \frac{2\pi m}{it} \right)^{3/2} e^{\frac{im \left(\vect{x}-\vect{x}_0\right)^2}{2t}} \\
-&= \left( \frac{m}{2\pi it} \right)^{3/2} e^{im \left(\vect{x}-\vect{x}_0\right)^2 /2t}
+& \sum_{k=0} k^2 A_k z^{k+1} - \sum_{k=0} A_k z^{k+2} \\
+&= \sum_{k=0} k^2 A_k z^{k+1} - \sum_{k=1} A_{k-1} z^{k+1}
 \end{align*}
 
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Tensors}
-
-Working with a spacetime with a metric signature $(+ - - -)$,
+We could do a similar shift for the first sum but since the first term $k=0$ has a $k^2$ term then we can ignore it.
+Thus,
 $$
-\begin{pmatrix}
-    1 & 0  & 0  & 0  \\
-    0 & -1 & 0  & 0  \\
-    0 & 0  & -1 & 0  \\
-    0 & 0  & 0  & -1 \\
-\end{pmatrix}
+\sum_{k=1} \left( k^2 A_k - A_{k-1} \right) z^{k+1} = 0
 $$
 
-$x^\mu = (x^0, \vect{x})$ and $x_\mu = g_{\mu\nu} x^\nu = (x^0, -\vect{0})$.
-To see this explciitly, let's carry out the summations.
-
-When $\mu = 0$, $x_0 = g_{00}x^0 + g_{01}x^1 + g_{02}x^2 + g_{03}x^3 = x^0 + 0 + 0 +0 = x^0$.
-For $\mu = 1$, $x_1 = g_{10}x^0 + g_{11}x^1 + g_{12}x^2 + g_{13}x^3 = 0 + x^1 + 0 +0 = -x^0$.
-Similarly, when $\mu = 2$, $x_2 = -x^2$, and when $\mu =3$, $x_3 = -x^3$.
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Inner Product}
-
-Why does $p \cdot x = g_{\mu\nu} p^\mu x^\nu = g^{\mu\nu} p_\mu x_\nu = p_\mu x^\nu = p^\mu x_\nu = p^0 x^0 - \vect{p}\cdot\vect{x}$?
-
-The metric tensor defines the geometry of spacetime, including the way distances and angles are measured.
-The implied summation, einstein summation, effectively 'weights' the components according to the geometry of spacetime.
-
-$g_{\mu\nu}$ lowers indices, while $g^{\mu\nu}$ raises them.
-$\delta^{\mu}_{\nu}$ is a diagonal matrix with ones on the diagonal and zeros elsewhere.
-It selects the $\mu$-th component when used in a summation, acting like an identity element.
-
-$g^{\mu\alpha} g_{\alpha\nu} = \delta^{\mu}_{\nu}$
-
+Since this sum must be zero for all $z$, the coefficients must satisfy,
 $$
-g^{\mu\alpha} g_{\alpha\nu} = \sum_{\alpha = 0} g^{\mu\alpha} g_{\alpha\nu} =
-g^{\mu 0} g_{0 \nu} + g^{\mu 1} g_{1\nu} + g^{\mu 2} g_{2\nu} + g^{\mu 3} g_{3\nu}
+k^2 A_k - A_{k-1} = 0
+$$
+or
+$$
+A_k = \frac{ A_{k-1} }{k^2} 
 $$
 
-This is essentially a matrix multiplication.
+This recurrence realtionship now gives us all coefficients in terms of $A_0$.
+The first couple coefficients are,
 $$
-\begin{pmatrix}
-    1 & 0  & 0  & 0  \\
-    0 & -1 & 0  & 0  \\
-    0 & 0  & -1 & 0  \\
-    0 & 0  & 0  & -1 \\
-\end{pmatrix}
-\cdot
-\begin{pmatrix}
-    1 & 0  & 0  & 0  \\
-    0 & -1 & 0  & 0  \\
-    0 & 0  & -1 & 0  \\
-    0 & 0  & 0  & -1 \\
-\end{pmatrix}
+A_1 = \frac{ A_0 }{1^2} = A_0
+$$
+
+$$
+A_2 = \frac{ A_1 }{2^2} = \frac{ A_0 }{2^2}
+$$
+
+$$
+A_3 = \frac{ A_2 }{3^2} = \frac{ A_0 }{2^2 3^2}
+$$
+
+This means that our general solution looks like
+$$
+f(z) = \sum_{k=0} A_k z^{k+1}
+= A_0 \sum_{k=0} \frac{ z^{k+1} }{k!^2}
+$$
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Legendre Equation}
+
+Using the nomenclature of Arfken,
+$$
+\mathcal{L} y(x) =
+-(1-x^2) y^{\prime\prime} + 2x y^\prime = \lambda y
+$$
+
+Which can also be expressed as
+$$
+(1-x^2) y^{\prime\prime} - 2x y^\prime + \lambda y = 0
+$$
+
+If we assume the solution is of the form
+$$
+y(x) =
+\sum_{j=0} a_j x^{j+s}
+$$
+
+then the Legendre equation can be written as
+
+\begin{align*}
+& (1-x^2) \sum_{j} a_j (j+s)(j+s-1) x^{j+s-2}
+    - 2x \sum_{j} a_j (j+s) x^{j+s-1}
+    + \lambda \sum_{j} a_j x^{j+s} \\
+&= \sum_{j} a_j (j+s)(j+s-1) x^{j+s-2}
+    - \sum_{j} a_j (j+s)(j+s-1) x^{j+s}
+    -2 \sum_{j} a_j (j+s) x^{j+s}
+    + \lambda \sum_{j} x^{j+s} \\
+&= \sum_{j} a_j (j+s)(j+s-1) x^{j+s-2}
+    + \sum_j \left[ -(j+s)(j+s-1) -2(j+s) + \lambda \right] a_j x^{s+j}
+\end{align*}
+
+The indicial polynomial then comes from considering the lowest power of $x$, which is the first sum
+$$
+a_j (j+s)(j+s-1) x^{j+s-2}
+$$
+which for an arbitrary $x$ when $j=0$, it becomes
+$$
+s(s-1) = 0
+$$
+whose solutions are $s=0$ and $s=1$.
+
+In this case, the solution will be a linear combination,
+
+$$
+y(x) = y_1 (x) + y_2 (x)
+= \sum_j a_j x^{j} + \sum_j b_j x^{j+1}
+$$
+
+Let's start with the $s=0$ case then.
+Plugging $y_1 (x)$ back into our ODE we have
+
+\begin{align*}
+& (1-x^2) \sum_j a_j j(j-1) x^{j-2}
+    - 2x \sum_j a_j j x^{j-1}
+    + \lambda \sum_j a_j x^j \\
+&= \sum_j a_j j(j-1) x^{j-2}
+    - \sum_j a_j j(j-1) x^{j}
+    - 2 \sum_j a_j j x^{j}
+    + \lambda \sum_j a_j x^j \\
+&= \sum_j a_j j(j-1) x^{j-2}
+    + \sum_j \left[ -j(j-1) -2j + \lambda \right] a_j x^j
+\end{align*}
+
+Now, to align the powers of $x^{j}$.
+First, note that the first two terms in
+$\sum_j a_j j(j-1) x^{j-2}$ are $0$.
+So we might as well start at $j=2$
+$$
+\sum_{j=2} a_j j(j-1) x^{j-2}
+$$
+
+If we shift it back to $0$, we can align the powers of $x$.
+$$
+\sum_{j=2} a_j j(j-1) x^{j-2} =
+\sum_{j=0} a_{j+2} (j+2)(j+1) x^{j}
+$$
+
+This gives us,
+$$
+\sum_{j=0} a_{j+2} (j+2)(j+1) x^{j}
++ \sum_j \left[ -j(j-1) -2j + \lambda \right] a_j x^j
+= 0
+$$
+
+Now, we can equate coefficients,
+$$
+a_{j+2} (j+2)(j+1)
+    + \left[ -j(j-1) -2j + \lambda \right] a_j = 0
+$$
+or
+$$
+a_{j+2} = \frac{ j(j-1) + 2j - \lambda }{ (j+1)(j+2) } a_j
+= \frac{ j(j+1) - \lambda  }{ (j+1)(j+2) } a_j
+$$
+\\~\\
+
+In the $s=1$ case, if we plug in $y_2$ into our ODE,
+
+\begin{align*}
+& (1-x^2) \sum_j a_j j(j+1) x^{j-1}
+    - 2x \sum_j a_j (j+1) x^{j}
+    + \lambda \sum_j a_j x^{j+1} \\
+&= \sum_j a_j j(j+1) x^{j-1}
+    - \sum_j a_j j(j+1) x^{j+1}
+    - 2 \sum_j a_j (j+1) x^{j+1}
+    + \lambda \sum_j a_j x^{j+1} \\
+&= \sum_j a_j j(j+1) x^{j-1}
+    + \sum_j \left[ -j(j+1) -2(j+1) + \lambda \right] a_j x^{j+1}
+\end{align*}
+
+Following the procedure we have been building: look for a series with redundant terms, and then try to shift it to match
+the other powers of $x$.
+Here we have
+$$
+\sum_{j=0} a_j j(j+1) x^{j-1}
+$$
+that can be written as
+$$
+\sum_{j=1} a_j j(j+1) x^{j-1}
+$$
+Since the term when $j=0$ equals to 0.
+And we can conveniently shift this series back one to match the $x^j$ terms of the other sum:
+
+$$
+\sum_{j=1} a_j j(j+1) x^{j-1}
 =
-\begin{pmatrix}
-    1 & 0 & 0 & 0 \\
-    0 & 1 & 0 & 0 \\
-    0 & 0 & 1 & 0 \\
-    0 & 0 & 0 & 1 \\
-\end{pmatrix}
+\sum_{j=0} a_{j+1} (j+1)(j+2) x^{j}
 $$
 
-Going component by component, take the second row and second column, $\mu=1$ and $\nu=1$.
-The element for that entry is given by
+At this point we have,
+
 $$
-g^{1\alpha}g_{\alpha 1} =
-g^{1 0} g_{0 1} + g^{1 1} g_{1 1} + g^{1 2} g_{2 1} + g^{1 3} g_{3 1}
-= 0 + (-1)(-1) + 0 + 0 = 1
+\sum_{j=0} a_{j+1} (j+1)(j+2) x^{j}
+    + \sum_j \left[ -j(j+1) -2(j+1) + \lambda \right] a_j x^{j+1}
 $$
+
+We need to do another shift and doing it on the first sum seems like the simplest approach.
+If we do so, then we can arrive at
+
+$$
+\sum_{j=-1} a_{j+2} (j+2)(j+3) x^{j+1}
+    + \sum_j \left[ -j(j+1) -2(j+1) + \lambda \right] a_j x^{j+1}
+$$
+
+But let's separate the first term of the first sum.
+When $j=-1$, we get $a_1 (1)(2) x^0 = 2a_1$.
+Thus,
+
+$$
+2 a_1 +
+    \sum_{j=0} a_{j+2} (j+2)(j+3) x^{j+1}
+    + \sum_j \left[ -j(j+1) -2(j+1) + \lambda \right] a_j x^{j+1} = 0
+$$
+
+And this equation must hold for all $x$, so the coefficients of each power of $x$ must be zero.
+This means that $a_1 must be 0$.
+And we are left with
+$$
+a_{j+2} (j+2)(j+3)
+    + \left( -j(j+1) -2(j+1) + \lambda \right) a_j = 0
+$$
+
+Which simplifies to
+$$
+a_{j+2} = \frac{ j^2 + 3j + 2 - \lambda }{ (j+2)(j+3) } a_j
+= \frac{ (j+1)(j+2) - \lambda }{ (j+2)(j+3) } a_j
+$$
+
+In order to obtain the eignevalues we need to go back to the beginning.
+If you remember, this is how the problem was initially framed:
+$$
+\mathcal{L} y(x) =
+-(1-x^2) y^{\prime\prime} + 2x y^\prime = \lambda y
+$$
+
+So whatever we can do to find a $\lambda$ will give us our eigenvalues.
+And that is why Arfken and other resources look for the conditions that make both of the recursion relations result in
+a series solution that converges.
+In the first case we need a value of lambda that will cancel the numerator $j(j+1)$ and in the second we need a value that
+will cancel the $(j+1)(j+2)$.

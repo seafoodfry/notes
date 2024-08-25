@@ -25,8 +25,8 @@ direction is actually $(E_0 \cos(kz-wt), 0, 0)$.
 Then the field can be written as,
 
 \begin{align*}
-\vect{E}_0 &= \left( E_0, E_0 e^{i\pi/2}, 0 \right) \\
-&= \left( E_0, iE_0, 0 \right) \\
+\vect{E}_0 &= \left( E, E e^{i\pi/2}, 0 \right) \\
+&= \left( E, iE, 0 \right) \\
 &= E_0 \left( e^{i(kz-wt)}, ie^{i(kz-wt)}, 0 \right)
 \end{align*}
 
@@ -42,14 +42,14 @@ $$
 $$
 and
 $$
-\cos(\theta + \frac{\pi}{2}) = -\cos(\theta)
+\cos(\theta + \frac{\pi}{2}) = -\sin(\theta)
 $$
 
 (A shit by a quarter wavelength is essentially differentiation!)
 
 But here is the catch and the connection with P\&S: we can also get the same result if we have
 $$
-\vect{E} = E_0 \left( \cos(wt-kz)\hat{x} + \sin(wt-kz)\hat{y} \right)
+\vect{E} = E_0 \left( \cos(wt-kz)\hat{x} - \sin(wt-kz)\hat{y} \right)
 $$
 We can also write is as,
 $$
@@ -59,7 +59,19 @@ and remembering that you only care about the real part.
 If you do so, you'll end up with terms such as $\cos \hat{x} - \sin \hat{y}$ which just so happen to again be the
 a $\sin$ and a $\cos$ (our original plane wave components) shifted by $\pi/2$.
 
+This polarization vector corresponds to a "\textbf{right handed}" field.
 
+To be a "\textbf{left handed}" polarization vector, we would write
+$$
+\epsilon^\mu = (0, 1, -i, 0)
+$$
+
+Corresponding to
+$$
+\vect{E} = E_0 \left( \cos(wt-kz)\hat{x} + \sin(wt-kz)\hat{y} \right)
+$$
+
+J. Binney section 1.4.4 is also a great reference.
 
 
 \subsection{Cross Sections}
@@ -433,18 +445,17 @@ U(t) &= \bra{\vect{x}} e^{-i(\vect{p}^2/2m)t} \ket{\vect{x}_0} \label{kg:nonrela
 &= \left( \frac{m}{2\pi i t} \right)^{3/2} e^{im (\vect{x}-\vect{x}_0)^2 /2t} \label{kg:nonrelativistic-04}
 \end{align}
 
-\textbf{Note:} we think Peskin and Schroeder have a typo when doing the expansion in the momentum state.
-The integral starts with $\int \frac{d^3p}{(2\pi)^3}$ but the identity used to project the eigenstate into momentum
-state is just $\mathbb{I} = \int dp\, \ket{p}\bra{p}$, see the section below.
-There is a $1/(2\pi)^3$ that comes from simplifying $\braket{\vect{x} | \vect{p}} \braket{\vect{p} | \vect{x}_0}$ though.
-More on this later.
-\\
-
 
 To go from \ref{kg:nonrelativistic-01} to \ref{kg:nonrelativistic-02},
 we changed the basis to momentum eigenstates in order to apply the Hamiltonian operator and "extract" the exponential.
 If we have the operator $\hat{p}$ act on a pure momentum eigenstate $\ket{p}$, then we get $\hat{p}\ket{p} = p\ket{p}$.
 So changing basis helps us work with real quantities.
+
+Here we are differing on convetnion from the book a bit.
+The identity we used was $\mathbb{I} = \int dp\, \ket{p}\bra{p}$, whereas Pesking and Schroeder use the identity
+$\mathbb{I} = \int \frac{d^dp}{(2\pi)^d} \ket{p}\bra{p}$.
+The additional $1/(2\pi)^d$ factor picks up the normalization for factors such as $\braket{p | x_0}$.
+But keep reading for details on those.
 See the next section on formalism for more details (its a brief summary of stuff from quantum mechanics).
 
 
@@ -467,10 +478,20 @@ We used these identities to go from \ref{kg:nonrelativistic-02} to \ref{kg:nonre
 
 \begin{align*}
 & \int \frac{d^3p}{(2\pi)^3} e^{-i(\vect{p}^2/2m)t} \braket{\vect{x} | \vect{p}} \braket{\vect{p} | \vect{x}_0} \\
-&= \int \frac{d^3p}{(2\pi)^3} e^{-i(\vect{p}^2/2m)t} \frac{1}{(2\pi)^3} e^{i\vect{p}\cdot(\vect{x}-\vect{x}_0} 
+&= \int \frac{d^3p}{(2\pi)^3} e^{-i(\vect{p}^2/2m)t} \frac{1}{(2\pi)^3} e^{i\vect{p}\cdot(\vect{x}-\vect{x}_0)} 
 \end{align*}
 
 If these details don't ring a bell, read the following section.
+
+Pesking and schroeder seem to use
+$$
+\braket{\vect{x} | \vect{p}} = e^{i\vect{p}\cdot\vect{x}}
+$$
+and 
+$$
+\braket{\vect{p} | \vect{x_0}} = e^{-i\vect{p}\cdot\vect{x_0}}
+$$
+Since the projection into momentum space carries the appropiate normalization factor.
 
 
 As per the solution, see \ref{ps-kg:nonrelativistic-propagator}.
@@ -551,6 +572,11 @@ $$
 and that
 $$
 \braket{x | x^\prime} = \delta(x - x^\prime)
+$$
+
+and
+$$
+\braket{p | q} = (2\pi)^d \delta^{(d)}(p - q)
 $$
 
 Along with the following bit of formalism comes from James Binney's book, section 2.3.2.
@@ -648,9 +674,632 @@ $e^{-ix} - e^{ix} = -i\sin -i\sin = -2i \sin$.
 
 Pluging this back in,
 We got
-\begin{align*}
+\begin{align}
 \int \frac{dp}{(2\pi)^3} d\Omega \, |p|^2 e^{-it\sqrt{p^2 + m^2}} e^{ipr\cos\theta} &=
 \int \frac{dp}{(2\pi)^3} p \frac{4\pi}{r} \sin(pr) e^{-it\sqrt{p^2 + m^2}} \\
 &= \frac{1}{2\pi^2 |\vect{x}-\vect{x}_0|}
-    \int_{0}^{\infty} dp \, p \sin(p|\vect{x}-\vect{x}_0|) e^{-it\sqrt{p^2 + m^2}}
+    \int_{0}^{\infty} dp \, p \sin(p|\vect{x}-\vect{x}_0|) e^{-it\sqrt{p^2 + m^2}} \label{kg-relativistic-simplified}
+\end{align}
+
+The reference to Gradsheteyn and Ryzhik to 3.914 lists the following: on page 491, item 6 has
+\begin{equation}
+\int_{0} dx\, x \sin(bx) e^{-\beta \sqrt{x^2 + \gamma^2}} =
+    \frac{b \beta \gamma^2}{\beta^2 + b^2} K_2\left(\gamma \sqrt{b^2 + \beta^2}\right) \label{Gradsheteyn-kg-relativistic}
+\end{equation}
+
+ET I 175(35).
+I refers to volume 1 of the reference, 175 is the page where it should be found, (35) refers to the number of the formula
+in that work.
+
+We found a PDF of ET and on said place we found ourselves in the Laplace transofrms section.
+This section has two columns, one of them is $f(t)$ and the other one is $g(p) = \int_{0}^{\infty} dt\, f(t) d^{-pt}$.
+Forumal 35 had on the first column
+$$
+t^\alpha L_{n}^{\alpha} (\lambda t) L_{m}^{\alpha} (k t)
+$$
+for $\re{\alpha} > -1$.
+
+On the second column was the following:
+\begin{align*}
+\frac{\Gamma(m+n+\alpha + 1)}{m! n!}
+\frac{(p-\lambda)^n (p-k)^m}{p^{m+n+\alpha +1}}
+{}_{2}F_{1} \left[ -m, -n; -m-n-\alpha; \frac{p(p-\lambda -k)}{(p-\lambda)(p-k)} \right]
 \end{align*}
+When $\re{p} > 0$.
+\\
+
+Anyway, backing up a bit, $K_\nu (z)$ is a Bessel function for an imaginary argument.
+Which is defined in 8.407 and in 8.43, on page 911.
+Gradsheteyn and Ryzhik have the following definitions.
+If $-\pi < \arg{z} \leq \frac{1}{2}\pi$, then
+$$
+K_\nu (z) = \frac{i\pi}{2} e^{i\pi\nu /2} H_{\nu}^{(1)} \left(z e^{\frac{1}{2} i\pi} \right)
+$$
+
+If $-\frac{1}{2}\pi < \arg{z} \leq \pi$, then
+$$
+K_\nu (z) = -\frac{i\pi}{2} e^{-i\pi\nu /2} H_{-\nu}^{(2)} \left(z e^{-\frac{1}{2} i\pi} \right)
+$$
+
+$H_{\nu}^{(1)} (z)$ and $H_{\nu}^{(2)} (z)$ are Bessel function of the third kind, or Hankel functions.
+Which are defined in terms of the Bessel functions of the first kind, $J_{\nu}(z)$, and on Bessel functions
+of the second kind, $Y_\nu (z)$ (also called Neumman functions and written as $N_\nu (z)$).
+
+$$
+H_{\nu}^{(1)} (z) = J_\nu (z) + i Y_\nu (z)
+$$
+$$
+H_{\nu}^{(2)} (z) = J_\nu (z) - i Y_\nu (z)
+$$
+
+Comparing \ref{kg-relativistic-simplified} with \ref{Gradsheteyn-kg-relativistic},
+\begin{itemize}
+    \item $x \rightarrow p$
+    \item $b \rightarrow |x-x_0|$
+    \item $\beta \rightarrow it$
+    \item $\gamma \rightarrow m$
+\end{itemize}
+
+So
+$$
+\frac{b \beta \gamma^2}{\beta^2 + b^2} K_2\left(\gamma \sqrt{b^2 + \beta^2}\right)
+$$
+becomes
+$$
+\frac{it m^2 |x-x_0| }{-t^2 + |x-x_0|^2} K_2\left(m \sqrt{ -t^2 + |x-x_0|^2}\right)
+$$
+
+Now let's look at the modified function $K_2$,
+\begin{align*}
+K_2\left(m \sqrt{ -t^2 + |x-x_0|^2}\right) &=
+    \frac{i\pi}{2} e^{i\pi} H_{2}^{(1)} \left(m \sqrt{ -t^2 + |x-x_0|^2} e^{\frac{1}{2} i\pi} \right) \\
+    &= - \frac{i\pi}{2} H_{2}^{(1)} \left(m \sqrt{ -t^2 + |x-x_0|^2} \right)
+\end{align*}
+
+Looking at Gradsheteyn and Ryzhik again,
+$$
+H_{2}^{(1)} \left(m \sqrt{ -t^2 + |x-x_0|^2} \right) =
+    J_2 \left(m \sqrt{ -t^2 + |x-x_0|^2} \right) + i Y_2 \left(m \sqrt{ -t^2 + |x-x_0|^2} \right)
+$$
+
+And here we stop and appreciate why the method of stationary phase was mentioned and use by the authors.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{On The Way To The Method of Stationary Phase: Laplace's Method}
+
+To understand this method well it helps to first read
+\href{https://en.wikipedia.org/wiki/Laplace%27s_method}{Wikipedia: Laplace's Method}.
+
+If anything we think these are the highlights from Laplace's method.
+
+If $f(x)$ has a unique global maximum at $x_0$ and $M>0$ and if we deifne the following functions
+$$
+g(x) = Mf(x)
+$$
+and
+$$
+h(x) = e^{g(x)} = e^{Mf(x)}
+$$
+
+Then look at the ratios
+$$
+\frac{g(x_0)}{g(x)} = \frac{f(x_0)}{f(x)}
+$$
+and
+$$
+\frac{h(x_0)}{h(x)} = e^{M(f(x_0) - f(x))}
+$$
+
+As $M$ increases, the ratio for $h$ will grow exponentially, while the ratio for $g$ does not change.
+Since $f(x) \leq f(x_0)$, then the ratio of $h$ will always look like $e^{+{x}M}$.
+Said another way, in places where the value of $f(x)$ is a lot smaller than $f(x_0)$, the ratio of $h$ will look like
+$e^{Mf(x_0)}$, in places where the value of $f(x)$ is close to $f(x_0)$, the ratio will be smaller.
+\\
+
+But in general the trick is to expand $f(x)$ around $x_0$ following Taylor's theorem
+$$
+f(x) \approx
+    f(x_0) + f^{\prime} (x_0) (x-x_0) + \frac{2}{2} f^{\prime\prime} (x_0) (x-x_0)^2 + R
+$$
+
+Since $x_0$ is a global maxima, then $f^{\prime} (x_0) = 0$ and $f^{\prime\prime} (x_0) < 0$.
+Hence,
+$$
+f(x) \approx
+    f(x_0) - \frac{1}{2} |f^{\prime\prime} (x_0)| (x-x_0)^2 + R
+$$
+
+So we have this approximation,
+$$
+\int_{a}^{b} e^{Mf(x)} dx \approx
+    e^{Mf(x_0)} \int_{a}^{b} e^{- \frac{1}{2} M |f^{\prime\prime} (x_0)| (x-x_0)^2} dx
+$$
+
+So we are approximating the function with a Gaussian.
+Here the last part of the approximation is to extend the limits of itnegration so that we do indeed have a Gaussian integral,
+which we assume we can ebcause the tails decay quickly.
+Since
+$$
+\int dx\, e^{-a(x+b)^2} = \sqrt{ \frac{\pi}{a} }
+$$
+
+$$
+\int_{a}^{b} e^{Mf(x)} dx \approx
+    e^{Mf(x_0)} \sqrt{ \frac{2\pi}{M |f^{\prime\prime} (x_0)|} }
+$$
+
+The next stepping stone is
+\href{https://en.wikipedia.org/wiki/Method_of_steepest_descent}{Wikipedia: the method of steepest descent}.
+This method build upon Laplace's method and aplies to contour integrals in the complex plane.
+So now we are looking at approximating integrals such as
+$$
+\int_{C} f(z) e^{\lambda g(z)} dz
+$$
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{A Bit of Formalism: Understanding Tensors}
+
+$$
+\left( x \times y \right)^i = \sum_{j,k=1}^{n=3} \epsilon_{ijk} x_j y_k = \epsilon_{ijk} x_j y_k
+$$
+
+Expanding the sum it looks like
+\begin{align}
+    \begin{split}
+\left( x \times y \right)^i =& \, \epsilon_{ijk} x_j y_k \\
+=& \, \epsilon_{ij1} x_j y_1 + \epsilon_{ij2} x_j y_2 + \epsilon_{ij3} x_j y_3 \\
+=& \, \epsilon_{i11} x_1 y_1 + \epsilon_{i12} x_1 y_2 + \epsilon_{i13} x_1 y_3 \\
+    & \epsilon_{i21} x_2 y_1 + \epsilon_{i22} x_2 y_2 + \epsilon_{i23} x_2 y_3 \\
+    & \epsilon_{i31} x_3 y_1 + \epsilon_{i32} x_3 y_2 + \epsilon_{i33} x_3 y_3 \\
+=& \, 0 + \epsilon_{i12} x_1 y_2 + \epsilon_{i13} x_1 y_3 \\
+    & \epsilon_{i21} x_2 y_1 + 0 + \epsilon_{i23} x_2 y_3 \\
+    & \epsilon_{i31} x_3 y_1 + \epsilon_{i32} x_3 y_2 + 0 \\
+    \end{split}
+\end{align} \label{tensors:levi-civita-component-i}
+
+The thing to notice here is that the above operation was just to obtain the $i$-th component of the cross product
+of $x \times y$.
+
+This also leads us to the notation where a tensor of rank 3 is to be fed 3 vectors,
+
+$$
+\epsilon (e_i, e_j, e_k) = \epsilon_{ijk} = e_i \cdot (e_j \times e_k)
+$$
+
+Where, again, we see that the rank 3 tensor takes 3 vectors as input and produces a number.
+(a linear map or a functional one might say.)
+
+From the explicit computation of the cross product we can also see that we obtain this matrix-like
+structure from computing each of the $i$-th components
+$$
+\begin{pmatrix}
+\epsilon_{i11} & \epsilon_{i12} & \epsilon_{i13} \\
+\epsilon_{i21} & \epsilon_{i22} & \epsilon_{i23} \\
+\epsilon_{i31} & \epsilon_{i32} & \epsilon_{i33}
+\end{pmatrix}
+$$
+
+when $i=1$,
+$$
+\begin{pmatrix}
+\epsilon_{111} & \epsilon_{112} & \epsilon_{113} \\
+\epsilon_{121} & \epsilon_{122} & \epsilon_{123} \\
+\epsilon_{131} & \epsilon_{132} & \epsilon_{133}
+\end{pmatrix}
+=
+\begin{pmatrix}
+0 & 0 & 0 \\
+0 & 0 & 1 \\
+0 & -1 & 0
+\end{pmatrix}
+$$
+
+and for $n=3$ there are two other such matrices.
+And such is the Levi-Civita tensor of rank 3!
+
+The other two "layers" of the tensor are
+
+$$
+\begin{pmatrix}
+\epsilon_{211} & \epsilon_{212} & \epsilon_{213} \\
+\epsilon_{221} & \epsilon_{222} & \epsilon_{223} \\
+\epsilon_{231} & \epsilon_{232} & \epsilon_{233}
+\end{pmatrix}
+=
+\begin{pmatrix}
+0 & 0 & -1 \\
+0 & 0 & 0 \\
+1 & 0 & 0
+\end{pmatrix}
+$$
+
+$$
+\begin{pmatrix}
+\epsilon_{311} & \epsilon_{312} & \epsilon_{313} \\
+\epsilon_{321} & \epsilon_{322} & \epsilon_{323} \\
+\epsilon_{331} & \epsilon_{332} & \epsilon_{333}
+\end{pmatrix}
+=
+\begin{pmatrix}
+0 & 1 & 0 \\
+-1 & 0 & 0 \\
+0 & 0 & 0
+\end{pmatrix}
+$$
+
+These matrix representation of a tensor is actually the tensor evaluated on the basis $(\hat{x}, \hat{y}, \hat{z})$.
+So the multilinear function on a vector space that is a tensor can be visualized as a matrix when it is a rank 2 tensor
+(it eats two vectors as input; keep reading, it'll make sense) when we are looking at just one component of
+$x \times y$, that is, by comparing what we just learned with \ref{tensors:levi-civita-component-i} we can see that
+
+$$
+\left( x \times y \right)^i =
+\begin{pmatrix}
+    x_1, x_2, x_3 \\
+\end{pmatrix}
+\begin{pmatrix}
+    \epsilon_{i11} & \epsilon_{i12} & \epsilon_{i13} \\
+    \epsilon_{i21} & \epsilon_{i22} & \epsilon_{i23} \\
+    \epsilon_{i31} & \epsilon_{i32} & \epsilon_{i33}
+\end{pmatrix}
+\begin{pmatrix}
+    y_1 \\
+    y_2 \\
+    y_3
+\end{pmatrix}
+$$
+
+And from here you should go and reach \ref{chapter:tensors}.
+We'll wait for you here.
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{On the Way to the Method of Stationary Phase: Method of Steepest Descent}
+
+Building on top of the Laplace method, we now want to approximate
+$$
+\mathcal{I}(z) 
+= \int_{C} f(z) e^{\lambda g(z)} dz
+$$
+
+Where $f(z)$ and $g(z)$ are analytical and we can deform the contour of integration
+into any $C^\prime$ without changing the integral.
+This is the complex analogue to the "fundamental theorem for gradients", where if the function whose gradient we are
+integrating along a path is continuous, then its line integral along a close path is zero.
+
+In complex analysis, this is the theorem called "Cauchy's integral theorem".
+The theorem actually talks about holomorphic functions $f(z)$ being integrated on a simply connected
+domain $\Omega$.
+But since all holomorphic functions are analytical, this is the topic of Cauchy Riemman's Theorem,
+and we can assume that we will always be on a simply connected domain (read Abbott's book on
+analysis if you want to know more about that concept), then
+$$
+\int_{C} f(z) dz = 0
+$$
+\\
+
+
+%%%%%%%%%%% Steepest descent argument.
+
+Let's start this adventure by looking at the an analytic function $g(z) = X(z) + iY(z)$,
+where $X(z)$ and $Y(z)$ are real-valued functions.
+
+
+The steepest descent direction is the direction in which $\operatorname{Re}(g(z)) = X(z)$
+decreases most rapidly, not $g(z)$ itself.
+This is because we are interested in the behavior of the magnitude of the complex exponential
+$e^{\lambda g(z)}$, which is governed by the real part of the exponent.
+$$
+e^{\lambda g(z)} = e^{\lambda (X(z) + iY(z))} = e^{\lambda X(z)} e^{i\lambda c}
+$$
+
+So steepest descent is given by the negative gradient of $X(z)$:
+
+$$
+-\nabla X = -\left(\frac{\partial X}{\partial x}, \frac{\partial X}{\partial y}\right)
+$$
+
+
+The gradient of $Y(z)$ is perpendicular to the level curves of $Y(z) = c$,
+but we don't need to consider the negative gradient of $Y(z)$ for this proof.
+
+
+
+Since $g(z)$ is analytic, the Cauchy-Riemann equations must hold, so that
+
+$$
+\frac{\partial X}{\partial x} = \frac{\partial Y}{\partial y}
+$$
+and
+$$
+\frac{\partial X}{\partial y} = -\frac{\partial Y}{\partial x}
+$$
+
+
+Now, let's use the Cauchy-Riemann equations to show that the constant phase contour is equivalent
+to the steepest descent contour.
+The direction of the constant phase contour is perpendicular to the gradient of $Y(z)$, so it is
+some $\pi/2$ clockwise or counterclockwise.
+
+A counterclockwise rotation of 90 degrees can be expressed as
+$$
+R_{90^\circ}
+= \begin{pmatrix}
+    0 &  -1 \\
+    1 & 0
+\end{pmatrix}
+$$
+
+Applying this rotation matrix to the gradient vector $\nabla Y$:
+$$
+\begin{pmatrix}
+    0 & -1 \\[1em]
+    1 & 0
+\end{pmatrix}
+\begin{pmatrix}
+    \dfrac{\partial Y}{\partial x} \\[1em]
+    \dfrac{\partial Y}{\partial y}
+\end{pmatrix}
+= \begin{pmatrix}
+    -\dfrac{\partial Y}{\partial y} \\[1em]
+    \dfrac{\partial Y}{\partial x}
+\end{pmatrix}
+$$
+
+By the same logic we, clockwise rotation by 90 degrees would give us
+$$
+\begin{pmatrix}
+    \dfrac{\partial Y}{\partial y} \\[1em]
+    -\dfrac{\partial Y}{\partial x}
+\end{pmatrix}
+$$
+
+
+Using the Cauchy-Riemann equations, we can rewrite the counterclockwise-rotated gradient of $Y(z)$ as:
+$$
+\left( -\frac{\partial Y}{\partial y}, \frac{\partial Y}{\partial x}\right)
+= \left(-\frac{\partial X}{\partial x}, -\frac{\partial X}{\partial y}\right) = -\nabla X
+$$
+Notice that the minus sign points us in the direction of steepest descent,
+so it is indeed the case that the \textbf{direction perpendicular to the gradient of $Y(z)$,
+which is the direction of the constant phase contour,
+is the same as the steepest descent direction, $-\nabla X$}.
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Morse Theory: Intro}
+
+Critical points can be degenerate or non-degenerate.
+A non-degenerate critical point has a Hessian that can be inverted - the Hessian of the function $f$ does not vanish
+at the critical point.
+
+One associates a number called the \textbf{index}, the number of independent directions in which
+$f$ decreases from a critical point.
+More precisely, the index of a non-degenerate critical point $p$ of $f$ is the dimension of the largest subspace
+of the tangent space to $M$ at $p$, where $M$ is a "landscape surface" function and $f : M \rightarrow \mathbb{R}$,
+on which the Hessian of $f$ is negavite definite.
+
+The \textbf{index} also corresponds to the number of negative eigenvalues of the Hessian matrix at the critical cpoint $p$.
+
+
+In mathematics, a \textbf{symmetric matrix} $M$ with real entries is positive-definite if the real number $z^T M z$
+is positive for every nonzero real column vector $z$.
+More generally, a Hermitian matrix (that is, a complex matrix equal to its conjugate transpose) is \textbf{positive-definite}
+if the real number $z^* M z$ is positive for every nonzero complex column vector $z$.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Morse's Lemma}
+
+This lemma is fundamental because it tells us that near a non-degenerate critical point, the function looks
+like a quadratic form, and this form is determined by the signature of the Hessian matrix
+(i.e., the number of positive and negative eigenvalues).
+
+For example, suppose we have $f(x,y) = x^2 + y^2 - 2x + 4y$, $f : \mathbb{R}^2 \rightarrow \mathbb{R}$.
+
+First, we find the critical point $\nabla f(x,y) = 0$,
+\begin{align*}
+\nabla f &= \left< \partial_x f, \partial_y f \right> \\
+&= \left< 2x -2, 2y + 4 \right>
+\end{align*}
+
+and we set $\left( 2x -2, 2y + 4 \right) = \left( 0, 0 \right)$.
+So we have $2x - 2 = 0$ or $x = 1$.
+And then $2y + 4 = 0$, or $y = -2$.
+So $p = (1, -2)$.
+
+Now, let's see if the critical point is non-degenerate.
+For that, let's compute the Hessian.
+Remember that the Hessian is given by,
+$$
+H_f
+=
+\begin{pmatrix} 
+    \dfrac{\partial^2 f}{\partial x_{1}^{2}}         & \dfrac{\partial^2 f}{\partial x_1 \partial x_2} & \dots  & \dfrac{\partial^2 f}{\partial x_1 \partial x_n}  \\[2.2ex]
+    \dfrac{\partial^2 f}{\partial x_2 \partial x_1}  & \dfrac{\partial^2 f}{\partial x_{2}^{2}}        & \dots  & \dfrac{\partial^2 f}{\partial x_2 \partial x_n}  \\[2.2ex]
+    \vdots                                           & \vdots                                          & \ddots & \vdots                                           \\[2.2ex]
+    \dfrac{\partial^2 f}{\partial x_n \partial x_1}  & \dfrac{\partial^2 f}{\partial x_n \partial x_2} & \dots  & \dfrac{\partial^2 f}{\partial x_{n}^{2}}         \\
+\end{pmatrix}
+$$
+
+That is, the entry of the $i$-th row and the $j$-th column is
+$$
+\left(H_f\right)_{i,j} = \frac{\partial^2 f}{\partial x_i \partial x_j}
+$$
+
+So we want to compute
+\begin{align*}
+H_f
+&=
+\begin{pmatrix} 
+    \dfrac{\partial^2 f}{\partial x^{2}}         & \dfrac{\partial^2 f}{\partial x \partial y}  \\[2.2ex]
+    \dfrac{\partial^2 f}{\partial y \partial x}  & \dfrac{\partial^2 f}{\partial y^{2}}         \\
+\end{pmatrix} \\
+&= \begin{pmatrix} 
+    \partial_x \partial_x f  & \partial_x \partial_y f  \\[2.2ex]
+    \partial_y \partial_x f  & \partial_y \partial_y f  \\
+\end{pmatrix} \\
+&= \begin{pmatrix} 
+    \partial_x (2x -2)  & \partial_x (2y + 4)  \\[2.2ex]
+    \partial_y (2x -2)  & \partial_y (2y + 4)  \\
+\end{pmatrix} \\
+&= \begin{pmatrix} 
+    2  & 0  \\
+    0  & 2  \\
+\end{pmatrix}
+\end{align*}
+
+Given that all the entries on the diagonal are positive and there are no off-diagonal terms, it suggests that 
+$f$ has a parabolic behavior in both the $x$ and $y$ directions independently
+(recall the second derivative test; both diagonal entries are positive so the function is concave up),
+which typically indicates a local minimum at the critical point if the function is convex or a saddle point if it is not. 
+
+Anyway, the Hessian is invertible and its eigenvalues are positive, so $p$ is a minimum.
+\\
+
+Now we can apply Morse' lemma!
+Since both eigenvalues of our Hessian are positive, then index, $k$, is 0 (no negative eigenvalues),
+Morse's lemma tells us that near $p$ we can find coordinates $(u, v)$ such that
+$$
+f(u, v) = f(p) + u^2 + v^2 = -5 + u^2 +v^2
+$$
+
+So near the critical point, $f$ looks like a \textbf{paraboloid} downshifted by 5.
+
+$$
+f(x) = f(p) - x_{1}^{2} - \ldots - x_{\gamma}^{2} + x_{\gamma +1}^{2} + \ldots + x_{n}^{2}
+$$
+
+$\gamma$ is the index of $f$ at $p$.
+The index $\gamma$ essentially determines how many negative squared terms appear in the local form of the function.
+Our index was 0 so we didn't have any.
+
+In Morse's lemma, when it says there exists a chart $(x_1, x_2, \ldots , x_n)$
+it means that near the critical point $p$, you can introduce a new coordinate system where:
+
+\begin{itemize}
+    \item Each $x_i$ for $i = 1, \ldots , \gamma$ corresponds to a direction in which the function decreases
+        (related to the negative eigenvalues of the Hessian).
+    \item Each $x_i$ for $i = \gamma +1, \ldots, n$ corresponds to a direction in which the function increases
+        (related to the positive eigenvalues of the Hessian).
+\end{itemize}
+
+The coordinates $x_i (p) = 0$ imply that the critical point $p$ is at the origin of this new coordinate system.
+The transformation to this new coordinate system is achieved by a linear change of variables that diagonalizes
+the Hessian matrix (through a process similar to eigendecomposition).
+
+So here we added $u^2 + v^2$ because our Hessian matrix had 2 positive eignevalues.
+\\~\\
+
+
+
+The complex generalization as stated in
+\href{https://en.wikipedia.org/wiki/Method_of_steepest_descent#Complex_Morse_lemma}{wikipedia: method of steepest descent}
+provides another key idea of the Morse lemma.
+
+As stated in the page,
+if $z^0$ is a saddle point and $S(z)$ is a holomorphic function, then there exist coordinates in terms
+of which $S(z) - S(z^0)$ is exactly quadratic.
+We already saw above more or less how it looks for $S(Z) - S(Z^0)$, or $f(x) - f(p)$, to be exactly quadratic.
+But the kicker is with the rest of the defintion.
+
+If $S$ has a domain $W \in \mathbb{C}^n$, and $z^0$ is such that $\nabla S(z^0) = 0$ and
+$S^{\prime\prime}_{zz} (z^0) \neq 0$.
+Then there exists a neighborhood $U \in \mathbb{C}^n$ of $z^0$ and $V \in \mathbb{C}^n$ of $w=0$
+such that a bijective holomorphic function can be defined
+
+$$
+\phi : V \rightarrow U
+$$
+and $\phi(0) = z^0$.
+So this function sort of "remaps" our original function so that the saddle point becomes the origin.
+
+The function is defined for all $w \in V$ as
+$$
+S(\phi(w))
+=
+S(Z^0) + \frac{1}{2} \sum_{j=1}^{n} \mu_j w_{j}^{2}
+$$
+
+and $\det(\phi^{\prime}_{w} (0)) = 1$.
+Here $\mu_j$ are the eignevalues of $S^{\prime\prime}_{zz} (z^0)$.
+
+The use of the complex morse lemma is that we can separate our initial problem into components.
+Remember that we started with
+
+$$
+I(\lambda) =
+\int_{C} f(z) e^{\lambda g(z)} dz
+$$
+
+The integral is broken into the domain with the saddle point and the one without it, and then expressed in terms of
+the bijective function $\phi$, that maps a domain around $z^0$ to some other domain $U$.
+So we in the limit of $\lambda \rightarrow \infty$
+
+\begin{align*}
+I(\lambda) &= I_0 (\lambda) =
+\int_{C_w} f(\phi(w)) e^{\lambda S(\phi(w))} \, d\left(\phi (w)\right) \\
+&= \int_{C_w} f(\phi(w)) \left( e^{\lambda S(z^0)} e^{\frac{1}{2} \lambda \sum_j \mu_j w_{j}^{2}} \right) \, d\left(\phi (w)\right) \\
+&= e^{\lambda S(z^0)} \int_{C_w} f(\phi(w)) \exp\left( \frac{1}{2} \lambda \sum_j \mu_j w_{j}^{2} \right) \, \Big| \det \phi^{\prime}_{w}\Big| dw
+\end{align*}
+
+To simplify the expression we have to remember how to use the Jacobian to fully do our transformation of variables.
+\\
+
+$$
+f(z) = \int_{0}^{1} \frac{d}{dt} f(tz_1 , \dots , tz_n) dt
+= 
+\sum_{i=1}^{n} z_i \int_{0}^{1} \frac{\partial f(z)}{\partial z_i} \Big|_{z = (tz_1, \dots , tz_n)} dt
+$$
+
+If we apply the chain rule, while keeping in mind that $z_i$ is the actual variable of $f$,
+not $tz$.
+
+$$
+\frac{d}{dt} f(tz_1, ..., tz_n)
+=
+\sum_{i=1}^{n} \frac{\partial f}{\partial z_i} \cdot \frac{d}{dt}(tz_i)
+=
+\sum_{i=1}^{n} z_i \frac{\partial f}{\partial z_i}
+$$
+\\
+
+
+$$
+\mathcal{I}_j
+=
+\int_{-\infty}^{\infty} e^{\frac{1}{2}\lambda_j y^2} dy
+=
+2 \int_{0}^{\infty} e^{-\frac{1}{2}\lambda\left(\sqrt{-\mu_j} y\right)^2} dy
+=
+2 \int_{0}^{\infty} e^{-\frac{1}{2}\lambda |-\mu_j|^2 y^2 \exp(2i \arg \sqrt{-\mu_j})} dy
+$$
+
+The last expression is obtained by writing the complex number $\mu$ as
+$$
+-\mu_j = |-\mu_j| e^{i \arg(-\mu_j)}
+$$
+or
+$$
+\sqrt{-\mu_j} = \sqrt{|-\mu_j|} e^{i \arg(\sqrt{-\mu_j})}
+$$
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Homotopy}
+
+If $M$ is a "landscape surface" function and $f : M \rightarrow \mathbb{R}$,
+and $M^a = f^{-1} (-\infty, a]$,
+The topology of $M^{a}$ does not change except when $a$ passes the height of a critical point;
+at this point, a $\gamma$-cell is attached to $M^{a}$, where $\gamma$ is the index of the point.
+This does not address what happens when two critical points are at the same height,
+which can be resolved by a slight perturbation of $f$.
+In the case of a landscape or a manifold embedded in Euclidean space, this perturbation might simply be tilting slightly, rotating the coordinate system. 

@@ -1,0 +1,115 @@
+\section{Integrals in QFT}
+
+\subsection{Kinetic operator and a Green Function} \label{integral:kinetic-operator}
+
+This problem is part of
+\href{https://arxiv.org/abs/physics/0609191}{MontePython: Implementing Quantum Monte Carlo using Python}.
+
+There is a kinetic operator defined as
+$$
+G_K \left(\mathbf{R}^\prime, \mathbf{R}, t\right) =
+\frac{1}{\left(2\pi\right)^{3N}} \int e^{-i\mathbf{k}\mathbf{R}^\prime} e^{-Dtk^2} e^{-i\mathbf{k}\mathbf{R}} d\mathbf{k}
+$$
+
+This integral then is integrated and the following Green function is obtained
+$$
+G_K \left(\mathbf{R}^\prime, \mathbf{R}, t\right) =
+\frac{1}{\left(4\pi Dt\right)^{3N/2}} e^{-\left(\mathbf{R}-\mathbf{R}^\prime\right) / 4Dt}
+$$
+
+And as we saw in \hyperref[jackson:problem-1.2]{Jackson problem 1.2}, the Green function we just got is equivalent to
+$\delta\left(\mathbf{R} - \mathbf{R}^\prime\right)$.
+
+But coming back to the integral, the trick is to complete the square!
+\begin{align*}
+G_K \left(\vect{R}^\prime, \vect{R}, t\right) &=
+\frac{1}{\left(2\pi\right)^{3N}} \int e^{-i\vect{k}\vect{R}^\prime} e^{-Dtk^2} e^{-i\vect{k}\vect{R}} d\vect{k} \\
+&= \frac{1}{\left(2\pi\right)^{3N}} \int e^{-Dtk^2 + -i\vect{k}\cdot\left(\vect{R}-\vect{R}^\prime\right)} d\mathbf{k}
+\end{align*}
+
+This last integral has the form $\int e^{ax^2 + bx} dx$, which can be solved as follows,
+\begin{align*}
+\int e^{ax^2 + bx} dx &= \int \exp\left\{ a\left(x^2 + \frac{b}{a}x\right) \right\} dx \\
+&= \int \exp\left\{ a\left(x^2 + \frac{b}{a}x + \left(\frac{b}{2a}\right)^2 - \left(\frac{b}{2a}\right)^2 \right) \right\} dx \\
+&= \int \exp\left\{ a\left(x + \frac{b}{2a}\right)^2 - \frac{b^2}{4a} \right\} dx \\
+&= e^{-b^2/4a} \int e^{ a\left(x + \frac{b}{2a}\right)^2 } dx
+\end{align*}
+
+Now, let's look at $\int e^{ a\left(x + b/2a\right)^2 } dx$.
+First, we need to make a transformation.
+Let's define $u = x + b/2a$, then $du = dx$, the measure remains invariant (so do the limits of integration), so
+$\int e^{ a\left(x + b/2a\right)^2 } dx = \int e^{ au^2 } du$.
+Now, if we define $a = -c$, then 
+
+\begin{align*}
+\int e^{ a\left(x + b/2a\right)^2 } dx &= \int e^{ au^2 } du \\
+&= \int e^{ -cu^2 } du \\
+&= \sqrt{ \frac{\pi}{c} } = \sqrt{ \frac{\pi}{-a} } 
+\end{align*}
+
+This whole thing works if $a < 0$ but it turns out that this is also valid if $\re{(a)} \leq 0$ but $a \neq 0$.
+
+Putting everything back together,
+$$
+\int e^{ax^2 + bx} dx = \sqrt{ \frac{\pi}{-a} } e^{-b^2/4a}
+$$
+
+Looking back at our original problem, we can chose $a = -Dt$ and $b = i \vect{r}$, where $\vect{r} = \vect{R}-\vect{R}^\prime$.
+and so
+\begin{align*}
+G_K \left(\vect{R}^\prime, \vect{R}, t\right) &=
+\frac{1}{\left(2\pi\right)^{3N}} \int e^{-Dtk^2 + -i\vect{k}\cdot\vect{r}} d\mathbf{k} \\
+&= \frac{1}{\left(2\pi\right)^{3N}} \int e^{-Dt \left( k^2 + \frac{i\vect{k}}{Dt}\cdot\vect{r} \right)} d\mathbf{k} \\
+&= \frac{1}{\left(2\pi\right)^{3N}} \int e^{-Dt \left( k^2 + \frac{i\vect{r}}{Dt}\cdot\vect{k} + \left(\frac{i\vect{r}}{2Dt}\right)^2 - \left(\frac{i\vect{r}}{2Dt}\right)^2 \right)} d\mathbf{k} \\
+&= \frac{1}{\left(2\pi\right)^{3N}} \int e^{-Dt \left( k + \frac{i\vect{r}}{2Dt}\right)^2 - \frac{ \vect{r}^2 }{ 4Dt } } d\mathbf{k} \\
+&= \frac{1}{\left(2\pi\right)^{3N}} e^{-\vect{r}^2 /4Dt } \int e^{-Dt \left( k + \frac{i\vect{r}}{2Dt}\right)^2 } d\mathbf{k} \\
+\end{align*}
+
+Again, since $\int e^{-ax^2} dx = \sqrt{ \frac{\pi}{a} }$,
+then
+\begin{align*}
+\int e^{-Dt \left( k + \frac{i\vect{r}}{2Dt}\right)^2 } dk &= \sqrt{ \frac{\pi}{Dt} }
+\end{align*}
+
+Thus,
+\begin{align*}
+G_K \left(\vect{R}^\prime, \vect{R}, t\right) &=
+\frac{1}{\left(2\pi\right)^{3N}} e^{-\vect{r}^2 /4Dt } \int e^{-Dt \left( k + \frac{i\vect{r}}{2Dt}\right)^2 } d\mathbf{k} \\
+&= \frac{1}{\left(2\pi\right)^{3N}} e^{-\vect{r}^2 /4Dt } \left( \sqrt{ \frac{\pi}{Dt} } \right)^{3N} \\
+&= \frac{1}{\left(4\pi^2\right)^{3N/2}} \frac{\pi^{3N/2}}{(Dt)^{3N/2}} e^{-\vect{r}^2 /4Dt } \\
+&= \frac{1}{\left(4\pi Dt\right)^{3N/2}} e^{-\left(\vect{R} - \vect{R}^\prime\right)^2 /4Dt }
+\end{align*}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Klein-gordon Non-relativistic Amplitude} \label{ps-kg:nonrelativistic-propagator}
+
+The following integral comes from Peskin and schroeder Section 2.1
+\begin{align}
+& \int \frac{d^3p}{(2\pi)^3} \, e^{-i(\vect{p}^2/2m)t} e^{i\vect{p}\cdot(\vect{x}-\vect{x}_0)} \label{kg:nonrelativistic-03} \\
+&= \left( \frac{m}{2\pi i t} \right)^{3/2} e^{im (\vect{x}-\vect{x}_0)^2 /2t} \label{kg:nonrelativistic-04}
+\end{align}
+
+This integral follows the same procedure as \ref{integral:kinetic-operator}.
+
+Here we have $a = -\frac{it}{2m}$ and $b = i(\vect{x}-\vect{x_0})$.
+Since $\re{a} = -t/2m \leq 0$ and $a\neq 0$ when $t\neq 0$ oru solution is valid for $t\neq 0$.
+Then
+
+$$
+\sqrt{ \frac{\pi}{-a} } = \sqrt{ \frac{2\pi m}{it} }
+$$
+
+and
+\begin{align*}
+-\frac{b^2}{4a} &= \frac{2m \left(\vect{x}-\vect{x}_0\right)^2}{-4it} \\
+&= \frac{im \left(\vect{x}-\vect{x}_0\right)^2}{2t}
+\end{align*}
+
+So the solution is
+\begin{align*}
+& \frac{1}{(2\pi)^3} \left( \frac{2\pi m}{it} \right)^{3/2} e^{\frac{im \left(\vect{x}-\vect{x}_0\right)^2}{2t}} \\
+&= \left( \frac{m}{2\pi it} \right)^{3/2} e^{im \left(\vect{x}-\vect{x}_0\right)^2 /2t}
+\end{align*}
