@@ -1,0 +1,168 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Stats} \label{chapter:tensors}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Biased and Unbiased Estimators}
+
+The following expressions come from \cite{Goodfellow-et-al-2016} section 5.4.2, 
+which starts at page 122.
+
+Computing the bias of the sample mean:
+
+\begin{align*}
+\text{bias}(\hat{\mu}_m) &= \mathbb{E}\left[\hat{\mu}_m\right] - \mu \\
+&= \mathbb{E} \left[ \frac{1}{m} \sum_{i=1}^{m} x^{(i)} \right] - \mu \\
+&= \left( \frac{1}{m} \sum_{i=1}^{m} \mathbb{E}\left[ x^{(i)} \right] \right) - \mu\\
+&= \left( \frac{1}{m} \sum_{i=1}^{m} \mu \right) - \mu \\
+&= \mu - \mu = 0
+\end{align*}
+
+Then we test the sample variance
+$\hat{\sigma}^{2}_{m} = \frac{1}{m} \sum_{i=1}^{m} \left( x^{(i)} - \hat{\mu}_m \right)^2$
+to see whether it is a biased or an unbiased estimator.
+
+To find the answer, we will need to evaluate the following expression:
+
+\begin{align} \label{stats:biased-variance-estimator}
+\mathbb{E}\left[ \hat{\sigma}^{2}_{m} \right] 
+    &= \mathbb{E} \left[ \frac{1}{m} \sum_{i=1}^{m} \left( x^{(i)} - \hat{\mu}_m \right)^2 \right] \\
+&= \frac{m-1}{m} \sigma^2
+\end{align}
+
+where $\hat{\mu}_m = \frac{1}{m} \sum_{i=1}^{m} x^{(i)}$ is the \textbf{sample mean}.
+ 
+
+
+To carry out the above computation it helps if we go step by step.
+
+Let's start with the following:
+
+\begin{align*}
+\mathbb{E} \left[ \sum_{i=1}^{m} \left( x^{(i)} - \hat{\mu}_m \right)^2 \right]
+\end{align*}
+
+There is actually a "well known" expression that says that
+
+$$
+\mathbb{E} \left[ \sum_{i=1}^{m} \left( x^{(i)} - \hat{\mu}_m \right)^2 \right]
+= \sum_{i=1}^{m} \left(
+    \mathbb{E}\left[ \left( x^{(i)} \right)^2 \right]
+    - n \mathbb{E}\left[ \left(\hat{\mu}_m  \right)^2 \right]
+\right)
+$$
+
+In more conventional notation, this is written as
+\begin{align*}
+\mathbb{E} \left[ \sum_{i=1}^{n} \left( X_i - \overline{X} \right)^2 \right]
+&= \sum_{i=1}^{n} \left( \mathbb{E}\left[ X_{i}^{2} \right] - \mathbb{E}\left[ \overline{X}^2 \right] \right) \\
+&= \sum_{i=1}^{n} \left( \mathbb{E}\left[ X_{i}^{2} \right] \right)
+    -n \mathbb{E}\left[ \overline{X}^2 \right]
+\end{align*}
+
+We will continue with this notation and then switch back at the end because the ML notation is to verbose.
+But anyway, the trick to seeing why the above result is such is to expand the sum:
+
+\begin{align*}
+\mathbb{E} \left[ \sum_{i=1}^{n} \left( X_i - \overline{X} \right)^2 \right]
+    &= \mathbb{E}\left[ \left(X_1 - \overline{X}\right)^2 + \left(X_2 - \overline{X}\right)^2 + \left(X_3 - \overline{X}\right)^2 + \dots \right]
+\end{align*}
+
+Let's now expands the terms and group them together,
+
+\begin{align*}
+\mathbb{E} \left[ \sum_{i=1}^{n} \left( X_i - \overline{X} \right)^2 \right]
+    &= \mathbb{E}\left[ \left(X_1 - \overline{X}\right)^2 + \left(X_2 - \overline{X}\right)^2 + \left(X_3 - \overline{X}\right)^2 + \dots \right] \\
+&= \mathbb{E} \left[ \left(X_{1}^{2} -2X_1 \overline{X} + \overline{X}^2 \right) + \left(X_{2}^{2} -2X_2 \overline{X} + \overline{X}^2 \right) + \left(X_{3}^{2} -2X_3 \overline{X} + \overline{X}^2 \right) + \dots\right] \\
+&= \sum_{i=1}^{n} \mathbb{E}\left[ X_{i}^2 \right]
+    + \mathbb{E}\left[ -2 \left( \sum_{i=1}^{n} X_i \right) \overline{X} \right] 
+    + n \mathbb{E}\left[ \overline{X}^2 \right]
+\end{align*}
+
+Now, remember that the sample mean is defined as
+$\hat{\mu}_m \equiv \overline{X} = \frac{1}{n} \sum_{i=1}^{n} X_i$.
+So the middle term can be simplified:
+
+\begin{align*}
+\mathbb{E} \left[ \sum_{i=1}^{n} \left( X_i - \overline{X} \right)^2 \right]
+&= \sum_{i=1}^{n} \mathbb{E}\left[ X_{i}^2 \right]
+    + \mathbb{E}\left[ -2 \left( \sum_{i=1}^{n} X_i \right) \overline{X} \right] 
+    + n \mathbb{E}\left[ \overline{X}^2 \right] \\
+&= \sum_{i=1}^{n} \mathbb{E}\left[ X_{i}^2 \right]
+    + \mathbb{E}\left[ -2 n \overline{X} \overline{X} \right] 
+    + n \mathbb{E}\left[ \overline{X}^2 \right] \\
+&= \sum_{i=1}^{n} \mathbb{E}\left[ X_{i}^2 \right]
+    + \mathbb{E}\left[ -2 n \overline{X}^2 \right] 
+    + n \mathbb{E}\left[ \overline{X}^2 \right] \\
+\end{align*}
+
+Since expectation do not depend on the number of samples nor on constant coefficients, the above can be rewritten
+as:
+
+\begin{align*}
+\mathbb{E} \left[ \sum_{i=1}^{n} \left( X_i - \overline{X} \right)^2 \right]
+    &= \sum_{i=1}^{n} \mathbb{E}\left[ X_{i}^2 \right]
+        + \mathbb{E}\left[ -2 n \overline{X}^2 \right] 
+        + n \mathbb{E}\left[ \overline{X}^2 \right] \\
+&= \sum_{i=1}^{n} \mathbb{E}\left[ X_{i}^2 \right] 
+    + \mathbb{E}\left[ -2 n \overline{X}^2 + n \overline{X}^2 \right] \\
+&= \sum_{i=1}^{n} \mathbb{E}\left[ X_{i}^2 \right]
+    + \mathbb{E}\left[ - n \overline{X}^2 \right] \\
+&= \sum_{i=1}^{n} \mathbb{E}\left[ X_{i}^2 \right]
+    - n \mathbb{E}\left[\overline{X}^2 \right] \\
+\end{align*}
+
+Which is the result we wanted to prove.
+
+But there is one more trick!
+If one just happened to remember that the \textbf{population variance} is defined as
+\begin{align*}
+\text{Var}(X) &= \mathbb{E}\left[ \left(X - \mu\right)^2 \right] \\
+&= \mathbb{E}\left[ X^2 \right] - \mathbb{E}\left[ X \right]^2
+\end{align*}
+Check wikipedia out,
+\href{https://en.wikipedia.org/wiki/Variance}{wiki:variance}.
+
+If we use this result, we can write:
+
+\begin{align*}
+\mathbb{E} \left[ \sum_{i=1}^{n} \left( X_i - \overline{X} \right)^2 \right]
+    &= \sum_{i=1}^{n} \left( \mathbb{E}\left[ X_{i}^2 \right] \right) - n \mathbb{E}\left[\overline{X}^2 \right] \\
+&= \sum_{i=1}^{n} \left( \text{Var}\left[X_i\right] + \mathbb{E}\left[ X_i \right]^2 \right)
+    - n \left( \text{Var}\left[ \overline{X} \right] + \mathbb{E}\left[ \overline{X} \right]^2 \right)
+\end{align*}
+
+Note that the pattern here is that we are trying to figure out the expectation value of a quantity squared!
+This is a "trick" one might want to remember!
+
+Now,
+$$
+\text{Var}\left[X_i\right] + \mathbb{E}\left[ X_i \right]^2
+    = \sigma^2 + \mu^2
+$$
+
+As per the other terms,
+we have to remember the cetral limit theorem and the sampling distribution of the mean.
+For example, see \cite{elementary-stats}, Chapter 6-4 on page 267,
+$$
+\mathbb{E}\left[\overline{X}\right] = \mu
+$$
+and
+$$
+\text{Var}\left[\overline{X}\right] = \frac{\sigma^2}{n}
+$$
+
+Plugging these two into our expression, we get:
+
+\begin{align*}
+\mathbb{E} \left[ \sum_{i=1}^{n} \left( X_i - \overline{X} \right)^2 \right]
+    &= \sum_{i=1}^{n} \left( \text{Var}\left[X_i\right] + \mathbb{E}\left[ X_i \right]^2 \right)
+        - n \left( \text{Var}\left[ \overline{X} \right] + \mathbb{E}\left[ \overline{X} \right]^2 \right) \\
+&= \sum_{i=1}^{n} \left( \sigma^2 + \mu^2 \right) - n\left( \frac{\sigma^2}{n} + \mu^2 \right) \\
+&= n\sigma^2 + n\mu^2 - \sigma^2 - n\mu^2 \\
+&= \left(n-1\right) \sigma^2
+\end{align*}
+
+If we plug this into \ref{stats:biased-variance-estimator}, we can see how \cite{Goodfellow-et-al-2016}
+obtains the result it has for the bias of the sample variance.
+
+The above compuations came from \cite{stat-theory}.

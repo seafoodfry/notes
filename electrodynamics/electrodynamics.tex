@@ -15,6 +15,14 @@
 \usepackage{booktabs} % for \addlinespace macro
 
 
+% References.
+\usepackage[
+backend=biber,
+style=alphabetic,
+sorting=ynt
+]{biblatex}
+\addbibresource{references.bib}
+
 
 % Make greek letters bold too.
 \usepackage{bm}
@@ -69,7 +77,9 @@
 \include{qft-misc-01}
 \include{variational-calc-01}
 \include{misc}
+\include{stats}
 
+\printbibliography[heading=bibintoc]
 
 
 \end{document}
