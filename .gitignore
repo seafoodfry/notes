@@ -6,3 +6,10 @@
 *.toc
 
 *.gz
+
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.run.xml
