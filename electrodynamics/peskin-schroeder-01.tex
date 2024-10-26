@@ -2,7 +2,7 @@
 
 \section{Inivitation}
 
-\subsection{Polarization Vectors}
+\subsection{Polarization Vectors} \label{section:polarized-vectors}
 
 In the invitation, we are presented with the polarization vector $\epsilon^\mu = (0, 1, i, 0)$.
 
@@ -138,7 +138,7 @@ And remember that $\partial^2 = \partial_{t}^{2} - \nabla^2$, so there comes $(\
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{Klein-Gordon Solution}
+\subsubsection{Fourier Transforms}
 
 One method to solve the equation is to use Fourier transforms.
 So we can begin by expressing the wave function $\phi(x,t)$ as a Fourier integral,
@@ -148,18 +148,90 @@ $$
 \int \frac{d^4k}{\left(2\pi\right)^4} \tilde{\psi}(k, \omega) e^{-i(k\cdot x - \omega t)}
 $$
 
+This is actually the \textbf{inverse Fourier transform}.
+
+Our convention of the \textbf{Fourier transform}, follows \cite{peskin-and-schroeder}:
+$$
+\mathcal{F} \{ \psi(x, t) \} =
+\tilde{ \psi }(k, \omega) =
+\int d^4x \, \psi(x, t) e^{i(k\cdot x - \omega t)}
+$$
+
+
 Here, $\tilde{\psi}(k, \omega)$ is the Fourier transform of $\psi(x, t)$.
-One thing that's often missed is the rgument of the exponent: if you look back to examples where we talk about plane waves
-(just go back to the previous section), a wave with positive momentum moving in positive direction $x$ has the argument $wt - xk$.
-And the convention is to hae such a wave in the Fourier transform.
+One thing that's often missed is the argument of the exponent: if you look back to examples where we talk about plane waves
+(go back to \ref{section:polarized-vectors}), a wave with positive momentum moving in positive direction $x$ has the argument $wt - xk$.
+The most common convention is to have such a wave in the Fourier transform.
 
-With this Fourier transofrm in place, we take the Fourier transform of our entire differential equation to reduce
-the solution into an algebraic problem.
+It is also worth stoping here to really take in and mess around with these expressions - we should understand
+where that factor of $\left(2\pi\right)^n$ comes from becuase that will either simplify a ton
+of expressions or it will get us an answer that's orders or magnitude off.
 
-For example, applying the Fourier transform to the time derivative goes as follows:
+Let's work in four-dimensional space still but absorb the time time component in our notation
+(eventhough we have already been doing this in our integration measures).
+
+And consider this, if we take a function, then we compute its Fourier transform, and then we take its inverse
+Fourier transform, then we should arrive at the original function.
 
 \begin{align*}
-\mathcal{F}\{ \partial_t \psi \} &=
+\psi(x) &= \int \frac{d^4 k}{\left(2\pi\right)^4} \tilde{\psi}(k) e^{-ik\cdot x} \\
+&= \int \frac{d^4 k}{\left(2\pi\right)^4}
+    \left( \int d^4x^{\prime} \, \psi(x^\prime) e^{ik\cdot x^{\prime}} \right)
+    e^{-ik\cdot x} \\
+&= \int d^4x^{\prime} \, \psi(x^\prime)
+    \left( \frac{d^4 k}{\left(2\pi\right)^4}  e^{ik\cdot \left(x^{\prime} - x\right)} \right)
+\end{align*}
+
+Thus, the only way this all works out is if
+$$
+\int \frac{d^4 k}{\left(2\pi\right)^4}  e^{ik\cdot \left(x^{\prime} - x\right)}
+= \delta^{(4)} \left( x^{\prime} - x \right)
+$$
+
+If we try the same exercise but start with a function in momentum space, then do an inverse transform, followed by a Fourier
+transform, then should again end with the same function.
+You'll see why it is worth doing this exercise here in a bit.
+Also note that we are following the convention of ignoring the tilde as we believe that now it will be clear
+what is going on.
+
+\begin{align*}
+\psi(k) &= \int d^4 x \, \psi(x) e^{ik\cdot x} \\
+&= \int d^4 x \, 
+    \left( \int \frac{d^4 k^\prime}{\left(2\pi\right)^4} \psi(k^\prime) e^{-ik^\prime \cdot x} \right)
+    e^{ik\cdot x} \\
+&= \int \frac{d^4 k^\prime}{\left(2\pi\right)^4} \,\psi(k^\prime)
+    \left( \int d^4 x \, e^{i(k - k^\prime)\cdot x} \right)
+\end{align*}
+
+Note that this time we left the $\left(2\pi\right)^4$ denominator with the momentum integral
+in order to be consistent with out convention.
+That is also why we organized the exponentials to have a leading "$+$" sign.
+
+Note that in this case, for things to work out, we need
+
+$$
+\int d^4 x \, e^{i(k - k^\prime)\cdot x} = \left(2\pi\right)^4 \delta^{(4)} \left(k - k^\prime\right)
+$$
+
+Which is what \cite{peskin-and-schroeder} call out in the notations and conventions section.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Klein-Gordon Solution}
+
+With this Fourier transofrm in place, we can take the Fourier transform of our entire
+Klein-Gordin equation to reduce it to an algebraic problem.
+
+Technically, what we will do is take the inverse Fourier transform of the first term in the KG equation,
+$\partial_t \psi$.
+This comes in handy and you will see why at the end.
+
+The physical reason to go about it this way is because we want to reconstruct a function from its frequency
+components (inverse transform).
+
+\begin{align*}
+\mathcal{F}^{-1}\{ \partial_t \psi \} &=
     \int \frac{d^4k}{(2\pi)^4} \partial_t \psi e^{-i(\vect{k}\cdot\vect{x} - \omega t)}
 \rightarrow
 \left[
@@ -180,10 +252,29 @@ As per the boudnary term, we have a couple words to say: physically, the wave fu
 Mathematically, in order for the Fourier transform to converge to a value the function that is being "transformed", $\psi$,
 must be a \textbf{rapidly decreasing function} (a function of \href{https://en.wikipedia.org/wiki/Schwartz_space}{Schwartz space}).
 
+The forwared Fourier transform would be (decomposing the function into its frequency components):
+
+\begin{align*}
+\mathcal{F}\{ \partial_t \psi \} &=
+    \int d^4x\, \partial_t \psi e^{i(\vect{k}\cdot\vect{x} - \omega t)}
+\rightarrow
+\left[
+    \begin{alignedat}{2}
+        u  &= e^{i(\vect{k}\cdot\vect{x} - \omega t)}                \quad & v  &= \psi \\
+        du &= -i\omega e^{i(\vect{k}\cdot\vect{x} - \omega t)} \, dt  \quad & dv &= \partial_t \psi \, dt
+    \end{alignedat}\,
+\right] \\
+&= \cancelto{0}{ \psi(\vect{x}, t) e^{i(\vect{k}\cdot\vect{x} - \omega t)} } \Big|_{t=-\infty}^{t=\infty}
+    - \int d^4x\, \psi(\vect{x}, t) \left(-i\omega\right) e^{i(\vect{k}\cdot\vect{x} - \omega t)} \\
+&= i\omega \tilde{\psi} (\vect{k}, \omega)
+\end{align*}
+
+
+
 Similarly then,
 
 \begin{align*}
-\mathcal{F}\{ \partial_{t}^2 \psi \} &=
+\mathcal{F}^{-1}\{ \partial_{t}^2 \psi \} &=
     \int \frac{d^4k}{(2\pi)^4} \partial_{t}^{2} \psi e^{-i(\vect{k}\cdot\vect{x} - \omega t)}
 \rightarrow
 \left[
@@ -194,7 +285,7 @@ Similarly then,
 \right] \\
 &= \cancelto{0}{ \partial _t \psi(\vect{x}, t) e^{-i(\vect{k}\cdot\vect{x} - \omega t)} } \Big|_{t=-\infty}^{t=\infty}
     - \int \frac{d^4k}{(2\pi)^4} \partial_t \psi(\vect{x}, t) \left(i\omega\right) e^{-i(\vect{k}\cdot\vect{x} - \omega t)} \\
-&= -i\omega \mathcal{F}\{ \partial_t \psi \} \\
+&= -i\omega \mathcal{F}^{-1}\{ \partial_t \psi \} \\
 &= - \omega^2 \tilde{\psi} (\vect{k}, \omega)
 \end{align*}
 
@@ -213,7 +304,7 @@ write $-|k|^2$, because we want the [L-2] norm.
 But anyways, the Fourier transform of the Laplacian is,
 
 \begin{align*}
-\mathcal{F}\{ \nabla \psi \} &=
+\mathcal{F}^{-1}\{ \nabla \psi \} &=
     \int \frac{d^4k}{(2\pi)^4} \nabla \psi e^{-i(\vect{k}\cdot\vect{x} - \omega t)}
 \rightarrow
 \left[
@@ -231,7 +322,7 @@ But anyways, the Fourier transform of the Laplacian is,
 and
 
 \begin{align*}
-\mathcal{F}\{ \nabla^2 \psi \} &=
+\mathcal{F}^{-1}\{ \nabla^2 \psi \} &=
     \int \frac{d^4k}{(2\pi)^4} \nabla^2 \psi e^{-i(\vect{k}\cdot\vect{x} - \omega t)}
 \rightarrow
 \left[
@@ -242,7 +333,7 @@ and
 \right] \\
 &= \cancelto{0}{ \nabla\psi(\vect{x}, t) e^{-i(\vect{k}\cdot\vect{x} - \omega t)} } \Big|_{\vect{x}=-\infty}^{\vect{x}=\infty}
     - \int \frac{d^4k}{(2\pi)^4} \nabla\psi(\vect{x}, t) \left(-i\vect{k}\right) e^{-i(\vect{k}\cdot\vect{x} - \omega t)} \\
-&= -i\vect{k} \mathcal{F}\{ \nabla \psi \} \\
+&= -i\vect{k} \mathcal{F}^{-1}\{ \nabla \psi \} \\
 &= - |\vect{k}|^2 \tilde{\psi} (\vect{k}, \omega)
 \end{align*}
 
@@ -691,7 +782,7 @@ ET I 175(35).
 I refers to volume 1 of the reference, 175 is the page where it should be found, (35) refers to the number of the formula
 in that work.
 
-We found a PDF of ET and on said place we found ourselves in the Laplace transofrms section.
+We found a PDF of ET and on said place we found ourselves in the Laplace transforms section.
 This section has two columns, one of them is $f(t)$ and the other one is $g(p) = \int_{0}^{\infty} dt\, f(t) d^{-pt}$.
 Forumal 35 had on the first column
 $$
