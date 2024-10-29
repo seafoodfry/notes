@@ -138,7 +138,7 @@ And remember that $\partial^2 = \partial_{t}^{2} - \nabla^2$, so there comes $(\
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{Fourier Transforms}
+\subsection{Fourier Transforms} \label{section:fourier-properties}
 
 One method to solve the equation is to use Fourier transforms.
 So we can begin by expressing the wave function $\phi(x,t)$ as a Fourier integral,
@@ -218,7 +218,7 @@ Which is what \cite{peskin-and-schroeder} call out in the notations and conventi
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{Klein-Gordon Solution}
+\subsection{Klein-Gordon Solution}
 
 With this Fourier transofrm in place, we can take the Fourier transform of our entire
 Klein-Gordin equation to reduce it to an algebraic problem.
@@ -531,7 +531,7 @@ $$
 In nonrelativistic quantum mechanics we have $E = \frac{1}{2m} p^2$, so
 \begin{align}
 U(t) &= \bra{\vect{x}} e^{-i(\vect{p}^2/2m)t} \ket{\vect{x}_0} \label{kg:nonrelativistic-01} \\
-&= \int d^3p \, \bra{\vect{x}} e^{-i(\vect{p}^2/2m)t} \ket{\vect{p}} \braket{\vect{p} | \vect{x}_0} \label{kg:nonrelativistic-02} \\
+&= \int \frac{d^3p}{\left(2\pi\right)^3} \, \bra{\vect{x}} e^{-i(\vect{p}^2/2m)t} \ket{\vect{p}} \braket{\vect{p} | \vect{x}_0} \label{kg:nonrelativistic-02} \\
 &= \int \frac{d^3p}{(2\pi)^3} e^{-i(\vect{p}^2/2m)t} e^{i\vect{p}\cdot(\vect{x}-\vect{x}_0)} \label{kg:nonrelativistic-03} \\
 &= \left( \frac{m}{2\pi i t} \right)^{3/2} e^{im (\vect{x}-\vect{x}_0)^2 /2t} \label{kg:nonrelativistic-04}
 \end{align}
@@ -540,10 +540,14 @@ U(t) &= \bra{\vect{x}} e^{-i(\vect{p}^2/2m)t} \ket{\vect{x}_0} \label{kg:nonrela
 To go from \ref{kg:nonrelativistic-01} to \ref{kg:nonrelativistic-02},
 we changed the basis to momentum eigenstates in order to apply the Hamiltonian operator and "extract" the exponential.
 If we have the operator $\hat{p}$ act on a pure momentum eigenstate $\ket{p}$, then we get $\hat{p}\ket{p} = p\ket{p}$.
-So changing basis helps us work with real quantities.
+So changing basis helps us work with real quantities
+(an eigenvalue obtained by applying a Hermitian operator on its eigenket).
 
 Here we are differing on convetnion from the book a bit.
-The identity we used was $\mathbb{I} = \int dp\, \ket{p}\bra{p}$, whereas Pesking and Schroeder use the identity
+Note that one may want to use the identity $\mathbb{I} = \int dp\, \ket{p}\bra{p}$.
+But as we saw in \ref{section:fourier-properties}, in order to stay consistent, we need our integrals over
+momentum space to have denominators of $\left(2\pi\right)^d$.
+So the actual identity we should use, which is what Peskin and Schroeder use, is identity
 $\mathbb{I} = \int \frac{d^dp}{(2\pi)^d} \ket{p}\bra{p}$.
 The additional $1/(2\pi)^d$ factor picks up the normalization for factors such as $\braket{p | x_0}$.
 But keep reading for details on those.
