@@ -15,3 +15,11 @@ clean:
 	find . -name '*.bbl' -delete
 	find . -name '*.bcf' -print
 	find . -name '*.bcf' -delete
+	find . -name '*.blg' -print
+	find . -name '*.blg' -delete
+	find . -name '*.fls' -print
+	find . -name '*.fls' -delete
+	find . -name '*.fdb_latexmk' -print
+	find . -name '*.fdb_latexmk' -delete
+	find . -name '*.run.xml' -print
+	find . -name '*.run.xml' -delete
