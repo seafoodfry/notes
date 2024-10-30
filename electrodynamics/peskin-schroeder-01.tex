@@ -263,8 +263,8 @@ $$
 $$
 
 Another interesting wave function - another set of amplitudes - that we will be interested on
-correspond to the amplitdues that a measurement of the momentum of our system will return a value $p$.
-We can define such a wave function as:
+correspond to the amplitdues that a system with a definite momentum $p$ is found at $x$.
+We can define this \textbf{position-representation of a momentum eigenstate} wave function as:
 
 $$
 u_p (x) = \braket{x | p}
@@ -274,27 +274,30 @@ is as a set of amplitudes corresponding to the probability of a measurement but 
 as a coordinate system.
 Where in the position representation we denote $\psi(x)$ and $u_p (x)$ as functions of $x$
 both defined by having a \textbf{dual vector}, $\bra{x}$ act on a vector.
-Which is a great remainder that dual vectors are complex-valued [linear] functions whose domain is some
+Which is a great remainder that dual vectors are complex-valued (linear) functions whose domain is some
 \textbf{vector space}.
 \\
 
-Here we are differing on convetnion from the book a bit.
-Note that one may want to use the identity $\mathbb{I} = \int dp\, \ket{p}\bra{p}$.
-But as we saw in \ref{section:fourier-properties}, in order to stay consistent, we need our integrals over
-momentum space to have denominators of $\left(2\pi\right)^d$.
-So the actual identity we should use, which is what Peskin and Schroeder use, is identity
-$\mathbb{I} = \int \frac{d^dp}{(2\pi)^d} \ket{p}\bra{p}$.
-The additional $1/(2\pi)^d$ factor picks up the normalization for factors such as $\braket{p | x_0}$.
-But keep reading for details on those.
-See the next section on formalism for more details (its a brief summary of stuff from quantum mechanics).
+The reason this brief detour matters is because the wave function $u_p (x)$ appears a lot.
+It appears so much that we actually begun talking about the Fourier transform which has us work out
+our integrals in momentum space.
 
+And the thing to know about these wave functions with definite momentum is that they carry a
+normalization factor of $\left(2\pi\right)^{-d/2}$ per wave function, and there are always two
+(because these are amplitdues).
+So in QFT we usually absorve this $\left(2\pi\right)^{-d}$ factor into the Fourier transofmr instead of
+carrying around with the wave function.
+Specially since it isn't obvious, when using natural units, that this factor should be around.
+Let's remember why it is so.
 
 When you see the integrals over states in quantum mechanics, especially when involving time evolution and position states,
 the calculation often utilizes the well-known expressions for the overlap of position and momentum eigenstates
-$\braket{\vect{x} | \vect{p}}$ and $\braket{\vect{p} | \vect{x_0}}$.
+$\braket{\vect{x} | \vect{p}}$ (amplitude to find at $x$ a particle with well-defined momentum)
+and $\braket{\vect{p} | \vect{x_0}}$ (amplitude to fina particle at $x_0$ with momentum $p$).
 These expressions are crucial in converting between position and momentum representations,
 which allows us to analyze the system's dynamics.
-In such cases, we have these useful identities - the next section will remind you where these come from:
+In such cases, we have these useful identities - the next section will remind you where these come from.
+The following discussion comes from %\cite{binney} chapter 2.3.2, page 38.
 
 $$
 \braket{\vect{x} | \vect{p}} = \frac{1}{(2\pi)^{3/2}} e^{i\vect{p}\cdot\vect{x}}

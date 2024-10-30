@@ -11,3 +11,7 @@ clean:
 	find . -name '*.toc' -delete
 	find . -name '*.gz' -print
 	find . -name '*.gz' -delete
+	find . -name '*.bbl' -print
+	find . -name '*.bbl' -delete
+	find . -name '*.bcf' -print
+	find . -name '*.bcf' -delete
