@@ -1,0 +1,28 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{A Propagator}
+
+Describes the amplitude for a particle to propagate from one point to another.
+
+With a source $j(\vect{x}, t)$, the Klein-Gordon equation becomes
+$$
+\left( \partial^2 + m^2 \right) \psi(\vect{x}, t) = j(\vect{x}, t)
+$$
+
+In momentum space the equation is
+$$
+\left( -\omega^2 + |\vect{k}|^2 + m^2 \right) \tilde{\psi}(\vect{k}, \omega) = \tilde{j}(\vect{\vect{k}, \omega})
+$$
+
+$$
+\tilde{\psi}(\vect{k}, \omega) = \frac{ \tilde{j}(\vect{\vect{k}, \omega}) }{ \omega^2 - |\vect{k}|^2 - m^2 + i\epsilon }
+$$
+
+$i\epsilon$ Feynman's prescription.
+
+The propagator $D_F(x-y)$ is the inverse transform of
+$\frac{ 1 }{ \omega^2 - |\vect{k}|^2 - m^2 + i\epsilon }$
+
+$$
+D_F(x-y) = \int \frac{d^4k}{(2\pi)^4}
+    \frac{ e^{-i(\vect{k}\cdot\vect{x} -\omega t)} }{ \omega^2 - |\vect{k}|^2 - m^2 + i\epsilon }
+$$
