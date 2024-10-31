@@ -904,6 +904,58 @@ And here we stop and appreciate why the method of stationary phase was mentioned
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{On The Way To The Method of Stationary Phase: Laplace's Method}
 
+
+$$
+\mathcal{I}(\lambda) = \int_{a}^{b} dx \, f(x) e^{i\lambda S(x)}
+$$
+
+When $\lambda$ is large, the phase factor, the exponential, oscillates very rapidly,
+except near the stationary points where $S^{\prime} (x) = 0$.
+
+Let's call a stationary point $x_0$.
+A Taylor expansion around it would be
+$$
+S(x) =
+    S(x_0) + S^{\prime} (x_0) (x - x_0) + \frac{1}{2!} S^{\prime \prime} (x_0) (x - x_0)^2 + \dots
+$$
+
+The linear term vanishes since we are in a stationary point.
+Substituting this approximation into our integral, we get
+
+\begin{align*}
+\mathcal{I}(\lambda) &\approx
+    \int_{a}^{b} dx \, f(x) \exp \left( i\lambda \left(
+        S(x_0) + \frac{1}{2} S^{\prime \prime} (x_0) (x - x_0)^2
+    \right) \right) \\
+&= \int_{a}^{b} dx \, f(x)
+    e^{ i\lambda S(x_0) }
+    \exp \left( \frac{i \lambda}{2} S^{\prime \prime} (x_0) (x - x_0)^2 \right) \\
+&= e^{ i\lambda S(x_0) } \int_{a}^{b} dx \, f(x)
+    \exp \left( \frac{i \lambda}{2} S^{\prime \prime} (x_0) (x - x_0)^2 \right)
+\end{align*}
+
+
+Another trick that is done is to expand the limits of integration to $\pm \infty$.
+This can be justified because away from the stationary point, the phase factor
+oscillations will cancel each other out.
+
+So we now work on
+$$
+\mathcal{I}(\lambda) \approx
+e^{ i\lambda S(x_0) } \int_{-\infty}^{\infty} dx \, f(x_0)
+    \exp \left( \frac{i \lambda}{2} S^{\prime \prime} (x_0) (x - x_0)^2 \right)
+$$
+
+Note that since we are only interested in the neighborhood of the stationary point we are also
+approximating $f(x) \approx f(x_0)$.
+
+
+%%% why does phase factor oscillate rapidly except near stationary point.
+
+
+
+%%%%%%%%%%%%% Prev writings.
+
 To understand this method well it helps to first read
 \href{https://en.wikipedia.org/wiki/Laplace%27s_method}{Wikipedia: Laplace's Method}.
 
