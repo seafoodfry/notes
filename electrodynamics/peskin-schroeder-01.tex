@@ -138,7 +138,7 @@ And remember that $\partial^2 = \partial_{t}^{2} - \nabla^2$, so there comes $(\
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{Fourier Transforms}
+\subsection{A Bit of Formalism: Fourier Transforms} \label{formalism:fourier-properties}
 
 One method to solve the equation is to use Fourier transforms.
 So we can begin by expressing the wave function $\phi(x,t)$ as a Fourier integral,
@@ -217,8 +217,199 @@ Which is what \cite{peskin-and-schroeder} call out in the notations and conventi
 
 
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{A Bit of Formalism: Normalization Factors in Momentum Integrals} \label{formalism:momentum-renormalization-factor}
+
+We'll dive into a bit for formalism here before proceeding.
+
+The reason we verified the Fourier transofrm above was because one often sees, in the
+\textbf{position representation}, expressions such as
+
+$$
+\mathcal{I} = \int dx \, \ket{x}\bra{x}
+$$
+
+And one could naively plug into their equations the expression $\mathcal{I} = \int dp \, \ket{p}\bra{p}$.
+But, the there is an important subtlety in our Fourier transform convention!
+\\
+
+If you recall from QM, $\ket{\psi}$ is meant to represent some generic state of a system
+we are interested about.
+This \textbf{state vector} $\ket{\psi}$ represents the possible quantum amplitudes for some particular
+complete basis set in some particular coordinate system.
+See \cite{binney}, chapters 1.2 and 1.4 on pages 9 and 15.
+
+This way of defining the state vector $\ket{\psi}$
+should ring a bell as it implicitly calls out to the \textbf{spectral theorem} for Hermitian operators.
+Remember that the spectral theorem for spectral theorem states that the eigenvectors of a hermitian operator
+form a complete, orthonormal set of basis sets.
+
+Because any hermitian operator will provide for us a complete basis set, $\ket{\psi}$ as a generic
+state of a system is a good abstraction.
+And because of that, we use it to define the \textbf{wave function}, which gives us the amplitude to find
+our system in a specific state.
+
+For example, the wave function $\psi(x)$ is defined as:
+
+$$
+\psi(x) = \braket{x | \psi}
+$$
+
+This wave function, these amplitudes, can help us find the probability to find our system at position
+$x \in \left( -\infty , \infty\right)$ and thus we can express our generic state in terms of the
+complete basis set $\ket{x}$:
+
+$$
+\ket{\psi} = \int d^d x \, \psi(x) \ket{x} = \int d^d x \, \braket{x | \psi}  \ket{x}
+$$
+
+Another interesting wave function - another set of amplitudes - that we will be interested on
+correspond to the amplitdues that a system with a definite momentum $p$ is found at $x$.
+We can define this \textbf{position-representation of a momentum eigenstate} wave function as:
+
+$$
+u_p (x) = \braket{x | p}
+$$
+We are using this notation that comes from \cite{binney} because it helps us clearly see what a wave function
+is as a set of amplitudes corresponding to the probability of a measurement but also
+as a coordinate system.
+Where in the position representation we denote $\psi(x)$ and $u_p (x)$ as functions of $x$
+both defined by having a \textbf{dual vector}, $\bra{x}$ act on a vector.
+Which is a great remainder that dual vectors are complex-valued (linear) functions whose domain is some
+\textbf{vector space}.
+\\
+
+The reason this brief detour matters is because the wave function $u_p (x)$ appears a lot.
+It appears so much that we actually begun talking about the Fourier transform which has us work out
+our integrals in momentum space.
+
+And the thing to know about these wave functions with definite momentum is that they carry a
+normalization factor of $\left(2\pi\right)^{-d/2}$ per wave function, and there are always two
+(because these are amplitdues).
+So in QFT we usually absorve this $\left(2\pi\right)^{-d}$ factor into the Fourier transofmr instead of
+carrying around with the wave function.
+Specially since it isn't obvious, when using natural units, that this factor should be around.
+Let's remember why it is so.
+
+When you see the integrals in quantum mechanics,
+the calculation often utilizes the well-known expressions for the overlap of position and momentum eigenstates
+$\braket{\vect{x} | \vect{p}}$ (amplitude to find at $x$ a particle with well-defined momentum)
+and $\braket{\vect{p} | \vect{x_0}}$ (amplitude to fina particle at $x_0$ with momentum $p$).
+These expressions are crucial in converting between position and momentum representations,
+which allows us to analyze the system's dynamics.
+
+You may be familiar with the solution to the differential equation
+$$
+\braket{ x | \hat{p} | p} = -i \hbar \partial_x u_p (x) = p u_p(x)
+$$
+see \cite{binney} chapter 2.3.2, page 38.
+The solutions are,
+
+$$
+\braket{\vect{x} | \vect{p}} = \frac{1}{(2\pi)^{3/2}} e^{i\vect{p}\cdot\vect{x}}
+$$
+and 
+$$
+\braket{\vect{p} | \vect{x_0}} = \frac{1}{(2\pi)^{3/2}} e^{-i\vect{p}\cdot\vect{x_0}}
+$$
+
+
+As we mention above, Pesking and schroeder use
+$$
+\braket{\vect{x} | \vect{p}} = e^{i\vect{p}\cdot\vect{x}}
+$$
+and 
+$$
+\braket{\vect{p} | \vect{x_0}} = e^{-i\vect{p}\cdot\vect{x_0}}
+$$
+
+It'd be rough to remember to find the missing normalization factor when using natural units,
+people just add it to the momentum integrals, where they should always be.
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{A Bit of Formalism: Bras and the Dual Space} \label{formalism:bras}
+
+
+First, this comes from the section "outer products" in
+\href{https://en.wikipedia.org/wiki/Bra%E2%80%93ket_notation}{Wikipedia: Bra-Ket Notation},
+we have to keep in mind that $\ket{\psi}\bra{\psi}$ defines an \textbf{outer product}.
+In a finite-dimensional vector space the outer product is defined as
+
+$$
+\ket{\phi}\bra{\psi}
+=
+\begin{pmatrix}
+    \phi_1 \\
+    \phi_2 \\
+    \vdots \\
+    \phi_N 
+\end{pmatrix}
+\begin{pmatrix}
+    \psi_{1}^{*} & \psi_{2}^{*} & \ldots & \psi_{N}^{*}
+\end{pmatrix}
+=
+\begin{pmatrix} 
+    \phi_1 \psi_{1}^{*} & \phi_1 \psi_{2}^{*} & \dots  & \phi_1 \psi_{N}^{*} \\
+    \phi_2 \psi_{1}^{*} & \phi_2 \psi_{2}^{*} & \dots  & \phi_2 \psi_{N}^{*} \\
+    \vdots              & \vdots              & \ddots & \vdots              \\
+    \phi_N \psi_{1}^{*} & \phi_N \psi_{2}^{*} & \dots  & \phi_N \psi_{N}^{*} \\
+\end{pmatrix}
+$$
+
+One of the uses of the outer product is to construct \textbf{projection operators}.
+
+Given a ket $\ket{\psi}$ of norm 1 (being a complete basis set for some space),
+the orthogonal projection onto the subspace spanned by $\ket{\psi}$ is
+$\ket{\psi}\bra{\psi}$.
+
+Very fancy way of saying that the outer product is a dual vector being used to define an operator.
+Which may be weird given that thus far we've only mentioned that dual vectors are complex-valued linear
+functions that feed on kets and spit out complex numbers, see \ref{formalism:momentum-renormalization-factor},
+but in this presentation, the dual vector and the vector waiting for another vector to show up.
+And when that vector does, the dual vector will appear, convert one of the vectors into a complex number
+and scale the remaining ket.
+
+
+
+The "Unit operator" section on \href{https://en.wikipedia.org/wiki/Bra%E2%80%93ket_notation}{Wikipedia: Bra-Ket Notation},
+also has this: if we have a complete orthonormal basis $\{ e_i | i\in\mathbb{N} \}$,
+functional analysis tells us that any $\ket{\psi}$ can also be written as
+\begin{equation}
+\ket{\psi} =
+\sum_{i\in\mathbb{N}} \braket{e_i | \psi} \ket{e_i} \label{qm-formalism:discrete-basis}
+\end{equation}
+
+This is how we "project" $\psi$ into a new basis.
+
+It mentions that it can also be shown that
+$$
+\mathbb{I} = \sum_{i\in\mathbb{N}} \ket{e_i} \bra{\psi}
+$$
+
+There is also this result called
+\href{https://en.wikipedia.org/wiki/Borel_functional_calculus#Resolution_of_the_identity}{resolution of the identity in Borel functional calculus}
+that allows us to generalized this result to the continuous case,
+
+$$
+\mathbb{I} = \int dx \, \ket{x} \bra{x} = \int dp \, \ket{p} \bra{p}
+$$
+
+
+The analogous to \ref{qm-formalism:discrete-basis} in the continuous case is
+$$
+\ket{\psi} = \int dx\, \psi(x) \ket{x}
+$$
+where $\psi (x) = \braket{x | \psi}$ by analogy.
+\\
+
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{Klein-Gordon Solution}
+\subsection{Klein-Gordon Solution}
 
 With this Fourier transofrm in place, we can take the Fourier transform of our entire
 Klein-Gordin equation to reduce it to an algebraic problem.
@@ -486,38 +677,6 @@ And since $\omega = \pm \sqrt{|\vect{k}|^ + m^2}$, then the density can be negat
 
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{A Propagator}
-
-Describes the amplitude for a particle to propagate from one point to another.
-
-With a source $j(\vect{x}, t)$, the Klein-Gordon equation becomes
-$$
-\left( \partial^2 + m^2 \right) \psi(\vect{x}, t) = j(\vect{x}, t)
-$$
-
-In momentum space the equation is
-$$
-\left( -\omega^2 + |\vect{k}|^2 + m^2 \right) \tilde{\psi}(\vect{k}, \omega) = \tilde{j}(\vect{\vect{k}, \omega})
-$$
-
-$$
-\tilde{\psi}(\vect{k}, \omega) = \frac{ \tilde{j}(\vect{\vect{k}, \omega}) }{ \omega^2 - |\vect{k}|^2 - m^2 + i\epsilon }
-$$
-
-$i\epsilon$ Feynman's prescription.
-
-The propagator $D_F(x-y)$ is the inverse transform of
-$\frac{ 1 }{ \omega^2 - |\vect{k}|^2 - m^2 + i\epsilon }$
-
-$$
-D_F(x-y) = \int \frac{d^4k}{(2\pi)^4}
-    \frac{ e^{-i(\vect{k}\cdot\vect{x} -\omega t)} }{ \omega^2 - |\vect{k}|^2 - m^2 + i\epsilon }
-$$
-
-
-
-
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -531,7 +690,7 @@ $$
 In nonrelativistic quantum mechanics we have $E = \frac{1}{2m} p^2$, so
 \begin{align}
 U(t) &= \bra{\vect{x}} e^{-i(\vect{p}^2/2m)t} \ket{\vect{x}_0} \label{kg:nonrelativistic-01} \\
-&= \int d^3p \, \bra{\vect{x}} e^{-i(\vect{p}^2/2m)t} \ket{\vect{p}} \braket{\vect{p} | \vect{x}_0} \label{kg:nonrelativistic-02} \\
+&= \int \frac{d^3p}{\left(2\pi\right)^3} \, \bra{\vect{x}} e^{-i(\vect{p}^2/2m)t} \ket{\vect{p}} \braket{\vect{p} | \vect{x}_0} \label{kg:nonrelativistic-02} \\
 &= \int \frac{d^3p}{(2\pi)^3} e^{-i(\vect{p}^2/2m)t} e^{i\vect{p}\cdot(\vect{x}-\vect{x}_0)} \label{kg:nonrelativistic-03} \\
 &= \left( \frac{m}{2\pi i t} \right)^{3/2} e^{im (\vect{x}-\vect{x}_0)^2 /2t} \label{kg:nonrelativistic-04}
 \end{align}
@@ -540,14 +699,16 @@ U(t) &= \bra{\vect{x}} e^{-i(\vect{p}^2/2m)t} \ket{\vect{x}_0} \label{kg:nonrela
 To go from \ref{kg:nonrelativistic-01} to \ref{kg:nonrelativistic-02},
 we changed the basis to momentum eigenstates in order to apply the Hamiltonian operator and "extract" the exponential.
 If we have the operator $\hat{p}$ act on a pure momentum eigenstate $\ket{p}$, then we get $\hat{p}\ket{p} = p\ket{p}$.
-So changing basis helps us work with real quantities.
+So changing basis helps us work with real quantities
+(an eigenvalue obtained by applying a Hermitian operator on its eigenket).
 
-Here we are differing on convetnion from the book a bit.
-The identity we used was $\mathbb{I} = \int dp\, \ket{p}\bra{p}$, whereas Pesking and Schroeder use the identity
+Note that one may want to use the identity $\mathbb{I} = \int dp\, \ket{p}\bra{p}$.
+But as we saw in \ref{formalism:fourier-properties} and in \ref{formalism:momentum-renormalization-factor}, in order to stay consistent, we need our integrals over
+momentum space to have denominators of $\left(2\pi\right)^d$.
+So the actual identity we should use, which is what Peskin and Schroeder use, is identity
 $\mathbb{I} = \int \frac{d^dp}{(2\pi)^d} \ket{p}\bra{p}$.
 The additional $1/(2\pi)^d$ factor picks up the normalization for factors such as $\braket{p | x_0}$.
-But keep reading for details on those.
-See the next section on formalism for more details (its a brief summary of stuff from quantum mechanics).
+
 
 
 When you see the integrals over states in quantum mechanics, especially when involving time evolution and position states,
@@ -555,7 +716,7 @@ the calculation often utilizes the well-known expressions for the overlap of pos
 $\braket{\vect{x} | \vect{p}}$ and $\braket{\vect{p} | \vect{x_0}}$.
 These expressions are crucial in converting between position and momentum representations,
 which allows us to analyze the system's dynamics.
-In such cases, we have these useful identities - the next section will remind you where these come from:
+In such cases, we have these useful identities:
 
 $$
 \braket{\vect{x} | \vect{p}} = \frac{1}{(2\pi)^{3/2}} e^{i\vect{p}\cdot\vect{x}}
@@ -565,16 +726,7 @@ $$
 \braket{\vect{p} | \vect{x_0}} = \frac{1}{(2\pi)^{3/2}} e^{-i\vect{p}\cdot\vect{x_0}}
 $$
 
-We used these identities to go from \ref{kg:nonrelativistic-02} to \ref{kg:nonrelativistic-03},
-
-\begin{align*}
-& \int \frac{d^3p}{(2\pi)^3} e^{-i(\vect{p}^2/2m)t} \braket{\vect{x} | \vect{p}} \braket{\vect{p} | \vect{x}_0} \\
-&= \int \frac{d^3p}{(2\pi)^3} e^{-i(\vect{p}^2/2m)t} \frac{1}{(2\pi)^3} e^{i\vect{p}\cdot(\vect{x}-\vect{x}_0)} 
-\end{align*}
-
-If these details don't ring a bell, read the following section.
-
-Pesking and schroeder seem to use
+But in QFT we instead use:
 $$
 \braket{\vect{x} | \vect{p}} = e^{i\vect{p}\cdot\vect{x}}
 $$
@@ -582,7 +734,17 @@ and
 $$
 \braket{\vect{p} | \vect{x_0}} = e^{-i\vect{p}\cdot\vect{x_0}}
 $$
-Since the projection into momentum space carries the appropiate normalization factor.
+This way, it is not the projection into momentum space that carries the appropiate normalization factor
+but the Fourier integrals.
+Which is a bit more natural when working with natural units.
+
+
+We used these identities to go from \ref{kg:nonrelativistic-02} to \ref{kg:nonrelativistic-03},
+
+\begin{align*}
+& \int \frac{d^3p}{(2\pi)^3} e^{-i(\vect{p}^2/2m)t} \braket{\vect{x} | \vect{p}} \braket{\vect{p} | \vect{x}_0} \\
+&= \int \frac{d^3p}{(2\pi)^3} e^{-i(\vect{p}^2/2m)t} \frac{1}{(2\pi)^3} e^{i\vect{p}\cdot(\vect{x}-\vect{x}_0)} 
+\end{align*}
 
 
 As per the solution, see \ref{ps-kg:nonrelativistic-propagator}.
@@ -629,7 +791,7 @@ also has this: if we have a complete orthonormal basis $\{ e_i | i\in\mathbb{N} 
 functional analysis tells us that any $\ket{\psi}$ can also be written as
 \begin{equation}
 \ket{\psi} =
-\sum_{i\in\mathbb{N}} \braket{e_i | \psi} \ket{e_i} \label{qm-formalism:discrete-basis}
+\sum_{i\in\mathbb{N}} \braket{e_i | \psi} \ket{e_i} %\label{qm-formalism:discrete-basis}
 \end{equation}
 
 This is how we "project" $\psi$ into a new basis.
