@@ -751,127 +751,6 @@ As per the solution, see \ref{ps-kg:nonrelativistic-propagator}.
 The trick is to complete the square for the arguments of the exponentials and extract a Gaussian integral.
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{A Bit of Formalism}
-
-The couple facts used in the above integral go as follows.
-
-First, this comes from the section "outer products" in
-\href{https://en.wikipedia.org/wiki/Bra%E2%80%93ket_notation}{Wikipedia: Bra-Ket Notation},
-we have to keep in mind that $\ket{\psi}\bra{\psi}$ defines an \textbf{outer product}.
-In a finite-dimensional vector space the outer product is defined as
-
-$$
-\ket{\phi}\bra{\psi}
-=
-\begin{pmatrix}
-    \phi_1 \\
-    \phi_2 \\
-    \vdots \\
-    \phi_N 
-\end{pmatrix}
-\begin{pmatrix}
-    \psi_{1}^{*} & \psi_{2}^{*} & \ldots & \psi_{N}^{*}
-\end{pmatrix}
-=
-\begin{pmatrix} 
-    \phi_1 \psi_{1}^{*} & \phi_1 \psi_{2}^{*} & \dots  & \phi_1 \psi_{N}^{*} \\
-    \phi_2 \psi_{1}^{*} & \phi_2 \psi_{2}^{*} & \dots  & \phi_2 \psi_{N}^{*} \\
-    \vdots              & \vdots              & \ddots & \vdots              \\
-    \phi_N \psi_{1}^{*} & \phi_N \psi_{2}^{*} & \dots  & \phi_N \psi_{N}^{*} \\
-\end{pmatrix}
-$$
-
-One of the uses of the outer product is to construct \textbf{projection operators}. Given a ket $\ket{\psi}$
-of norm 1, the orthogonal projection onto the subspace spanned by $\ket{\psi}$ is $\ket{\psi}\bra{\psi}$.
-
-
-The "Unit operator" section on \href{https://en.wikipedia.org/wiki/Bra%E2%80%93ket_notation}{Wikipedia: Bra-Ket Notation},
-also has this: if we have a complete orthonormal basis $\{ e_i | i\in\mathbb{N} \}$,
-functional analysis tells us that any $\ket{\psi}$ can also be written as
-\begin{equation}
-\ket{\psi} =
-\sum_{i\in\mathbb{N}} \braket{e_i | \psi} \ket{e_i} %\label{qm-formalism:discrete-basis}
-\end{equation}
-
-This is how we "project" $\psi$ into a new basis.
-
-It mentions that it can also be shown that
-$$
-\mathbb{I} = \sum_{i\in\mathbb{N}} \ket{e_i} \bra{\psi}
-$$
-
-There is also this result called
-\href{https://en.wikipedia.org/wiki/Borel_functional_calculus#Resolution_of_the_identity}{resolution of the identity in Borel functional calculus}
-that allows us to generalized this result to the continuous case,
-
-$$
-\mathbb{I} = \int dx \, \ket{x} \bra{x} = \int dp \, \ket{p} \bra{p}
-$$
-
-
-The analogous to \ref{qm-formalism:discrete-basis} in the continuous case is
-$$
-\ket{\psi} = \int dx\, \psi(x) \ket{x}
-$$
-where $\psi (x) = \braket{x | \psi}$ by analogy.
-\\
-
-
-The next bit of muscle memory to train is to remember that
-$$
-\delta^{4} (k) = \int \frac{d^4x}{(2\pi)^4} e^{ik\cdot x}
-$$
-and that
-$$
-\braket{x | x^\prime} = \delta(x - x^\prime)
-$$
-
-and
-$$
-\braket{p | q} = (2\pi)^d \delta^{(d)}(p - q)
-$$
-
-Along with the following bit of formalism comes from James Binney's book, section 2.3.2.
-
-Position operator $\hat{x}$ acts in position space as $\hat{x} \psi = x\psi$.
-The momentum operator in the position representation is $\hat{p} = -i\nabla$.
-
-A position eigenstate $\ket{x}$ satisfies $\hat{x}\ket{x} = x\ket{x}$.
-Similarly, momentum eigenstate $\ket{p}$ satisfies $\hat{p}\ket{p} = p\ket{p}$.
-
-The state $\ket{p}$ in which a measurement of the momentum will yield the value $p$ has to be an eigenstate
-of $\hat{p}$.
-To find the wave function $u_p (x) = \braket{x | p}$ of this important state, $\ket{p}$,
-we can use the following argument
-
-$$
-\hat{p} \phi(x) = -i\nabla \phi(x) = p\phi
-$$
-
-This results in a differential equation with a simple solution,
-$$
--i\nabla u_p(x) = p u_p(x) \rightarrow u_p(x) = Ae^{ipx}
-$$
-
-Thus the wavefunction of a particle of well-defined momentum is a plane wave.
-To normalize the wave function, we need to find $A$ which can be done as follows:
-
-\begin{align*}
-\delta(p - p^\prime) &= \braket{p | p^\prime} \\
-&= \int dx \, \braket{p | x} \braket{x | p^\prime} \\
-&= |A|^2 \int dx \, u_{p}^{*} (x) u_{p^\prime} (x) \\
-&= |A|^2 \int dx \, e^{-ipx} e^{ip^\prime x} \\
-&= |A|^2 \int dx \, e^{i(p - p^\prime) x} \\
-&= 2\pi |A|^2 \delta(p - p^\prime)
-\end{align*}
-
-Here we used $\mathbb{I} = \int dx \, \ket{x}\bra{x}$ again.
-Along with $\delta(x-x^\prime) = \int \frac{dk}{2\pi} e^{ik(x-x^\prime)}$.
-
-
-
-
 
 
 
@@ -881,10 +760,10 @@ Along with $\delta(x-x^\prime) = \int \frac{dk}{2\pi} e^{ik(x-x^\prime)}$.
 And now let's look at
 \begin{align*}
 U(t) &= \bra{\vect{x}} e^{-it\sqrt{\vect{p}^2 + m^2}} \ket{\vect{x}_0} \\
-&= \int d^3p \, \bra{\vect{x}} e^{-it\sqrt{\vect{p}^2 + m^2}} \ket{\vect{p}} \braket{\vect{p} | \vect{x}_0} \\
-&= \int d^3p \, e^{-it\sqrt{\vect{p}^2 + m^2}} \braket{\vect{x} | \vect{p}} \braket{\vect{p} | \vect{x}_0} \\
-&= \int \frac{d^3p}{(2\pi)^3} \, e^{-it\sqrt{\vect{p}^2 + m^2}} e^{i\vect{p}\cdot\vect{x}} e^{-i\vect{p}\cdot\vect{x}_0} \\
-&= \int \frac{d^3p}{(2\pi)^3} \, e^{-it\sqrt{\vect{p}^2 + m^2}} e^{i\vect{p}\cdot(\vect{x} - \vect{x}_0)} \\
+&= \int \frac{d^3p}{\left(2\pi\right)^3} \, \bra{\vect{x}} e^{-it\sqrt{\vect{p}^2 + m^2}} \ket{\vect{p}} \braket{\vect{p} | \vect{x}_0} \\
+&= \int \frac{d^3p}{\left(2\pi\right)^3} \, e^{-it\sqrt{\vect{p}^2 + m^2}} \braket{\vect{x} | \vect{p}} \braket{\vect{p} | \vect{x}_0} \\
+&= \int \frac{d^3p}{\left(2\pi\right)^3} \, e^{-it\sqrt{\vect{p}^2 + m^2}} e^{i\vect{p}\cdot\vect{x}} e^{-i\vect{p}\cdot\vect{x}_0} \\
+&= \int \frac{d^3p}{\left(2\pi\right)^3} \, e^{-it\sqrt{\vect{p}^2 + m^2}} e^{i\vect{p}\cdot(\vect{x} - \vect{x}_0)} \\
 \end{align*}
 
 The result then happens to be
@@ -1017,8 +896,13 @@ $$
 
 And here we stop and appreciate why the method of stationary phase was mentioned and use by the authors.
 
+
+
+
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{On The Way To The Method of Stationary Phase: Laplace's Method}
+\subsection{On The Way To The Method of Stationary Phase: Laplace's Method}
 
 To understand this method well it helps to first read
 \href{https://en.wikipedia.org/wiki/Laplace%27s_method}{Wikipedia: Laplace's Method}.
