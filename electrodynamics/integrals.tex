@@ -79,7 +79,7 @@ re-use the previous result.
 \begin{enumerate}
 \item factor out $a$: $a \left(x^2 + \frac{b}{a}x \right) + c$
 \item take the coefficient of $x$, divide it by $2$ and square it: $a \left(x^2 + \frac{b}{a}x + \left(\frac{b}{2a}\right)^2 - \left(\frac{b}{2a}\right)^2 \right) + c$
-\item by this point we have a perfect square, so separate it: $a \left(x + \frac{b}{a} \right)^2 - \left(\frac{b}{2a}\right)^2 + c$
+\item by this point we have a perfect square, so separate it: $a \left(x + \frac{b}{a} \right)^2 - a\left(\frac{b}{2a}\right)^2 + c$
 \end{enumerate}
 
 With this trcik we can arrive at
@@ -94,6 +94,41 @@ We will be using it more later on.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Complex Gaussians: the Fresnel Integral}
+
+
+Convergence of $\int e^{-at^2} dt$.
+
+When $a \in \mathbb{R}$ and $a>0$, $e^{-at^2}$ decays rapidly as $|t| \rightarrow \infty$.
+
+When $a = re^{i\theta}$ we can write the phase factor as
+$$
+e^{-at^2} = e^{-rt^2 \left(\cos\theta + i\sin\theta\right)}
+= e^{-rt^2 \cos\theta}
+    e^{-irt^2 \sin\theta}
+$$
+
+If we remember Euler's formula, we'll see that the imaginary component just spins around.
+So convergence is solely controlled by the real part.
+For the real part to converge, we need $-rt^2 \cos\theta$ to stay negative as $|t| \rightarrow \infty$.
+For this to happen, we need to keep $\theta \in \left(-\pi/2, \pi/2\right)$.
+
+With this in mind, we can perform an analytic continuation by rotating $\theta$ from $0$ to $\pi/2$.
+This is because both $\int e^{-at^2} dt$ and its real-solution is $\sqrt{\frac{\pi}{a}}$ are both analytic
+and we keep the integral from exploding along the path we chose.
+A fundamental theorem of complex analysis, the
+\href{https://en.wikipedia.org/wiki/Identity_theorem}{identity theorem} says that
+if two analytic functions are equal on a line segment and both are analytic in a larger region
+then they must be equal throughout that region.
+
+So for example, when we have $\int e^{-\frac{1}{2} it^2} dt$, then
+$a = r e^{i\theta} = \left(\frac{1}{2}\right)\left(-i\right)$.
+Thus,
+$$
+\int e^{-\frac{1}{2} it^2} dt = \sqrt{ \frac{\pi}{\left(\frac{1}{2}\right)\left(-i\right)} }
+= \sqrt{2\pi} \left(\sqrt{-\frac{1}{i} }\right)
+= \sqrt{2\pi} \sqrt{i}
+= \sqrt{2\pi} e^{i\pi/4}
+$$
 
 
 
