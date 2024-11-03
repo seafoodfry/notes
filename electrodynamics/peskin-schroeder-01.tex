@@ -949,12 +949,55 @@ $$
 Note that since we are only interested in the neighborhood of the stationary point we are also
 approximating $f(x) \approx f(x_0)$.
 
+This integral is a complex Gaussian, see \ref{integrals:complex-gaussian}.
+The general solution is
 
-%%% why does phase factor oscillate rapidly except near stationary point.
+$$
+\int e^{-a(t+b)^2} dt = \sqrt{\frac{\pi}{a}}
+$$
+
+Here $a = -i \frac{\lambda}{2} S^{\prime \prime} (x_0) $.
+So
+
+\begin{align*}
+\mathcal{I}(\lambda) \approx
+    e^{ i\lambda S(x_0) } f(x_0)
+    \sqrt{ \frac{2\pi}{ -i\lambda S^{\prime \prime} (x_0) } }
+\end{align*}
+
+This tells us that that for large $\lambda$,
+the integral is dominated by contributions near the stationary points,
+with amplitude decaying as $\lambda^{-1/2}$.
+
+As for why the phase factor oscillates less rapidly near stationary points,
+we need to look at the phase factor $ e^{ i\lambda S(x_0) } $ (the oscillating part!).
+
+The rate of oscillation is determined by how quickly the phase $\lambda S(x)$ changes with $x$.
+This rate of change is
+
+$$
+\frac{d}{dx} \left(\lambda S(x)\right) = \lambda S^{\prime} (x)
+$$
+
+Since $S^{\prime} (x_0) = 0$, then the phase factor is not changing.
+
+This is why the main contribution to the integral comes from near the stationary points - everywhere else,
+the rapid oscillations tend to cancel each other out when integrated.
 
 
 
-%%%%%%%%%%%%% Prev writings.
+Looking back at \ref{kg-relativistic-simplified},
+
+\begin{align}
+U(t) &= \bra{\vect{x}} e^{-iHt} \ket{\vect{x}_0} \\
+&= \int \frac{dp}{(2\pi)^3} d\Omega \, |p|^2 e^{-it\sqrt{p^2 + m^2}} e^{ipr\cos\theta} \\
+&= \frac{1}{2\pi^2 |\vect{x}-\vect{x}_0|}
+    \int_{0}^{\infty} dp \, p \sin(p|\vect{x}-\vect{x}_0|) e^{-it\sqrt{p^2 + m^2}} 
+\end{align}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Stationary Phase Method: Background}
 
 To understand this method well it helps to first read
 \href{https://en.wikipedia.org/wiki/Laplace%27s_method}{Wikipedia: Laplace's Method}.
