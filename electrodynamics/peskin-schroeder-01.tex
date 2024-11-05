@@ -996,6 +996,97 @@ U(t) &= \bra{\vect{x}} e^{-iHt} \ket{\vect{x}_0} \\
 \end{align}
 
 
+Let's defined $x = \left| \vect{x}-\vect{x}_0 \right|$.
+And remeber that $\sin\left(px\right) = \frac{1}{2i} \left(e^{ipx} - e^{-ipx}\right)$.
+So we have,
+
+\begin{align}
+U(t) &= \bra{\vect{x}} e^{-iHt} \ket{\vect{x}_0} \\
+&= \frac{1}{2\pi^2 |\vect{x}-\vect{x}_0|}
+    \int_{0}^{\infty} dp \, p \sin(p|\vect{x}-\vect{x}_0|) e^{-it\sqrt{p^2 + m^2}}  \\
+&= \frac{1}{4i \pi^2 x}
+    \int_{0}^{\infty} dp \, p \left(e^{ipx} - e^{-ipx}\right) e^{-it\sqrt{p^2 + m^2}} \\
+&= \frac{1}{4i \pi^2 x}
+    \int_{0}^{\infty} dp \, p
+    \left[ e^{i \left(px - t\sqrt{p^2 + m^2}\right)} - e^{-i \left(px + t\sqrt{p^2 + m^2}\right)} \right]
+\end{align}
+
+Here, we need some physics, and \cite{peskin-and-schroeder}, chapter 2, page 14, only looks at the asymptotic behaviour
+for $x^2 \gg t^2$.
+In that region, the argument of the second exponent approaches zero.
+So that term becomes a constant.
+
+\begin{align}
+U(t) &= \bra{\vect{x}} e^{-iHt} \ket{\vect{x}_0} \\
+&= \frac{1}{4i \pi^2 x}
+    \int_{0}^{\infty} dp \, p
+    \left[ e^{i \left(px - t\sqrt{p^2 + m^2}\right)} - e^{-i \left(px + t\sqrt{p^2 + m^2}\right)} \right] \\
+&\approx \frac{1}{4i \pi^2 x}
+    \int_{0}^{\infty} dp \, p \,
+    e^{i \left(px - t\sqrt{p^2 + m^2}\right)}
+\end{align}
+
+This last integral is perfect for the stationary phase method.
+Let's find the stationary points of the phase factor now,
+
+\begin{align*}
+\frac{d}{dp} \left( px - t\sqrt{p^2 + m^2} \right) &= x - t\frac{p}{\sqrt{p^2 + m^2}} = 0
+\end{align*}
+
+To isolate $p_0$, we can try the following
+
+$$
+x = t\frac{p}{\sqrt{p^2 + m^2}}
+$$
+
+$$
+x \sqrt{p^2 + m^2} = pt
+$$
+
+$$
+x^2 \left( p^2 + m^2 \right) = p^2 t^2
+$$
+
+$$
+x^2 p^2 + x^2 m^2 = p^2 t^2
+$$
+
+Which can finally be rewritten as
+
+$$
+p^2 \left(x^2 - t^2 \right) = -m^2 x^2
+$$
+
+or
+
+$$
+p_0 = \pm i \frac{mx}{ \sqrt{ x^2 - t^2 } }
+$$
+
+
+Substituting this back into the phase factor, we get
+
+\begin{align*}
+\exp\left( i \left(p_0 x - t\sqrt{p_{0}^{2} + m^2}\right) \right) &=
+    \exp\left( i \left(\pm i \frac{mx^2}{ \sqrt{ x^2 - t^2 } } 
+        - t\sqrt{-\frac{m^2 x^2}{x^2 - t^2} + m^2}\right) \right) \\
+\end{align*}
+
+Let's drop the exponent from the expression and continue working.
+
+\begin{align*}
+\mp \frac{mx^2}{ \sqrt{ x^2 - t^2 } }
+    - i t \sqrt{m^2} \sqrt{-\frac{x^2}{x^2 - t^2} + 1}
+&= \mp \frac{mx^2}{ \sqrt{ x^2 - t^2 } }
+    - i t \sqrt{m^2 t^2} \sqrt{-1} \sqrt{ \frac{1}{x^2 - t^2} } \\
+&= \mp m x^2 \frac{1}{ \sqrt{ x^2 - t^2 } }
+    \pm m t^2 \frac{1}{ \sqrt{ x^2 - t^2 } } \\
+&= \mp m \sqrt{x^2 - t^2}
+\end{align*}
+
+
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Stationary Phase Method: Background}
 
