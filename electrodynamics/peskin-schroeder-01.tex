@@ -959,7 +959,7 @@ $$
 Here $a = -i \frac{\lambda}{2} S^{\prime \prime} (x_0) $.
 So
 
-\begin{align*}
+\begin{align*} \label{equation:stat-phase-solution}
 \mathcal{I}(\lambda) \approx
     e^{ i\lambda S(x_0) } f(x_0)
     \sqrt{ \frac{2\pi}{ -i\lambda S^{\prime \prime} (x_0) } }
@@ -1083,6 +1083,22 @@ Let's drop the exponent from the expression and continue working.
     \pm m t^2 \frac{1}{ \sqrt{ x^2 - t^2 } } \\
 &= \mp m \sqrt{x^2 - t^2}
 \end{align*}
+
+
+Since \cite{peskin-and-schroeder} chose to push the contour upward so that it goes through
+$p_0 = + i \frac{mx}{ \sqrt{ x^2 - t^2 } } $, then we get the exponent term that looks like
+$$
+e^{- m \sqrt{x^2 - t^2}}
+$$
+
+
+Recall from \ref{equation:stat-phase-solution}, that one of the terms in the answer is
+$e^{ i\lambda S(x_0) }$, the exponential term at the phase factor, what we evaluated above,
+hence Peskin and schroeder's answer.
+
+
+
+
 
 
 
