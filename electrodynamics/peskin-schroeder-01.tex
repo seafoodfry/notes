@@ -959,11 +959,11 @@ $$
 Here $a = -i \frac{\lambda}{2} S^{\prime \prime} (x_0) $.
 So
 
-\begin{align*} \label{equation:stat-phase-solution}
+\begin{align} \label{equation:stat-phase-solution}
 \mathcal{I}(\lambda) \approx
     e^{ i\lambda S(x_0) } f(x_0)
     \sqrt{ \frac{2\pi}{ -i\lambda S^{\prime \prime} (x_0) } }
-\end{align*}
+\end{align}
 
 This tells us that that for large $\lambda$,
 the integral is dominated by contributions near the stationary points,
@@ -1011,19 +1011,42 @@ U(t) &= \bra{\vect{x}} e^{-iHt} \ket{\vect{x}_0} \\
     \left[ e^{i \left(px - t\sqrt{p^2 + m^2}\right)} - e^{-i \left(px + t\sqrt{p^2 + m^2}\right)} \right]
 \end{align}
 
-Here, we need some physics, and \cite{peskin-and-schroeder}, chapter 2, page 14, only looks at the asymptotic behaviour
-for $x^2 \gg t^2$.
-In that region, the argument of the second exponent approaches zero.
-So that term becomes a constant.
+There is an identity we can apply here to make the method of stationary phase applicable.
+Notice that we have an integral like,
+
+\begin{align} \label{equation:integral-with-exponents}
+\int_{0}^{\infty} dp \, p \left( e^{ipx} - e^{-ipx} \right)
+\end{align}
+
+We make a substitution of $p \rightarrow -u$ for the following part of the integral,
+\begin{align*}
+\int_{0}^{\infty} dp \, p \, e^{-ipx} = \int_{0}^{-\infty} du \, u \, e^{iux}
+\end{align*}
+
+Since $u$ is a dummy integration variable we have,
+\begin{align*}
+\int_{0}^{\infty} dp \, p \, e^{-ipx} &= \int_{0}^{-\infty} dp \, p \, e^{ipx} \\
+&= - \int^{0}_{-\infty} dp \, p \, e^{ipx}
+\end{align*}
+
+Putting this back into \ref{equation:integral-with-exponents},
+\begin{align*}
+\int_{0}^{\infty} dp \, p \left( e^{ipx} - e^{-ipx} \right) &=
+    \int_{0}^{\infty} dp \, p \, e^{ipx} - \int_{0}^{\infty} dp \, p \, e^{-ipx} \\
+&= \int_{0}^{\infty} dp \, p \, e^{ipx} + \int^{0}_{-\infty} dp \, p \, e^{ipx} \\
+&= \int_{-\infty}^{\infty} dp \, p \, e^{ipx}
+\end{align*}
+
+
+Using this identity in \cite{peskin-and-schroeder},
+means that we can expand the limits of integration to the entire real line and make use of the method of stationary
+phase \ref{equation:stat-phase-solution}.
+
 
 \begin{align}
 U(t) &= \bra{\vect{x}} e^{-iHt} \ket{\vect{x}_0} \\
 &= \frac{1}{4i \pi^2 x}
-    \int_{0}^{\infty} dp \, p
-    \left[ e^{i \left(px - t\sqrt{p^2 + m^2}\right)} - e^{-i \left(px + t\sqrt{p^2 + m^2}\right)} \right] \\
-&\approx \frac{1}{4i \pi^2 x}
-    \int_{0}^{\infty} dp \, p \,
-    e^{i \left(px - t\sqrt{p^2 + m^2}\right)}
+    \int dp \, p \, e^{i \left(px - t\sqrt{p^2 + m^2}\right)}
 \end{align}
 
 This last integral is perfect for the stationary phase method.
