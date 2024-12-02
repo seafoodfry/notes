@@ -1,0 +1,22 @@
+\chapter{Bayesian Statistics}
+
+\section{Intro}
+
+The background section of \cite{maclaurin2016thesis} is a great intro to Bayesian statistics.
+
+In Bayesian statistics, the observed data $D$ and model parameters $\theta$ are both taken to be random
+variables.
+That while assuming, a priori, some join distribution $p(D, \theta)$.
+That joint distribution can be factorized into a prior distribution $p(\theta)$ and the likelihood
+$p(D|\theta)$ by using the law of compound or joint probability
+
+$$
+p(A, B) = p(B|A) p(A) = p(A|B) p(B)
+$$
+
+Which in our case look as follows:
+$$
+p(D, \theta) = p(D|\theta) p(\theta)
+$$
+That is, the joint distribution of the observed data and the model parameters we assume is equal to the
+product of the likelihood and the prior.
