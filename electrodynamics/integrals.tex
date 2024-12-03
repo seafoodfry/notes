@@ -292,6 +292,83 @@ f(z) &= \sum_{n=-\infty}^{\infty} a_n \left(z - z_0\right)^n \\
 \end{itemize}
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Some Theorems}
+
+\textbf{Cauchy's theorem or Cauchy's integral theorem} says the following:
+if $f(z)$ is holomorphic on a simpli connected domain $\Omega$, then for any simply close contour $C$
+in $\Omega$,
+
+$$
+\oint_C f(z) \, dz = 0
+$$
+
+
+\textbf{Cauchy's integral formula} says:
+if $U$ is an open subset in $\mathcal{C}$, a $D$ is a closed disk of radius $r$ defined as
+$$
+D = \{ z : |z - z_0| \leq r \}
+$$
+and $D$ is completely contained in $U$.
+If we have a holomorphic function $f : U \rightarrow \mathcal{C}$, and $\gamma$ a circle oriented
+counterclockwise forming the boundary for $D$,
+then for every $a$ in the interior of $D$
+
+$$
+f(a) = \frac{1}{2\pi i} \oint_\gamma \frac{f(z)}{z-a} dz
+$$
+
+This formula can be generalized in a couple ways.
+
+The first generalization is \textbf{Cauchy's differentiation formula}:
+
+$$
+f^{\left(n\right)}(a) = \frac{n!}{2\pi i} \oint_\gamma \frac{f(z)}{\left(z-a\right)^{n+1}} dz
+$$
+
+The second is to obtain the coefficients of the function's Laurent series:
+
+$$
+a_n = \frac{1}{2\pi i} \oint_\gamma \frac{f(z)}{\left(z-a\right)^{n+1}} dz
+$$
+
+Lastly, you'll need \textbf{Jordan's lemma} which states that:
+if $f$ is defined on a semicircular contour
+
+$$
+C_{R} = \{ z = Re^{i\theta} | \theta \in [0, \pi] \}
+$$
+
+where $R > 0$ and $C_R$ lies in the upper half plane and is centered at the origin.
+If $f$ is of the form
+
+$$
+f(z) = e^{iaz} g(z)
+$$
+
+with $a>0$.
+In this case, Jordan's lemma provides the following upper bound for the contour integral:
+
+$$
+\left| \int_{C_{R}} f(z) \, dz \right| \leq \frac{\pi}{a} M_R
+    = \frac{\pi}{a} \max_{\theta \in [0,\pi]} \left| g \left(Re^{i\theta}\right) \right|
+$$
+
+An analogous statement for a semicircular contour in the lower half-plane holds when $a < 0$. 
+
+An alternate definition is as follows:
+the value of the integral
+
+$$
+\int g(x) e^{iax} dx
+$$
+along the infinite upper semicircle and with $a>0$ is 0 for "nice" functions which satisfy
+$\lim_{R\rightarrow \infty} \left| g\left(Re^{i\theta}\right) \right| = 0$.
+
+Which also holds when the integral in question is $\int g(z) e^{iaz} dz$ when performed along
+an infinite upper semicircle.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Residues}
+
+\textbf{Residues} are important because there is 
