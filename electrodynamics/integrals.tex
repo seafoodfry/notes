@@ -1,9 +1,9 @@
-\section{Integrals in QFT}
+\chapter{Integrals in QFT}
 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Gaussians}
+\section{Gaussians}
 
 The simples one,
 $$
@@ -93,7 +93,7 @@ We will be using it more later on.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Complex Gaussians: the Fresnel Integral} \label{integrals:complex-gaussian}
+\section{Complex Gaussians: the Fresnel Integral} \label{integrals:complex-gaussian}
 
 
 Convergence of $\int e^{-at^2} dt$.
@@ -133,7 +133,7 @@ $$
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Kinetic operator and a Green Function} \label{integral:kinetic-operator}
+\section{Kinetic operator and a Green Function} \label{integral:kinetic-operator}
 
 This problem is part of
 \href{https://arxiv.org/abs/physics/0609191}{MontePython: Implementing Quantum Monte Carlo using Python}.
@@ -217,7 +217,7 @@ G_K \left(\vect{R}^\prime, \vect{R}, t\right) &=
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Klein-gordon Non-relativistic Amplitude} \label{ps-kg:nonrelativistic-propagator}
+\section{Klein-gordon Non-relativistic Amplitude} \label{ps-kg:nonrelativistic-propagator}
 
 The following integral comes from Peskin and schroeder Section 2.1
 \begin{align}
@@ -254,4 +254,44 @@ So the solution is
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Contour Integrals}
+\section{Contour Integrals}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Poles}
+
+A \text{pole} is a type of singularity.
+
+Some complex analysis to put it into perspective, the following comes from
+\url{https://en.wikipedia.org/wiki/Zeros_and_poles}:
+\begin{itemize}
+\item A function of a complex variable $z$ is \textbf{holomorphic} in an open domain $U$ if it is
+    differentiable with respect to $z$ at every point in $U$. Another equivalent definition is that A
+    function is holomorphic if it is analytic, that is, if its Taylor series exists at every point in $U$
+    and converges to the function in some neighborhood of the point in $U$.
+\item A function is \textbf{meromorphic} in $U$ if every point of $U$ has a neighborhood such that at least
+    one of $f(z)$ or $1/f(z)$ are holomorphic in it.
+\item A \textbf{zero} of a meromorphic function $f$, is a complex number $z$, such that $f(z)=0$.
+\item A \textbf{pole} of $f$ is a zero of $1/f(z)$.
+\end{itemize}
+
+Let's also introduce some other good results summarized by \cite{gifted-qft} in appendix B.
+
+If $f(z)$ is a holomorphic function, the function can be expanded in terms of its Laurent series around
+some point $z_0$ in its open domain as follows:
+
+\begin{align*}
+f(z) &= \sum_{n=-\infty}^{\infty} a_n \left(z - z_0\right)^n \\
+&= a_0 + a_1 \left(z-z_0\right) + a_2 \left(z-z_0\right)^2 + \dots +
+    \frac{b_1}{\left(z-z_0\right)} + \frac{b_2}{\left(z-z_0\right)^2} + \dots
+\end{align*}
+
+\begin{itemize}
+\item if all $b_n$ are 0, then $f(z=z_0)$ is analytic at $z=z_0$.
+\item if all $b_n$ when $n>1$ are zero, then we have a pole of order $n$ at $z=z_0$. When $n=1$,
+    we have a simple pole.
+\end{itemize}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Residues}
