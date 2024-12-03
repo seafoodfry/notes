@@ -6,6 +6,9 @@ The background section of \cite{maclaurin2016thesis} is a great intro to Bayesia
 
 In Bayesian statistics, the observed data $D$ and model parameters $\theta$ are both taken to be random
 variables.
+This is a fundamental difference from frequentist statistics, where parameters are treated as fixed
+but unknown constants
+
 That while assuming, a priori, some join distribution $p(D, \theta)$.
 That joint distribution can be factorized into a prior distribution $p(\theta)$ and the likelihood
 $p(D|\theta)$ by using the law of compound or joint probability
@@ -16,7 +19,96 @@ $$
 
 Which in our case look as follows:
 $$
-p(D, \theta) = p(D|\theta) p(\theta)
+p(D, \theta)
+= p(D|\theta) p(\theta)
+= p(\theta | D) p(D)
 $$
-That is, the joint distribution of the observed data and the model parameters we assume is equal to the
-product of the likelihood and the prior.
+
+This factorization is particularly powerful because it leads directly to Bayes' theorem:
+$$
+p(\theta |D) = \frac{ p(D|\theta) p(\theta) }{p(D)}
+$$
+
+where $p(D)$ acts as a normalizing constant to ensure the posterior is a proper probability distribution.
+
+To see the cool thing here we ought to keep in mind what a parameter is.
+A "parameter" is typically some unknown quantity we want to learn about
+(like the true probability of a coin landing heads, or the average height in a population.
+
+With that in mind, we then factor out our assumed joint distribution $p(D, \theta)$ into the likelihood
+$p(D|\theta)$ and the prior $p(\theta)$ because we can use these to compute $p(\theta |D)$,
+which gives us more information about the model parameters (real probabilities) we are interested.
+
+And the reason this facotrization is valid is because the prior is
+represents our initial beliefs about the parameter before seeing any data.
+
+
+% Likelihood.
+
+And the likelihood is the data we already have that is relevant to the parameters we are interested.
+More precisely, the likelihood $p(D|\theta)$ is actually a function that tells us
+"For any given value of the parameter $\theta$, how probable is it that we would observe our actual
+data $D$?"
+
+% Back on topic.
+
+The beauty of getting a full posterior distribution (rather than just a point estimate)
+is that it tells us not just our best guess about the parameter, but also how uncertain we are about it.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Examples of likelihood: coin flips}
+
+Imagine we flip a coin 10 times and observe 7 heads (this is our data $D$). The likelihood $p(D|\theta)$ would tell us how probable it would be to see exactly 7 heads in 10 flips for different possible values of $\theta$ (the true probability of heads).
+For instance:
+
+If $\theta = 0.5$ (fair coin), what's the probability of seeing 7 heads in 10 flips?
+If $\theta = 0.7$, what's the probability of seeing 7 heads in 10 flips?
+If $\theta = 0.9$, what's the probability of seeing 7 heads in 10 flips?
+
+Mathematically, for this example, the likelihood would be given by the binomial probability:
+
+$$
+p(D|\theta) = \binom{10}{7} \theta^7 \left(1-\theta\right)^{3}
+$$
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Examples of likelihood: heights}
+
+Imagine we're trying to learn about the average height (let's call this parameter $\theta$) in a certain population, and we assume heights follow a normal distribution. We collect some data by measuring 5 people's heights and get:
+$D = \{ 168\text{cm}, 172\text{cm}, 175\text{cm}, 169\text{cm}, 171\text{cm} \}$.
+
+The likelihood $p(D|\theta)$ in this case tells us "For any possible average height $\theta$,
+how probable would it be to observe exactly these five measurements?"
+For example:
+
+If $\theta = 165\text{cm}$: These measurements would be quite unlikely because they're all notably higher
+If $\theta = 171\text{cm}$: These measurements would be quite likely because they cluster around this value
+If $\theta = 185\text{cm}$: These measurements would be very unlikely because they're all much lower
+
+Mathematically, assuming we know the standard deviation $\sigma$ is about 7cm, the likelihood would be:
+
+$$
+p(D|\theta) = 
+\prod_{i=1}^{5} \frac{1}{\sigma \sqrt{2\pi}} e^{-\frac{1}{2} \left(\frac{x_i - \theta}{\sigma}\right)^2 }
+$$
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Examples of priors: conjugate priors}
+
+One practically useful type of prior is the "conjugate prior".
+This is a prior chosen so the posterior distribution ends up in the same family as the prior.
+
+For the coin flip example above, we could use a Beta distribution as the prior for a
+binomial likelihood because
+$$
+\text{Beta prior} \times \text{Binomial likelihood} = \text{Beta posterior}
+$$
+
+This isn't just mathematical convenience!
+
+The $Beta(\alpha, \beta)$ prior has an intuitive interpretation.
+It's like having already seen $\alpha -1$ successes and $\beta -1$ failures.
+So $Beta(2, 2)$ means we're acting as if we've seen 1 head and 1 tail before starting our experiment.
