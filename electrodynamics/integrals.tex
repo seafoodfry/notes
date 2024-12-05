@@ -295,6 +295,9 @@ f(z) &= \sum_{n=-\infty}^{\infty} a_n \left(z - z_0\right)^n \\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Some Theorems}
 
+Note: read this subsection whole - don't stop to look up things until you've finished.
+\\
+
 \textbf{Cauchy's theorem or Cauchy's integral theorem} says the following:
 if $f(z)$ is holomorphic on a simpli connected domain $\Omega$, then for any simply close contour $C$
 in $\Omega$,
@@ -335,6 +338,130 @@ The second is to obtain the coefficients of the function's Laurent series:
 $$
 a_n = \frac{1}{2\pi i} \oint_\gamma \frac{f(z)}{\left(z-a\right)^{n+1}} dz
 $$
+
+Hopefull you are looking at these and thinking "what the hell?".
+The best explanation we were able to find was actually hidden in the wikipedia page for
+\href{https://en.wikipedia.org/wiki/Analyticity_of_holomorphic_functions}{Analyticity of holomorphic functions}.
+
+There, the authors try to give a proof of why
+it is said that a holomorphic function at a point $a$ is differentiable at every point within
+some open disk centered at $a$, and why
+a holomorphic function is said to be analytic at $a$ if in some open disk centered at $a$
+it can be expanded as a convergent power series.
+
+We'll repeat the proof but add some additional bits now:
+
+Again, remember that we are working with some open disk $D$ centered at $a$ (read how the Cauchy integral formula was stated).
+And our function $f$ is differentiable everywhere within an open neighborhood containing the closure of $D$.
+
+Now, the closure of a set, see \cite{abbott}'s definition 3.2.11, is written as $\bar{D}$ and defined
+as the union of the set $D$ and the set of all its limit points.
+That is, $\bar{D} = D \cup L$.
+And the set of limit points $L$ is defined as - see \cite{abbott}'s definition 3.2.4.
+Because, personally, I think that these definitions make more sense with \cite{abbott}'s definition
+3.2.7 which says that a set is closed if it contains all its limit points.
+
+Apologies if this is a roundabout way of saying what follows but at some point in life you should follow
+this trail of analysis, it'll do you good.
+But, for now, let's go back to our main story.
+Which again, is about some function $f$ being differentiable within an open neighborhood containing the
+closure of $D$.
+And we now know that the closure of $D$ is essentially a closed set containing $D$ and any of its limit points
+(the limit points asure us that there are no "holes" in our set $\bar{D}$).
+
+The concept of a closure is also important because it generalizes to the concept of compactedness - see
+\cite{abbott} section 3.3, specifically theorem 3.3.4 where it is stated that a set is compact
+if and only if it is closed and bounded.
+
+Since we will be keeping $f$ bounded by our contour, then we now meet the second requirement for compactedness.
+And this gives us the ability to make use of the
+\href{https://en.wikipedia.org/wiki/Extreme_value_theorem}(extreme value theorem).
+Which in short tells us that $f(z)$, for any point $z\in \bar{D}$, will be bounded.
+\\
+
+The last bit of mathematics, before we do basic calculus, is to remember the geometric series:
+
+$$
+\sum_{k=0}^{\infty} a r^k = a + ar + ar^2 + \dots = \frac{a}{1 - r}
+$$
+which holds only if $|r| < 1$.
+
+Let's now go back to
+\href{https://en.wikipedia.org/wiki/Analyticity_of_holomorphic_functions}{Analyticity of holomorphic functions}.
+Cauchy's integral formula says that
+
+$$
+f(a) = \frac{1}{2\pi i} \int_{C} \frac{f(z)}{z - a} dz
+$$
+
+Here we will make some quick change of notation to keep our formulas from becoming confusing.
+We will not denote the cneter of the disk $D$ by d and $a$ will be any point inside of $D$.
+$z$ is any point along the contour $C$ that forms the boundary of the disk.
+
+
+The following can be rewritten as
+\begin{align*}
+f(a) &= \frac{1}{2\pi i} \int_{C} \frac{f(z)}{z - a} \, dz \\
+&= \frac{1}{2\pi i} \int_{C} \frac{f(z)}{\left(z-d\right) - \left(a-d\right)} \, dz \\
+&= \frac{1}{2\pi i} \int_{C} \frac{1}{z-d} \frac{1}{1 - \frac{a-d}{z-d}} f(z) \, dz
+\end{align*}
+
+Here we can rewrite the second fraction as a geometric series because
+$\left(a-d\right)/\left(z-d\right)$,
+the ratio of the radius of an internal point of $D$ and the radius of $\bar{D}$ will always be less
+than 1, thus meeting the condition for convergence of the geometric series.
+
+\begin{align*}
+f(a) &= \frac{1}{2\pi i} \int_{C} \frac{1}{z-d} \frac{1}{1 - \frac{a-d}{z-d}} f(z) \, dz \\
+&= \frac{1}{2\pi i} \int_{C} \frac{1}{z-d} 
+    \sum_{n=0}^{\infty} \left( \frac{a-d}{z-d} \right)^n
+    f(z) \, dz 
+\end{align*}
+
+Because our domain of interest if compact and because $f$ is continuous and bounded by $C$, then $f(z)$ is
+bounded, as we mentioned aboved.
+But, also, because $\frac{1}{z-b}$ is the inverse radius, that too is bounded.
+So the entire quantity $\frac{f(z)}{z-d}$ is bounded by some quantity $M$.
+This allows us to swap the sum and the integral around, leaving us with:
+
+\begin{align*}
+f(a) &= \frac{1}{2\pi i} \int_{C} \frac{1}{z-d} 
+    \sum_{n=0}^{\infty} \left( \frac{a-d}{z-d} \right)^n
+    f(z) \, dz \\
+&= \sum_{n=0}^{\infty} \frac{1}{2\pi i}
+    \int_{C} \frac{ \left(a-d\right)^n }{ \left(z-d\right)^{n+1} } f(z) \, dz \\
+&= \sum_{n=0}^{\infty} \left(a-d\right)^n \frac{1}{2\pi i}
+    \int_{C} \frac{f(z)}{ \left(z-d\right)^{n+1} } \, dz
+\end{align*}
+
+This last expression finally looks like a power seires and thus finishes the proof from the wikipedia page.
+
+But if you llok at it, you'll see where the coefficients for the Laurent series expansion come from!
+\\
+
+Finaly, to see where Cauchy's differentiation formula comes from, it helps to switch the notation again
+to
+$$
+f(z) = \sum c_n \left(z-a\right)^n
+$$
+and
+$$
+c_n = \frac{1}{2 \pi i} \int_C \frac{f(w)}{\left(w-a\right)^{n+1}} dw
+$$
+
+This new notation helps us not get mixed up because now we will use $w$ as the variable of integration
+representing the points in the contour $C$.
+Which is a valid representation because we know that everything inside the integral is bounded,
+so the coefficients really are coefficients.
+
+The other trick is to remember that a power series can be differentiated term by term.
+So $f^{(1)}(z)$ will have no contributions from the constant coeffieicnts $c_n$ but will get an $n$
+from the differentiation of $\left(z-a\right)^n$.
+Then $f^{(2)}(z)$ will get an extra factor of $n(n-1)$ and leave the rest unchanged ($n(n-1) = 2\cdot1 = 2!$ here).
+Similarly,
+$f^{(3)}(z)$ wil get an additional factor of $n(n-1)(n-2) = 3\cdot 2 \cdot 1 = 3!$.
+And so on.
+\\
 
 Lastly, you'll need \textbf{Jordan's lemma} which states that:
 if $f$ is defined on a semicircular contour
