@@ -7,7 +7,102 @@ The background section of \cite{maclaurin2016thesis} is a great intro to Bayesia
 In Bayesian statistics, the observed data $D$ and model parameters $\theta$ are both taken to be random
 variables.
 This is a fundamental difference from frequentist statistics, where parameters are treated as fixed
-but unknown constants
+but unknown constants.
+
+
+This sounds very poetic and what it means is this: assume we're tracking 1D motion with parameters
+$\theta$. Our model would be plain-ol' Newton's equations and $\theta$ would stand for the parameters
+such as position, velocity, etc.
+
+The Bayesian approach works like this: imagine we see someone walking.
+We come up with a prior distribution, which is our best guess of where the person is and how fast
+they are walking.
+It is a distribution because we include uncertainty - like "the person is going 1 m/s to the right plus
+or minus 10 cm/s" (a symmetric error estimate suggests a Gaussian-like distribution,
+with our guess of the error based on some belief about the variance of our prior).
+ 
+Now, turns out there is a ruler along the sidewalk and a velocity radar at the end of the street.
+So every now and then we can look up and get an actual measurement for that person's
+current position and velocity.
+
+
+Because the ruler on the sidewalk is a bit crooked and washed up in some places,
+and because the velocity radar is not tremendously precise,
+we don't treat these measurements as perfect truth.
+Instead, we assume that the data itself is generated with some uncertainty
+(another probability distribution) and we use it to update our prior beliefs rather than
+simply saying "just look at the ruler and the velocity radar".
+
+
+Our aim is to update our beliefs about the parameters of our model based on the data we observe,
+resulting in a posterior distribution that represents our new understanding.
+The posterior distribution gives us both the most likely parameter values AND
+our uncertainty about those values. So rather than finding just "the best" parameters,
+we get a full distribution that shows which parameter values are most probable and
+how confident we should be in those estimates.
+\\~\\
+
+
+We can then use our computed posterior to create a better prior.
+This is the basis for sequential Bayesian Updating:
+
+In Bayesian statistics, we can continuously update our beliefs as new data arrives.
+(More data means less uncertainty!)
+This process follows these steps:
+
+\begin{enumerate}
+\item Begin with an initial prior distribution $P(\theta)$ representing our initial beliefs about the
+    parameters
+\item Observe some data $D_{1}$
+\item Apply Bayes' theorem to calculate the posterior distribution:
+    $P(\theta|D_{1}) \propto P(D_{1}|\theta) P(\theta)$
+\item When new data $D_{2}$ arrives, use the previous posterior as your new prior:
+    $P(\theta|D_{1}, D_{2}) \propto P(D_{2}|\theta) P(\theta|D_{1})$
+\item Repeat this process as more data becomes available
+\end{enumerate}
+
+
+Starting with Bayes' rule for the combined posterior:
+$$
+P(\theta|D_1,D_2) = \frac{P(D_1,D_2|\theta)P(\theta)}{P(D_1,D_2)}
+$$
+
+
+If $D_1$ and $D_2$ are conditionally independent given $\theta$ then:
+$$
+P(D_1,D_2|\theta) = P(D_1|\theta)P(D_2|\theta)
+$$
+
+This gives us:
+$$
+P(\theta|D_1,D_2) = \frac{P(D_1|\theta)P(D_2|\theta)P(\theta)}{P(D_1,D_2)}
+$$
+
+Now we can use Bayes' rule for just $D_1$:
+$$
+P(\theta|D_1) = \frac{P(D_1|\theta)P(\theta)}{P(D_1)}
+$$
+
+Rearranging to isolate $P(\theta)$:
+$$
+P(\theta) = \frac{P(\theta|D_1)P(D_1)}{P(D_1|\theta)}
+$$
+
+Substituting this into our original equation:
+$$
+P(\theta|D_1,D_2) = \frac{P(D_1|\theta)P(D_2|\theta)\frac{P(\theta|D_1)P(D_1)}{P(D_1|\theta)}}{P(D_1,D_2)}
+$$
+Simplifying:
+$$
+P(\theta|D_1,D_2) = \frac{P(D_2|\theta)P(\theta|D_1)P(D_1)}{P(D_1,D_2)}
+$$
+Since $P(D_1)$ and $P(D_1,D_2)$ are just normalizing constants (independent of $\theta$),
+we can write:
+$$
+P(\theta|D_1,D_2) \propto P(D_2|\theta)P(\theta|D_1)
+$$
+This is the formula for sequential Bayesian updating.
+\\~\\
 
 That while assuming, a priori, some join distribution $p(D, \theta)$.
 That joint distribution can be factorized into a prior distribution $p(\theta)$ and the likelihood
