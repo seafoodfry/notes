@@ -1,9 +1,9 @@
-\section{Integrals in QFT}
+\chapter{Integrals in QFT}
 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Gaussians}
+\section{Gaussians}
 
 The simples one,
 $$
@@ -93,7 +93,7 @@ We will be using it more later on.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Complex Gaussians: the Fresnel Integral} \label{integrals:complex-gaussian}
+\section{Complex Gaussians: the Fresnel Integral} \label{integrals:complex-gaussian}
 
 
 Convergence of $\int e^{-at^2} dt$.
@@ -133,7 +133,7 @@ $$
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Kinetic operator and a Green Function} \label{integral:kinetic-operator}
+\section{Kinetic operator and a Green Function} \label{integral:kinetic-operator}
 
 This problem is part of
 \href{https://arxiv.org/abs/physics/0609191}{MontePython: Implementing Quantum Monte Carlo using Python}.
@@ -217,7 +217,7 @@ G_K \left(\vect{R}^\prime, \vect{R}, t\right) &=
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Klein-gordon Non-relativistic Amplitude} \label{ps-kg:nonrelativistic-propagator}
+\section{Klein-gordon Non-relativistic Amplitude} \label{ps-kg:nonrelativistic-propagator}
 
 The following integral comes from Peskin and schroeder Section 2.1
 \begin{align}
@@ -246,3 +246,260 @@ So the solution is
 & \frac{1}{(2\pi)^3} \left( \frac{2\pi m}{it} \right)^{3/2} e^{\frac{im \left(\vect{x}-\vect{x}_0\right)^2}{2t}} \\
 &= \left( \frac{m}{2\pi it} \right)^{3/2} e^{im \left(\vect{x}-\vect{x}_0\right)^2 /2t}
 \end{align*}
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Contour Integrals}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Poles}
+
+A \text{pole} is a type of singularity.
+
+Some complex analysis to put it into perspective, the following comes from
+\url{https://en.wikipedia.org/wiki/Zeros_and_poles}:
+\begin{itemize}
+\item A function of a complex variable $z$ is \textbf{holomorphic} in an open domain $U$ if it is
+    differentiable with respect to $z$ at every point in $U$. Another equivalent definition is that A
+    function is holomorphic if it is analytic, that is, if its Taylor series exists at every point in $U$
+    and converges to the function in some neighborhood of the point in $U$.
+\item A function is \textbf{meromorphic} in $U$ if every point of $U$ has a neighborhood such that at least
+    one of $f(z)$ or $1/f(z)$ are holomorphic in it.
+\item A \textbf{zero} of a meromorphic function $f$, is a complex number $z$, such that $f(z)=0$.
+\item A \textbf{pole} of $f$ is a zero of $1/f(z)$.
+\end{itemize}
+
+Let's also introduce some other good results summarized by \cite{gifted-qft} in appendix B.
+
+If $f(z)$ is a holomorphic function, the function can be expanded in terms of its Laurent series around
+some point $z_0$ in its open domain as follows:
+
+\begin{align*}
+f(z) &= \sum_{n=-\infty}^{\infty} a_n \left(z - z_0\right)^n \\
+&= a_0 + a_1 \left(z-z_0\right) + a_2 \left(z-z_0\right)^2 + \dots +
+    \frac{b_1}{\left(z-z_0\right)} + \frac{b_2}{\left(z-z_0\right)^2} + \dots
+\end{align*}
+
+\begin{itemize}
+\item if all $b_n$ are 0, then $f(z=z_0)$ is analytic at $z=z_0$.
+\item if all $b_n$ when $n>1$ are zero, then we have a pole of order $n$ at $z=z_0$. When $n=1$,
+    we have a simple pole.
+\end{itemize}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Some Theorems}
+
+Note: read this subsection whole - don't stop to look up things until you've finished.
+\\
+
+\textbf{Cauchy's theorem or Cauchy's integral theorem} says the following:
+if $f(z)$ is holomorphic on a simpli connected domain $\Omega$, then for any simply close contour $C$
+in $\Omega$,
+
+$$
+\oint_C f(z) \, dz = 0
+$$
+
+This may look weird at first but it is another version of the fundamental theorem of calculus -
+if you integrate and go all around some line but end up in the same place then you didn't really go
+anywhere.
+\\
+
+\textbf{Cauchy's integral formula} says:
+if $U$ is an open subset in $\mathcal{C}$, a $D$ is a closed disk of radius $r$ defined as
+$$
+D = \{ z : |z - z_0| \leq r \}
+$$
+and $D$ is completely contained in $U$.
+If we have a holomorphic function $f : U \rightarrow \mathcal{C}$, and $\gamma$ a circle oriented
+counterclockwise forming the boundary for $D$,
+then for every $a$ in the interior of $D$
+
+$$
+f(a) = \frac{1}{2\pi i} \oint_\gamma \frac{f(z)}{z-a} dz
+$$
+
+This formula can be generalized in a couple ways.
+
+The first generalization is \textbf{Cauchy's differentiation formula}:
+
+$$
+f^{\left(n\right)}(a) = \frac{n!}{2\pi i} \oint_\gamma \frac{f(z)}{\left(z-a\right)^{n+1}} dz
+$$
+
+The second is to obtain the coefficients of the function's Laurent series:
+
+$$
+a_n = \frac{1}{2\pi i} \oint_\gamma \frac{f(z)}{\left(z-a\right)^{n+1}} dz
+$$
+
+Hopefull you are looking at these and thinking "what the hell?".
+The best explanation we were able to find was actually hidden in the wikipedia page for
+\href{https://en.wikipedia.org/wiki/Analyticity_of_holomorphic_functions}{Analyticity of holomorphic functions}.
+
+There, the authors try to give a proof of why
+it is said that a holomorphic function at a point $a$ is differentiable at every point within
+some open disk centered at $a$, and why
+a holomorphic function is said to be analytic at $a$ if in some open disk centered at $a$
+it can be expanded as a convergent power series.
+
+We'll repeat the proof but add some additional bits now:
+
+Again, remember that we are working with some open disk $D$ centered at $a$ (read how the Cauchy integral formula was stated).
+And our function $f$ is differentiable everywhere within an open neighborhood containing the closure of $D$.
+
+Now, the closure of a set, see \cite{abbott}'s definition 3.2.11, is written as $\bar{D}$ and defined
+as the union of the set $D$ and the set of all its limit points.
+That is, $\bar{D} = D \cup L$.
+And the set of limit points $L$ is defined as - see \cite{abbott}'s definition 3.2.4.
+Because, personally, I think that these definitions make more sense with \cite{abbott}'s definition
+3.2.7 which says that a set is closed if it contains all its limit points.
+
+Apologies if this is a roundabout way of saying what follows but at some point in life you should follow
+this trail of analysis, it'll do you good.
+But, for now, let's go back to our main story.
+Which again, is about some function $f$ being differentiable within an open neighborhood containing the
+closure of $D$.
+And we now know that the closure of $D$ is essentially a closed set containing $D$ and any of its limit points
+(the limit points asure us that there are no "holes" in our set $\bar{D}$).
+
+The concept of a closure is also important because it generalizes to the concept of compactedness - see
+\cite{abbott} section 3.3, specifically theorem 3.3.4 where it is stated that a set is compact
+if and only if it is closed and bounded.
+
+Since we will be keeping $f$ bounded by our contour, then we now meet the second requirement for compactedness.
+And this gives us the ability to make use of the
+\href{https://en.wikipedia.org/wiki/Extreme_value_theorem}(extreme value theorem).
+Which in short tells us that $f(z)$, for any point $z\in \bar{D}$, will be bounded.
+\\
+
+The last bit of mathematics, before we do basic calculus, is to remember the geometric series:
+
+$$
+\sum_{k=0}^{\infty} a r^k = a + ar + ar^2 + \dots = \frac{a}{1 - r}
+$$
+which holds only if $|r| < 1$.
+
+Let's now go back to
+\href{https://en.wikipedia.org/wiki/Analyticity_of_holomorphic_functions}{Analyticity of holomorphic functions}.
+Cauchy's integral formula says that
+
+$$
+f(a) = \frac{1}{2\pi i} \int_{C} \frac{f(z)}{z - a} dz
+$$
+
+Here we will make some quick change of notation to keep our formulas from becoming confusing.
+We will not denote the cneter of the disk $D$ by d and $a$ will be any point inside of $D$.
+$z$ is any point along the contour $C$ that forms the boundary of the disk.
+
+
+The following can be rewritten as
+\begin{align*}
+f(a) &= \frac{1}{2\pi i} \int_{C} \frac{f(z)}{z - a} \, dz \\
+&= \frac{1}{2\pi i} \int_{C} \frac{f(z)}{\left(z-d\right) - \left(a-d\right)} \, dz \\
+&= \frac{1}{2\pi i} \int_{C} \frac{1}{z-d} \frac{1}{1 - \frac{a-d}{z-d}} f(z) \, dz
+\end{align*}
+
+Here we can rewrite the second fraction as a geometric series because
+$\left(a-d\right)/\left(z-d\right)$,
+the ratio of the radius of an internal point of $D$ and the radius of $\bar{D}$ will always be less
+than 1, thus meeting the condition for convergence of the geometric series.
+
+\begin{align*}
+f(a) &= \frac{1}{2\pi i} \int_{C} \frac{1}{z-d} \frac{1}{1 - \frac{a-d}{z-d}} f(z) \, dz \\
+&= \frac{1}{2\pi i} \int_{C} \frac{1}{z-d} 
+    \sum_{n=0}^{\infty} \left( \frac{a-d}{z-d} \right)^n
+    f(z) \, dz 
+\end{align*}
+
+Because our domain of interest if compact and because $f$ is continuous and bounded by $C$, then $f(z)$ is
+bounded, as we mentioned aboved.
+But, also, because $\frac{1}{z-b}$ is the inverse radius, that too is bounded.
+So the entire quantity $\frac{f(z)}{z-d}$ is bounded by some quantity $M$.
+This allows us to swap the sum and the integral around, leaving us with:
+
+\begin{align*}
+f(a) &= \frac{1}{2\pi i} \int_{C} \frac{1}{z-d} 
+    \sum_{n=0}^{\infty} \left( \frac{a-d}{z-d} \right)^n
+    f(z) \, dz \\
+&= \sum_{n=0}^{\infty} \frac{1}{2\pi i}
+    \int_{C} \frac{ \left(a-d\right)^n }{ \left(z-d\right)^{n+1} } f(z) \, dz \\
+&= \sum_{n=0}^{\infty} \left(a-d\right)^n \frac{1}{2\pi i}
+    \int_{C} \frac{f(z)}{ \left(z-d\right)^{n+1} } \, dz
+\end{align*}
+
+This last expression finally looks like a power seires and thus finishes the proof from the wikipedia page.
+
+But if you llok at it, you'll see where the coefficients for the Laurent series expansion come from!
+\\
+
+Finaly, to see where Cauchy's differentiation formula comes from, it helps to switch the notation again
+to
+$$
+f(z) = \sum c_n \left(z-a\right)^n
+$$
+and
+$$
+c_n = \frac{1}{2 \pi i} \int_C \frac{f(w)}{\left(w-a\right)^{n+1}} dw
+$$
+
+This new notation helps us not get mixed up because now we will use $w$ as the variable of integration
+representing the points in the contour $C$.
+Which is a valid representation because we know that everything inside the integral is bounded,
+so the coefficients really are coefficients.
+
+The other trick is to remember that a power series can be differentiated term by term.
+So $f^{(1)}(z)$ will have no contributions from the constant coeffieicnts $c_n$ but will get an $n$
+from the differentiation of $\left(z-a\right)^n$.
+Then $f^{(2)}(z)$ will get an extra factor of $n(n-1)$ and leave the rest unchanged ($n(n-1) = 2\cdot1 = 2!$ here).
+Similarly,
+$f^{(3)}(z)$ wil get an additional factor of $n(n-1)(n-2) = 3\cdot 2 \cdot 1 = 3!$.
+And so on.
+\\
+
+Lastly, you'll need \textbf{Jordan's lemma} which states that:
+if $f$ is defined on a semicircular contour
+
+$$
+C_{R} = \{ z = Re^{i\theta} | \theta \in [0, \pi] \}
+$$
+
+where $R > 0$ and $C_R$ lies in the upper half plane and is centered at the origin.
+If $f$ is of the form
+
+$$
+f(z) = e^{iaz} g(z)
+$$
+
+with $a>0$.
+In this case, Jordan's lemma provides the following upper bound for the contour integral:
+
+$$
+\left| \int_{C_{R}} f(z) \, dz \right| \leq \frac{\pi}{a} M_R
+    = \frac{\pi}{a} \max_{\theta \in [0,\pi]} \left| g \left(Re^{i\theta}\right) \right|
+$$
+
+An analogous statement for a semicircular contour in the lower half-plane holds when $a < 0$. 
+
+An alternate definition is as follows:
+the value of the integral
+
+$$
+\int g(x) e^{iax} dx
+$$
+along the infinite upper semicircle and with $a>0$ is 0 for "nice" functions which satisfy
+$\lim_{R\rightarrow \infty} \left| g\left(Re^{i\theta}\right) \right| = 0$.
+
+Which also holds when the integral in question is $\int g(z) e^{iaz} dz$ when performed along
+an infinite upper semicircle.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Residues}
+
+\textbf{Residues} are important because there is a theorem
